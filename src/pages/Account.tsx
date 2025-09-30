@@ -5,8 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, User, Mail, Lock } from "lucide-react";
+import { ArrowLeft, User, Lock } from "lucide-react";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -18,6 +26,7 @@ const Account = () => {
   const [displayName, setDisplayName] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordDialogOpen, setPasswordDialogOpen] = useState(false);
 
   useEffect(() => {
     loadProfile();
@@ -111,6 +120,7 @@ const Account = () => {
       });
       setNewPassword("");
       setConfirmPassword("");
+      setPasswordDialogOpen(false);
     }
 
     setSaving(false);
@@ -140,90 +150,92 @@ const Account = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-6 max-w-2xl space-y-4">
-        {/* Profile Information */}
+      <div className="container mx-auto px-1 py-4 max-w-2xl">
+        {/* Profile Information - Compact */}
         <Card className="shadow-soft">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <User className="w-5 h-5" />
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-base">
+              <User className="w-4 h-4" />
               Profile Information
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="displayName">Display Name</Label>
-              <Input
-                id="displayName"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                placeholder="Your display name"
-              />
+          <CardContent className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="displayName" className="text-sm">Display Name</Label>
+                <Input
+                  id="displayName"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  placeholder="Your display name"
+                  className="h-9"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-sm">Role</Label>
+                <Input value={profile?.role || ""} disabled className="capitalize h-9" />
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label>Role</Label>
-              <Input value={profile?.role || ""} disabled className="capitalize" />
-            </div>
-            <Button onClick={handleUpdateProfile} disabled={saving} className="w-full">
-              Save Profile
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* Email Information */}
-        <Card className="shadow-soft">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Mail className="w-5 h-5" />
-              Email
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              <Label>Email Address</Label>
-              <Input value={email} disabled />
+            
+            <div className="space-y-1.5">
+              <Label className="text-sm">Email Address</Label>
+              <Input value={email} disabled className="h-9" />
               <p className="text-xs text-muted-foreground">
                 Contact support to change your email address
               </p>
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Change Password */}
-        <Card className="shadow-soft">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Lock className="w-5 h-5" />
-              Change Password
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="newPassword">New Password</Label>
-              <Input
-                id="newPassword"
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                placeholder="Enter new password"
-              />
+            <div className="flex gap-2 pt-2">
+              <Button onClick={handleUpdateProfile} disabled={saving} className="flex-1">
+                Save Profile
+              </Button>
+              
+              <Dialog open={passwordDialogOpen} onOpenChange={setPasswordDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" className="flex-1">
+                    <Lock className="w-4 h-4 mr-2" />
+                    Change Password
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Change Password</DialogTitle>
+                    <DialogDescription>
+                      Enter your new password below. Make sure it&apos;s at least 6 characters long.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-4 pt-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="newPassword">New Password</Label>
+                      <Input
+                        id="newPassword"
+                        type="password"
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        placeholder="Enter new password"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="confirmPassword">Confirm Password</Label>
+                      <Input
+                        id="confirmPassword"
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        placeholder="Confirm new password"
+                      />
+                    </div>
+                    <Button
+                      onClick={handleChangePassword}
+                      disabled={saving || !newPassword || !confirmPassword}
+                      className="w-full"
+                    >
+                      {saving ? "Updating..." : "Update Password"}
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
-              <Input
-                id="confirmPassword"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm new password"
-              />
-            </div>
-            <Button
-              onClick={handleChangePassword}
-              disabled={saving || !newPassword || !confirmPassword}
-              className="w-full"
-            >
-              Change Password
-            </Button>
           </CardContent>
         </Card>
       </div>
