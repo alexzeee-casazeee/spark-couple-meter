@@ -110,11 +110,11 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
   return (
     <Button
       variant={isListening ? "default" : "outline"}
-      size="icon"
+      size="lg"
       onClick={toggleListening}
       className={isListening ? "animate-pulse" : ""}
     >
-      {isListening ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+      {isListening ? <MicOff className="w-6 h-6" /> : <Mic className="w-6 h-6" />}
     </Button>
   );
 };

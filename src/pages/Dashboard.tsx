@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,9 @@ const Dashboard = () => {
   const [generalFeeling, setGeneralFeeling] = useState([50]);
   const [sleepQuality, setSleepQuality] = useState([50]);
   const [emotionalState, setEmotionalState] = useState([50]);
+  
+  // Auto-save timer
+  const saveTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     checkAuth();
@@ -80,7 +83,7 @@ const Dashboard = () => {
     setLoading(false);
   };
 
-  const handleSaveEntry = async () => {
+  const handleSaveEntry = async (silent = false) => {
     if (!profile) return;
 
     const today = format(new Date(), "yyyy-MM-dd");
@@ -105,14 +108,35 @@ const Dashboard = () => {
         description: error.message,
         variant: "destructive",
       });
-    } else {
+    } else if (!silent) {
       toast({
         title: t("dashboard.toast.saved"),
         description: t("dashboard.toast.saved.description"),
       });
-      checkAuth(); // Refresh data
     }
   };
+
+  // Debounced auto-save
+  const debouncedSave = useCallback(() => {
+    if (saveTimerRef.current) {
+      clearTimeout(saveTimerRef.current);
+    }
+    saveTimerRef.current = setTimeout(() => {
+      handleSaveEntry(true); // Silent save
+    }, 1000);
+  }, [horniness, generalFeeling, sleepQuality, emotionalState, profile]);
+
+  // Auto-save when sliders change
+  useEffect(() => {
+    if (profile && !loading) {
+      debouncedSave();
+    }
+    return () => {
+      if (saveTimerRef.current) {
+        clearTimeout(saveTimerRef.current);
+      }
+    };
+  }, [horniness, generalFeeling, sleepQuality, emotionalState]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -129,11 +153,7 @@ const Dashboard = () => {
     setGeneralFeeling([values.general_feeling]);
     setSleepQuality([values.sleep_quality]);
     setEmotionalState([values.emotional_state]);
-    
-    // Auto-save after voice input
-    setTimeout(() => {
-      handleSaveEntry();
-    }, 500);
+    // Auto-save will trigger automatically via useEffect
   };
 
   if (loading) {
@@ -247,10 +267,7 @@ const Dashboard = () => {
               <p className="text-xs text-center text-primary font-medium">{emotionalState[0]}%</p>
             </div>
 
-            <div className="flex gap-2 pt-2">
-              <Button className="flex-1" onClick={handleSaveEntry}>
-                {t("dashboard.checkin.save")}
-              </Button>
+            <div className="flex justify-center pt-2">
               <VoiceInput onParsedValues={handleVoiceInput} />
             </div>
             <p className="text-[10px] text-center text-muted-foreground">
