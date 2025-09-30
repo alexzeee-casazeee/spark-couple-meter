@@ -305,32 +305,32 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: "var(--gradient-splash)" }}>
-      {/* Header */}
-      <header className="bg-gradient-romantic p-3 shadow-glow">
+    <div className="min-h-screen pb-12" style={{ background: "var(--gradient-splash)" }}>
+      {/* Header - Compact */}
+      <header className="bg-gradient-romantic p-2 shadow-glow">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <Heart className="w-6 h-6 text-white" fill="white" />
+            <Heart className="w-5 h-5 text-white" fill="white" />
             <div>
-              <h1 className="text-lg font-bold text-white">Spark Meter</h1>
-              <p className="text-white/80 text-xs">{t("dashboard.welcome")}, {profile?.display_name}</p>
+              <h1 className="text-base font-bold text-white">Spark Meter</h1>
+              <p className="text-white/80 text-[10px]">{t("dashboard.welcome")}, {profile?.display_name}</p>
             </div>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="icon" onClick={() => navigate("/account")} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
-              <UserCircle className="w-4 h-4 text-white" />
+          <div className="flex gap-1.5">
+            <Button variant="outline" size="icon" onClick={() => navigate("/account")} className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7">
+              <UserCircle className="w-3.5 h-3.5 text-white" />
             </Button>
-            <Button variant="outline" size="icon" onClick={() => navigate("/settings")} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
-              <Settings className="w-4 h-4 text-white" />
+            <Button variant="outline" size="icon" onClick={() => navigate("/settings")} className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7">
+              <Settings className="w-3.5 h-3.5 text-white" />
             </Button>
-            <Button variant="outline" size="icon" onClick={handleLogout} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
-              <LogOut className="w-4 h-4 text-white" />
+            <Button variant="outline" size="icon" onClick={handleLogout} className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7">
+              <LogOut className="w-3.5 h-3.5 text-white" />
             </Button>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-1 py-4 max-w-4xl space-y-4">
+      <div className="container mx-auto px-1 py-2 max-w-4xl space-y-2">
         {/* Connection Status */}
         {!couple && profile && (
           <InvitationManager 
@@ -342,21 +342,19 @@ const Dashboard = () => {
         {/* View Mode Toggle - Moved to top */}
         {couple && partnerProfile && (
           <Card className="shadow-soft">
-            <CardContent className="pt-4">
+            <CardContent className="pt-3 pb-3">
               <div className="flex gap-2">
                 <Button
                   variant={viewMode === 'self' ? 'default' : 'outline'}
                   onClick={() => setViewMode('self')}
-                  className="flex-1"
-                  size="sm"
+                  className="flex-1 h-8 text-xs"
                 >
                   My Levels
                 </Button>
                 <Button
                   variant={viewMode === 'partner' ? 'default' : 'outline'}
                   onClick={() => setViewMode('partner')}
-                  className="flex-1"
-                  size="sm"
+                  className="flex-1 h-8 text-xs"
                 >
                   See {partnerProfile.display_name}&apos;s Levels
                 </Button>
@@ -364,17 +362,17 @@ const Dashboard = () => {
               
               {/* Poke button when partner hasn't checked in */}
               {!partnerEntry && viewMode === 'partner' && (
-                <div className="mt-3 text-center">
-                  <p className="text-sm text-muted-foreground mb-2">
+                <div className="mt-2 text-center">
+                  <p className="text-xs text-muted-foreground mb-1.5">
                     {partnerProfile.display_name} hasn&apos;t checked in today
                   </p>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={handlePokePartner}
-                    className="gap-2"
+                    className="gap-2 h-7 text-xs"
                   >
-                    <Bell className="w-4 h-4" />
+                    <Bell className="w-3 h-3" />
                     Send Poke Reminder
                   </Button>
                 </div>
@@ -385,26 +383,26 @@ const Dashboard = () => {
 
         {/* Today's Check-In */}
         <Card className="shadow-soft border-2 border-l-4 border-primary/30" style={{ background: "var(--gradient-subtle)" }}>
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <Heart className="w-4 h-4 text-primary" />
+          <CardHeader className="pb-2 pt-3">
+            <CardTitle className="flex items-center gap-2 text-sm">
+              <Heart className="w-3.5 h-3.5 text-primary" />
               {viewMode === 'self' ? t("dashboard.checkin.title") : `${partnerProfile?.display_name}'s Levels`}
-              <span className="ml-auto text-xs font-normal text-muted-foreground">
+              <span className="ml-auto text-[10px] font-normal text-muted-foreground">
                 {format(new Date(), "MMM d, yyyy")}
               </span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-2.5 pb-3">
             {viewMode === 'partner' && !partnerEntry ? (
-              <div className="text-center py-8 text-muted-foreground">
-                <p>{partnerProfile?.display_name} hasn&apos;t checked in today yet</p>
+              <div className="text-center py-6 text-muted-foreground">
+                <p className="text-sm">{partnerProfile?.display_name} hasn&apos;t checked in today yet</p>
               </div>
             ) : (
               <>
-                <div className="space-y-2">
-                  <Label className="text-sm font-semibold">{t("dashboard.checkin.intimacy")}</Label>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-semibold">{t("dashboard.checkin.intimacy")}</Label>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.low")}</span>
                     <Slider
                       value={viewMode === 'self' ? horniness : [partnerEntry?.horniness_level || 50]}
                       onValueChange={viewMode === 'self' ? setHorniness : undefined}
@@ -413,17 +411,17 @@ const Dashboard = () => {
                       className="flex-1"
                       disabled={viewMode === 'partner'}
                     />
-                    <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
+                    <span className="text-[10px] text-muted-foreground w-8 text-right">{t("dashboard.checkin.high")}</span>
                   </div>
-                  <p className="text-xs text-center text-primary font-medium">
+                  <p className="text-[10px] text-center text-primary font-medium">
                     {viewMode === 'self' ? horniness[0] : partnerEntry?.horniness_level || 50}%
                   </p>
                 </div>
 
-                <div className="space-y-2">
-                  <Label className="text-sm font-semibold">{t("dashboard.checkin.feeling")}</Label>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.bad")}</span>
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-semibold">{t("dashboard.checkin.feeling")}</Label>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.bad")}</span>
                     <Slider
                       value={viewMode === 'self' ? generalFeeling : [partnerEntry?.general_feeling || 50]}
                       onValueChange={viewMode === 'self' ? setGeneralFeeling : undefined}
@@ -432,17 +430,17 @@ const Dashboard = () => {
                       className="flex-1"
                       disabled={viewMode === 'partner'}
                     />
-                    <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
+                    <span className="text-[10px] text-muted-foreground w-8 text-right">{t("dashboard.checkin.great")}</span>
                   </div>
-                  <p className="text-xs text-center text-primary font-medium">
+                  <p className="text-[10px] text-center text-primary font-medium">
                     {viewMode === 'self' ? generalFeeling[0] : partnerEntry?.general_feeling || 50}%
                   </p>
                 </div>
 
-                <div className="space-y-2">
-                  <Label className="text-sm font-semibold">{t("dashboard.checkin.sleep")}</Label>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.poor")}</span>
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-semibold">{t("dashboard.checkin.sleep")}</Label>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.poor")}</span>
                     <Slider
                       value={viewMode === 'self' ? sleepQuality : [partnerEntry?.sleep_quality || 50]}
                       onValueChange={viewMode === 'self' ? setSleepQuality : undefined}
@@ -451,17 +449,17 @@ const Dashboard = () => {
                       className="flex-1"
                       disabled={viewMode === 'partner'}
                     />
-                    <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
+                    <span className="text-[10px] text-muted-foreground w-8 text-right">{t("dashboard.checkin.great")}</span>
                   </div>
-                  <p className="text-xs text-center text-primary font-medium">
+                  <p className="text-[10px] text-center text-primary font-medium">
                     {viewMode === 'self' ? sleepQuality[0] : partnerEntry?.sleep_quality || 50}%
                   </p>
                 </div>
 
-                <div className="space-y-2">
-                  <Label className="text-sm font-semibold">{t("dashboard.checkin.emotional")}</Label>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-semibold">{t("dashboard.checkin.emotional")}</Label>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.low")}</span>
                     <Slider
                       value={viewMode === 'self' ? emotionalState : [partnerEntry?.emotional_state || 50]}
                       onValueChange={viewMode === 'self' ? setEmotionalState : undefined}
@@ -470,19 +468,19 @@ const Dashboard = () => {
                       className="flex-1"
                       disabled={viewMode === 'partner'}
                     />
-                    <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
+                    <span className="text-[10px] text-muted-foreground w-8 text-right">{t("dashboard.checkin.high")}</span>
                   </div>
-                  <p className="text-xs text-center text-primary font-medium">
-                  {viewMode === 'self' ? emotionalState[0] : partnerEntry?.emotional_state || 50}%
-                </p>
-              </div>
+                  <p className="text-[10px] text-center text-primary font-medium">
+                    {viewMode === 'self' ? emotionalState[0] : partnerEntry?.emotional_state || 50}%
+                  </p>
+                </div>
 
-              {/* Custom Dimensions */}
-              {customDimensions.map((dimension) => (
-                <div key={dimension.id} className="space-y-2">
-                  <Label className="text-sm font-semibold">{dimension.dimension_name}</Label>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
+                {/* Custom Dimensions */}
+                {customDimensions.map((dimension) => (
+                  <div key={dimension.id} className="space-y-1.5">
+                    <Label className="text-xs font-semibold">{dimension.dimension_name}</Label>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.low")}</span>
                     <Slider
                       value={viewMode === 'self' 
                         ? [customValues[dimension.id] || 50] 
@@ -492,28 +490,28 @@ const Dashboard = () => {
                         : undefined}
                       max={100}
                       step={1}
-                      className="flex-1"
-                      disabled={viewMode === 'partner'}
-                    />
-                    <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
+                        className="flex-1"
+                        disabled={viewMode === 'partner'}
+                      />
+                      <span className="text-[10px] text-muted-foreground w-8 text-right">{t("dashboard.checkin.high")}</span>
+                    </div>
+                    <p className="text-[10px] text-center text-primary font-medium">
+                      {viewMode === 'self' 
+                        ? (customValues[dimension.id] || 50)
+                        : (partnerCustomValues[dimension.id] || 50)}%
+                    </p>
                   </div>
-                  <p className="text-xs text-center text-primary font-medium">
-                    {viewMode === 'self' 
-                      ? (customValues[dimension.id] || 50)
-                      : (partnerCustomValues[dimension.id] || 50)}%
-                  </p>
-                </div>
-              ))}
+                ))}
 
-              {viewMode === 'self' && (
+                {viewMode === 'self' && (
                   <>
-                    <div className="flex justify-center gap-3 pt-2">
+                    <div className="flex justify-center gap-2.5 pt-1">
                       <VoiceInput onParsedValues={handleVoiceInput} />
                       <Button
                         variant="outline"
                         size="lg"
                         onClick={handleSaveAndReset}
-                        className="rounded-full border-0 transition-all duration-200 hover:scale-105"
+                        className="rounded-full border-0 transition-all duration-200 hover:scale-105 h-12 w-12"
                         style={{ 
                           background: "var(--gradient-green)",
                           boxShadow: "var(--shadow-float)"
@@ -525,10 +523,10 @@ const Dashboard = () => {
                           e.currentTarget.style.boxShadow = "var(--shadow-float)";
                         }}
                       >
-                        <Save className="w-6 h-6 text-white" />
+                        <Save className="w-5 h-5 text-white" />
                       </Button>
                     </div>
-                    <p className="text-[10px] text-center text-muted-foreground">
+                    <p className="text-[9px] text-center text-muted-foreground">
                       {t("dashboard.checkin.voice.hint")}
                     </p>
                   </>
@@ -548,8 +546,8 @@ const Dashboard = () => {
         )}
 
         {/* View Trends */}
-        <Button variant="outline" className="w-full" size="sm" onClick={() => navigate("/trends")}>
-          <TrendingUp className="w-4 h-4 mr-2" />
+        <Button variant="outline" className="w-full h-8 text-xs" onClick={() => navigate("/trends")}>
+          <TrendingUp className="w-3 h-3 mr-2" />
           {t("dashboard.trends")}
         </Button>
       </div>
