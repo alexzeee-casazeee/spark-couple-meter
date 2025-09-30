@@ -94,7 +94,7 @@ const Landing = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20">
+      <section className="py-10">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -138,7 +138,7 @@ const Landing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-romantic relative overflow-hidden">
+      <section className="py-10 bg-gradient-romantic relative overflow-hidden">
         <div className="absolute inset-0 bg-background/50 backdrop-blur-sm" />
         <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center space-y-8">
