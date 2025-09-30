@@ -61,7 +61,7 @@ const Dashboard = () => {
         .select("*")
         .or(`husband_id.eq.${profileData.id},wife_id.eq.${profileData.id}`)
         .eq("is_active", true)
-        .single();
+        .maybeSingle();
       
       setCouple(coupleData);
       
