@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle, Bell } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import InvitationManager from "@/components/InvitationManager";
@@ -271,6 +271,31 @@ const Dashboard = () => {
     setEmotionalState([50]);
   };
 
+  const handlePokePartner = async () => {
+    if (!couple || !profile || !partnerProfile) return;
+
+    const { error } = await supabase
+      .from("pokes")
+      .insert({
+        couple_id: couple.id,
+        poker_id: profile.id,
+        poked_id: partnerProfile.id,
+      });
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Poke sent! 👉",
+        description: `${partnerProfile.display_name} will be reminded to check in.`,
+      });
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -314,35 +339,48 @@ const Dashboard = () => {
           />
         )}
 
-        {/* Custom Dimensions Manager */}
-        {couple && profile && (
-          <CustomDimensionsManager
-            coupleId={couple.id}
-            profileId={profile.id}
-            onDimensionsChange={() => loadCustomDimensions(couple.id, profile.id)}
-          />
-        )}
-
-        {/* View Mode Toggle */}
+        {/* View Mode Toggle - Moved to top */}
         {couple && partnerProfile && (
-          <div className="flex gap-2">
-            <Button
-              variant={viewMode === 'self' ? 'default' : 'outline'}
-              onClick={() => setViewMode('self')}
-              className="flex-1"
-              size="sm"
-            >
-              My Levels
-            </Button>
-            <Button
-              variant={viewMode === 'partner' ? 'default' : 'outline'}
-              onClick={() => setViewMode('partner')}
-              className="flex-1"
-              size="sm"
-            >
-              See {partnerProfile.display_name}&apos;s Levels
-            </Button>
-          </div>
+          <Card className="shadow-soft">
+            <CardContent className="pt-4">
+              <div className="flex gap-2">
+                <Button
+                  variant={viewMode === 'self' ? 'default' : 'outline'}
+                  onClick={() => setViewMode('self')}
+                  className="flex-1"
+                  size="sm"
+                >
+                  My Levels
+                </Button>
+                <Button
+                  variant={viewMode === 'partner' ? 'default' : 'outline'}
+                  onClick={() => setViewMode('partner')}
+                  className="flex-1"
+                  size="sm"
+                >
+                  See {partnerProfile.display_name}&apos;s Levels
+                </Button>
+              </div>
+              
+              {/* Poke button when partner hasn't checked in */}
+              {!partnerEntry && viewMode === 'partner' && (
+                <div className="mt-3 text-center">
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {partnerProfile.display_name} hasn&apos;t checked in today
+                  </p>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handlePokePartner}
+                    className="gap-2"
+                  >
+                    <Bell className="w-4 h-4" />
+                    Send Poke Reminder
+                  </Button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         )}
 
         {/* Today's Check-In */}
@@ -499,6 +537,15 @@ const Dashboard = () => {
             )}
           </CardContent>
         </Card>
+
+        {/* Custom Dimensions Manager - Moved to bottom */}
+        {couple && profile && (
+          <CustomDimensionsManager
+            coupleId={couple.id}
+            profileId={profile.id}
+            onDimensionsChange={() => loadCustomDimensions(couple.id, profile.id)}
+          />
+        )}
 
         {/* View Trends */}
         <Button variant="outline" className="w-full" size="sm" onClick={() => navigate("/trends")}>

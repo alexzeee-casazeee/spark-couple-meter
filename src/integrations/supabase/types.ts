@@ -223,6 +223,52 @@ export type Database = {
           },
         ]
       }
+      pokes: {
+        Row: {
+          couple_id: string
+          created_at: string
+          id: string
+          poked_id: string
+          poker_id: string
+        }
+        Insert: {
+          couple_id: string
+          created_at?: string
+          id?: string
+          poked_id: string
+          poker_id: string
+        }
+        Update: {
+          couple_id?: string
+          created_at?: string
+          id?: string
+          poked_id?: string
+          poker_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pokes_couple_id_fkey"
+            columns: ["couple_id"]
+            isOneToOne: false
+            referencedRelation: "couples"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pokes_poked_id_fkey"
+            columns: ["poked_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pokes_poker_id_fkey"
+            columns: ["poker_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string | null
