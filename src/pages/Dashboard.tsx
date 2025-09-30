@@ -6,8 +6,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Heart, LogOut, Link2, Mic, TrendingUp } from "lucide-react";
+import { Heart, LogOut, TrendingUp } from "lucide-react";
 import { format } from "date-fns";
+import VoiceInput from "@/components/VoiceInput";
+import InvitationManager from "@/components/InvitationManager";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -115,6 +117,23 @@ const Dashboard = () => {
     navigate("/");
   };
 
+  const handleVoiceInput = (values: {
+    horniness_level: number;
+    general_feeling: number;
+    sleep_quality: number;
+    emotional_state: number;
+  }) => {
+    setHorniness([values.horniness_level]);
+    setGeneralFeeling([values.general_feeling]);
+    setSleepQuality([values.sleep_quality]);
+    setEmotionalState([values.emotional_state]);
+    
+    // Auto-save after voice input
+    setTimeout(() => {
+      handleSaveEntry();
+    }, 500);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -143,21 +162,11 @@ const Dashboard = () => {
 
       <div className="container mx-auto px-4 py-8 max-w-2xl space-y-6">
         {/* Connection Status */}
-        {!couple && (
-          <Card className="border-primary/20 shadow-soft">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Link2 className="w-5 h-5 text-primary" />
-                Connect with Your Partner
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4">
-                You haven't connected with your partner yet. Create an invitation link or accept one to get started.
-              </p>
-              <Button className="w-full">Create Invitation Link</Button>
-            </CardContent>
-          </Card>
+        {!couple && profile && (
+          <InvitationManager 
+            profileId={profile.id} 
+            onCoupleCreated={checkAuth}
+          />
         )}
 
         {/* Today's Check-In */}
@@ -240,10 +249,11 @@ const Dashboard = () => {
               <Button className="flex-1" onClick={handleSaveEntry}>
                 Save Check-In
               </Button>
-              <Button variant="outline" size="icon">
-                <Mic className="w-5 h-5" />
-              </Button>
+              <VoiceInput onParsedValues={handleVoiceInput} />
             </div>
+            <p className="text-xs text-center text-muted-foreground pt-2">
+              Tap the microphone and speak naturally about how you're feeling
+            </p>
           </CardContent>
         </Card>
 
