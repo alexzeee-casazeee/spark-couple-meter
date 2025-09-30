@@ -99,7 +99,7 @@ const Settings = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen pb-20" style={{ background: "var(--gradient-splash)" }}>
       {/* Header */}
       <header className="bg-gradient-romantic p-3 shadow-glow">
         <div className="container mx-auto flex items-center gap-3">

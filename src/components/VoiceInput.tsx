@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Mic, MicOff } from "lucide-react";
+import { Phone, PhoneOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -112,9 +112,9 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
       variant={isListening ? "default" : "outline"}
       size="lg"
       onClick={toggleListening}
-      className={isListening ? "animate-pulse" : ""}
+      className={`rounded-full ${isListening ? "animate-pulse bg-gradient-romantic" : "border-2 border-primary"}`}
     >
-      {isListening ? <MicOff className="w-6 h-6" /> : <Mic className="w-6 h-6" />}
+      {isListening ? <PhoneOff className="w-6 h-6" /> : <Phone className="w-6 h-6" />}
     </Button>
   );
 };
