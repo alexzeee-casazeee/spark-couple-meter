@@ -37,7 +37,9 @@ const Auth = () => {
         });
         navigate("/dashboard");
       } else {
-        const { error } = await supabase.auth.signUp({
+        console.log('Starting signup with:', { email, displayName, role });
+        
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
@@ -45,16 +47,24 @@ const Auth = () => {
               display_name: displayName,
               role: role,
             },
+            emailRedirectTo: `${window.location.origin}/dashboard`,
           },
         });
 
+        console.log('Signup response:', { data, error });
+
         if (error) throw error;
 
-        toast({
-          title: "Account created!",
-          description: "Welcome to HornyMeter. Setting up your profile...",
-        });
-        navigate("/dashboard");
+        if (data.user) {
+          console.log('User created successfully:', data.user.id);
+          toast({
+            title: "Account created!",
+            description: "Welcome to HornyMeter. Setting up your profile...",
+          });
+          navigate("/dashboard");
+        } else {
+          throw new Error("Failed to create account");
+        }
       }
     } catch (error: any) {
       toast({
