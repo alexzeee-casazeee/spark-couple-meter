@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle, Bell } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle, Bell, List } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import InvitationManager from "@/components/InvitationManager";
@@ -94,19 +94,21 @@ const Dashboard = () => {
         
         setPartnerProfile(partnerData);
         
-        // Get partner's today's entry
+        // Get partner's today's latest entry
         const today = format(new Date(), "yyyy-MM-dd");
         const { data: partnerEntryData } = await supabase
           .from("daily_entries")
           .select("*")
           .eq("user_id", partnerId)
           .eq("entry_date", today)
+          .order("created_at", { ascending: false })
+          .limit(1)
           .maybeSingle();
         
         setPartnerEntry(partnerEntryData);
         
         // Load partner's custom dimension values
-        if (partnerEntryData) {
+        if (partnerEntryData && customDimensions.length > 0) {
           const { data: partnerCustomEntriesData } = await supabase
             .from("custom_dimension_entries")
             .select("dimension_id, value")
@@ -122,13 +124,15 @@ const Dashboard = () => {
         }
       }
       
-      // Get today's entry
+      // Get today's latest entry
       const today = format(new Date(), "yyyy-MM-dd");
       const { data: entryData } = await supabase
         .from("daily_entries")
         .select("*")
         .eq("user_id", profileData.id)
         .eq("entry_date", today)
+        .order("created_at", { ascending: false })
+        .limit(1)
         .maybeSingle();
       
       if (entryData) {
@@ -137,6 +141,12 @@ const Dashboard = () => {
         setGeneralFeeling([entryData.general_feeling || 50]);
         setSleepQuality([entryData.sleep_quality || 50]);
         setEmotionalState([entryData.emotional_state || 50]);
+      } else {
+        // Reset to baseline if no entry today
+        setHorniness([50]);
+        setGeneralFeeling([50]);
+        setSleepQuality([50]);
+        setEmotionalState([50]);
       }
     }
     
@@ -203,11 +213,10 @@ const Dashboard = () => {
       emotional_state: emotionalState[0],
     };
 
+    // Insert as a new entry each time (no upsert, to allow multiple entries per day)
     const { data: savedEntry, error } = await supabase
       .from("daily_entries")
-      .upsert(entryData, {
-        onConflict: "user_id,entry_date",
-      })
+      .insert(entryData)
       .select()
       .single();
 
@@ -228,9 +237,7 @@ const Dashboard = () => {
 
         await supabase
           .from("custom_dimension_entries")
-          .upsert(customEntries, {
-            onConflict: "entry_id,dimension_id",
-          });
+          .insert(customEntries);
       }
 
       if (!silent) {
@@ -239,30 +246,14 @@ const Dashboard = () => {
           description: t("dashboard.toast.saved.description"),
         });
       }
+      
+      // Reload today's entry after saving
+      await checkAuth();
     }
   };
 
-  // Debounced auto-save
-  const debouncedSave = useCallback(() => {
-    if (saveTimerRef.current) {
-      clearTimeout(saveTimerRef.current);
-    }
-    saveTimerRef.current = setTimeout(() => {
-      handleSaveEntry(true); // Silent save
-    }, 1000);
-  }, [horniness, generalFeeling, sleepQuality, emotionalState, profile]);
-
-  // Auto-save when sliders change
-  useEffect(() => {
-    if (profile && !loading) {
-      debouncedSave();
-    }
-    return () => {
-      if (saveTimerRef.current) {
-        clearTimeout(saveTimerRef.current);
-      }
-    };
-  }, [horniness, generalFeeling, sleepQuality, emotionalState, customValues]);
+  // Remove auto-save functionality since we're allowing multiple entries per day
+  // Users must explicitly click save to record each entry
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -279,16 +270,10 @@ const Dashboard = () => {
     setGeneralFeeling([values.general_feeling]);
     setSleepQuality([values.sleep_quality]);
     setEmotionalState([values.emotional_state]);
-    // Auto-save will trigger automatically via useEffect
   };
 
   const handleSaveAndReset = async () => {
     await handleSaveEntry(false); // Save with toast notification
-    // Reset to baseline values
-    setHorniness([50]);
-    setGeneralFeeling([50]);
-    setSleepQuality([50]);
-    setEmotionalState([50]);
   };
 
   const handlePokePartner = async () => {
@@ -565,11 +550,17 @@ const Dashboard = () => {
           />
         )}
 
-        {/* View Trends */}
-        <Button variant="outline" className="w-full h-8 text-xs" onClick={() => navigate("/trends")}>
-          <TrendingUp className="w-3 h-3 mr-2" />
-          {t("dashboard.trends")}
-        </Button>
+        {/* View Trends and Log */}
+        <div className="grid grid-cols-2 gap-2">
+          <Button variant="outline" className="h-8 text-xs" onClick={() => navigate("/trends")}>
+            <TrendingUp className="w-3 h-3 mr-2" />
+            {t("dashboard.trends")}
+          </Button>
+          <Button variant="outline" className="h-8 text-xs" onClick={() => navigate("/log")}>
+            <List className="w-3 h-3 mr-2" />
+            View Log
+          </Button>
+        </div>
       </div>
     </div>
   );
