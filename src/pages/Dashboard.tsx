@@ -358,8 +358,17 @@ const Dashboard = () => {
                         variant="outline"
                         size="lg"
                         onClick={handleSaveAndReset}
-                        className="rounded-full border-0"
-                        style={{ background: "var(--gradient-green)" }}
+                        className="rounded-full border-0 transition-all duration-200 hover:scale-105"
+                        style={{ 
+                          background: "var(--gradient-green)",
+                          boxShadow: "var(--shadow-float)"
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.boxShadow = "var(--shadow-float-hover)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.boxShadow = "var(--shadow-float)";
+                        }}
                       >
                         <Save className="w-6 h-6 text-white" />
                       </Button>

@@ -112,8 +112,19 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
       variant={isListening ? "default" : "outline"}
       size="lg"
       onClick={toggleListening}
-      className="rounded-full border-0"
-      style={{ background: isListening ? "var(--gradient-romantic)" : "var(--gradient-orange)" }}
+      className={`rounded-full border-0 transition-all duration-200 ${isListening ? 'animate-pulse' : 'hover:scale-105'}`}
+      style={{ 
+        background: isListening ? "var(--gradient-romantic)" : "var(--gradient-orange)",
+        boxShadow: "var(--shadow-float)"
+      }}
+      onMouseEnter={(e) => {
+        if (!isListening) {
+          e.currentTarget.style.boxShadow = "var(--shadow-float-hover)";
+        }
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "var(--shadow-float)";
+      }}
     >
       {isListening ? <PhoneOff className="w-6 h-6 text-white" /> : <Phone className="w-6 h-6 text-white" />}
     </Button>
