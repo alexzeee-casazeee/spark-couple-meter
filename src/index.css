@@ -52,6 +52,8 @@ All colors MUST be HSL.
                        radial-gradient(circle at 80% 20%, hsl(190, 60%, 90%), transparent 50%),
                        radial-gradient(circle at 40% 80%, hsl(280, 50%, 93%), transparent 50%),
                        linear-gradient(135deg, hsl(340, 40%, 96%), hsl(280, 35%, 95%));
+    --gradient-green: linear-gradient(135deg, hsl(140, 60%, 75%), hsl(160, 55%, 70%));
+    --gradient-orange: linear-gradient(135deg, hsl(25, 85%, 70%), hsl(35, 80%, 65%));
     
     /* Shadows */
     --shadow-soft: 0 4px 20px -2px hsl(345, 50%, 60%, 0.15);

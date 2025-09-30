@@ -353,15 +353,16 @@ const Dashboard = () => {
                 {viewMode === 'self' && (
                   <>
                     <div className="flex justify-center gap-3 pt-2">
+                      <VoiceInput onParsedValues={handleVoiceInput} />
                       <Button
                         variant="outline"
                         size="lg"
                         onClick={handleSaveAndReset}
-                        className="rounded-full border-2 border-primary"
+                        className="rounded-full border-0"
+                        style={{ background: "var(--gradient-green)" }}
                       >
-                        <Save className="w-6 h-6" />
+                        <Save className="w-6 h-6 text-white" />
                       </Button>
-                      <VoiceInput onParsedValues={handleVoiceInput} />
                     </div>
                     <p className="text-[10px] text-center text-muted-foreground">
                       {t("dashboard.checkin.voice.hint")}

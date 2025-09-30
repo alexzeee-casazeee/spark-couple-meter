@@ -112,9 +112,10 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
       variant={isListening ? "default" : "outline"}
       size="lg"
       onClick={toggleListening}
-      className={`rounded-full ${isListening ? "animate-pulse bg-gradient-romantic" : "border-2 border-primary"}`}
+      className="rounded-full border-0"
+      style={{ background: isListening ? "var(--gradient-romantic)" : "var(--gradient-orange)" }}
     >
-      {isListening ? <PhoneOff className="w-6 h-6" /> : <Phone className="w-6 h-6" />}
+      {isListening ? <PhoneOff className="w-6 h-6 text-white" /> : <Phone className="w-6 h-6 text-white" />}
     </Button>
   );
 };
