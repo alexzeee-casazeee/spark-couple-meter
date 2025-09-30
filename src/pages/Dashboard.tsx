@@ -100,6 +100,22 @@ const Dashboard = () => {
           .maybeSingle();
         
         setPartnerEntry(partnerEntryData);
+        
+        // Load partner's custom dimension values
+        if (partnerEntryData) {
+          const { data: partnerCustomEntriesData } = await supabase
+            .from("custom_dimension_entries")
+            .select("dimension_id, value")
+            .eq("entry_id", partnerEntryData.id);
+
+          if (partnerCustomEntriesData) {
+            const values: Record<string, number> = {};
+            partnerCustomEntriesData.forEach((entry) => {
+              values[entry.dimension_id] = entry.value || 50;
+            });
+            setPartnerCustomValues(values);
+          }
+        }
       }
       
       // Get today's entry
