@@ -384,7 +384,7 @@ const Dashboard = () => {
         )}
 
         {/* Today's Check-In */}
-        <Card className="shadow-soft" style={{ background: "var(--gradient-subtle)" }}>
+        <Card className="shadow-soft border-2 border-l-4 border-primary/30" style={{ background: "var(--gradient-subtle)" }}>
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-lg">
               <Heart className="w-4 h-4 text-primary" />
