@@ -39,6 +39,27 @@ const Dashboard = () => {
   // Auto-save timer
   const saveTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Ensure partner custom dimension values load after both partner entry and dimensions are ready
+  useEffect(() => {
+    const loadPartnerCustoms = async () => {
+      if (partnerEntry && customDimensions.length > 0) {
+        const { data: partnerCustomEntriesData } = await supabase
+          .from("custom_dimension_entries")
+          .select("dimension_id, value")
+          .eq("entry_id", partnerEntry.id);
+
+        if (partnerCustomEntriesData) {
+          const values: Record<string, number> = {};
+          partnerCustomEntriesData.forEach((entry) => {
+            values[entry.dimension_id] = entry.value || 50;
+          });
+          setPartnerCustomValues(values);
+        }
+      }
+    };
+    loadPartnerCustoms();
+  }, [partnerEntry, customDimensions]);
+
   useEffect(() => {
     checkAuth();
   }, []);
@@ -318,7 +339,7 @@ const Dashboard = () => {
             <Heart className="w-6 h-6 text-white" fill="white" />
             <div>
               <h1 className="text-lg font-bold text-white leading-tight">Spark Meter</h1>
-              <p className="text-white/80 text-xs leading-tight">{t("dashboard.welcome")}, {profile?.display_name}</p>
+              
             </div>
           </div>
           <div className="flex gap-2 ml-auto">
