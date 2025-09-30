@@ -330,7 +330,7 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-4 max-w-4xl space-y-4">
+      <div className="container mx-auto px-1 py-4 max-w-4xl space-y-4">
         {/* Connection Status */}
         {!couple && profile && (
           <InvitationManager 
@@ -384,7 +384,7 @@ const Dashboard = () => {
         )}
 
         {/* Today's Check-In */}
-        <Card className="shadow-soft">
+        <Card className="shadow-soft" style={{ background: "var(--gradient-subtle)" }}>
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-lg">
               <Heart className="w-4 h-4 text-primary" />
