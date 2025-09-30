@@ -82,11 +82,15 @@ const Dashboard = () => {
           ? coupleData.wife_id 
           : coupleData.husband_id;
         
-        const { data: partnerData } = await supabase
+        const { data: partnerData, error: partnerError } = await supabase
           .from("profiles")
           .select("*")
           .eq("id", partnerId)
-          .single();
+          .maybeSingle();
+        
+        if (partnerError) {
+          console.error("Error loading partner profile:", partnerError);
+        }
         
         setPartnerProfile(partnerData);
         
