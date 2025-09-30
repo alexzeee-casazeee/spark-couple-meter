@@ -316,7 +316,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      are_partners: {
+        Args: { requester_user_id: string; target_profile_id: string }
+        Returns: boolean
+      }
+      can_view_partner_entry: {
+        Args: { entry_user_profile_id: string; requester_user_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       notification_frequency: "once" | "twice" | "three_times"
