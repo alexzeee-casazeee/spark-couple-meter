@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Heart } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -17,6 +19,7 @@ const Auth = () => {
   const [role, setRole] = useState<"husband" | "wife">("husband");
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,8 +35,8 @@ const Auth = () => {
         if (error) throw error;
         
         toast({
-          title: "Welcome back!",
-          description: "Redirecting to your dashboard...",
+          title: t("auth.toast.welcome"),
+          description: t("auth.toast.redirect"),
         });
         navigate("/dashboard");
       } else {
@@ -58,8 +61,8 @@ const Auth = () => {
         if (data.user) {
           console.log('User created successfully:', data.user.id);
           toast({
-            title: "Account created!",
-            description: "Welcome to HornyMeter. Setting up your profile...",
+            title: t("auth.toast.created"),
+            description: t("auth.toast.welcome.new"),
           });
           navigate("/dashboard");
         } else {
@@ -78,99 +81,107 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-soft px-4">
-      <Card className="w-full max-w-md shadow-glow border-border/50">
-        <CardHeader className="space-y-4">
-          <div className="flex justify-center">
-            <div className="w-16 h-16 bg-gradient-romantic rounded-full flex items-center justify-center shadow-glow">
-              <Heart className="w-8 h-8 text-white" fill="white" />
+    <div className="min-h-screen flex flex-col bg-gradient-soft px-4">
+      {/* Header with Language Switcher */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
+        <div className="container mx-auto px-4 py-3">
+          <LanguageSwitcher />
+        </div>
+      </header>
+
+      {/* Auth Card */}
+      <div className="flex-1 flex items-center justify-center pt-20">
+        <Card className="w-full max-w-md shadow-glow border-border/50">
+          <CardHeader className="space-y-4">
+            <div className="flex justify-center">
+              <div className="w-16 h-16 bg-gradient-romantic rounded-full flex items-center justify-center shadow-glow">
+                <Heart className="w-8 h-8 text-white" fill="white" />
+              </div>
             </div>
-          </div>
-          <CardTitle className="text-3xl text-center">
-            {isLogin ? "Welcome Back" : "Create Account"}
-          </CardTitle>
-          <CardDescription className="text-center">
-            {isLogin
-              ? "Sign in to continue your journey"
-              : "Start your journey to better communication"}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleAuth} className="space-y-4">
-            {!isLogin && (
-              <>
-                <div className="space-y-2">
-                  <Label htmlFor="displayName">Display Name</Label>
-                  <Input
-                    id="displayName"
-                    type="text"
-                    placeholder="Your name"
-                    value={displayName}
-                    onChange={(e) => setDisplayName(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>I am a</Label>
-                  <div className="flex gap-4">
-                    <Button
-                      type="button"
-                      variant={role === "husband" ? "default" : "outline"}
-                      className="flex-1"
-                      onClick={() => setRole("husband")}
-                    >
-                      Husband
-                    </Button>
-                    <Button
-                      type="button"
-                      variant={role === "wife" ? "default" : "outline"}
-                      className="flex-1"
-                      onClick={() => setRole("wife")}
-                    >
-                      Wife
-                    </Button>
+            <CardTitle className="text-3xl text-center">
+              {isLogin ? t("auth.welcome") : t("auth.create")}
+            </CardTitle>
+            <CardDescription className="text-center">
+              {isLogin ? t("auth.subtitle.login") : t("auth.subtitle.signup")}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleAuth} className="space-y-4">
+              {!isLogin && (
+                <>
+                  <div className="space-y-2">
+                    <Label htmlFor="displayName">{t("auth.displayName")}</Label>
+                    <Input
+                      id="displayName"
+                      type="text"
+                      placeholder={t("auth.displayName.placeholder")}
+                      value={displayName}
+                      onChange={(e) => setDisplayName(e.target.value)}
+                      required
+                    />
                   </div>
-                </div>
-              </>
-            )}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+                  <div className="space-y-2">
+                    <Label>{t("auth.role")}</Label>
+                    <div className="flex gap-4">
+                      <Button
+                        type="button"
+                        variant={role === "husband" ? "default" : "outline"}
+                        className="flex-1"
+                        onClick={() => setRole("husband")}
+                      >
+                        {t("auth.role.husband")}
+                      </Button>
+                      <Button
+                        type="button"
+                        variant={role === "wife" ? "default" : "outline"}
+                        className="flex-1"
+                        onClick={() => setRole("wife")}
+                      >
+                        {t("auth.role.wife")}
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              )}
+              <div className="space-y-2">
+                <Label htmlFor="email">{t("auth.email")}</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder={t("auth.email.placeholder")}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">{t("auth.password")}</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder={t("auth.password.placeholder")}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength={6}
+                />
+              </div>
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? t("auth.button.loading") : (isLogin ? t("auth.button.signin") : t("auth.button.signup"))}
+              </Button>
+            </form>
+            <div className="mt-6 text-center">
+              <button
+                type="button"
+                onClick={() => setIsLogin(!isLogin)}
+                className="text-sm text-primary hover:underline"
+              >
+                {isLogin ? t("auth.switch.signup") : t("auth.switch.login")}
+              </button>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                minLength={6}
-              />
-            </div>
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Please wait..." : isLogin ? "Sign In" : "Create Account"}
-            </Button>
-          </form>
-          <div className="mt-6 text-center">
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-sm text-primary hover:underline"
-            >
-              {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
-            </button>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };

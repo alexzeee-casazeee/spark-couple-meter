@@ -10,10 +10,12 @@ import { Heart, LogOut, TrendingUp } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import InvitationManager from "@/components/InvitationManager";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<any>(null);
   const [couple, setCouple] = useState<any>(null);
@@ -105,8 +107,8 @@ const Dashboard = () => {
       });
     } else {
       toast({
-        title: "Saved!",
-        description: "Your daily check-in has been recorded.",
+        title: t("dashboard.toast.saved"),
+        description: t("dashboard.toast.saved.description"),
       });
       checkAuth(); // Refresh data
     }
@@ -151,7 +153,7 @@ const Dashboard = () => {
             <Heart className="w-8 h-8 text-white" fill="white" />
             <div>
               <h1 className="text-2xl font-bold text-white">HornyMeter</h1>
-              <p className="text-white/80 text-sm">Welcome, {profile?.display_name}</p>
+              <p className="text-white/80 text-sm">{t("dashboard.welcome")}, {profile?.display_name}</p>
             </div>
           </div>
           <Button variant="outline" size="icon" onClick={handleLogout} className="bg-white/10 border-white/20 hover:bg-white/20">

@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Heart, Loader2 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const AcceptInvite = () => {
   const { token } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [invitation, setInvitation] = useState<any>(null);
   const [senderProfile, setSenderProfile] = useState<any>(null);
@@ -25,8 +27,8 @@ const AcceptInvite = () => {
       
       if (!session) {
         toast({
-          title: "Please sign in",
-          description: "You need to be signed in to accept an invitation",
+          title: t("invite.toast.signin"),
+          description: t("invite.toast.signin.description"),
         });
         navigate("/auth");
         return;
@@ -42,8 +44,8 @@ const AcceptInvite = () => {
 
       if (inviteError || !inviteData) {
         toast({
-          title: "Invalid invitation",
-          description: "This invitation link is invalid or has expired",
+          title: t("invite.toast.invalid"),
+          description: t("invite.toast.invalid.description"),
           variant: "destructive",
         });
         navigate("/dashboard");
@@ -53,8 +55,8 @@ const AcceptInvite = () => {
       // Check if invitation is expired
       if (new Date(inviteData.expires_at) < new Date()) {
         toast({
-          title: "Invitation expired",
-          description: "This invitation link has expired",
+          title: t("invite.toast.expired"),
+          description: t("invite.toast.expired.description"),
           variant: "destructive",
         });
         navigate("/dashboard");
@@ -100,8 +102,8 @@ const AcceptInvite = () => {
       // Check if roles are compatible (husband + wife)
       if (myProfile.role === senderProfile.role) {
         toast({
-          title: "Incompatible roles",
-          description: "You and your partner must have different roles (husband/wife)",
+          title: t("invite.toast.incompatible"),
+          description: t("invite.toast.incompatible.description"),
           variant: "destructive",
         });
         return;
@@ -130,8 +132,8 @@ const AcceptInvite = () => {
       if (coupleError) throw coupleError;
 
       toast({
-        title: "Connected!",
-        description: `You are now connected with ${senderProfile.display_name}`,
+        title: t("invite.toast.connected"),
+        description: t("invite.toast.connected.description").replace("{name}", senderProfile.display_name),
       });
 
       navigate("/dashboard");
@@ -165,16 +167,16 @@ const AcceptInvite = () => {
             </div>
           </div>
           <CardTitle className="text-3xl text-center">
-            You're Invited!
+            {t("invite.title")}
           </CardTitle>
           <CardDescription className="text-center">
-            {senderProfile?.display_name} has invited you to connect on HornyMeter
+            {t("invite.description").replace("{name}", senderProfile?.display_name || "")}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="bg-muted p-4 rounded-lg">
             <p className="text-sm text-center text-muted-foreground">
-              By accepting, you'll be able to share your daily feelings and see when your partner needs connection.
+              {t("invite.info")}
             </p>
           </div>
           <div className="flex gap-3">
@@ -183,14 +185,14 @@ const AcceptInvite = () => {
               className="flex-1"
               onClick={() => navigate("/dashboard")}
             >
-              Decline
+              {t("invite.decline")}
             </Button>
             <Button
               className="flex-1"
               onClick={acceptInvitation}
               disabled={loading}
             >
-              {loading ? "Connecting..." : "Accept & Connect"}
+              {loading ? t("invite.connecting") : t("invite.accept")}
             </Button>
           </div>
         </CardContent>

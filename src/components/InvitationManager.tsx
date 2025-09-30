@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Copy, Link2, Check } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface InvitationManagerProps {
   profileId: string;
@@ -15,6 +16,7 @@ const InvitationManager = ({ profileId, onCoupleCreated }: InvitationManagerProp
   const [inviteLink, setInviteLink] = useState("");
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const generateInvitation = async () => {
     try {
@@ -36,8 +38,8 @@ const InvitationManager = ({ profileId, onCoupleCreated }: InvitationManagerProp
       setInviteLink(link);
       
       toast({
-        title: "Invitation created!",
-        description: "Share this link with your partner",
+        title: t("dashboard.toast.invite.created"),
+        description: t("dashboard.toast.invite.share"),
       });
     } catch (error: any) {
       toast({
@@ -52,8 +54,8 @@ const InvitationManager = ({ profileId, onCoupleCreated }: InvitationManagerProp
     navigator.clipboard.writeText(inviteLink);
     setCopied(true);
     toast({
-      title: "Copied!",
-      description: "Invitation link copied to clipboard",
+      title: t("dashboard.toast.copied"),
+      description: t("dashboard.toast.copied.description"),
     });
     setTimeout(() => setCopied(false), 2000);
   };
@@ -63,16 +65,16 @@ const InvitationManager = ({ profileId, onCoupleCreated }: InvitationManagerProp
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Link2 className="w-5 h-5 text-primary" />
-          Connect with Your Partner
+          {t("dashboard.invite.title")}
         </CardTitle>
         <CardDescription>
-          Create an invitation link to connect with your partner
+          {t("dashboard.invite.description")}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {!inviteLink ? (
           <Button onClick={generateInvitation} className="w-full">
-            Generate Invitation Link
+            {t("dashboard.invite.button")}
           </Button>
         ) : (
           <div className="space-y-3">
@@ -91,7 +93,7 @@ const InvitationManager = ({ profileId, onCoupleCreated }: InvitationManagerProp
               </Button>
             </div>
             <p className="text-sm text-muted-foreground">
-              This link expires in 7 days. Send it to your partner to connect your accounts.
+              {t("dashboard.invite.expires")}
             </p>
           </div>
         )}

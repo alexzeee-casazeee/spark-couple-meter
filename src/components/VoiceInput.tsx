@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Mic, MicOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface VoiceInputProps {
   onParsedValues: (values: {
@@ -18,6 +19,7 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
   const [transcript, setTranscript] = useState("");
   const [recognition, setRecognition] = useState<any>(null);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
@@ -38,7 +40,7 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
         setIsListening(false);
         toast({
           title: "Error",
-          description: "Failed to recognize speech. Please try again.",
+          description: t("voice.error"),
           variant: "destructive",
         });
       };
@@ -54,7 +56,7 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
   const handleTranscript = async (text: string) => {
     try {
       toast({
-        title: "Processing...",
+        title: t("voice.processing"),
         description: `You said: "${text}"`,
       });
 
@@ -67,8 +69,8 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
       if (data) {
         onParsedValues(data);
         toast({
-          title: "Voice input saved!",
-          description: "Your feelings have been recorded.",
+          title: t("voice.saved"),
+          description: t("voice.saved.description"),
         });
       }
     } catch (error: any) {
@@ -85,7 +87,7 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
     if (!recognition) {
       toast({
         title: "Not supported",
-        description: "Speech recognition is not supported in your browser.",
+        description: t("voice.not.supported"),
         variant: "destructive",
       });
       return;
@@ -99,8 +101,8 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
       recognition.start();
       setIsListening(true);
       toast({
-        title: "Listening...",
-        description: "Speak now to record your feelings",
+        title: t("voice.listening"),
+        description: t("voice.listening.description"),
       });
     }
   };
