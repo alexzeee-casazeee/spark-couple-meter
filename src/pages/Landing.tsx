@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Heart, Users, TrendingUp, Shield, Bell, MessageCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -26,11 +27,13 @@ const Landing = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link to="/auth">
-                <Button size="lg" className="text-lg px-8 shadow-glow hover:shadow-glow transition-all">
-                  Get Started Free
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className="text-lg px-8 shadow-glow hover:shadow-glow transition-all"
+                onClick={() => navigate("/auth")}
+              >
+                Get Started Free
+              </Button>
               <Button size="lg" variant="outline" className="text-lg px-8">
                 Learn More
               </Button>
@@ -136,11 +139,13 @@ const Landing = () => {
             <p className="text-xl text-muted-foreground">
               Join couples who've discovered the power of transparent communication
             </p>
-            <Link to="/auth">
-              <Button size="lg" className="text-lg px-12 shadow-glow">
-                Create Your Account
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              className="text-lg px-12 shadow-glow"
+              onClick={() => navigate("/auth")}
+            >
+              Create Your Account
+            </Button>
           </div>
         </div>
       </section>
