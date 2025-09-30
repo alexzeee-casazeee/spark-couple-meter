@@ -14,7 +14,7 @@ const translations = {
     "landing.badge": "Better Communication, Stronger Connection",
     "landing.hero.title": "Clear the Air in Your",
     "landing.hero.title.highlight": "Relationship",
-    "landing.hero.description": "In many relationships, especially when it comes to intimacy and expectations, misunderstandings create distance. HornyMeter helps couples communicate honestly about their needs, desires, and emotional state.",
+    "landing.hero.description": "In many relationships, especially when it comes to intimacy and expectations, misunderstandings create distance. Spark Meter helps couples communicate honestly about their needs, desires, and emotional state.",
     "landing.cta.primary": "Get Started Free",
     "landing.cta.secondary": "Learn More",
     "landing.features.title": "How It Works",
@@ -25,7 +25,7 @@ const translations = {
     "landing.feature2.description": "Share your intimacy level, mood, sleep quality, and emotions with simple sliders or voice input.",
     "landing.feature3.title": "Smart Notifications",
     "landing.feature3.description": "Receive gentle alerts when your partner needs attention, creating opportunities for connection.",
-    "landing.benefits.title": "Why Couples Love HornyMeter",
+    "landing.benefits.title": "Why Couples Love Spark Meter",
     "landing.benefits.subtitle": "Real transparency leads to real intimacy",
     "landing.benefit1.title": "Private & Safe",
     "landing.benefit1.description": "Your data is completely private. Even admins can't see your personal entries.",
@@ -36,7 +36,7 @@ const translations = {
     "landing.final.title": "Start Building a More Honest Relationship Today",
     "landing.final.subtitle": "Join couples who've discovered the power of transparent communication",
     "landing.final.cta": "Create Your Account",
-    "landing.footer": "© 2025 HornyMeter. Built with love for loving couples.",
+    "landing.footer": "© 2025 Spark Meter. Built with love for loving couples.",
     
     // Auth page
     "auth.welcome": "Welcome Back",
@@ -60,7 +60,7 @@ const translations = {
     "auth.toast.welcome": "Welcome back!",
     "auth.toast.redirect": "Redirecting to your dashboard...",
     "auth.toast.created": "Account created!",
-    "auth.toast.welcome.new": "Welcome to HornyMeter. Setting up your profile...",
+    "auth.toast.welcome.new": "Welcome to Spark Meter. Setting up your profile...",
     
     // Dashboard
     "dashboard.welcome": "Welcome",
@@ -99,7 +99,7 @@ const translations = {
     
     // Invite acceptance
     "invite.title": "You're Invited!",
-    "invite.description": "{name} has invited you to connect on HornyMeter",
+    "invite.description": "{name} has invited you to connect on Spark Meter",
     "invite.info": "By accepting, you'll be able to share your daily feelings and see when your partner needs connection.",
     "invite.decline": "Decline",
     "invite.accept": "Accept & Connect",
@@ -120,7 +120,7 @@ const translations = {
     "landing.badge": "Лучшее общение, крепкие отношения",
     "landing.hero.title": "Откройтесь друг другу в ваших",
     "landing.hero.title.highlight": "Отношениях",
-    "landing.hero.description": "Во многих отношениях, особенно когда речь идет об интимности и ожиданиях, недопонимание создает дистанцию. HornyMeter помогает парам честно общаться о своих потребностях, желаниях и эмоциональном состоянии.",
+    "landing.hero.description": "Во многих отношениях, особенно когда речь идет об интимности и ожиданиях, недопонимание создает дистанцию. Spark Meter помогает парам честно общаться о своих потребностях, желаниях и эмоциональном состоянии.",
     "landing.cta.primary": "Начать бесплатно",
     "landing.cta.secondary": "Узнать больше",
     "landing.features.title": "Как это работает",
@@ -131,7 +131,7 @@ const translations = {
     "landing.feature2.description": "Делитесь уровнем интимности, настроением, качеством сна и эмоциями с помощью простых слайдеров или голосового ввода.",
     "landing.feature3.title": "Умные уведомления",
     "landing.feature3.description": "Получайте деликатные уведомления, когда вашему партнеру нужно внимание, создавая возможности для связи.",
-    "landing.benefits.title": "Почему пары любят HornyMeter",
+    "landing.benefits.title": "Почему пары любят Spark Meter",
     "landing.benefits.subtitle": "Настоящая прозрачность ведет к настоящей близости",
     "landing.benefit1.title": "Приватно и безопасно",
     "landing.benefit1.description": "Ваши данные полностью конфиденциальны. Даже администраторы не могут видеть ваши личные записи.",
@@ -142,7 +142,7 @@ const translations = {
     "landing.final.title": "Начните строить более честные отношения сегодня",
     "landing.final.subtitle": "Присоединяйтесь к парам, которые открыли силу прозрачного общения",
     "landing.final.cta": "Создать аккаунт",
-    "landing.footer": "© 2025 HornyMeter. Создано с любовью для любящих пар.",
+    "landing.footer": "© 2025 Spark Meter. Создано с любовью для любящих пар.",
     
     // Auth page
     "auth.welcome": "С возвращением",
@@ -166,7 +166,7 @@ const translations = {
     "auth.toast.welcome": "С возвращением!",
     "auth.toast.redirect": "Перенаправление на панель управления...",
     "auth.toast.created": "Аккаунт создан!",
-    "auth.toast.welcome.new": "Добро пожаловать в HornyMeter. Настраиваем ваш профиль...",
+    "auth.toast.welcome.new": "Добро пожаловать в Spark Meter. Настраиваем ваш профиль...",
     
     // Dashboard
     "dashboard.welcome": "Добро пожаловать",
@@ -205,7 +205,7 @@ const translations = {
     
     // Invite acceptance
     "invite.title": "Вас пригласили!",
-    "invite.description": "{name} пригласил(а) вас подключиться к HornyMeter",
+    "invite.description": "{name} пригласил(а) вас подключиться к Spark Meter",
     "invite.info": "Приняв приглашение, вы сможете делиться своими ежедневными чувствами и видеть, когда вашему партнеру нужна связь.",
     "invite.decline": "Отклонить",
     "invite.accept": "Принять и подключиться",

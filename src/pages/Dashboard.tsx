@@ -312,7 +312,7 @@ const Dashboard = () => {
           <div className="flex items-center gap-2">
             <Heart className="w-6 h-6 text-white" fill="white" />
             <div>
-              <h1 className="text-lg font-bold text-white">HornyMeter</h1>
+              <h1 className="text-lg font-bold text-white">Spark Meter</h1>
               <p className="text-white/80 text-xs">{t("dashboard.welcome")}, {profile?.display_name}</p>
             </div>
           </div>
