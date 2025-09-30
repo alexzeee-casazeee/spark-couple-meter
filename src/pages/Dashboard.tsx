@@ -20,6 +20,8 @@ const Dashboard = () => {
   const [profile, setProfile] = useState<any>(null);
   const [couple, setCouple] = useState<any>(null);
   const [todayEntry, setTodayEntry] = useState<any>(null);
+  const [partnerProfile, setPartnerProfile] = useState<any>(null);
+  const [partnerEntry, setPartnerEntry] = useState<any>(null);
   
   // Slider states
   const [horniness, setHorniness] = useState([50]);
@@ -61,6 +63,32 @@ const Dashboard = () => {
         .single();
       
       setCouple(coupleData);
+      
+      // Get partner profile if in a couple
+      if (coupleData) {
+        const partnerId = coupleData.husband_id === profileData.id 
+          ? coupleData.wife_id 
+          : coupleData.husband_id;
+        
+        const { data: partnerData } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", partnerId)
+          .single();
+        
+        setPartnerProfile(partnerData);
+        
+        // Get partner's today's entry
+        const today = format(new Date(), "yyyy-MM-dd");
+        const { data: partnerEntryData } = await supabase
+          .from("daily_entries")
+          .select("*")
+          .eq("user_id", partnerId)
+          .eq("entry_date", today)
+          .maybeSingle();
+        
+        setPartnerEntry(partnerEntryData);
+      }
       
       // Get today's entry
       const today = format(new Date(), "yyyy-MM-dd");
@@ -182,13 +210,40 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-4 max-w-2xl space-y-4">
+      <div className="container mx-auto px-4 py-4 max-w-4xl space-y-4">
         {/* Connection Status */}
         {!couple && profile && (
           <InvitationManager 
             profileId={profile.id} 
             onCoupleCreated={checkAuth}
           />
+        )}
+
+        {/* Partner Status */}
+        {couple && partnerProfile && (
+          <Card className="bg-primary/5 border-primary/20">
+            <CardContent className="pt-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Heart className="w-5 h-5 text-primary fill-primary" />
+                  <div>
+                    <p className="text-sm font-medium">Connected with {partnerProfile.display_name}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {partnerEntry 
+                        ? `Last updated: ${format(new Date(), "MMM d, h:mm a")}`
+                        : "Hasn't checked in today"}
+                    </p>
+                  </div>
+                </div>
+                {partnerEntry && (
+                  <div className="text-right">
+                    <p className="text-xs text-muted-foreground">Their intimacy level</p>
+                    <p className="text-lg font-bold text-primary">{partnerEntry.horniness_level}%</p>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
         )}
 
         {/* Today's Check-In */}

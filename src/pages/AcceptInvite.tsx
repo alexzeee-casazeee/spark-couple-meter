@@ -3,38 +3,33 @@ import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/hooks/use-toast";
 import { Heart, Loader2 } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const AcceptInvite = () => {
   const { token } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { t } = useLanguage();
   const [loading, setLoading] = useState(true);
+  const [signingUp, setSigningUp] = useState(false);
   const [invitation, setInvitation] = useState<any>(null);
   const [senderProfile, setSenderProfile] = useState<any>(null);
+  
+  // Signup form
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {
-    checkInvitation();
+    loadInvitation();
   }, [token]);
 
-  const checkInvitation = async () => {
+  const loadInvitation = async () => {
     try {
-      // Check if user is logged in
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session) {
-        toast({
-          title: t("invite.toast.signin"),
-          description: t("invite.toast.signin.description"),
-        });
-        navigate("/auth");
-        return;
-      }
-
-      // Get invitation
+      // Get invitation without requiring auth
       const { data: inviteData, error: inviteError } = await supabase
         .from('invitations')
         .select('*')
@@ -44,24 +39,26 @@ const AcceptInvite = () => {
 
       if (inviteError || !inviteData) {
         toast({
-          title: t("invite.toast.invalid"),
-          description: t("invite.toast.invalid.description"),
+          title: "Invalid invitation",
+          description: "This invitation link is invalid or has been used",
           variant: "destructive",
         });
-        navigate("/dashboard");
+        navigate("/");
         return;
       }
 
-      // Check if invitation is expired
+      // Check if expired
       if (new Date(inviteData.expires_at) < new Date()) {
         toast({
-          title: t("invite.toast.expired"),
-          description: t("invite.toast.expired.description"),
+          title: "Invitation expired",
+          description: "This invitation link has expired",
           variant: "destructive",
         });
-        navigate("/dashboard");
+        navigate("/");
         return;
       }
+
+      setInvitation(inviteData);
 
       // Get sender profile
       const { data: profileData } = await supabase
@@ -70,47 +67,57 @@ const AcceptInvite = () => {
         .eq('id', inviteData.sender_id)
         .single();
 
-      setInvitation(inviteData);
       setSenderProfile(profileData);
       setLoading(false);
     } catch (error: any) {
-      console.error('Error checking invitation:', error);
+      console.error('Error loading invitation:', error);
       toast({
         title: "Error",
         description: error.message,
         variant: "destructive",
       });
-      navigate("/dashboard");
+      navigate("/");
     }
   };
 
-  const acceptInvitation = async () => {
-    setLoading(true);
-    try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) throw new Error("Not authenticated");
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSigningUp(true);
 
-      // Get current user's profile
+    try {
+      // Determine role (opposite of sender)
+      const role = senderProfile.role === 'husband' ? 'wife' : 'husband';
+
+      // Sign up
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/dashboard`,
+          data: {
+            display_name: displayName,
+            role: role
+          }
+        }
+      });
+
+      if (error) throw error;
+      if (!data.user) throw new Error("Failed to create account");
+
+      // Wait for profile to be created by trigger
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Get the new user's profile
       const { data: myProfile } = await supabase
         .from('profiles')
         .select('*')
-        .eq('user_id', session.user.id)
+        .eq('user_id', data.user.id)
         .single();
 
       if (!myProfile) throw new Error("Profile not found");
 
-      // Check if roles are compatible (husband + wife)
-      if (myProfile.role === senderProfile.role) {
-        toast({
-          title: t("invite.toast.incompatible"),
-          description: t("invite.toast.incompatible.description"),
-          variant: "destructive",
-        });
-        return;
-      }
-
       // Mark invitation as used
-      const { error: updateError } = await supabase
+      await supabase
         .from('invitations')
         .update({
           used_at: new Date().toISOString(),
@@ -118,34 +125,28 @@ const AcceptInvite = () => {
         })
         .eq('id', invitation.id);
 
-      if (updateError) throw updateError;
-
       // Create couple record
-      const coupleData = myProfile.role === 'husband' 
+      const coupleData = role === 'husband' 
         ? { husband_id: myProfile.id, wife_id: senderProfile.id }
         : { husband_id: senderProfile.id, wife_id: myProfile.id };
 
-      const { error: coupleError } = await supabase
-        .from('couples')
-        .insert(coupleData);
-
-      if (coupleError) throw coupleError;
+      await supabase.from('couples').insert(coupleData);
 
       toast({
-        title: t("invite.toast.connected"),
-        description: t("invite.toast.connected.description").replace("{name}", senderProfile.display_name),
+        title: "Account created!",
+        description: `You're now connected with ${senderProfile.display_name}`,
       });
 
       navigate("/dashboard");
     } catch (error: any) {
-      console.error('Error accepting invitation:', error);
+      console.error('Signup error:', error);
       toast({
         title: "Error",
         description: error.message,
         variant: "destructive",
       });
     } finally {
-      setLoading(false);
+      setSigningUp(false);
     }
   };
 
@@ -157,46 +158,127 @@ const AcceptInvite = () => {
     );
   }
 
+  const partnerRole = senderProfile?.role === 'husband' ? 'Husband' : 'Wife';
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-soft px-4">
-      <Card className="w-full max-w-md shadow-glow border-border/50">
-        <CardHeader className="space-y-4">
-          <div className="flex justify-center">
-            <div className="w-16 h-16 bg-gradient-romantic rounded-full flex items-center justify-center shadow-glow">
-              <Heart className="w-8 h-8 text-white" fill="white" />
+    <div className="min-h-screen bg-gradient-soft px-4 py-8">
+      <div className="max-w-4xl mx-auto space-y-6">
+        {/* Welcome Message */}
+        <Card className="border-primary/20 shadow-glow">
+          <CardHeader className="text-center">
+            <div className="flex justify-center mb-4">
+              <Heart className="w-16 h-16 text-primary fill-primary" />
             </div>
-          </div>
-          <CardTitle className="text-3xl text-center">
-            {t("invite.title")}
-          </CardTitle>
-          <CardDescription className="text-center">
-            {t("invite.description").replace("{name}", senderProfile?.display_name || "")}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="bg-muted p-4 rounded-lg">
+            <CardTitle className="text-3xl mb-2">
+              Your {partnerRole}, {senderProfile?.display_name} invited you to LifeMeter
+            </CardTitle>
+            <CardDescription className="text-base">
+              All information here is private and just for you. Create your account below to get started.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+
+        {/* Dashboard Preview */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-lg">Preview: Your Daily Check-In</CardTitle>
+            <CardDescription className="text-xs">
+              This is what you'll see after signing up
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2 opacity-60 pointer-events-none">
+              <Label className="text-sm font-semibold">Intimacy Level</Label>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-muted-foreground w-10">Low</span>
+                <Slider value={[50]} max={100} className="flex-1" disabled />
+                <span className="text-xs text-muted-foreground w-10 text-right">High</span>
+              </div>
+              <p className="text-xs text-center text-primary font-medium">50%</p>
+            </div>
+
+            <div className="space-y-2 opacity-60 pointer-events-none">
+              <Label className="text-sm font-semibold">General Feeling</Label>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-muted-foreground w-10">Bad</span>
+                <Slider value={[50]} max={100} className="flex-1" disabled />
+                <span className="text-xs text-muted-foreground w-10 text-right">Great</span>
+              </div>
+              <p className="text-xs text-center text-primary font-medium">50%</p>
+            </div>
+
+            <div className="space-y-2 opacity-60 pointer-events-none">
+              <Label className="text-sm font-semibold">Sleep Quality</Label>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-muted-foreground w-10">Poor</span>
+                <Slider value={[50]} max={100} className="flex-1" disabled />
+                <span className="text-xs text-muted-foreground w-10 text-right">Great</span>
+              </div>
+              <p className="text-xs text-center text-primary font-medium">50%</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Signup Form */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Create Your Account</CardTitle>
+            <CardDescription>
+              You'll be automatically connected with {senderProfile?.display_name}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSignup} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="displayName">Your Name</Label>
+                <Input
+                  id="displayName"
+                  type="text"
+                  placeholder="Your name"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength={6}
+                />
+              </div>
+              <Button type="submit" className="w-full" disabled={signingUp}>
+                {signingUp ? "Creating Account..." : "Create Account & Connect"}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+
+        {/* Download Info */}
+        <Card className="bg-muted/50">
+          <CardContent className="pt-6">
             <p className="text-sm text-center text-muted-foreground">
-              {t("invite.info")}
+              After creating your account, you can access LifeMeter from any device by bookmarking this page or adding it to your home screen.
             </p>
-          </div>
-          <div className="flex gap-3">
-            <Button
-              variant="outline"
-              className="flex-1"
-              onClick={() => navigate("/dashboard")}
-            >
-              {t("invite.decline")}
-            </Button>
-            <Button
-              className="flex-1"
-              onClick={acceptInvitation}
-              disabled={loading}
-            >
-              {loading ? t("invite.connecting") : t("invite.accept")}
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
