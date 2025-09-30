@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Heart, LogOut, TrendingUp } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Settings } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import InvitationManager from "@/components/InvitationManager";
@@ -204,9 +204,14 @@ const Dashboard = () => {
               <p className="text-white/80 text-xs">{t("dashboard.welcome")}, {profile?.display_name}</p>
             </div>
           </div>
-          <Button variant="outline" size="icon" onClick={handleLogout} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
-            <LogOut className="w-4 h-4 text-white" />
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" size="icon" onClick={() => navigate("/settings")} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
+              <Settings className="w-4 h-4 text-white" />
+            </Button>
+            <Button variant="outline" size="icon" onClick={handleLogout} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
+              <LogOut className="w-4 h-4 text-white" />
+            </Button>
+          </div>
         </div>
       </header>
 

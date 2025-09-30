@@ -150,7 +150,12 @@ export type Database = {
           created_at: string | null
           display_name: string
           id: string
+          notification_frequency:
+            | Database["public"]["Enums"]["notification_frequency"]
+            | null
           notification_time: string | null
+          notification_time_2: string | null
+          notification_time_3: string | null
           role: Database["public"]["Enums"]["user_role"]
           user_id: string
         }
@@ -158,7 +163,12 @@ export type Database = {
           created_at?: string | null
           display_name: string
           id?: string
+          notification_frequency?:
+            | Database["public"]["Enums"]["notification_frequency"]
+            | null
           notification_time?: string | null
+          notification_time_2?: string | null
+          notification_time_3?: string | null
           role: Database["public"]["Enums"]["user_role"]
           user_id: string
         }
@@ -166,7 +176,12 @@ export type Database = {
           created_at?: string | null
           display_name?: string
           id?: string
+          notification_frequency?:
+            | Database["public"]["Enums"]["notification_frequency"]
+            | null
           notification_time?: string | null
+          notification_time_2?: string | null
+          notification_time_3?: string | null
           role?: Database["public"]["Enums"]["user_role"]
           user_id?: string
         }
@@ -180,6 +195,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      notification_frequency: "once" | "twice" | "three_times"
       user_role: "husband" | "wife"
     }
     CompositeTypes: {
@@ -308,6 +324,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      notification_frequency: ["once", "twice", "three_times"],
       user_role: ["husband", "wife"],
     },
   },
