@@ -53,6 +53,84 @@ export type Database = {
           },
         ]
       }
+      custom_dimension_entries: {
+        Row: {
+          created_at: string
+          dimension_id: string
+          entry_id: string
+          id: string
+          value: number | null
+        }
+        Insert: {
+          created_at?: string
+          dimension_id: string
+          entry_id: string
+          id?: string
+          value?: number | null
+        }
+        Update: {
+          created_at?: string
+          dimension_id?: string
+          entry_id?: string
+          id?: string
+          value?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "custom_dimension_entries_dimension_id_fkey"
+            columns: ["dimension_id"]
+            isOneToOne: false
+            referencedRelation: "custom_dimensions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "custom_dimension_entries_entry_id_fkey"
+            columns: ["entry_id"]
+            isOneToOne: false
+            referencedRelation: "daily_entries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      custom_dimensions: {
+        Row: {
+          couple_id: string
+          created_at: string
+          created_by_id: string
+          dimension_name: string
+          id: string
+        }
+        Insert: {
+          couple_id: string
+          created_at?: string
+          created_by_id: string
+          dimension_name: string
+          id?: string
+        }
+        Update: {
+          couple_id?: string
+          created_at?: string
+          created_by_id?: string
+          dimension_name?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "custom_dimensions_couple_id_fkey"
+            columns: ["couple_id"]
+            isOneToOne: false
+            referencedRelation: "couples"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "custom_dimensions_created_by_id_fkey"
+            columns: ["created_by_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       daily_entries: {
         Row: {
           created_at: string | null

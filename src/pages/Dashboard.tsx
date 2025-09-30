@@ -6,10 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Heart, LogOut, TrendingUp, Settings, Save } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import InvitationManager from "@/components/InvitationManager";
+import CustomDimensionsManager from "@/components/CustomDimensionsManager";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Dashboard = () => {
@@ -29,6 +30,11 @@ const Dashboard = () => {
   const [generalFeeling, setGeneralFeeling] = useState([50]);
   const [sleepQuality, setSleepQuality] = useState([50]);
   const [emotionalState, setEmotionalState] = useState([50]);
+  
+  // Custom dimensions
+  const [customDimensions, setCustomDimensions] = useState<any[]>([]);
+  const [customValues, setCustomValues] = useState<Record<string, number>>({});
+  const [partnerCustomValues, setPartnerCustomValues] = useState<Record<string, number>>({});
   
   // Auto-save timer
   const saveTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -52,7 +58,7 @@ const Dashboard = () => {
       .eq("user_id", session.user.id)
       .single();
 
-    if (profileData) {
+      if (profileData) {
       setProfile(profileData);
       
       // Check if part of a couple
@@ -64,6 +70,11 @@ const Dashboard = () => {
         .maybeSingle();
       
       setCouple(coupleData);
+      
+      // Load custom dimensions if in a couple
+      if (coupleData) {
+        await loadCustomDimensions(coupleData.id, profileData.id);
+      }
       
       // Get partner profile if in a couple
       if (coupleData) {
@@ -112,6 +123,53 @@ const Dashboard = () => {
     setLoading(false);
   };
 
+  const loadCustomDimensions = async (coupleId: string, profileId: string) => {
+    // Load custom dimensions
+    const { data: dimensionsData } = await supabase
+      .from("custom_dimensions")
+      .select("*")
+      .eq("couple_id", coupleId)
+      .order("created_at", { ascending: true });
+
+    if (dimensionsData) {
+      setCustomDimensions(dimensionsData);
+
+      // Get today's entry to load custom values
+      const today = format(new Date(), "yyyy-MM-dd");
+      const { data: entryData } = await supabase
+        .from("daily_entries")
+        .select("id")
+        .eq("user_id", profileId)
+        .eq("entry_date", today)
+        .maybeSingle();
+
+      if (entryData) {
+        // Load custom dimension values for today's entry
+        const { data: customEntriesData } = await supabase
+          .from("custom_dimension_entries")
+          .select("dimension_id, value")
+          .eq("entry_id", entryData.id);
+
+        if (customEntriesData) {
+          const values: Record<string, number> = {};
+          customEntriesData.forEach((entry) => {
+            values[entry.dimension_id] = entry.value || 50;
+          });
+          setCustomValues(values);
+        }
+      }
+
+      // Initialize missing custom values to 50
+      const initialValues: Record<string, number> = {};
+      dimensionsData.forEach((dim) => {
+        if (!customValues[dim.id]) {
+          initialValues[dim.id] = 50;
+        }
+      });
+      setCustomValues((prev) => ({ ...prev, ...initialValues }));
+    }
+  };
+
   const handleSaveEntry = async (silent = false) => {
     if (!profile) return;
 
@@ -125,11 +183,13 @@ const Dashboard = () => {
       emotional_state: emotionalState[0],
     };
 
-    const { error } = await supabase
+    const { data: savedEntry, error } = await supabase
       .from("daily_entries")
       .upsert(entryData, {
         onConflict: "user_id,entry_date",
-      });
+      })
+      .select()
+      .single();
 
     if (error) {
       toast({
@@ -137,11 +197,28 @@ const Dashboard = () => {
         description: error.message,
         variant: "destructive",
       });
-    } else if (!silent) {
-      toast({
-        title: t("dashboard.toast.saved"),
-        description: t("dashboard.toast.saved.description"),
-      });
+    } else {
+      // Save custom dimension entries
+      if (savedEntry && customDimensions.length > 0) {
+        const customEntries = customDimensions.map((dim) => ({
+          entry_id: savedEntry.id,
+          dimension_id: dim.id,
+          value: customValues[dim.id] || 50,
+        }));
+
+        await supabase
+          .from("custom_dimension_entries")
+          .upsert(customEntries, {
+            onConflict: "entry_id,dimension_id",
+          });
+      }
+
+      if (!silent) {
+        toast({
+          title: t("dashboard.toast.saved"),
+          description: t("dashboard.toast.saved.description"),
+        });
+      }
     }
   };
 
@@ -165,7 +242,7 @@ const Dashboard = () => {
         clearTimeout(saveTimerRef.current);
       }
     };
-  }, [horniness, generalFeeling, sleepQuality, emotionalState]);
+  }, [horniness, generalFeeling, sleepQuality, emotionalState, customValues]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -215,6 +292,9 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="flex gap-2">
+            <Button variant="outline" size="icon" onClick={() => navigate("/account")} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
+              <UserCircle className="w-4 h-4 text-white" />
+            </Button>
             <Button variant="outline" size="icon" onClick={() => navigate("/settings")} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
               <Settings className="w-4 h-4 text-white" />
             </Button>
@@ -231,6 +311,15 @@ const Dashboard = () => {
           <InvitationManager 
             profileId={profile.id} 
             onCoupleCreated={checkAuth}
+          />
+        )}
+
+        {/* Custom Dimensions Manager */}
+        {couple && profile && (
+          <CustomDimensionsManager
+            coupleId={couple.id}
+            profileId={profile.id}
+            onDimensionsChange={() => loadCustomDimensions(couple.id, profile.id)}
           />
         )}
 
@@ -346,11 +435,39 @@ const Dashboard = () => {
                     <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
                   </div>
                   <p className="text-xs text-center text-primary font-medium">
-                    {viewMode === 'self' ? emotionalState[0] : partnerEntry?.emotional_state || 50}%
+                  {viewMode === 'self' ? emotionalState[0] : partnerEntry?.emotional_state || 50}%
+                </p>
+              </div>
+
+              {/* Custom Dimensions */}
+              {customDimensions.map((dimension) => (
+                <div key={dimension.id} className="space-y-2">
+                  <Label className="text-sm font-semibold">{dimension.dimension_name}</Label>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
+                    <Slider
+                      value={viewMode === 'self' 
+                        ? [customValues[dimension.id] || 50] 
+                        : [partnerCustomValues[dimension.id] || 50]}
+                      onValueChange={viewMode === 'self' 
+                        ? (value) => setCustomValues(prev => ({ ...prev, [dimension.id]: value[0] }))
+                        : undefined}
+                      max={100}
+                      step={1}
+                      className="flex-1"
+                      disabled={viewMode === 'partner'}
+                    />
+                    <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
+                  </div>
+                  <p className="text-xs text-center text-primary font-medium">
+                    {viewMode === 'self' 
+                      ? (customValues[dimension.id] || 50)
+                      : (partnerCustomValues[dimension.id] || 50)}%
                   </p>
                 </div>
+              ))}
 
-                {viewMode === 'self' && (
+              {viewMode === 'self' && (
                   <>
                     <div className="flex justify-center gap-3 pt-2">
                       <VoiceInput onParsedValues={handleVoiceInput} />
