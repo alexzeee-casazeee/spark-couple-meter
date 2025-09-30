@@ -62,37 +62,35 @@ const InvitationManager = ({ profileId, onCoupleCreated }: InvitationManagerProp
 
   return (
     <Card className="border-primary/20 shadow-soft">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Link2 className="w-5 h-5 text-primary" />
+      <CardHeader className="pb-3">
+        <CardTitle className="flex items-center gap-2 text-lg">
+          <Link2 className="w-4 h-4 text-primary" />
           {t("dashboard.invite.title")}
         </CardTitle>
-        <CardDescription>
-          {t("dashboard.invite.description")}
-        </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-3">
         {!inviteLink ? (
-          <Button onClick={generateInvitation} className="w-full">
+          <Button onClick={generateInvitation} className="w-full" size="sm">
             {t("dashboard.invite.button")}
           </Button>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-2">
             <div className="flex gap-2">
               <Input
                 value={inviteLink}
                 readOnly
-                className="flex-1"
+                className="flex-1 text-xs h-8"
               />
               <Button
                 variant="outline"
                 size="icon"
                 onClick={copyToClipboard}
+                className="h-8 w-8"
               >
-                {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
               </Button>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-[10px] text-muted-foreground">
               {t("dashboard.invite.expires")}
             </p>
           </div>

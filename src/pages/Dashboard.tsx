@@ -147,22 +147,22 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
-      <header className="bg-gradient-romantic p-6 shadow-glow">
+      <header className="bg-gradient-romantic p-3 shadow-glow">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <Heart className="w-8 h-8 text-white" fill="white" />
+          <div className="flex items-center gap-2">
+            <Heart className="w-6 h-6 text-white" fill="white" />
             <div>
-              <h1 className="text-2xl font-bold text-white">HornyMeter</h1>
-              <p className="text-white/80 text-sm">{t("dashboard.welcome")}, {profile?.display_name}</p>
+              <h1 className="text-lg font-bold text-white">HornyMeter</h1>
+              <p className="text-white/80 text-xs">{t("dashboard.welcome")}, {profile?.display_name}</p>
             </div>
           </div>
-          <Button variant="outline" size="icon" onClick={handleLogout} className="bg-white/10 border-white/20 hover:bg-white/20">
-            <LogOut className="w-5 h-5 text-white" />
+          <Button variant="outline" size="icon" onClick={handleLogout} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
+            <LogOut className="w-4 h-4 text-white" />
           </Button>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8 max-w-2xl space-y-6">
+      <div className="container mx-auto px-4 py-4 max-w-2xl space-y-4">
         {/* Connection Status */}
         {!couple && profile && (
           <InvitationManager 
@@ -173,20 +173,20 @@ const Dashboard = () => {
 
         {/* Today's Check-In */}
         <Card className="shadow-soft">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Heart className="w-5 h-5 text-primary" />
-              Today's Check-In
-              <span className="ml-auto text-sm font-normal text-muted-foreground">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <Heart className="w-4 h-4 text-primary" />
+              {t("dashboard.checkin.title")}
+              <span className="ml-auto text-xs font-normal text-muted-foreground">
                 {format(new Date(), "MMM d, yyyy")}
               </span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-8">
-            <div className="space-y-3">
-              <Label className="text-base font-semibold">Intimacy Level</Label>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground w-12">Low</span>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label className="text-sm font-semibold">{t("dashboard.checkin.intimacy")}</Label>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
                 <Slider
                   value={horniness}
                   onValueChange={setHorniness}
@@ -194,15 +194,15 @@ const Dashboard = () => {
                   step={1}
                   className="flex-1"
                 />
-                <span className="text-sm text-muted-foreground w-12 text-right">High</span>
+                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
               </div>
-              <p className="text-sm text-center text-primary font-medium">{horniness[0]}%</p>
+              <p className="text-xs text-center text-primary font-medium">{horniness[0]}%</p>
             </div>
 
-            <div className="space-y-3">
-              <Label className="text-base font-semibold">General Feeling</Label>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground w-12">Bad</span>
+            <div className="space-y-2">
+              <Label className="text-sm font-semibold">{t("dashboard.checkin.feeling")}</Label>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.bad")}</span>
                 <Slider
                   value={generalFeeling}
                   onValueChange={setGeneralFeeling}
@@ -210,15 +210,15 @@ const Dashboard = () => {
                   step={1}
                   className="flex-1"
                 />
-                <span className="text-sm text-muted-foreground w-12 text-right">Great</span>
+                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
               </div>
-              <p className="text-sm text-center text-primary font-medium">{generalFeeling[0]}%</p>
+              <p className="text-xs text-center text-primary font-medium">{generalFeeling[0]}%</p>
             </div>
 
-            <div className="space-y-3">
-              <Label className="text-base font-semibold">Sleep Quality</Label>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground w-12">Poor</span>
+            <div className="space-y-2">
+              <Label className="text-sm font-semibold">{t("dashboard.checkin.sleep")}</Label>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.poor")}</span>
                 <Slider
                   value={sleepQuality}
                   onValueChange={setSleepQuality}
@@ -226,15 +226,15 @@ const Dashboard = () => {
                   step={1}
                   className="flex-1"
                 />
-                <span className="text-sm text-muted-foreground w-12 text-right">Great</span>
+                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
               </div>
-              <p className="text-sm text-center text-primary font-medium">{sleepQuality[0]}%</p>
+              <p className="text-xs text-center text-primary font-medium">{sleepQuality[0]}%</p>
             </div>
 
-            <div className="space-y-3">
-              <Label className="text-base font-semibold">Emotional State</Label>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground w-12">Low</span>
+            <div className="space-y-2">
+              <Label className="text-sm font-semibold">{t("dashboard.checkin.emotional")}</Label>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
                 <Slider
                   value={emotionalState}
                   onValueChange={setEmotionalState}
@@ -242,27 +242,27 @@ const Dashboard = () => {
                   step={1}
                   className="flex-1"
                 />
-                <span className="text-sm text-muted-foreground w-12 text-right">High</span>
+                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
               </div>
-              <p className="text-sm text-center text-primary font-medium">{emotionalState[0]}%</p>
+              <p className="text-xs text-center text-primary font-medium">{emotionalState[0]}%</p>
             </div>
 
-            <div className="flex gap-3 pt-4">
+            <div className="flex gap-2 pt-2">
               <Button className="flex-1" onClick={handleSaveEntry}>
-                Save Check-In
+                {t("dashboard.checkin.save")}
               </Button>
               <VoiceInput onParsedValues={handleVoiceInput} />
             </div>
-            <p className="text-xs text-center text-muted-foreground pt-2">
-              Tap the microphone and speak naturally about how you're feeling
+            <p className="text-[10px] text-center text-muted-foreground">
+              {t("dashboard.checkin.voice.hint")}
             </p>
           </CardContent>
         </Card>
 
         {/* View Trends */}
-        <Button variant="outline" className="w-full" onClick={() => navigate("/trends")}>
-          <TrendingUp className="w-5 h-5 mr-2" />
-          View 30-Day Trends
+        <Button variant="outline" className="w-full" size="sm" onClick={() => navigate("/trends")}>
+          <TrendingUp className="w-4 h-4 mr-2" />
+          {t("dashboard.trends")}
         </Button>
       </div>
     </div>
