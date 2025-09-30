@@ -22,6 +22,7 @@ const Dashboard = () => {
   const [todayEntry, setTodayEntry] = useState<any>(null);
   const [partnerProfile, setPartnerProfile] = useState<any>(null);
   const [partnerEntry, setPartnerEntry] = useState<any>(null);
+  const [viewMode, setViewMode] = useState<'self' | 'partner'>('self');
   
   // Slider states
   const [horniness, setHorniness] = useState([50]);
@@ -233,31 +234,26 @@ const Dashboard = () => {
           />
         )}
 
-        {/* Partner Status */}
+        {/* View Mode Toggle */}
         {couple && partnerProfile && (
-          <Card className="bg-primary/5 border-primary/20">
-            <CardContent className="pt-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-primary fill-primary" />
-                  <div>
-                    <p className="text-sm font-medium">Connected with {partnerProfile.display_name}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {partnerEntry 
-                        ? `Last updated: ${format(new Date(), "MMM d, h:mm a")}`
-                        : "Hasn't checked in today"}
-                    </p>
-                  </div>
-                </div>
-                {partnerEntry && (
-                  <div className="text-right">
-                    <p className="text-xs text-muted-foreground">Their intimacy level</p>
-                    <p className="text-lg font-bold text-primary">{partnerEntry.horniness_level}%</p>
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
+          <div className="flex gap-2">
+            <Button
+              variant={viewMode === 'self' ? 'default' : 'outline'}
+              onClick={() => setViewMode('self')}
+              className="flex-1"
+              size="sm"
+            >
+              My Levels
+            </Button>
+            <Button
+              variant={viewMode === 'partner' ? 'default' : 'outline'}
+              onClick={() => setViewMode('partner')}
+              className="flex-1"
+              size="sm"
+            >
+              See {partnerProfile.display_name}&apos;s Levels
+            </Button>
+          </div>
         )}
 
         {/* Today's Check-In */}
@@ -265,91 +261,115 @@ const Dashboard = () => {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-lg">
               <Heart className="w-4 h-4 text-primary" />
-              {t("dashboard.checkin.title")}
+              {viewMode === 'self' ? t("dashboard.checkin.title") : `${partnerProfile?.display_name}'s Levels`}
               <span className="ml-auto text-xs font-normal text-muted-foreground">
                 {format(new Date(), "MMM d, yyyy")}
               </span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label className="text-sm font-semibold">{t("dashboard.checkin.intimacy")}</Label>
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
-                <Slider
-                  value={horniness}
-                  onValueChange={setHorniness}
-                  max={100}
-                  step={1}
-                  className="flex-1"
-                />
-                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
+            {viewMode === 'partner' && !partnerEntry ? (
+              <div className="text-center py-8 text-muted-foreground">
+                <p>{partnerProfile?.display_name} hasn&apos;t checked in today yet</p>
               </div>
-              <p className="text-xs text-center text-primary font-medium">{horniness[0]}%</p>
-            </div>
+            ) : (
+              <>
+                <div className="space-y-2">
+                  <Label className="text-sm font-semibold">{t("dashboard.checkin.intimacy")}</Label>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
+                    <Slider
+                      value={viewMode === 'self' ? horniness : [partnerEntry?.horniness_level || 50]}
+                      onValueChange={viewMode === 'self' ? setHorniness : undefined}
+                      max={100}
+                      step={1}
+                      className="flex-1"
+                      disabled={viewMode === 'partner'}
+                    />
+                    <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
+                  </div>
+                  <p className="text-xs text-center text-primary font-medium">
+                    {viewMode === 'self' ? horniness[0] : partnerEntry?.horniness_level || 50}%
+                  </p>
+                </div>
 
-            <div className="space-y-2">
-              <Label className="text-sm font-semibold">{t("dashboard.checkin.feeling")}</Label>
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.bad")}</span>
-                <Slider
-                  value={generalFeeling}
-                  onValueChange={setGeneralFeeling}
-                  max={100}
-                  step={1}
-                  className="flex-1"
-                />
-                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
-              </div>
-              <p className="text-xs text-center text-primary font-medium">{generalFeeling[0]}%</p>
-            </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-semibold">{t("dashboard.checkin.feeling")}</Label>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.bad")}</span>
+                    <Slider
+                      value={viewMode === 'self' ? generalFeeling : [partnerEntry?.general_feeling || 50]}
+                      onValueChange={viewMode === 'self' ? setGeneralFeeling : undefined}
+                      max={100}
+                      step={1}
+                      className="flex-1"
+                      disabled={viewMode === 'partner'}
+                    />
+                    <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
+                  </div>
+                  <p className="text-xs text-center text-primary font-medium">
+                    {viewMode === 'self' ? generalFeeling[0] : partnerEntry?.general_feeling || 50}%
+                  </p>
+                </div>
 
-            <div className="space-y-2">
-              <Label className="text-sm font-semibold">{t("dashboard.checkin.sleep")}</Label>
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.poor")}</span>
-                <Slider
-                  value={sleepQuality}
-                  onValueChange={setSleepQuality}
-                  max={100}
-                  step={1}
-                  className="flex-1"
-                />
-                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
-              </div>
-              <p className="text-xs text-center text-primary font-medium">{sleepQuality[0]}%</p>
-            </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-semibold">{t("dashboard.checkin.sleep")}</Label>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.poor")}</span>
+                    <Slider
+                      value={viewMode === 'self' ? sleepQuality : [partnerEntry?.sleep_quality || 50]}
+                      onValueChange={viewMode === 'self' ? setSleepQuality : undefined}
+                      max={100}
+                      step={1}
+                      className="flex-1"
+                      disabled={viewMode === 'partner'}
+                    />
+                    <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
+                  </div>
+                  <p className="text-xs text-center text-primary font-medium">
+                    {viewMode === 'self' ? sleepQuality[0] : partnerEntry?.sleep_quality || 50}%
+                  </p>
+                </div>
 
-            <div className="space-y-2">
-              <Label className="text-sm font-semibold">{t("dashboard.checkin.emotional")}</Label>
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
-                <Slider
-                  value={emotionalState}
-                  onValueChange={setEmotionalState}
-                  max={100}
-                  step={1}
-                  className="flex-1"
-                />
-                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
-              </div>
-              <p className="text-xs text-center text-primary font-medium">{emotionalState[0]}%</p>
-            </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-semibold">{t("dashboard.checkin.emotional")}</Label>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
+                    <Slider
+                      value={viewMode === 'self' ? emotionalState : [partnerEntry?.emotional_state || 50]}
+                      onValueChange={viewMode === 'self' ? setEmotionalState : undefined}
+                      max={100}
+                      step={1}
+                      className="flex-1"
+                      disabled={viewMode === 'partner'}
+                    />
+                    <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
+                  </div>
+                  <p className="text-xs text-center text-primary font-medium">
+                    {viewMode === 'self' ? emotionalState[0] : partnerEntry?.emotional_state || 50}%
+                  </p>
+                </div>
 
-            <div className="flex justify-center gap-3 pt-2">
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={handleSaveAndReset}
-                className="rounded-full border-2 border-primary"
-              >
-                <Save className="w-6 h-6" />
-              </Button>
-              <VoiceInput onParsedValues={handleVoiceInput} />
-            </div>
-            <p className="text-[10px] text-center text-muted-foreground">
-              {t("dashboard.checkin.voice.hint")}
-            </p>
+                {viewMode === 'self' && (
+                  <>
+                    <div className="flex justify-center gap-3 pt-2">
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        onClick={handleSaveAndReset}
+                        className="rounded-full border-2 border-primary"
+                      >
+                        <Save className="w-6 h-6" />
+                      </Button>
+                      <VoiceInput onParsedValues={handleVoiceInput} />
+                    </div>
+                    <p className="text-[10px] text-center text-muted-foreground">
+                      {t("dashboard.checkin.voice.hint")}
+                    </p>
+                  </>
+                )}
+              </>
+            )}
           </CardContent>
         </Card>
 
