@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Heart, LogOut, TrendingUp, Settings } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Settings, Save } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import InvitationManager from "@/components/InvitationManager";
@@ -184,6 +184,15 @@ const Dashboard = () => {
     // Auto-save will trigger automatically via useEffect
   };
 
+  const handleSaveAndReset = async () => {
+    await handleSaveEntry(false); // Save with toast notification
+    // Reset to baseline values
+    setHorniness([50]);
+    setGeneralFeeling([50]);
+    setSleepQuality([50]);
+    setEmotionalState([50]);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -327,7 +336,15 @@ const Dashboard = () => {
               <p className="text-xs text-center text-primary font-medium">{emotionalState[0]}%</p>
             </div>
 
-            <div className="flex justify-center pt-2">
+            <div className="flex justify-center gap-3 pt-2">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={handleSaveAndReset}
+                className="rounded-full border-2 border-primary"
+              >
+                <Save className="w-6 h-6" />
+              </Button>
               <VoiceInput onParsedValues={handleVoiceInput} />
             </div>
             <p className="text-[10px] text-center text-muted-foreground">
