@@ -44,7 +44,7 @@ const Landing = () => {
           </p>
           
           <div className="flex flex-col gap-2 justify-center items-center pt-2">
-            <div className="flex flex-row gap-3 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Button
                 size="lg"
                 className="text-base px-6 py-5 shadow-lg border-2 border-transparent bg-clip-padding relative"
@@ -70,6 +70,14 @@ const Landing = () => {
                 onClick={() => navigate("/learn-more")}
               >
                 {t("landing.cta.secondary")}
+              </Button>
+              <Button
+                size="lg"
+                variant="ghost"
+                className="text-base px-6 py-5 hidden sm:block"
+                onClick={() => setAuthModalOpen(true)}
+              >
+                {t("landing.cta.login")}
               </Button>
             </div>
             <p className="text-sm text-muted-foreground">{t("landing.pricing")}</p>
