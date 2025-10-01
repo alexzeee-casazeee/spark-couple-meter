@@ -86,7 +86,6 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
         <form onSubmit={handleAuth} className="space-y-3">
           {!isLogin && (
             <div className="space-y-1.5">
-              <Label htmlFor="displayName">{t("auth.displayName")}</Label>
               <Input
                 id="displayName"
                 type="text"
@@ -99,7 +98,6 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
             </div>
           )}
           <div className="space-y-1.5">
-            <Label htmlFor="email">{t("auth.email")}</Label>
             <Input
               id="email"
               type="email"
@@ -111,7 +109,6 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="password">{t("auth.password")}</Label>
             <Input
               id="password"
               type="password"
