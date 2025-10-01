@@ -79,14 +79,14 @@ const Landing = () => {
 
       {/* How It Works Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
-        <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border border-white/40" style={{ boxShadow: 'var(--shadow-float)' }}>
+        <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-6 px-[5px] md:px-6 pt-[5px] md:pt-6">
             <h2 className="text-3xl font-bold mb-3 text-primary">How It Works</h2>
             <p className="text-base text-muted-foreground">Simple daily check-ins that strengthen your bond</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-4 px-[5px] md:px-6 pb-[5px] md:pb-6">
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative shadow-lg" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
                 <Users className="w-6 h-6 text-primary" />
               </div>
@@ -96,7 +96,7 @@ const Landing = () => {
               </p>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative shadow-lg" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-4">
                 <TrendingUp className="w-6 h-6 text-secondary" />
               </div>
@@ -106,7 +106,7 @@ const Landing = () => {
               </p>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative shadow-lg" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-4">
                 <LineChart className="w-6 h-6 text-accent" />
               </div>
@@ -128,7 +128,7 @@ const Landing = () => {
           </div>
           
           <div className="space-y-4">
-            <div className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-white/40" style={{ boxShadow: 'var(--shadow-float)' }}>
+            <div className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <div className="flex gap-4 items-start">
                 <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Shield className="w-5 h-5 text-primary" />
@@ -140,7 +140,7 @@ const Landing = () => {
               </div>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-white/40" style={{ boxShadow: 'var(--shadow-float)' }}>
+            <div className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <div className="flex gap-4 items-start">
                 <div className="w-10 h-10 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <MessageCircle className="w-5 h-5 text-secondary" />
@@ -152,7 +152,7 @@ const Landing = () => {
               </div>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-white/40" style={{ boxShadow: 'var(--shadow-float)' }}>
+            <div className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <div className="flex gap-4 items-start">
                 <div className="w-10 h-10 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <TrendingUp className="w-5 h-5 text-accent" />
@@ -169,7 +169,7 @@ const Landing = () => {
 
       {/* Final CTA */}
       <section className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto text-center space-y-4 bg-white/70 backdrop-blur-sm p-8 rounded-3xl border-2 border-transparent bg-clip-padding relative shadow-lg" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
+        <div className="max-w-4xl mx-auto text-center space-y-4 bg-white/70 backdrop-blur-sm p-8 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <h2 className="text-3xl md:text-4xl font-bold text-primary">
             {t("landing.final.title")}
           </h2>
