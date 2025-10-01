@@ -134,6 +134,15 @@ const translations = {
     "invite.toast.incompatible.description": "You and your partner must have different roles (husband/wife)",
     "invite.toast.connected": "Connected!",
     "invite.toast.connected.description": "You are now connected with {name}",
+
+    // Accept Invite page
+    "acceptInvite.header": "You were invited to Spark Meter by {name}",
+    "acceptInvite.preview.title": "Preview: Your Daily Check-In",
+    "acceptInvite.preview.subtitle": "This is what you'll see after signing up",
+    "acceptInvite.form.title": "Create Your Account",
+    "acceptInvite.form.subtitle": "You'll be automatically connected with {name}",
+    "acceptInvite.button": "Create Account & Connect",
+    "acceptInvite.loading": "Creating Account...",
   },
   ru: {
     // Landing page
@@ -260,6 +269,15 @@ const translations = {
     "invite.toast.incompatible.description": "У вас и вашего партнера должны быть разные роли (муж/жена)",
     "invite.toast.connected": "Подключено!",
     "invite.toast.connected.description": "Вы теперь подключены с {name}",
+
+    // Accept Invite page
+    "acceptInvite.header": "Вас пригласил(а) в Spark Meter {name}",
+    "acceptInvite.preview.title": "Предпросмотр: Ежедневная отметка",
+    "acceptInvite.preview.subtitle": "Так будет выглядеть экран после регистрации",
+    "acceptInvite.form.title": "Создайте аккаунт",
+    "acceptInvite.form.subtitle": "Вы автоматически подключитесь с {name}",
+    "acceptInvite.button": "Создать аккаунт и подключиться",
+    "acceptInvite.loading": "Создаем аккаунт...",
   },
 };
 

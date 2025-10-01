@@ -8,10 +8,11 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/hooks/use-toast";
 import { Heart, Loader2 } from "lucide-react";
-
+import { useLanguage } from "@/contexts/LanguageContext";
 const AcceptInvite = () => {
   const { token } = useParams();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [signingUp, setSigningUp] = useState(false);
   const [invitation, setInvitation] = useState<any>(null);
@@ -146,10 +147,10 @@ const AcceptInvite = () => {
               <Heart className="w-16 h-16 text-primary fill-primary" />
             </div>
             <CardTitle className="text-3xl mb-2">
-              You were invited to Spark Meter by {senderProfile?.display_name}
+              {t("acceptInvite.header").replace('{name}', senderProfile?.display_name || '')}
             </CardTitle>
             <CardDescription className="text-base">
-              Spark Meter helps couples stay connected through simple daily check-ins. Share your intimacy levels, moods, sleep quality, and emotions to strengthen your relationship and understand each other better.
+              {t("landing.hero.description")}
             </CardDescription>
           </CardHeader>
         </Card>
@@ -157,38 +158,48 @@ const AcceptInvite = () => {
         {/* Dashboard Preview */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg">Preview: Your Daily Check-In</CardTitle>
+            <CardTitle className="text-lg">{t("acceptInvite.preview.title")}</CardTitle>
             <CardDescription className="text-xs">
-              This is what you'll see after signing up
+              {t("acceptInvite.preview.subtitle")}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2 opacity-60 pointer-events-none">
-              <Label className="text-sm font-semibold">Intimacy Level</Label>
+              <Label className="text-sm font-semibold">{t("dashboard.checkin.intimacy")}</Label>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">Low</span>
+                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
                 <Slider value={[50]} max={100} className="flex-1" disabled />
-                <span className="text-xs text-muted-foreground w-10 text-right">High</span>
+                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
               </div>
               <p className="text-xs text-center text-primary font-medium">50%</p>
             </div>
 
             <div className="space-y-2 opacity-60 pointer-events-none">
-              <Label className="text-sm font-semibold">General Feeling</Label>
+              <Label className="text-sm font-semibold">{t("dashboard.checkin.feeling")}</Label>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">Bad</span>
+                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.bad")}</span>
                 <Slider value={[50]} max={100} className="flex-1" disabled />
-                <span className="text-xs text-muted-foreground w-10 text-right">Great</span>
+                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
               </div>
               <p className="text-xs text-center text-primary font-medium">50%</p>
             </div>
 
             <div className="space-y-2 opacity-60 pointer-events-none">
-              <Label className="text-sm font-semibold">Sleep Quality</Label>
+              <Label className="text-sm font-semibold">{t("dashboard.checkin.communication")}</Label>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">Poor</span>
+                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
                 <Slider value={[50]} max={100} className="flex-1" disabled />
-                <span className="text-xs text-muted-foreground w-10 text-right">Great</span>
+                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
+              </div>
+              <p className="text-xs text-center text-primary font-medium">50%</p>
+            </div>
+
+            <div className="space-y-2 opacity-60 pointer-events-none">
+              <Label className="text-sm font-semibold">{t("dashboard.checkin.sleep")}</Label>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.poor")}</span>
+                <Slider value={[50]} max={100} className="flex-1" disabled />
+                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
               </div>
               <p className="text-xs text-center text-primary font-medium">50%</p>
             </div>
@@ -198,41 +209,41 @@ const AcceptInvite = () => {
         {/* Signup Form */}
         <Card>
           <CardHeader>
-            <CardTitle>Create Your Account</CardTitle>
+            <CardTitle>{t("acceptInvite.form.title")}</CardTitle>
             <CardDescription>
-              You'll be automatically connected with {senderProfile?.display_name}
+              {t("acceptInvite.form.subtitle").replace('{name}', senderProfile?.display_name || '')}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSignup} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="displayName">Your Name</Label>
+                <Label htmlFor="displayName">{t("auth.displayName")}</Label>
                 <Input
                   id="displayName"
                   type="text"
-                  placeholder="Your name"
+                  placeholder={t("auth.displayName.placeholder")}
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t("auth.email")}</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder={t("auth.email.placeholder")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t("auth.password")}</Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="••••••••"
+                  placeholder={t("auth.password.placeholder")}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -249,7 +260,7 @@ const AcceptInvite = () => {
                 disabled={signingUp}
               >
                 <span className="relative z-10">
-                  {signingUp ? "Creating Account..." : "Create Account & Connect"}
+                  {signingUp ? t("auth.button.loading") : t("acceptInvite.button")}
                 </span>
               </Button>
             </form>
