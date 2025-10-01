@@ -72,7 +72,7 @@ const Landing = () => {
                 {t("landing.cta.secondary")}
               </Button>
             </div>
-            <p className="text-sm text-muted-foreground">Free for 30 Days. Then $2.99/mo</p>
+            <p className="text-sm text-muted-foreground">{t("landing.pricing")}</p>
           </div>
         </div>
       </section>
@@ -197,7 +197,7 @@ const Landing = () => {
                 {t("landing.cta.secondary")}
               </Button>
             </div>
-            <p className="text-sm text-muted-foreground">Free for 30 Days. Then $2.99/mo</p>
+            <p className="text-sm text-muted-foreground">{t("landing.pricing")}</p>
           </div>
         </div>
       </section>

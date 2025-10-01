@@ -36,6 +36,7 @@ const translations = {
     "landing.final.title": "Start Building a More Honest Relationship Today",
     "landing.final.subtitle": "Join couples who've discovered the power of transparent communication",
     "landing.final.cta": "Create Your Account",
+    "landing.pricing": "Free for 30 Days. Then $2.99/mo",
     "landing.footer": "© 2025 Spark Meter. Built with love for loving couples.",
     
     // Auth page
@@ -172,6 +173,7 @@ const translations = {
     "landing.final.title": "Начните строить более честные отношения сегодня",
     "landing.final.subtitle": "Присоединяйтесь к парам, которые открыли силу прозрачного общения",
     "landing.final.cta": "Создать аккаунт",
+    "landing.pricing": "Бесплатно 30 дней. Затем $2.99/мес",
     "landing.footer": "© 2025 Spark Meter. Создано с любовью для любящих пар.",
     
     // Auth page
