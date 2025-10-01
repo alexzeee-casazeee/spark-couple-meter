@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Heart } from "lucide-react";
 import { format } from "date-fns";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 interface LogEntry {
   id: string;
@@ -157,6 +158,32 @@ const Log = () => {
     );
   }
 
+  // Group entries by date
+  const currentEntries = viewMode === 'self' ? entries : partnerEntries;
+  const groupedEntries = currentEntries.reduce((groups, entry) => {
+    const date = entry.entry_date;
+    if (!groups[date]) {
+      groups[date] = [];
+    }
+    groups[date].push(entry);
+    return groups;
+  }, {} as Record<string, LogEntry[]>);
+
+  // Prepare chart data - average values per day
+  const chartData = Object.entries(groupedEntries)
+    .slice(0, 30) // Last 30 days
+    .reverse()
+    .map(([date, dayEntries]) => {
+      const avg = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
+      return {
+        date: format(new Date(date), "MMM d"),
+        intimacy: Math.round(avg(dayEntries.map(e => e.horniness_level))),
+        feeling: Math.round(avg(dayEntries.map(e => e.general_feeling))),
+        sleep: Math.round(avg(dayEntries.map(e => e.sleep_quality))),
+        emotional: Math.round(avg(dayEntries.map(e => e.emotional_state))),
+      };
+    });
+
   return (
     <div className="min-h-screen pb-12" style={{ background: "var(--gradient-splash)" }}>
       {/* Header */}
@@ -204,49 +231,122 @@ const Log = () => {
           </Card>
         )}
 
-        {(viewMode === 'self' ? entries : partnerEntries).length === 0 ? (
+        {/* Trend Chart */}
+        {currentEntries.length > 0 && (
+          <Card className="shadow-soft">
+            <CardHeader className="pb-2 pt-3">
+              <CardTitle className="text-sm">30-Day Trend</CardTitle>
+            </CardHeader>
+            <CardContent className="pb-3">
+              <ResponsiveContainer width="100%" height={200}>
+                <LineChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                  <XAxis 
+                    dataKey="date" 
+                    tick={{ fontSize: 10 }}
+                    stroke="hsl(var(--muted-foreground))"
+                  />
+                  <YAxis 
+                    domain={[0, 100]}
+                    tick={{ fontSize: 10 }}
+                    stroke="hsl(var(--muted-foreground))"
+                  />
+                  <Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: 'hsl(var(--card))',
+                      border: '1px solid hsl(var(--border))',
+                      borderRadius: '8px',
+                      fontSize: '12px'
+                    }}
+                  />
+                  <Legend 
+                    wrapperStyle={{ fontSize: '11px' }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="intimacy" 
+                    stroke="#ef4444" 
+                    strokeWidth={2}
+                    name="Intimacy"
+                    dot={{ r: 3 }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="feeling" 
+                    stroke="#22c55e" 
+                    strokeWidth={2}
+                    name="Feeling"
+                    dot={{ r: 3 }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="sleep" 
+                    stroke="#3b82f6" 
+                    strokeWidth={2}
+                    name="Sleep"
+                    dot={{ r: 3 }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="emotional" 
+                    stroke="#f59e0b" 
+                    strokeWidth={2}
+                    name="Emotional"
+                    dot={{ r: 3 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        )}
+
+        {currentEntries.length === 0 ? (
           <Card className="shadow-soft">
             <CardContent className="pt-6 pb-6 text-center text-muted-foreground">
               <p>No entries yet. Start tracking your levels!</p>
             </CardContent>
           </Card>
         ) : (
-          (viewMode === 'self' ? entries : partnerEntries).map((entry) => (
-            <Card key={entry.id} className="shadow-soft">
+          Object.entries(groupedEntries).map(([date, dayEntries]) => (
+            <Card key={date} className="shadow-soft">
               <CardHeader className="pb-2 pt-3">
                 <CardTitle className="flex items-center gap-2 text-sm">
                   <Heart className="w-3.5 h-3.5 text-primary" />
-                  <span>{format(new Date(entry.entry_date), "EEEE, MMM d, yyyy")}</span>
-                  <span className="ml-auto text-[10px] font-normal text-muted-foreground">
-                    {format(new Date(entry.created_at), "h:mm a")}
-                  </span>
+                  <span>{format(new Date(date), "EEEE, MMM d, yyyy")}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2 pb-3">
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="bg-muted/50 rounded p-2">
-                    <div className="font-semibold mb-1">{t("dashboard.checkin.intimacy")}</div>
-                    <div className="text-primary font-bold">{entry.horniness_level}%</div>
-                  </div>
-                  <div className="bg-muted/50 rounded p-2">
-                    <div className="font-semibold mb-1">{t("dashboard.checkin.feeling")}</div>
-                    <div className="text-primary font-bold">{entry.general_feeling}%</div>
-                  </div>
-                  <div className="bg-muted/50 rounded p-2">
-                    <div className="font-semibold mb-1">{t("dashboard.checkin.sleep")}</div>
-                    <div className="text-primary font-bold">{entry.sleep_quality}%</div>
-                  </div>
-                  <div className="bg-muted/50 rounded p-2">
-                    <div className="font-semibold mb-1">{t("dashboard.checkin.emotional")}</div>
-                    <div className="text-primary font-bold">{entry.emotional_state}%</div>
-                  </div>
-                  {entry.custom_dimensions?.map((dim, idx) => (
-                    <div key={idx} className="bg-muted/50 rounded p-2">
-                      <div className="font-semibold mb-1">{dim.dimension_name}</div>
-                      <div className="text-primary font-bold">{dim.value}%</div>
+                {dayEntries.map((entry) => (
+                  <div key={entry.id} className="border-l-2 border-primary/30 pl-3 pb-2 last:pb-0">
+                    <div className="text-[10px] text-muted-foreground mb-1.5">
+                      {format(new Date(entry.created_at), "h:mm a")}
                     </div>
-                  ))}
-                </div>
+                    <div className="grid grid-cols-2 gap-1.5 text-xs">
+                      <div className="bg-muted/50 rounded p-1.5">
+                        <div className="font-semibold text-[10px] mb-0.5">{t("dashboard.checkin.intimacy")}</div>
+                        <div className="text-primary font-bold text-sm">{entry.horniness_level}%</div>
+                      </div>
+                      <div className="bg-muted/50 rounded p-1.5">
+                        <div className="font-semibold text-[10px] mb-0.5">{t("dashboard.checkin.feeling")}</div>
+                        <div className="text-primary font-bold text-sm">{entry.general_feeling}%</div>
+                      </div>
+                      <div className="bg-muted/50 rounded p-1.5">
+                        <div className="font-semibold text-[10px] mb-0.5">{t("dashboard.checkin.sleep")}</div>
+                        <div className="text-primary font-bold text-sm">{entry.sleep_quality}%</div>
+                      </div>
+                      <div className="bg-muted/50 rounded p-1.5">
+                        <div className="font-semibold text-[10px] mb-0.5">{t("dashboard.checkin.emotional")}</div>
+                        <div className="text-primary font-bold text-sm">{entry.emotional_state}%</div>
+                      </div>
+                      {entry.custom_dimensions?.map((dim, idx) => (
+                        <div key={idx} className="bg-muted/50 rounded p-1.5">
+                          <div className="font-semibold text-[10px] mb-0.5">{dim.dimension_name}</div>
+                          <div className="text-primary font-bold text-sm">{dim.value}%</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </CardContent>
             </Card>
           ))
