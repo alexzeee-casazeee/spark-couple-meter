@@ -137,37 +137,37 @@ const Landing = () => {
           </div>
           
           <div className="space-y-5">
-            <div className="group bg-gradient-to-br from-white to-primary/5 p-6 rounded-2xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div className="bg-white p-6 rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex gap-5 items-start">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300" style={{ background: 'linear-gradient(135deg, hsl(280, 60%, 70%), hsl(190, 70%, 75%))' }}>
-                  <Shield className="w-7 h-7 text-white" />
+                <div className="w-14 h-14 bg-primary/15 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-7 h-7 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">{t("landing.benefit1.title")}</h3>
+                  <h3 className="text-lg font-bold mb-2 text-primary">{t("landing.benefit1.title")}</h3>
                   <p className="text-base text-muted-foreground">{t("landing.benefit1.description")}</p>
                 </div>
               </div>
             </div>
 
-            <div className="group bg-gradient-to-br from-white to-secondary/5 p-6 rounded-2xl border-2 border-secondary/20 hover:border-secondary/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div className="bg-white p-6 rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex gap-5 items-start">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300" style={{ background: 'linear-gradient(135deg, hsl(190, 70%, 65%), hsl(200, 80%, 70%))' }}>
-                  <MessageCircle className="w-7 h-7 text-white" />
+                <div className="w-14 h-14 bg-secondary/15 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-7 h-7 text-secondary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-secondary transition-colors">{t("landing.benefit2.title")}</h3>
+                  <h3 className="text-lg font-bold mb-2 text-secondary">{t("landing.benefit2.title")}</h3>
                   <p className="text-base text-muted-foreground">{t("landing.benefit2.description")}</p>
                 </div>
               </div>
             </div>
 
-            <div className="group bg-gradient-to-br from-white to-accent/5 p-6 rounded-2xl border-2 border-accent/20 hover:border-accent/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div className="bg-white p-6 rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex gap-5 items-start">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300" style={{ background: 'linear-gradient(135deg, hsl(340, 75%, 65%), hsl(350, 80%, 70%))' }}>
-                  <TrendingUp className="w-7 h-7 text-white" />
+                <div className="w-14 h-14 bg-accent/15 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <TrendingUp className="w-7 h-7 text-accent" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-accent transition-colors">{t("landing.benefit3.title")}</h3>
+                  <h3 className="text-lg font-bold mb-2 text-accent">{t("landing.benefit3.title")}</h3>
                   <p className="text-base text-muted-foreground">{t("landing.benefit3.description")}</p>
                 </div>
               </div>
