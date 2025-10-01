@@ -15,6 +15,7 @@ import AcceptInvite from "./pages/AcceptInvite";
 import NotFound from "./pages/NotFound";
 import LogoPreview from "./pages/LogoPreview";
 import QuotesManager from "./pages/QuotesManager";
+import Accounts from "./pages/Accounts";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/learn-more" element={<LearnMore />} />
             <Route path="/logo-preview" element={<LogoPreview />} />
             <Route path="/invite/:token" element={<AcceptInvite />} />
+            <Route path="/admin/accounts" element={<Accounts />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
