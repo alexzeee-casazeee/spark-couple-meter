@@ -34,10 +34,6 @@ const Auth = () => {
 
         if (error) throw error;
         
-        toast({
-          title: t("auth.toast.welcome"),
-          description: t("auth.toast.redirect"),
-        });
         navigate("/dashboard");
       } else {
         console.log('Starting signup with:', { email, displayName, role });
