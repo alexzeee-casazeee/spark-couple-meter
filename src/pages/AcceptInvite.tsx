@@ -138,68 +138,78 @@ const AcceptInvite = () => {
   const partnerRole = senderProfile?.role === 'husband' ? 'Husband' : 'Wife';
 
   return (
-    <div className="min-h-screen bg-gradient-soft px-4 py-8">
+    <div className="min-h-screen px-4 py-8" style={{ background: 'var(--gradient-canva-bg)' }}>
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Welcome Message */}
-        <Card className="border-primary/20 shadow-glow">
+        <Card className="bg-white/80 backdrop-blur-md rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ 
+          backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+          backgroundOrigin: 'border-box', 
+          backgroundClip: 'padding-box, border-box',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
+        }}>
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
               <Heart className="w-16 h-16 text-primary fill-primary" />
             </div>
-            <CardTitle className="text-3xl mb-2">
+            <CardTitle className="text-3xl mb-2 text-foreground">
               {t("acceptInvite.header").replace('{name}', senderProfile?.display_name || '')}
             </CardTitle>
-            <CardDescription className="text-base">
+            <CardDescription className="text-base text-foreground/70">
               {t("landing.hero.description")}
             </CardDescription>
           </CardHeader>
         </Card>
 
         {/* Dashboard Preview */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg">{t("acceptInvite.preview.title")}</CardTitle>
-            <CardDescription className="text-xs">
+        <Card className="bg-white/80 backdrop-blur-md rounded-3xl p-6 border-2 border-transparent bg-clip-padding relative" style={{ 
+          backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+          backgroundOrigin: 'border-box', 
+          backgroundClip: 'padding-box, border-box',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
+        }}>
+          <CardHeader className="pb-3 px-0">
+            <CardTitle className="text-lg text-foreground">{t("acceptInvite.preview.title")}</CardTitle>
+            <CardDescription className="text-xs text-foreground/60">
               {t("acceptInvite.preview.subtitle")}
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 px-0">
             <div className="space-y-2 opacity-60 pointer-events-none">
-              <Label className="text-sm font-semibold">{t("dashboard.checkin.intimacy")}</Label>
+              <Label className="text-sm font-semibold text-foreground">{t("dashboard.checkin.intimacy")}</Label>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
+                <span className="text-xs text-foreground/60 w-10">{t("dashboard.checkin.low")}</span>
                 <Slider value={[50]} max={100} className="flex-1" disabled />
-                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
+                <span className="text-xs text-foreground/60 w-10 text-right">{t("dashboard.checkin.high")}</span>
               </div>
               <p className="text-xs text-center text-primary font-medium">50%</p>
             </div>
 
             <div className="space-y-2 opacity-60 pointer-events-none">
-              <Label className="text-sm font-semibold">{t("dashboard.checkin.feeling")}</Label>
+              <Label className="text-sm font-semibold text-foreground">{t("dashboard.checkin.feeling")}</Label>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.bad")}</span>
+                <span className="text-xs text-foreground/60 w-10">{t("dashboard.checkin.bad")}</span>
                 <Slider value={[50]} max={100} className="flex-1" disabled />
-                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
+                <span className="text-xs text-foreground/60 w-10 text-right">{t("dashboard.checkin.great")}</span>
               </div>
               <p className="text-xs text-center text-primary font-medium">50%</p>
             </div>
 
             <div className="space-y-2 opacity-60 pointer-events-none">
-              <Label className="text-sm font-semibold">{t("dashboard.checkin.communication")}</Label>
+              <Label className="text-sm font-semibold text-foreground">{t("dashboard.checkin.communication")}</Label>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.low")}</span>
+                <span className="text-xs text-foreground/60 w-10">{t("dashboard.checkin.low")}</span>
                 <Slider value={[50]} max={100} className="flex-1" disabled />
-                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.high")}</span>
+                <span className="text-xs text-foreground/60 w-10 text-right">{t("dashboard.checkin.high")}</span>
               </div>
               <p className="text-xs text-center text-primary font-medium">50%</p>
             </div>
 
             <div className="space-y-2 opacity-60 pointer-events-none">
-              <Label className="text-sm font-semibold">{t("dashboard.checkin.sleep")}</Label>
+              <Label className="text-sm font-semibold text-foreground">{t("dashboard.checkin.sleep")}</Label>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground w-10">{t("dashboard.checkin.poor")}</span>
+                <span className="text-xs text-foreground/60 w-10">{t("dashboard.checkin.poor")}</span>
                 <Slider value={[50]} max={100} className="flex-1" disabled />
-                <span className="text-xs text-muted-foreground w-10 text-right">{t("dashboard.checkin.great")}</span>
+                <span className="text-xs text-foreground/60 w-10 text-right">{t("dashboard.checkin.great")}</span>
               </div>
               <p className="text-xs text-center text-primary font-medium">50%</p>
             </div>
@@ -207,17 +217,21 @@ const AcceptInvite = () => {
         </Card>
 
         {/* Signup Form */}
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("acceptInvite.form.title")}</CardTitle>
-            <CardDescription>
+        <Card className="bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 border-2 border-transparent bg-clip-padding relative" style={{ 
+          backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+          backgroundOrigin: 'border-box', 
+          backgroundClip: 'padding-box, border-box',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
+        }}>
+          <CardHeader className="px-0 pt-0">
+            <CardTitle className="text-foreground">{t("acceptInvite.form.title")}</CardTitle>
+            <CardDescription className="text-foreground/70">
               {t("acceptInvite.form.subtitle").replace('{name}', senderProfile?.display_name || '')}
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-0 pb-0">
             <form onSubmit={handleSignup} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="displayName">{t("auth.displayName")}</Label>
                 <Input
                   id="displayName"
                   type="text"
@@ -225,10 +239,10 @@ const AcceptInvite = () => {
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
                   required
+                  className="bg-white/70"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">{t("auth.email")}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -236,10 +250,11 @@ const AcceptInvite = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="bg-white/70"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">{t("auth.password")}</Label>
+                <Label htmlFor="password" className="text-foreground">{t("auth.password")}</Label>
                 <Input
                   id="password"
                   type="password"
@@ -248,6 +263,7 @@ const AcceptInvite = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
+                  className="bg-white/70"
                 />
               </div>
               <Button 
@@ -268,9 +284,14 @@ const AcceptInvite = () => {
         </Card>
 
         {/* Download Info */}
-        <Card className="bg-muted/50">
-          <CardContent className="pt-6">
-            <p className="text-sm text-center text-muted-foreground">
+        <Card className="bg-white/70 backdrop-blur-sm rounded-3xl p-6 border-2 border-transparent bg-clip-padding relative" style={{ 
+          backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+          backgroundOrigin: 'border-box', 
+          backgroundClip: 'padding-box, border-box',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)'
+        }}>
+          <CardContent className="p-0">
+            <p className="text-sm text-center text-foreground/70">
               After creating your account, you can access Spark Meter from any device by bookmarking this page or adding it to your home screen.
             </p>
           </CardContent>
