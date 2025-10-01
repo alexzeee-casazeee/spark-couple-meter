@@ -79,13 +79,13 @@ const CombinedTrialOliveBranch = ({
   const renderTrialStatus = () => {
     if (isSubscribed) {
       return (
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-green-500/15 rounded-full flex items-center justify-center flex-shrink-0">
-            <Crown className="w-4 h-4 text-green-600" />
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-500/15 rounded-full flex items-center justify-center flex-shrink-0">
+            <Crown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-600" />
           </div>
-          <div>
-            <p className="text-sm font-semibold text-green-700">Premium</p>
-            <p className="text-xs text-green-600">Unlimited</p>
+          <div className="min-w-0">
+            <p className="text-xs sm:text-sm font-semibold text-green-700 truncate">Premium</p>
+            <p className="text-[10px] sm:text-xs text-green-600">Unlimited</p>
           </div>
         </div>
       );
@@ -93,15 +93,15 @@ const CombinedTrialOliveBranch = ({
 
     if (daysRemaining === 0) {
       return (
-        <div className="flex flex-col gap-2">
-          <p className="text-sm font-semibold text-red-700">Trial Expired</p>
+        <div className="flex flex-col gap-1.5 sm:gap-2">
+          <p className="text-xs sm:text-sm font-semibold text-red-700">Trial Expired</p>
           <Button 
             onClick={handleUpgrade} 
             disabled={loading}
             size="sm"
-            className="h-7 text-xs"
+            className="h-6 sm:h-7 text-[10px] sm:text-xs w-full"
           >
-            <CreditCard className="w-3 h-3" />
+            <CreditCard className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
             {loading ? "Loading..." : "Upgrade $2.99/mo"}
           </Button>
         </div>
@@ -109,14 +109,14 @@ const CombinedTrialOliveBranch = ({
     }
 
     return (
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary/15 rounded-full flex items-center justify-center flex-shrink-0">
+      <div className="flex flex-col gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary/15 rounded-full flex items-center justify-center flex-shrink-0">
             <span className="text-xs font-bold text-primary">{daysRemaining}</span>
           </div>
-          <div>
-            <p className="text-sm font-semibold text-foreground">Free Trial</p>
-            <p className="text-xs text-muted-foreground">
+          <div className="min-w-0">
+            <p className="text-xs sm:text-sm font-semibold text-foreground truncate">Free Trial</p>
+            <p className="text-[10px] sm:text-xs text-muted-foreground whitespace-nowrap">
               {daysRemaining} {daysRemaining === 1 ? 'day' : 'days'} left
             </p>
           </div>
@@ -126,9 +126,9 @@ const CombinedTrialOliveBranch = ({
           disabled={loading}
           variant="outline"
           size="sm"
-          className="h-7 text-xs"
+          className="h-6 sm:h-7 text-[10px] sm:text-xs w-full"
         >
-          <CreditCard className="w-3 h-3" />
+          <CreditCard className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
           {loading ? "Loading..." : "Upgrade $2.99/mo"}
         </Button>
       </div>
@@ -136,31 +136,31 @@ const CombinedTrialOliveBranch = ({
   };
 
   return (
-    <div className="bg-card/95 backdrop-blur-md rounded-2xl p-4 border-2 border-border shadow-md">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div className="bg-card/95 backdrop-blur-md rounded-2xl p-3 sm:p-4 border-2 border-border shadow-md">
+      <div className="flex flex-row items-center justify-between gap-2 sm:gap-4">
         {/* Trial Status - Left Side */}
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           {renderTrialStatus()}
         </div>
 
         {/* Vertical Separator */}
         {couple && partnerProfile && (
-          <div className="hidden sm:block h-16 w-px bg-border" />
+          <div className="h-12 sm:h-16 w-px bg-border flex-shrink-0" />
         )}
 
         {/* Olive Branch - Right Side */}
         {couple && partnerProfile && (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center flex-shrink-0">
             <Button
               onClick={onOpenOliveBranch}
               variant="outline"
               size="sm"
-              className="relative h-9 gap-2"
+              className="relative h-8 sm:h-9 gap-1 sm:gap-2 px-2 sm:px-3"
             >
-              <Heart className="w-4 h-4" />
-              <span className="text-sm">{t('oliveBranch')}</span>
+              <Heart className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="text-xs sm:text-sm">{t('oliveBranch')}</span>
               {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold">
                   {unreadCount}
                 </span>
               )}
