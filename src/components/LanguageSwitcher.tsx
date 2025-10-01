@@ -18,6 +18,14 @@ const LanguageSwitcher = () => {
           EN
         </Button>
         <Button
+          variant={language === "es" ? "default" : "ghost"}
+          size="sm"
+          onClick={() => setLanguage("es")}
+          className="text-xs h-7 px-3"
+        >
+          ES
+        </Button>
+        <Button
           variant={language === "ru" ? "default" : "ghost"}
           size="sm"
           onClick={() => setLanguage("ru")}
