@@ -120,46 +120,55 @@ const Landing = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-3 text-primary">{t("landing.benefits.title")}</h2>
-            <p className="text-base text-muted-foreground">{t("landing.benefits.subtitle")}</p>
+      <section className="container mx-auto px-[5px] md:px-4 py-12">
+        <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 border-2 border-transparent bg-clip-padding relative" style={{ 
+          backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+          backgroundOrigin: 'border-box', 
+          backgroundClip: 'padding-box, border-box',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
+        }}>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/20 mb-4">
+              <Heart className="w-4 h-4 text-primary fill-primary" />
+              <span className="text-sm font-semibold text-primary">Why Choose Spark Meter</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">{t("landing.benefits.title")}</h2>
+            <p className="text-lg text-muted-foreground">{t("landing.benefits.subtitle")}</p>
           </div>
           
-          <div className="space-y-4">
-            <div className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-5 h-5 text-primary" />
+          <div className="space-y-5">
+            <div className="group bg-gradient-to-br from-white to-primary/5 p-6 rounded-2xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="flex gap-5 items-start">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300" style={{ background: 'linear-gradient(135deg, hsl(280, 60%, 70%), hsl(190, 70%, 75%))' }}>
+                  <Shield className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold mb-1 text-foreground">{t("landing.benefit1.title")}</h3>
-                  <p className="text-sm text-muted-foreground">{t("landing.benefit1.description")}</p>
+                  <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">{t("landing.benefit1.title")}</h3>
+                  <p className="text-base text-muted-foreground">{t("landing.benefit1.description")}</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-5 h-5 text-secondary" />
+            <div className="group bg-gradient-to-br from-white to-secondary/5 p-6 rounded-2xl border-2 border-secondary/20 hover:border-secondary/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="flex gap-5 items-start">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300" style={{ background: 'linear-gradient(135deg, hsl(190, 70%, 65%), hsl(200, 80%, 70%))' }}>
+                  <MessageCircle className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold mb-1 text-foreground">{t("landing.benefit2.title")}</h3>
-                  <p className="text-sm text-muted-foreground">{t("landing.benefit2.description")}</p>
+                  <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-secondary transition-colors">{t("landing.benefit2.title")}</h3>
+                  <p className="text-base text-muted-foreground">{t("landing.benefit2.description")}</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="w-5 h-5 text-accent" />
+            <div className="group bg-gradient-to-br from-white to-accent/5 p-6 rounded-2xl border-2 border-accent/20 hover:border-accent/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="flex gap-5 items-start">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300" style={{ background: 'linear-gradient(135deg, hsl(340, 75%, 65%), hsl(350, 80%, 70%))' }}>
+                  <TrendingUp className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold mb-1 text-foreground">{t("landing.benefit3.title")}</h3>
-                  <p className="text-sm text-muted-foreground">{t("landing.benefit3.description")}</p>
+                  <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-accent transition-colors">{t("landing.benefit3.title")}</h3>
+                  <p className="text-base text-muted-foreground">{t("landing.benefit3.description")}</p>
                 </div>
               </div>
             </div>
