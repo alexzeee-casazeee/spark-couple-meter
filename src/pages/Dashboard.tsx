@@ -17,6 +17,7 @@ import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import InvitationManager from "@/components/InvitationManager";
 import CustomDimensionsManager from "@/components/CustomDimensionsManager";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Dashboard = () => {
@@ -346,7 +347,7 @@ const Dashboard = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse text-primary">Loading...</div>
+        <div className="animate-pulse text-primary">{t("dashboard.loading")}</div>
       </div>
     );
   }
@@ -359,11 +360,12 @@ const Dashboard = () => {
           <div className="flex items-center gap-2">
             <Heart className="w-6 h-6 text-white" fill="white" />
             <div>
-              <h1 className="text-lg font-bold text-white leading-tight">Spark Meter</h1>
+              <h1 className="text-lg font-bold text-white leading-tight">{t("dashboard.appName")}</h1>
               
             </div>
           </div>
           <div className="flex gap-2 ml-auto">
+            <LanguageSwitcher />
             <Button variant="outline" size="icon" onClick={() => navigate("/account")} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
               <UserCircle className="w-4 h-4 text-white" />
             </Button>
@@ -396,14 +398,14 @@ const Dashboard = () => {
                   onClick={() => setViewMode('self')}
                   className="flex-1 h-8 text-xs"
                 >
-                  My Levels
+                  {t("dashboard.view.myLevels")}
                 </Button>
                 <Button
                   variant={viewMode === 'partner' ? 'default' : 'outline'}
                   onClick={() => setViewMode('partner')}
                   className="flex-1 h-8 text-xs"
                 >
-                  See {partnerProfile.display_name}&apos;s Levels
+                  {t("dashboard.view.partnerLevels").replace('{name}', partnerProfile.display_name)}
                 </Button>
               </div>
               
@@ -411,7 +413,7 @@ const Dashboard = () => {
               {!partnerEntry && viewMode === 'partner' && (
                 <div className="mt-2 text-center">
                   <p className="text-xs text-muted-foreground mb-1.5">
-                    {partnerProfile.display_name} hasn&apos;t checked in today
+                    {t("dashboard.partner.noCheckin").replace('{name}', partnerProfile.display_name)}
                   </p>
                   <Button
                     variant="outline"
@@ -420,7 +422,7 @@ const Dashboard = () => {
                     className="gap-2 h-7 text-xs"
                   >
                     <Bell className="w-3 h-3" />
-                    Remind {partnerProfile.display_name}
+                    {t("dashboard.partner.remind").replace('{name}', partnerProfile.display_name)}
                   </Button>
                 </div>
               )}
@@ -432,9 +434,9 @@ const Dashboard = () => {
         <Dialog open={remindDialogOpen} onOpenChange={setRemindDialogOpen}>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle>How would you like to remind {partnerProfile?.display_name}?</DialogTitle>
+              <DialogTitle>{t("dashboard.remind.title").replace('{name}', partnerProfile?.display_name || '')}</DialogTitle>
               <DialogDescription>
-                Choose how to send a reminder to check in
+                {t("dashboard.remind.description")}
               </DialogDescription>
             </DialogHeader>
             <div className="flex flex-col gap-3 py-4">
@@ -447,7 +449,7 @@ const Dashboard = () => {
                 }}
               >
                 <MessageCircle className="w-5 h-5 text-blue-500" />
-                <span>Send iMessage</span>
+                <span>{t("dashboard.remind.imessage")}</span>
               </Button>
               <Button
                 variant="outline"
@@ -458,7 +460,7 @@ const Dashboard = () => {
                 }}
               >
                 <Mail className="w-5 h-5 text-green-500" />
-                <span>Send Email</span>
+                <span>{t("dashboard.remind.email")}</span>
               </Button>
               <Button
                 variant="outline"
@@ -469,7 +471,7 @@ const Dashboard = () => {
                 }}
               >
                 <Bell className="w-5 h-5 text-orange-500" />
-                <span>Send Notification</span>
+                <span>{t("dashboard.remind.notification")}</span>
               </Button>
             </div>
           </DialogContent>
@@ -480,10 +482,10 @@ const Dashboard = () => {
           <DialogContent className="sm:max-w-md text-center">
             <DialogHeader>
               <DialogTitle className="text-2xl text-center">
-                🎉 Thank you!
+                {t("dashboard.celebration.title")}
               </DialogTitle>
               <DialogDescription className="text-base pt-4">
-                {partnerProfile?.display_name} is being notified now!
+                {t("dashboard.celebration.description").replace('{name}', partnerProfile?.display_name || '')}
               </DialogDescription>
             </DialogHeader>
           </DialogContent>
@@ -494,7 +496,7 @@ const Dashboard = () => {
           <CardHeader className="pb-2 pt-3">
             <CardTitle className="flex items-center gap-2 text-sm">
               <Heart className="w-3.5 h-3.5 text-primary" />
-              {viewMode === 'self' ? t("dashboard.checkin.title") : `${partnerProfile?.display_name}'s Levels`}
+              {viewMode === 'self' ? t("dashboard.checkin.title") : t("dashboard.view.partnerLevels").replace('{name}', partnerProfile?.display_name || '')}
               <span className="ml-auto text-[10px] font-normal text-muted-foreground">
                 {format(new Date(), "MMM d, yyyy")}
               </span>
@@ -503,7 +505,7 @@ const Dashboard = () => {
           <CardContent className="space-y-2.5 pb-3">
             {viewMode === 'partner' && !partnerEntry ? (
               <div className="text-center py-6 text-muted-foreground">
-                <p className="text-sm">{partnerProfile?.display_name} hasn&apos;t checked in today yet</p>
+                <p className="text-sm">{t("dashboard.partner.noCheckinYet").replace('{name}', partnerProfile?.display_name || '')}</p>
               </div>
             ) : (
               <>
@@ -661,7 +663,7 @@ const Dashboard = () => {
           </Button>
           <Button variant="outline" className="h-8 text-xs" onClick={() => navigate("/log")}>
             <List className="w-3 h-3 mr-2" />
-            View Log
+            {t("dashboard.viewLog")}
           </Button>
         </div>
       </div>
