@@ -43,7 +43,7 @@ const Landing = () => {
             {t("landing.hero.description")}
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center pt-2">
+          <div className="flex flex-row gap-3 justify-center items-center pt-2">
             <div className="flex flex-col items-center gap-2">
               <Button
                 size="lg"
