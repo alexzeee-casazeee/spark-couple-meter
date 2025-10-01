@@ -77,13 +77,13 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md p-6">
-        <div className="flex justify-center mb-6">
+      <DialogContent className="sm:max-w-md p-6 px-[6px]">
+        <div className="flex justify-center mb-6 px-6">
           <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: 'var(--gradient-primary)' }}>
             <Heart className="w-8 h-8 text-white" fill="white" />
           </div>
         </div>
-        <form onSubmit={handleAuth} className="space-y-3">
+        <form onSubmit={handleAuth} className="space-y-3 px-6">
           {!isLogin && (
             <div className="space-y-1.5">
               <Input
@@ -125,7 +125,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
           </Button>
         </form>
         
-        <div className="text-center mt-4">
+        <div className="text-center mt-4 px-6">
           <button
             type="button"
             onClick={() => setIsLogin(!isLogin)}
