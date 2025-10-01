@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { Heart, LogOut, TrendingUp, Save, UserCircle, Bell, List, MessageCircle, Mail, Copy, Check, Link2, Quote } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Save, UserCircle, Bell, List, MessageCircle, Mail, UserPlus, Quote } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import CustomDimensionsManager from "@/components/CustomDimensionsManager";
@@ -23,6 +23,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { OliveBranchDialog } from "@/components/OliveBranchDialog";
 import { Badge } from "@/components/ui/badge";
+import InvitationDialog from "@/components/InvitationDialog";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -60,9 +61,8 @@ const Dashboard = () => {
   // Auto-save timer
   const saveTimerRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Invitation link state
-  const [inviteLink, setInviteLink] = useState("");
-  const [copied, setCopied] = useState(false);
+  // Invitation dialog state
+  const [invitationDialogOpen, setInvitationDialogOpen] = useState(false);
 
   // Ensure partner custom dimension values load after both partner entry and dimensions are ready
   useEffect(() => {
@@ -412,50 +412,6 @@ const Dashboard = () => {
     }
   };
 
-  const handleInviteViaiMessage = () => {
-    const inviteUrl = inviteLink || window.location.origin + '/accept-invite';
-    const message = `Hi! I just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods and intimacy levels. I'd love for you to join me! Click here to get started: ${inviteUrl}`;
-    window.location.href = `sms:&body=${encodeURIComponent(message)}`;
-  };
-
-  const handleInviteViaEmail = () => {
-    const inviteUrl = inviteLink || window.location.origin + '/accept-invite';
-    const subject = 'Join me on Spark Meter!';
-    const body = `Hi!\n\nI just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods, intimacy levels, and emotional states.\n\nIt's a private space just for us to better understand each other and strengthen our relationship.\n\nI'd love for you to join me! Click here to get started:\n${inviteUrl}\n\nLooking forward to connecting with you!\n\nWith love`;
-    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  };
-
-  const generateInvitation = async () => {
-    if (!profile) return;
-    
-    try {
-      const token = crypto.randomUUID();
-      const expiresAt = new Date();
-      expiresAt.setDate(expiresAt.getDate() + 7);
-
-      const { error } = await supabase
-        .from('invitations')
-        .insert({
-          sender_id: profile.id,
-          token: token,
-          expires_at: expiresAt.toISOString(),
-        });
-
-      if (error) throw error;
-
-      const link = `${window.location.origin}/invite/${token}`;
-      setInviteLink(link);
-    } catch (error: any) {
-      console.error("Error creating invitation:", error);
-    }
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(inviteLink);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -475,6 +431,17 @@ const Dashboard = () => {
           </div>
           <div className="flex gap-1.5">
             <LanguageSwitcher />
+            {couple && (
+              <Button 
+                variant="outline" 
+                size="icon" 
+                onClick={() => setInvitationDialogOpen(true)} 
+                className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7 relative"
+              >
+                <Heart className="w-3.5 h-3.5 text-white" />
+                <UserPlus className="w-2 h-2 text-white absolute top-0.5 right-0.5" />
+              </Button>
+            )}
             <Button variant="outline" size="icon" onClick={() => navigate("/account")} className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7">
               <UserCircle className="w-3.5 h-3.5 text-white" />
             </Button>
@@ -486,7 +453,7 @@ const Dashboard = () => {
       </header>
 
       <div className="container mx-auto px-1 py-2 max-w-4xl space-y-2">
-        {/* Invitation Prompt */}
+        {/* Invitation Prompt - Only show if no partner */}
         {!couple && profile && (
           <div className="bg-white/80 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative" style={{ 
             backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
@@ -501,64 +468,16 @@ const Dashboard = () => {
               <p className="text-base font-medium text-foreground mb-4 leading-relaxed">
                 {t("dashboard.invite.prompt.description")}
               </p>
-                
-                <div className="flex flex-col gap-2">
-                  <Button
-                    onClick={handleInviteViaiMessage}
-                    className="w-full justify-start gap-2"
-                    variant="outline"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    {t("dashboard.invite.viaiMessage")}
-                  </Button>
-                  <Button
-                    onClick={handleInviteViaEmail}
-                    className="w-full justify-start gap-2"
-                    variant="outline"
-                  >
-                    <Mail className="h-4 w-4" />
-                    {t("dashboard.invite.viaEmail")}
-                  </Button>
-                  
-                  <div className="relative my-4">
-                    <div className="absolute inset-0 flex items-center">
-                      <span className="w-full border-t" />
-                    </div>
-                    <div className="relative flex justify-center text-xs uppercase">
-                      <span className="bg-background px-2 text-muted-foreground">Or</span>
-                    </div>
-                  </div>
-                  
-                  {!inviteLink ? (
-                    <Button onClick={generateInvitation} className="w-full gap-2">
-                      <Link2 className="h-4 w-4" />
-                      {t("dashboard.invite.button")}
-                    </Button>
-                  ) : (
-                    <div className="space-y-2">
-                      <div className="flex gap-2">
-                        <Input
-                          value={inviteLink}
-                          readOnly
-                          className="flex-1 text-xs"
-                        />
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          onClick={copyToClipboard}
-                        >
-                          {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                        </Button>
-                      </div>
-                      <p className="text-xs text-muted-foreground">
-                        {t("dashboard.invite.expires")}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <Button 
+                onClick={() => setInvitationDialogOpen(true)}
+                className="w-full gap-2"
+              >
+                <UserPlus className="h-4 w-4" />
+                {t("dashboard.invite.button")}
+              </Button>
             </div>
-          )}
+          </div>
+        )}
 
         {/* Quote of the Day */}
         <QuoteOfTheDay />
@@ -935,6 +854,15 @@ const Dashboard = () => {
           recipientId={partnerProfile.id}
           senderName={profile.display_name}
           recipientName={partnerProfile.display_name}
+        />
+      )}
+      
+      {/* Invitation Dialog */}
+      {profile && (
+        <InvitationDialog
+          open={invitationDialogOpen}
+          onOpenChange={setInvitationDialogOpen}
+          profileId={profile.id}
         />
       )}
     </div>
