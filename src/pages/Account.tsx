@@ -230,24 +230,24 @@ const Account = () => {
   }
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: "var(--gradient-splash)" }}>
-      <header className="bg-gradient-romantic p-3 shadow-glow">
-        <div className="container mx-auto flex items-center gap-3">
+    <div className="min-h-screen pb-20" style={{ background: "var(--gradient-canva-bg)" }}>
+      <header className="p-2 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
+        <div className="container mx-auto flex items-center gap-3 px-2">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => navigate("/dashboard")}
-            className="text-white hover:bg-white/10"
+            className="text-white hover:bg-white/10 h-7 w-7"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="w-4 h-4" />
           </Button>
-          <h1 className="text-lg font-bold text-white">Account & Settings</h1>
+          <h1 className="text-base font-bold text-white">Account & Settings</h1>
         </div>
       </header>
 
-      <div className="container mx-auto px-1 py-4 max-w-2xl">
+      <div className="container mx-auto px-2 py-4 max-w-2xl">
         {/* Profile Information - Compact */}
-        <Card className="shadow-soft">
+        <Card className="shadow-soft bg-card/95 backdrop-blur-md border-2 border-border">
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-base">
               <User className="w-4 h-4" />
@@ -330,7 +330,7 @@ const Account = () => {
 
         {/* Partner Management */}
         {couple && partnerProfile && (
-          <Card className="shadow-soft mt-4">
+          <Card className="shadow-soft mt-4 bg-card/95 backdrop-blur-md border-2 border-border">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center gap-2 text-base">
                 <UserMinus className="w-4 h-4" />
@@ -386,7 +386,7 @@ const Account = () => {
         )}
 
         {/* Notification Settings */}
-        <Card className="shadow-soft mt-4">
+        <Card className="shadow-soft mt-4 bg-card/95 backdrop-blur-md border-2 border-border">
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-base">
               <Bell className="w-4 h-4" />
