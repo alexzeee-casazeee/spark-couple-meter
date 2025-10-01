@@ -223,6 +223,36 @@ export type Database = {
           },
         ]
       }
+      olive_branch_messages: {
+        Row: {
+          couple_id: string
+          created_at: string
+          id: string
+          is_read: boolean
+          message: string
+          recipient_id: string
+          sender_id: string
+        }
+        Insert: {
+          couple_id: string
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message: string
+          recipient_id: string
+          sender_id: string
+        }
+        Update: {
+          couple_id?: string
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          recipient_id?: string
+          sender_id?: string
+        }
+        Relationships: []
+      }
       pokes: {
         Row: {
           couple_id: string

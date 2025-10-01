@@ -19,6 +19,8 @@ import InvitationManager from "@/components/InvitationManager";
 import CustomDimensionsManager from "@/components/CustomDimensionsManager";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { OliveBranchDialog } from "@/components/OliveBranchDialog";
+import { Badge } from "@/components/ui/badge";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -36,6 +38,11 @@ const Dashboard = () => {
   
   // Celebration dialog state
   const [celebrationOpen, setCelebrationOpen] = useState(false);
+  
+  // Olive Branch state
+  const [oliveBranchOpen, setOliveBranchOpen] = useState(false);
+  const [oliveBranchMessages, setOliveBranchMessages] = useState<any[]>([]);
+  const [unreadCount, setUnreadCount] = useState(0);
   
   // Slider states
   const [horniness, setHorniness] = useState([50]);
@@ -304,6 +311,61 @@ const Dashboard = () => {
     }
   };
 
+  // Load Olive Branch messages
+  const loadOliveBranchMessages = async () => {
+    if (!profile || !couple) return;
+
+    const { data } = await supabase
+      .from("olive_branch_messages")
+      .select("*")
+      .eq("couple_id", couple.id)
+      .eq("recipient_id", profile.id)
+      .eq("is_read", false)
+      .order("created_at", { ascending: false });
+
+    if (data) {
+      setOliveBranchMessages(data);
+      setUnreadCount(data.length);
+    }
+  };
+
+  // Mark Olive Branch message as read
+  const markMessageAsRead = async (messageId: string) => {
+    await supabase
+      .from("olive_branch_messages")
+      .update({ is_read: true })
+      .eq("id", messageId);
+
+    await loadOliveBranchMessages();
+  };
+
+  // Set up realtime subscription for Olive Branch messages
+  useEffect(() => {
+    if (!profile || !couple) return;
+
+    loadOliveBranchMessages();
+
+    const channel = supabase
+      .channel('olive_branch_updates')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'olive_branch_messages',
+          filter: `recipient_id=eq.${profile.id}`
+        },
+        () => {
+          loadOliveBranchMessages();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [profile, couple]);
+
   // Remove auto-save functionality since we're allowing multiple entries per day
   // Users must explicitly click save to record each entry
 
@@ -353,9 +415,9 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen pb-12" style={{ background: "var(--gradient-splash)" }}>
+    <div className="min-h-screen pb-12" style={{ background: "var(--gradient-canva-bg)" }}>
       {/* Header - Compact */}
-      <header className="bg-gradient-romantic p-3 shadow-glow">
+      <header className="p-3 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
         <div className="container mx-auto flex justify-between items-center px-2">
           <div className="flex items-center gap-2">
             <Heart className="w-6 h-6 text-white" fill="white" />
@@ -494,6 +556,38 @@ const Dashboard = () => {
         {/* Today's Check-In */}
         <Card className="shadow-soft border-2 border-l-4 border-primary/30" style={{ background: "var(--gradient-subtle)" }}>
           <CardHeader className="pb-2 pt-3">
+            {/* Olive Branch Messages */}
+            {oliveBranchMessages.length > 0 && (
+              <div className="mb-3 space-y-2">
+                {oliveBranchMessages.map((msg) => (
+                  <div
+                    key={msg.id}
+                    className="flex items-start gap-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800"
+                  >
+                    <div className="mt-0.5">
+                      <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1 text-xs">
+                      <p className="font-semibold text-green-800 dark:text-green-200 mb-1">
+                        🫒 Olive Branch from {partnerProfile?.display_name}
+                      </p>
+                      <p className="text-green-700 dark:text-green-300">{msg.message}</p>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => markMessageAsRead(msg.id)}
+                        className="mt-1 h-6 text-xs text-green-600 hover:text-green-700"
+                      >
+                        Mark as read
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            
             <CardTitle className="flex items-center gap-2 text-sm">
               <Heart className="w-3.5 h-3.5 text-primary" />
               {viewMode === 'self' ? t("dashboard.checkin.title") : t("dashboard.view.partnerLevels").replace('{name}', partnerProfile?.display_name || '')}
@@ -617,6 +711,38 @@ const Dashboard = () => {
                   <>
                     <div className="flex justify-center gap-2.5 pt-1">
                       <VoiceInput onParsedValues={handleVoiceInput} />
+                      
+                      {/* Olive Branch Button */}
+                      {couple && partnerProfile && (
+                        <Button
+                          variant="outline"
+                          size="lg"
+                          onClick={() => setOliveBranchOpen(true)}
+                          className="rounded-full border-0 transition-all duration-200 hover:scale-105 h-12 w-12 relative"
+                          style={{ 
+                            background: "linear-gradient(135deg, hsl(120, 60%, 60%), hsl(160, 60%, 55%))",
+                            boxShadow: "var(--shadow-float)"
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.boxShadow = "var(--shadow-float-hover)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.boxShadow = "var(--shadow-float)";
+                          }}
+                        >
+                          <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                          </svg>
+                          {unreadCount > 0 && (
+                            <Badge 
+                              className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-red-500 border-2 border-white"
+                            >
+                              {unreadCount}
+                            </Badge>
+                          )}
+                        </Button>
+                      )}
+                      
                       <Button
                         variant="outline"
                         size="lg"
@@ -667,6 +793,19 @@ const Dashboard = () => {
           </Button>
         </div>
       </div>
+
+      {/* Olive Branch Dialog */}
+      {couple && profile && partnerProfile && (
+        <OliveBranchDialog
+          open={oliveBranchOpen}
+          onOpenChange={setOliveBranchOpen}
+          coupleId={couple.id}
+          senderId={profile.id}
+          recipientId={partnerProfile.id}
+          senderName={profile.display_name}
+          recipientName={partnerProfile.display_name}
+        />
+      )}
     </div>
   );
 };
