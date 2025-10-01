@@ -187,10 +187,10 @@ const Landing = () => {
             {t("landing.final.subtitle")}
           </p>
           <div className="flex flex-col gap-2 items-center pt-2">
-            <div className="flex flex-row gap-3 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center w-full sm:w-auto">
               <Button
                 size="lg"
-                className="text-base px-6 py-5 shadow-lg"
+                className="text-base px-6 py-5 shadow-lg w-full sm:w-auto"
                 style={{ background: 'var(--gradient-primary)' }}
                 onClick={() => setAuthModalOpen(true)}
               >
@@ -199,7 +199,7 @@ const Landing = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base px-6 py-5 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg"
+                className="text-base px-6 py-5 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
                 style={{ 
                   backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
                   backgroundOrigin: 'border-box',
