@@ -51,6 +51,8 @@ const Log = () => {
     if (profileData) {
       setProfile(profileData);
       
+      let dimensionsData: any[] = [];
+      
       // Get couple info to load custom dimensions
       const { data: coupleData } = await supabase
         .from("couples")
@@ -61,13 +63,14 @@ const Log = () => {
       
       // Load custom dimensions if in a couple
       if (coupleData) {
-        const { data: dimensionsData } = await supabase
+        const { data: dims } = await supabase
           .from("custom_dimensions")
           .select("*")
           .eq("couple_id", coupleData.id)
           .order("created_at", { ascending: true });
         
-        setCustomDimensions(dimensionsData || []);
+        dimensionsData = dims || [];
+        setCustomDimensions(dimensionsData);
         
         // Get partner info
         const partnerId = coupleData.husband_id === profileData.id 
@@ -110,7 +113,7 @@ const Log = () => {
       if (entriesData) {
         const entriesWithCustom = await loadEntriesWithCustomDimensions(
           entriesData,
-          customDimensions
+          dimensionsData || []
         );
         setEntries(entriesWithCustom);
       }
