@@ -143,6 +143,11 @@ const CombinedTrialOliveBranch = ({
           {renderTrialStatus()}
         </div>
 
+        {/* Vertical Separator */}
+        {couple && partnerProfile && (
+          <div className="hidden sm:block h-16 w-px bg-border" />
+        )}
+
         {/* Olive Branch - Right Side */}
         {couple && partnerProfile && (
           <div className="flex items-center gap-2">
