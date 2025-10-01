@@ -16,6 +16,7 @@ const CustomDimensionsManager = ({ coupleId, profileId, onDimensionsChange }: Cu
   const [dimensions, setDimensions] = useState<any[]>([]);
   const [newDimensionName, setNewDimensionName] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -97,9 +98,17 @@ const CustomDimensionsManager = ({ coupleId, profileId, onDimensionsChange }: Cu
   return (
     <Card className="shadow-soft">
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg">Custom Dimensions</CardTitle>
+        <Button 
+          variant="default" 
+          className="w-full"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          Add Your Own Meter
+        </Button>
       </CardHeader>
-      <CardContent className="space-y-3">
+      {isExpanded && (
+        <CardContent className="space-y-3">
         <div className="flex gap-2">
           <Input
             placeholder="e.g., Stress Level, Energy..."
@@ -138,6 +147,7 @@ const CustomDimensionsManager = ({ coupleId, profileId, onDimensionsChange }: Cu
           </div>
         )}
       </CardContent>
+      )}
     </Card>
   );
 };
