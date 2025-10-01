@@ -80,13 +80,13 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
 
   return (
     <Button
-      variant={isListening ? "default" : "outline"}
       size="lg"
       onClick={toggleListening}
-      className={`rounded-full border-0 transition-all duration-200 ${isListening ? 'animate-pulse' : 'hover:scale-105'}`}
+      className={`rounded-full transition-all duration-200 ${isListening ? 'animate-pulse' : 'hover:scale-105'} h-12 w-12`}
       style={{ 
         background: isListening ? "var(--gradient-romantic)" : "var(--gradient-orange)",
-        boxShadow: "var(--shadow-float)"
+        boxShadow: "var(--shadow-float)",
+        border: "none"
       }}
       onMouseEnter={(e) => {
         if (!isListening) {

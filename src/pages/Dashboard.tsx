@@ -715,13 +715,13 @@ const Dashboard = () => {
                       {/* Olive Branch Button */}
                       {couple && partnerProfile && (
                         <Button
-                          variant="outline"
                           size="lg"
                           onClick={() => setOliveBranchOpen(true)}
-                          className="rounded-full border-0 transition-all duration-200 hover:scale-105 h-12 w-12 relative"
+                          className="rounded-full transition-all duration-200 hover:scale-105 h-12 w-12 relative"
                           style={{ 
                             background: "linear-gradient(135deg, hsl(120, 60%, 60%), hsl(160, 60%, 55%))",
-                            boxShadow: "var(--shadow-float)"
+                            boxShadow: "var(--shadow-float)",
+                            border: "none"
                           }}
                           onMouseEnter={(e) => {
                             e.currentTarget.style.boxShadow = "var(--shadow-float-hover)";
@@ -744,13 +744,13 @@ const Dashboard = () => {
                       )}
                       
                       <Button
-                        variant="outline"
                         size="lg"
                         onClick={handleSaveAndReset}
-                        className="rounded-full border-0 transition-all duration-200 hover:scale-105 h-12 w-12"
+                        className="rounded-full transition-all duration-200 hover:scale-105 h-12 w-12"
                         style={{ 
                           background: "var(--gradient-green)",
-                          boxShadow: "var(--shadow-float)"
+                          boxShadow: "var(--shadow-float)",
+                          border: "none"
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.boxShadow = "var(--shadow-float-hover)";

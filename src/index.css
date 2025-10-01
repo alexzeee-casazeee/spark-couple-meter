@@ -55,6 +55,9 @@ All colors MUST be HSL.
     --gradient-soft: linear-gradient(135deg, hsl(280, 40%, 95%), hsl(190, 50%, 95%));
     --gradient-card: linear-gradient(135deg, hsla(0, 0%, 100%, 0.7), hsla(280, 60%, 98%, 0.7));
     --gradient-subtle: linear-gradient(135deg, hsl(280, 30%, 97%), hsl(190, 30%, 97%));
+    --gradient-green: linear-gradient(135deg, hsl(140, 70%, 60%), hsl(160, 65%, 55%));
+    --gradient-orange: linear-gradient(135deg, hsl(30, 80%, 65%), hsl(20, 75%, 60%));
+    --gradient-romantic: linear-gradient(135deg, hsl(340, 75%, 65%), hsl(320, 70%, 60%));
     
     /* Soft shadows */
     --shadow-soft: 0 4px 20px -2px hsl(280, 40%, 70%, 0.15);
@@ -117,6 +120,9 @@ All colors MUST be HSL.
     --gradient-primary: linear-gradient(135deg, hsl(280, 60%, 60%), hsl(190, 60%, 65%));
     --gradient-soft: linear-gradient(135deg, hsl(240, 30%, 18%), hsl(240, 30%, 22%));
     --gradient-subtle: linear-gradient(135deg, hsl(280, 30%, 20%), hsl(190, 30%, 20%));
+    --gradient-green: linear-gradient(135deg, hsl(140, 60%, 50%), hsl(160, 55%, 45%));
+    --gradient-orange: linear-gradient(135deg, hsl(30, 75%, 55%), hsl(20, 70%, 50%));
+    --gradient-romantic: linear-gradient(135deg, hsl(340, 70%, 55%), hsl(320, 65%, 50%));
     
     --shadow-soft: 0 4px 20px -2px hsl(280, 40%, 30%, 0.4);
     --shadow-glow: 0 0 40px hsl(280, 60%, 50%, 0.4);
