@@ -66,9 +66,9 @@ const Trends = () => {
   }));
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: "var(--gradient-splash)" }}>
+    <div className="min-h-screen pb-20" style={{ background: "var(--gradient-canva-bg)" }}>
       {/* Header */}
-      <header className="bg-gradient-romantic p-3 shadow-glow">
+      <header className="p-3 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
         <div className="container mx-auto flex items-center gap-3">
           <Button 
             variant="ghost" 
@@ -87,7 +87,7 @@ const Trends = () => {
 
       <div className="container mx-auto px-4 py-4 max-w-4xl">
         {entries.length === 0 ? (
-          <Card className="shadow-soft">
+          <Card className="shadow-soft border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
             <CardContent className="pt-12 pb-12 text-center space-y-6">
               <div className="flex justify-center">
                 <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center">
@@ -107,7 +107,7 @@ const Trends = () => {
           </Card>
         ) : (
           <div className="space-y-4">
-            <Card>
+            <Card className="border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <CardHeader>
                 <CardTitle className="text-lg">Intimacy Level Over Time</CardTitle>
               </CardHeader>
@@ -136,7 +136,7 @@ const Trends = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <CardHeader>
                 <CardTitle className="text-lg">General Feeling Over Time</CardTitle>
               </CardHeader>
@@ -165,7 +165,7 @@ const Trends = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <CardHeader>
                 <CardTitle className="text-lg">Sleep Quality Over Time</CardTitle>
               </CardHeader>
@@ -194,7 +194,7 @@ const Trends = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <CardHeader>
                 <CardTitle className="text-lg">Emotional State Over Time</CardTitle>
               </CardHeader>
