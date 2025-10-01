@@ -58,11 +58,6 @@ const Dashboard = () => {
   // Auto-save timer
   const saveTimerRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Invitation prompt dismissed state
-  const [invitePromptDismissed, setInvitePromptDismissed] = useState(() => {
-    return localStorage.getItem('invitePromptDismissed') === 'true';
-  });
-  
   // Invitation link state
   const [inviteLink, setInviteLink] = useState("");
   const [copied, setCopied] = useState(false);
@@ -415,11 +410,6 @@ const Dashboard = () => {
     }
   };
 
-  const handleDismissInvitePrompt = () => {
-    setInvitePromptDismissed(true);
-    localStorage.setItem('invitePromptDismissed', 'true');
-  };
-
   const handleInviteViaiMessage = () => {
     const inviteUrl = inviteLink || window.location.origin + '/accept-invite';
     const message = `Hi! I just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods and intimacy levels. I'd love for you to join me! Click here to get started: ${inviteUrl}`;
@@ -501,23 +491,14 @@ const Dashboard = () => {
 
       <div className="container mx-auto px-1 py-2 max-w-4xl space-y-2">
         {/* Invitation Prompt */}
-        {!couple && profile && !invitePromptDismissed && (
+        {!couple && profile && (
           <Card className="shadow-soft border-primary/20">
-            <CardContent className="p-4 relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute top-2 right-2 h-6 w-6"
-                onClick={handleDismissInvitePrompt}
-              >
-                <X className="h-4 w-4" />
-              </Button>
-              
-              <div className="pr-8">
-                <h3 className="font-semibold text-lg mb-2 text-primary">
+            <CardContent className="p-4">
+              <div>
+                <h3 className="font-semibold text-xl mb-3 text-primary">
                   {t("dashboard.invite.prompt.title")}
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-base font-medium text-foreground mb-4 leading-relaxed">
                   {t("dashboard.invite.prompt.description")}
                 </p>
                 
