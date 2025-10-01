@@ -121,7 +121,7 @@ const Landing = () => {
 
       {/* Benefits Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-12">
-        <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 border-2 border-transparent bg-clip-padding relative" style={{ 
+        <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-[10px] border-2 border-transparent bg-clip-padding relative" style={{ 
           backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
           backgroundOrigin: 'border-box', 
           backgroundClip: 'padding-box, border-box',
@@ -137,7 +137,7 @@ const Landing = () => {
           </div>
           
           <div className="space-y-5">
-            <div className="bg-white p-[5px] rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white p-[10px] rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="w-14 h-14 bg-primary/15 rounded-2xl flex items-center justify-center float-left mr-3 mb-2">
                 <Shield className="w-7 h-7 text-primary" />
               </div>
@@ -145,7 +145,7 @@ const Landing = () => {
               <p className="text-base text-muted-foreground">{t("landing.benefit1.description")}</p>
             </div>
 
-            <div className="bg-white p-[5px] rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white p-[10px] rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="w-14 h-14 bg-secondary/15 rounded-2xl flex items-center justify-center float-left mr-3 mb-2">
                 <MessageCircle className="w-7 h-7 text-secondary" />
               </div>
@@ -153,7 +153,7 @@ const Landing = () => {
               <p className="text-base text-muted-foreground">{t("landing.benefit2.description")}</p>
             </div>
 
-            <div className="bg-white p-[5px] rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white p-[10px] rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="w-14 h-14 bg-accent/15 rounded-2xl flex items-center justify-center float-left mr-3 mb-2">
                 <TrendingUp className="w-7 h-7 text-accent" />
               </div>
