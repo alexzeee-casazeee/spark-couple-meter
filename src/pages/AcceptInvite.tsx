@@ -79,14 +79,30 @@ const AcceptInvite = () => {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!displayName || !email || !password) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (password.length < 6) {
+      toast({
+        title: "Password Too Short",
+        description: "Password must be at least 6 characters",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setSigningUp(true);
 
     try {
-      console.log('Starting signup process...');
-      
       // Determine role (opposite of sender)
       const role = senderProfile.role === 'husband' ? 'wife' : 'husband';
-      console.log('User role:', role);
 
       // Sign up
       const { data, error } = await supabase.auth.signUp({
@@ -101,33 +117,8 @@ const AcceptInvite = () => {
         }
       });
 
-      if (error) {
-        console.error('Signup error:', error);
-        toast({
-          title: "Signup Failed",
-          description: error.message,
-          variant: "destructive",
-        });
-        throw error;
-      }
-      
-      if (!data.user) {
-        const errorMsg = "Failed to create account";
-        console.error(errorMsg);
-        toast({
-          title: "Signup Failed",
-          description: errorMsg,
-          variant: "destructive",
-        });
-        throw new Error(errorMsg);
-      }
-
-      console.log('User created:', data.user.id);
-      
-      toast({
-        title: "Account Created!",
-        description: "Setting up your profile...",
-      });
+      if (error) throw error;
+      if (!data.user) throw new Error("Failed to create account");
 
       // Wait for profile to be created by trigger
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -139,31 +130,10 @@ const AcceptInvite = () => {
         .eq('user_id', data.user.id)
         .single();
 
-      if (profileError) {
-        console.error('Profile fetch error:', profileError);
-        toast({
-          title: "Profile Error",
-          description: "Could not load your profile. Please try logging in.",
-          variant: "destructive",
-        });
-        throw profileError;
-      }
-
-      if (!myProfile) {
-        const errorMsg = "Profile not found";
-        console.error(errorMsg);
-        toast({
-          title: "Profile Error",
-          description: errorMsg,
-          variant: "destructive",
-        });
-        throw new Error(errorMsg);
-      }
-
-      console.log('Profile found:', myProfile.id);
+      if (profileError || !myProfile) throw new Error("Profile creation failed");
 
       // Mark invitation as used
-      const { error: inviteError } = await supabase
+      await supabase
         .from('invitations')
         .update({
           used_at: new Date().toISOString(),
@@ -171,36 +141,16 @@ const AcceptInvite = () => {
         })
         .eq('id', invitation.id);
 
-      if (inviteError) {
-        console.error('Invitation update error:', inviteError);
-      }
-
       // Create couple record
       const coupleData = role === 'husband' 
         ? { husband_id: myProfile.id, wife_id: senderProfile.id }
         : { husband_id: senderProfile.id, wife_id: myProfile.id };
 
       const { error: coupleError } = await supabase.from('couples').insert(coupleData);
-
-      if (coupleError) {
-        console.error('Couple creation error:', coupleError);
-        toast({
-          title: "Connection Error",
-          description: "Could not connect with your partner. Please contact support.",
-          variant: "destructive",
-        });
-        throw coupleError;
-      }
-
-      console.log('Couple created successfully');
-      
-      toast({
-        title: "Success!",
-        description: "You're now connected. Redirecting to dashboard...",
-      });
+      if (coupleError) throw coupleError;
 
       // Save initial daily check-in values
-      const { error: entryError } = await supabase
+      await supabase
         .from('daily_entries')
         .insert({
           user_id: myProfile.id,
@@ -211,15 +161,18 @@ const AcceptInvite = () => {
           emotional_state: 50,
         });
 
-      if (entryError) {
-        console.error('Entry creation error:', entryError);
-      }
+      toast({
+        title: "Success!",
+        description: "Account created. Redirecting...",
+      });
 
-      // Small delay before navigation
-      await new Promise(resolve => setTimeout(resolve, 500));
-      navigate("/dashboard");
+      setTimeout(() => navigate("/dashboard"), 500);
     } catch (error: any) {
-      console.error('Signup error:', error);
+      toast({
+        title: "Signup Failed",
+        description: error.message || "Please try again",
+        variant: "destructive",
+      });
     } finally {
       setSigningUp(false);
     }
