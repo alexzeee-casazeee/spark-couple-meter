@@ -20,7 +20,7 @@ const Landing = () => {
             <Sparkles className="w-5 h-5 text-white m-1.5" />
           </div>
           <span className="text-xl font-bold text-primary">
-            Spark
+            Spark Meter
           </span>
         </div>
         <LanguageSwitcher />
