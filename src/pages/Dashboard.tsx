@@ -3,10 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
-import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle, Bell, List } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle, Bell, List, MessageCircle, Mail } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import InvitationManager from "@/components/InvitationManager";
@@ -15,7 +21,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
   const { t } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<any>(null);
@@ -24,6 +29,9 @@ const Dashboard = () => {
   const [partnerProfile, setPartnerProfile] = useState<any>(null);
   const [partnerEntry, setPartnerEntry] = useState<any>(null);
   const [viewMode, setViewMode] = useState<'self' | 'partner'>('self');
+  
+  // Remind dialog state
+  const [remindDialogOpen, setRemindDialogOpen] = useState(false);
   
   // Slider states
   const [horniness, setHorniness] = useState([50]);
@@ -366,7 +374,7 @@ const Dashboard = () => {
                 </Button>
               </div>
               
-              {/* Poke button when partner hasn't checked in */}
+              {/* Remind button when partner hasn't checked in */}
               {!partnerEntry && viewMode === 'partner' && (
                 <div className="mt-2 text-center">
                   <p className="text-xs text-muted-foreground mb-1.5">
@@ -375,17 +383,64 @@ const Dashboard = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={handlePokePartner}
+                    onClick={() => setRemindDialogOpen(true)}
                     className="gap-2 h-7 text-xs"
                   >
                     <Bell className="w-3 h-3" />
-                    Send Poke Reminder
+                    Remind {partnerProfile.display_name}
                   </Button>
                 </div>
               )}
             </CardContent>
           </Card>
         )}
+
+        {/* Remind Dialog */}
+        <Dialog open={remindDialogOpen} onOpenChange={setRemindDialogOpen}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>How would you like to remind {partnerProfile?.display_name}?</DialogTitle>
+              <DialogDescription>
+                Choose how to send a reminder to check in
+              </DialogDescription>
+            </DialogHeader>
+            <div className="flex flex-col gap-3 py-4">
+              <Button
+                variant="outline"
+                className="w-full justify-start gap-3 h-12"
+                onClick={() => {
+                  // iMessage functionality will be added later
+                  setRemindDialogOpen(false);
+                }}
+              >
+                <MessageCircle className="w-5 h-5 text-blue-500" />
+                <span>Send iMessage</span>
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full justify-start gap-3 h-12"
+                onClick={() => {
+                  // Email functionality will be added later
+                  setRemindDialogOpen(false);
+                }}
+              >
+                <Mail className="w-5 h-5 text-green-500" />
+                <span>Send Email</span>
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full justify-start gap-3 h-12"
+                onClick={() => {
+                  // Notification functionality will be added later
+                  setRemindDialogOpen(false);
+                }}
+              >
+                <Bell className="w-5 h-5 text-orange-500" />
+                <span>Send Notification</span>
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Today's Check-In */}
         <Card className="shadow-soft border-2 border-l-4 border-primary/30" style={{ background: "var(--gradient-subtle)" }}>
