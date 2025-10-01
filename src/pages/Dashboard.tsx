@@ -33,6 +33,9 @@ const Dashboard = () => {
   // Remind dialog state
   const [remindDialogOpen, setRemindDialogOpen] = useState(false);
   
+  // Celebration dialog state
+  const [celebrationOpen, setCelebrationOpen] = useState(false);
+  
   // Slider states
   const [horniness, setHorniness] = useState([50]);
   const [generalFeeling, setGeneralFeeling] = useState([50]);
@@ -265,6 +268,23 @@ const Dashboard = () => {
           .insert(customEntries);
       }
       
+      // Show celebration modal
+      if (!silent) {
+        setCelebrationOpen(true);
+        // Trigger confetti
+        const confetti = (await import('canvas-confetti')).default;
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+        
+        // Auto-close after 3 seconds
+        setTimeout(() => {
+          setCelebrationOpen(false);
+        }, 3000);
+      }
+      
       // Reload today's entry after saving
       await checkAuth();
     }
@@ -439,6 +459,20 @@ const Dashboard = () => {
                 <span>Send Notification</span>
               </Button>
             </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Celebration Modal */}
+        <Dialog open={celebrationOpen} onOpenChange={setCelebrationOpen}>
+          <DialogContent className="sm:max-w-md text-center">
+            <DialogHeader>
+              <DialogTitle className="text-2xl text-center">
+                🎉 Thank you!
+              </DialogTitle>
+              <DialogDescription className="text-base pt-4">
+                {partnerProfile?.display_name} is being notified now!
+              </DialogDescription>
+            </DialogHeader>
           </DialogContent>
         </Dialog>
 
