@@ -268,6 +268,19 @@ const Dashboard = () => {
           .insert(customEntries);
       }
       
+      // Reset all meters to baseline
+      setHorniness([50]);
+      setGeneralFeeling([50]);
+      setSleepQuality([50]);
+      setEmotionalState([50]);
+      
+      // Reset custom dimension values
+      const resetCustomValues: Record<string, number> = {};
+      customDimensions.forEach((dim) => {
+        resetCustomValues[dim.id] = 50;
+      });
+      setCustomValues(resetCustomValues);
+      
       // Show celebration modal
       if (!silent) {
         setCelebrationOpen(true);
