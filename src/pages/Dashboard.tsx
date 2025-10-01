@@ -18,6 +18,7 @@ import VoiceInput from "@/components/VoiceInput";
 import CustomDimensionsManager from "@/components/CustomDimensionsManager";
 import { Input } from "@/components/ui/input";
 import QuoteOfTheDay from "@/components/QuoteOfTheDay";
+import TrialStatus from "@/components/TrialStatus";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { OliveBranchDialog } from "@/components/OliveBranchDialog";
@@ -561,6 +562,9 @@ const Dashboard = () => {
 
         {/* Quote of the Day */}
         <QuoteOfTheDay />
+        
+        {/* Trial Status / Subscription */}
+        {profile && <TrialStatus profile={profile} />}
 
           {/* View Mode Toggle - Moved to top */}
         {couple && partnerProfile && (
