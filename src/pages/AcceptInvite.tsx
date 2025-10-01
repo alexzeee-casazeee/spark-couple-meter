@@ -146,10 +146,10 @@ const AcceptInvite = () => {
               <Heart className="w-16 h-16 text-primary fill-primary" />
             </div>
             <CardTitle className="text-3xl mb-2">
-              Your {partnerRole}, {senderProfile?.display_name} invited you to LifeMeter
+              You were invited to Spark Meter by {senderProfile?.display_name}
             </CardTitle>
             <CardDescription className="text-base">
-              All information here is private and just for you. Create your account below to get started.
+              Spark Meter helps couples stay connected through simple daily check-ins. Share your intimacy levels, moods, sleep quality, and emotions to strengthen your relationship and understand each other better.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -239,8 +239,18 @@ const AcceptInvite = () => {
                   minLength={6}
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={signingUp}>
-                {signingUp ? "Creating Account..." : "Create Account & Connect"}
+              <Button 
+                type="submit" 
+                className="w-full text-lg font-semibold py-6 shadow-xl relative overflow-hidden"
+                style={{ 
+                  background: 'var(--gradient-primary)',
+                  borderRadius: '1.25rem'
+                }}
+                disabled={signingUp}
+              >
+                <span className="relative z-10">
+                  {signingUp ? "Creating Account..." : "Create Account & Connect"}
+                </span>
               </Button>
             </form>
           </CardContent>
@@ -250,7 +260,7 @@ const AcceptInvite = () => {
         <Card className="bg-muted/50">
           <CardContent className="pt-6">
             <p className="text-sm text-center text-muted-foreground">
-              After creating your account, you can access LifeMeter from any device by bookmarking this page or adding it to your home screen.
+              After creating your account, you can access Spark Meter from any device by bookmarking this page or adding it to your home screen.
             </p>
           </CardContent>
         </Card>
