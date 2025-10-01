@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle, Bell, List, MessageCircle, Mail, X, Send } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle, Bell, List, MessageCircle, Mail, X, Send, Copy, Check, Link2 } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
-import InvitationManager from "@/components/InvitationManager";
 import CustomDimensionsManager from "@/components/CustomDimensionsManager";
+import { Input } from "@/components/ui/input";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { OliveBranchDialog } from "@/components/OliveBranchDialog";
@@ -62,6 +62,10 @@ const Dashboard = () => {
   const [invitePromptDismissed, setInvitePromptDismissed] = useState(() => {
     return localStorage.getItem('invitePromptDismissed') === 'true';
   });
+  
+  // Invitation link state
+  const [inviteLink, setInviteLink] = useState("");
+  const [copied, setCopied] = useState(false);
 
   // Ensure partner custom dimension values load after both partner entry and dimensions are ready
   useEffect(() => {
@@ -417,16 +421,47 @@ const Dashboard = () => {
   };
 
   const handleInviteViaiMessage = () => {
-    const inviteUrl = window.location.origin + '/accept-invite';
+    const inviteUrl = inviteLink || window.location.origin + '/accept-invite';
     const message = `Hi! I just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods and intimacy levels. I'd love for you to join me! Click here to get started: ${inviteUrl}`;
     window.location.href = `sms:&body=${encodeURIComponent(message)}`;
   };
 
   const handleInviteViaEmail = () => {
-    const inviteUrl = window.location.origin + '/accept-invite';
+    const inviteUrl = inviteLink || window.location.origin + '/accept-invite';
     const subject = 'Join me on Spark Meter!';
     const body = `Hi!\n\nI just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods, intimacy levels, and emotional states.\n\nIt's a private space just for us to better understand each other and strengthen our relationship.\n\nI'd love for you to join me! Click here to get started:\n${inviteUrl}\n\nLooking forward to connecting with you!\n\nWith love`;
     window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  const generateInvitation = async () => {
+    if (!profile) return;
+    
+    try {
+      const token = crypto.randomUUID();
+      const expiresAt = new Date();
+      expiresAt.setDate(expiresAt.getDate() + 7);
+
+      const { error } = await supabase
+        .from('invitations')
+        .insert({
+          sender_id: profile.id,
+          token: token,
+          expires_at: expiresAt.toISOString(),
+        });
+
+      if (error) throw error;
+
+      const link = `${window.location.origin}/invite/${token}`;
+      setInviteLink(link);
+    } catch (error: any) {
+      console.error("Error creating invitation:", error);
+    }
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(inviteLink);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   if (loading) {
@@ -503,18 +538,46 @@ const Dashboard = () => {
                     <Mail className="h-4 w-4" />
                     {t("dashboard.invite.viaEmail")}
                   </Button>
+                  
+                  <div className="relative my-4">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-background px-2 text-muted-foreground">Or</span>
+                    </div>
+                  </div>
+                  
+                  {!inviteLink ? (
+                    <Button onClick={generateInvitation} className="w-full gap-2">
+                      <Link2 className="h-4 w-4" />
+                      {t("dashboard.invite.button")}
+                    </Button>
+                  ) : (
+                    <div className="space-y-2">
+                      <div className="flex gap-2">
+                        <Input
+                          value={inviteLink}
+                          readOnly
+                          className="flex-1 text-xs"
+                        />
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          onClick={copyToClipboard}
+                        >
+                          {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                        </Button>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        {t("dashboard.invite.expires")}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </CardContent>
           </Card>
-        )}
-        
-        {/* Connection Status */}
-        {!couple && profile && (
-          <InvitationManager 
-            profileId={profile.id} 
-            onCoupleCreated={checkAuth}
-          />
         )}
 
         {/* View Mode Toggle - Moved to top */}
