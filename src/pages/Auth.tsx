@@ -56,10 +56,6 @@ const Auth = () => {
 
         if (data.user) {
           console.log('User created successfully:', data.user.id);
-          toast({
-            title: t("auth.toast.created"),
-            description: t("auth.toast.welcome.new"),
-          });
           navigate("/dashboard");
         } else {
           throw new Error("Failed to create account");
