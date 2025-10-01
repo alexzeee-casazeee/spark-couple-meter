@@ -50,6 +50,7 @@ const Dashboard = () => {
   // Slider states
   const [horniness, setHorniness] = useState([50]);
   const [generalFeeling, setGeneralFeeling] = useState([50]);
+  const [communicationDesire, setCommunicationDesire] = useState([50]);
   const [sleepQuality, setSleepQuality] = useState([50]);
   const [emotionalState, setEmotionalState] = useState([50]);
   
