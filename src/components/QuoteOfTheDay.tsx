@@ -9,7 +9,12 @@ interface QuoteData {
   source: string;
 }
 
-const QuoteOfTheDay = () => {
+interface QuoteOfTheDayProps {
+  isAtBottom: boolean;
+  onPositionChange: (isAtBottom: boolean) => void;
+}
+
+const QuoteOfTheDay = ({ isAtBottom, onPositionChange }: QuoteOfTheDayProps) => {
   const [quote, setQuote] = useState<QuoteData | null>(null);
   const [loading, setLoading] = useState(true);
   const [isExpanded, setIsExpanded] = useState(true);
@@ -44,7 +49,7 @@ const QuoteOfTheDay = () => {
   }
 
   return (
-    <div className="bg-white/80 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative" style={{ 
+    <div className="bg-white/80 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative animate-fade-in" style={{ 
       backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
       backgroundOrigin: 'border-box', 
       backgroundClip: 'padding-box, border-box',
@@ -61,18 +66,42 @@ const QuoteOfTheDay = () => {
             <h3 className="text-sm font-semibold text-primary">Quote of the Day</h3>
           </div>
         </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="h-8 w-8 -mt-1"
-        >
-          {isExpanded ? (
-            <ChevronUp className="h-4 w-4 text-muted-foreground" />
-          ) : (
-            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+        <div className="flex gap-1">
+          {isAtBottom && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onPositionChange(false)}
+              className="h-8 w-8 -mt-1"
+              title="Move to top"
+            >
+              <ChevronUp className="h-4 w-4 text-muted-foreground" />
+            </Button>
           )}
-        </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => {
+              if (!isAtBottom) {
+                // When at top, down arrow moves to bottom
+                onPositionChange(true);
+              } else {
+                // When at bottom, just toggle expand/collapse
+                setIsExpanded(!isExpanded);
+              }
+            }}
+            className="h-8 w-8 -mt-1"
+            title={!isAtBottom ? "Move to bottom" : (isExpanded ? "Collapse" : "Expand")}
+          >
+            {!isAtBottom ? (
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+            ) : isExpanded ? (
+              <ChevronUp className="h-4 w-4 text-muted-foreground" />
+            ) : (
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+            )}
+          </Button>
+        </div>
       </div>
       
       {isExpanded && (

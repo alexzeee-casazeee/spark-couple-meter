@@ -63,6 +63,12 @@ const Dashboard = () => {
   
   // Invitation dialog state
   const [invitationDialogOpen, setInvitationDialogOpen] = useState(false);
+  
+  // Quote position state
+  const [quoteAtBottom, setQuoteAtBottom] = useState(() => {
+    const saved = localStorage.getItem('quoteAtBottom');
+    return saved === 'true';
+  });
 
   // Ensure partner custom dimension values load after both partner entry and dimensions are ready
   useEffect(() => {
@@ -411,6 +417,11 @@ const Dashboard = () => {
       console.error("Error sending poke:", error);
     }
   };
+  
+  const handleQuotePositionChange = (isAtBottom: boolean) => {
+    setQuoteAtBottom(isAtBottom);
+    localStorage.setItem('quoteAtBottom', isAtBottom.toString());
+  };
 
   if (loading) {
     return (
@@ -482,8 +493,15 @@ const Dashboard = () => {
           </div>
         )}
 
-        {/* Quote of the Day */}
-        <QuoteOfTheDay />
+        {/* Quote of the Day - Top Position */}
+        {!quoteAtBottom && (
+          <div className="animate-fade-in">
+            <QuoteOfTheDay 
+              isAtBottom={false}
+              onPositionChange={handleQuotePositionChange}
+            />
+          </div>
+        )}
         
         {/* Trial Status / Subscription */}
         {profile && <TrialStatus profile={profile} />}
@@ -814,6 +832,16 @@ const Dashboard = () => {
             )}
           </div>
         </div>
+        
+        {/* Quote of the Day - Bottom Position */}
+        {quoteAtBottom && (
+          <div className="animate-slide-in-right">
+            <QuoteOfTheDay 
+              isAtBottom={true}
+              onPositionChange={handleQuotePositionChange}
+            />
+          </div>
+        )}
 
         {/* Custom Dimensions Manager - Moved to bottom */}
         {couple && profile && (
