@@ -114,7 +114,8 @@ const LearnMore = () => {
             A check-in is a short, intentional space to say what is true, to listen, and to realign. It prevents small hurts from fermenting into resentment. It keeps expectations current as life changes.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-1.5 mb-2">
+          <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-3xl p-2.5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="grid md:grid-cols-2 gap-1.5 mb-2">
             <div className="flex gap-4 p-2.5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
               <div>
@@ -152,10 +153,11 @@ const LearnMore = () => {
             </div>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-2.5 text-center" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-            <p className="text-muted-foreground">
-              Structured relationship "checkups" have RCT support for improving intimacy and relationship health.
-            </p>
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-2.5 text-center">
+              <p className="text-muted-foreground">
+                Structured relationship "checkups" have RCT support for improving intimacy and relationship health.
+              </p>
+            </div>
           </div>
         </div>
       </section>
