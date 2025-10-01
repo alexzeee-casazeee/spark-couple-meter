@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, MessageSquare, TrendingUp, Shield, Heart, Users, Lightbulb } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AuthModal } from "@/components/AuthModal";
+import dashboardPreview from "@/assets/dashboard-preview.png";
 
 const LearnMore = () => {
   const navigate = useNavigate();
@@ -197,6 +198,20 @@ const LearnMore = () => {
             Private by default. Built to reduce blame, increase understanding.
           </p>
 
+          {/* Dashboard Preview */}
+          <div className="flex justify-center mb-8">
+            <div className="max-w-sm">
+              <img 
+                src={dashboardPreview} 
+                alt="Spark Meter Dashboard Preview" 
+                className="rounded-2xl shadow-2xl border-2 border-white/40"
+              />
+              <p className="text-xs text-muted-foreground text-center mt-3">
+                Simple daily check-ins keep you connected
+              </p>
+            </div>
+          </div>
+
           <div className="text-center">
             <Button 
               size="lg" 
@@ -320,9 +335,9 @@ const LearnMore = () => {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold text-lg mb-2">"How often?"</h3>
+              <h3 className="font-semibold text-lg mb-2">"How often should we check in?"</h3>
               <p className="text-muted-foreground">
-                Do one quick micro check-in midweek, one deeper check-in weekly.
+                For best results, check in daily. It only takes 2-3 minutes and helps you stay consistently aligned. If daily feels like too much at first, start with 3-4 times per week and build the habit.
               </p>
             </div>
           </div>
