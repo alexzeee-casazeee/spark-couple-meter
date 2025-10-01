@@ -202,7 +202,7 @@ const Landing = () => {
 
       {/* Final CTA */}
       <section className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto text-center space-y-4 bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-white/40" style={{ boxShadow: 'var(--shadow-float)' }}>
+        <div className="max-w-4xl mx-auto text-center space-y-4 bg-white/70 backdrop-blur-sm p-8 rounded-3xl border-2 border-transparent bg-clip-padding relative shadow-lg" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
           <h2 className="text-3xl md:text-4xl font-bold text-primary">
             {t("landing.final.title")}
           </h2>
