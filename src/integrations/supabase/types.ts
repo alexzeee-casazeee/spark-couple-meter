@@ -133,6 +133,7 @@ export type Database = {
       }
       daily_entries: {
         Row: {
+          communication_desire: number | null
           created_at: string | null
           emotional_state: number | null
           entry_date: string
@@ -145,6 +146,7 @@ export type Database = {
           voice_note: string | null
         }
         Insert: {
+          communication_desire?: number | null
           created_at?: string | null
           emotional_state?: number | null
           entry_date?: string
@@ -157,6 +159,7 @@ export type Database = {
           voice_note?: string | null
         }
         Update: {
+          communication_desire?: number | null
           created_at?: string | null
           emotional_state?: number | null
           entry_date?: string

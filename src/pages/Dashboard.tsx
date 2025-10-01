@@ -192,12 +192,14 @@ const Dashboard = () => {
         setTodayEntry(entryData);
         setHorniness([entryData.horniness_level || 50]);
         setGeneralFeeling([entryData.general_feeling || 50]);
+        setCommunicationDesire([entryData.communication_desire || 50]);
         setSleepQuality([entryData.sleep_quality || 50]);
         setEmotionalState([entryData.emotional_state || 50]);
       } else {
         // Reset to baseline if no entry today
         setHorniness([50]);
         setGeneralFeeling([50]);
+        setCommunicationDesire([50]);
         setSleepQuality([50]);
         setEmotionalState([50]);
       }
@@ -262,6 +264,7 @@ const Dashboard = () => {
       entry_date: today,
       horniness_level: horniness[0],
       general_feeling: generalFeeling[0],
+      communication_desire: communicationDesire[0],
       sleep_quality: sleepQuality[0],
       emotional_state: emotionalState[0],
     };
@@ -292,6 +295,7 @@ const Dashboard = () => {
       // Reset all meters to baseline
       setHorniness([50]);
       setGeneralFeeling([50]);
+      setCommunicationDesire([50]);
       setSleepQuality([50]);
       setEmotionalState([50]);
       
@@ -390,11 +394,13 @@ const Dashboard = () => {
   const handleVoiceInput = (values: {
     horniness_level: number;
     general_feeling: number;
+    communication_desire: number;
     sleep_quality: number;
     emotional_state: number;
   }) => {
     setHorniness([values.horniness_level]);
     setGeneralFeeling([values.general_feeling]);
+    setCommunicationDesire([values.communication_desire]);
     setSleepQuality([values.sleep_quality]);
     setEmotionalState([values.emotional_state]);
   };
@@ -718,6 +724,25 @@ const Dashboard = () => {
                   </div>
                   <p className="text-[10px] text-center text-primary font-medium">
                     {viewMode === 'self' ? generalFeeling[0] : partnerEntry?.general_feeling || 50}%
+                  </p>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-semibold">{t("dashboard.checkin.communication")}</Label>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.low")}</span>
+                    <Slider
+                      value={viewMode === 'self' ? communicationDesire : [partnerEntry?.communication_desire || 50]}
+                      onValueChange={viewMode === 'self' ? setCommunicationDesire : undefined}
+                      max={100}
+                      step={1}
+                      className="flex-1"
+                      disabled={viewMode === 'partner'}
+                    />
+                    <span className="text-[10px] text-muted-foreground w-8 text-right">{t("dashboard.checkin.high")}</span>
+                  </div>
+                  <p className="text-[10px] text-center text-primary font-medium">
+                    {viewMode === 'self' ? communicationDesire[0] : partnerEntry?.communication_desire || 50}%
                   </p>
                 </div>
 
