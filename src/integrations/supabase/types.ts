@@ -311,6 +311,10 @@ export type Database = {
           notification_time_2: string | null
           notification_time_3: string | null
           role: Database["public"]["Enums"]["user_role"]
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          subscription_status: string | null
+          trial_start_date: string | null
           user_id: string
         }
         Insert: {
@@ -324,6 +328,10 @@ export type Database = {
           notification_time_2?: string | null
           notification_time_3?: string | null
           role: Database["public"]["Enums"]["user_role"]
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          subscription_status?: string | null
+          trial_start_date?: string | null
           user_id: string
         }
         Update: {
@@ -337,6 +345,10 @@ export type Database = {
           notification_time_2?: string | null
           notification_time_3?: string | null
           role?: Database["public"]["Enums"]["user_role"]
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          subscription_status?: string | null
+          trial_start_date?: string | null
           user_id?: string
         }
         Relationships: []
