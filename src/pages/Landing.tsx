@@ -81,8 +81,8 @@ const Landing = () => {
       <section className="container mx-auto px-[5px] md:px-4 py-8">
         <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-6 px-[5px] md:px-6 pt-[5px] md:pt-6">
-            <h2 className="text-3xl font-bold mb-3 text-primary">How It Works</h2>
-            <p className="text-base text-muted-foreground">Simple daily check-ins that strengthen your bond</p>
+            <h2 className="text-3xl font-bold mb-3 text-primary">{t("landing.features.title")}</h2>
+            <p className="text-base text-muted-foreground">{t("landing.features.subtitle")}</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-4 px-[5px] md:px-6 pb-[5px] md:pb-6">
@@ -90,9 +90,9 @@ const Landing = () => {
               <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
                 <Users className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-primary">Connect as Partners</h3>
+              <h3 className="text-lg font-semibold mb-2 text-primary">{t("landing.feature1.title")}</h3>
               <p className="text-sm text-muted-foreground">
-                Create your account and connect through a private invitation link.
+                {t("landing.feature1.description")}
               </p>
             </div>
 
@@ -100,9 +100,9 @@ const Landing = () => {
               <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-4">
                 <TrendingUp className="w-6 h-6 text-secondary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground">Daily Check-ins</h3>
+              <h3 className="text-lg font-semibold mb-2 text-foreground">{t("landing.feature2.title")}</h3>
               <p className="text-sm text-muted-foreground">
-                Share your intimacy level, mood, sleep quality, and emotions with simple sliders or voice input.
+                {t("landing.feature2.description")}
               </p>
             </div>
 
@@ -110,9 +110,9 @@ const Landing = () => {
               <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-4">
                 <LineChart className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground">Track & Grow Together</h3>
+              <h3 className="text-lg font-semibold mb-2 text-foreground">{t("landing.feature3.title")}</h3>
               <p className="text-sm text-muted-foreground">
-                View trends, celebrate wins, and understand each other better over time.
+                {t("landing.feature3.description")}
               </p>
             </div>
           </div>
