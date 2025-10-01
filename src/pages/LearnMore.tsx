@@ -37,7 +37,7 @@ const LearnMore = () => {
       </header>
 
       {/* Hero Section */}
-      <section id="hero" className="py-6 px-1.5">
+      <section id="hero" className="py-6 px-[5px] md:px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/60">
             <Heart className="w-8 h-8 text-primary-foreground" fill="currentColor" />
@@ -80,7 +80,7 @@ const LearnMore = () => {
       </section>
 
       {/* Problem Section */}
-      <section id="problem" className="py-6 px-2 md:px-1.5">
+      <section id="problem" className="py-6 px-[5px] md:px-4">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">The Problem: Busy lives, silent drift</h2>
           
@@ -108,7 +108,7 @@ const LearnMore = () => {
       </section>
 
       {/* Why Check-ins Matter */}
-      <section id="checkins" className="py-6 px-1.5">
+      <section id="checkins" className="py-6 px-[5px] md:px-4">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">Why Regular Check-ins Matter</h2>
           
@@ -167,7 +167,7 @@ const LearnMore = () => {
       </section>
 
       {/* How Spark Helps */}
-      <section id="how-it-works" className="py-6 px-1.5">
+      <section id="how-it-works" className="py-6 px-[5px] md:px-4">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">How Spark Helps</h2>
           
@@ -215,7 +215,7 @@ const LearnMore = () => {
       </section>
 
       {/* Framework Section */}
-      <section id="framework" className="py-6 px-1.5">
+      <section id="framework" className="py-6 px-[5px] md:px-4">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">What to Say, Even When You Feel Stuck</h2>
           
@@ -236,7 +236,7 @@ const LearnMore = () => {
       </section>
 
       {/* Proof Section */}
-      <section id="proof" className="py-6 px-1.5">
+      <section id="proof" className="py-6 px-[5px] md:px-4">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">Proof and Research</h2>
           
@@ -271,7 +271,7 @@ const LearnMore = () => {
       </section>
 
       {/* Stories Section */}
-      <section id="stories" className="py-6 px-1.5">
+      <section id="stories" className="py-6 px-[5px] md:px-4">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">Real-life Snapshots</h2>
           
@@ -296,7 +296,7 @@ const LearnMore = () => {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-6 px-1.5">
+      <section id="faq" className="py-6 px-[5px] md:px-4">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">FAQ</h2>
           
@@ -330,7 +330,7 @@ const LearnMore = () => {
       </section>
 
       {/* Final CTA */}
-      <section id="cta" className="py-6 px-1.5">
+      <section id="cta" className="py-6 px-[5px] md:px-4">
         <div className="container mx-auto max-w-2xl text-center space-y-4 bg-white/70 backdrop-blur-sm p-2.5 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <h2 className="text-4xl font-bold mb-4 text-primary">Start your first check-in now.</h2>
           <p className="text-lg text-muted-foreground mb-8">
