@@ -13,12 +13,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, User, Lock } from "lucide-react";
 
 const Account = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [profile, setProfile] = useState<any>(null);
@@ -67,16 +65,7 @@ const Account = () => {
       .eq("id", profile.id);
 
     if (error) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    } else {
-      toast({
-        title: "Success",
-        description: "Profile updated successfully!",
-      });
+      console.error("Error updating profile:", error);
     }
 
     setSaving(false);
@@ -84,20 +73,12 @@ const Account = () => {
 
   const handleChangePassword = async () => {
     if (newPassword !== confirmPassword) {
-      toast({
-        title: "Error",
-        description: "Passwords don't match",
-        variant: "destructive",
-      });
+      console.error("Passwords don't match");
       return;
     }
 
     if (newPassword.length < 6) {
-      toast({
-        title: "Error",
-        description: "Password must be at least 6 characters",
-        variant: "destructive",
-      });
+      console.error("Password must be at least 6 characters");
       return;
     }
 
@@ -108,16 +89,8 @@ const Account = () => {
     });
 
     if (error) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+      console.error("Error updating password:", error);
     } else {
-      toast({
-        title: "Success",
-        description: "Password updated successfully!",
-      });
       setNewPassword("");
       setConfirmPassword("");
       setPasswordDialogOpen(false);

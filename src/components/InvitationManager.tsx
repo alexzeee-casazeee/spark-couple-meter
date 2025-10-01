@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Copy, Link2, Check } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -15,7 +14,6 @@ interface InvitationManagerProps {
 const InvitationManager = ({ profileId, onCoupleCreated }: InvitationManagerProps) => {
   const [inviteLink, setInviteLink] = useState("");
   const [copied, setCopied] = useState(false);
-  const { toast } = useToast();
   const { t } = useLanguage();
 
   const generateInvitation = async () => {
@@ -36,27 +34,14 @@ const InvitationManager = ({ profileId, onCoupleCreated }: InvitationManagerProp
 
       const link = `${window.location.origin}/invite/${token}`;
       setInviteLink(link);
-      
-      toast({
-        title: t("dashboard.toast.invite.created"),
-        description: t("dashboard.toast.invite.share"),
-      });
     } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+      console.error("Error creating invitation:", error);
     }
   };
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(inviteLink);
     setCopied(true);
-    toast({
-      title: t("dashboard.toast.copied"),
-      description: t("dashboard.toast.copied.description"),
-    });
     setTimeout(() => setCopied(false), 2000);
   };
 

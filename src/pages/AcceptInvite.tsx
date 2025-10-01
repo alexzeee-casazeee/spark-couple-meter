@@ -12,7 +12,6 @@ import { Heart, Loader2 } from "lucide-react";
 const AcceptInvite = () => {
   const { token } = useParams();
   const navigate = useNavigate();
-  const { toast } = useToast();
   const [loading, setLoading] = useState(true);
   const [signingUp, setSigningUp] = useState(false);
   const [invitation, setInvitation] = useState<any>(null);
@@ -38,22 +37,14 @@ const AcceptInvite = () => {
         .single();
 
       if (inviteError || !inviteData) {
-        toast({
-          title: "Invalid invitation",
-          description: "This invitation link is invalid or has been used",
-          variant: "destructive",
-        });
+        console.error("Invalid invitation");
         navigate("/");
         return;
       }
 
       // Check if expired
       if (new Date(inviteData.expires_at) < new Date()) {
-        toast({
-          title: "Invitation expired",
-          description: "This invitation link has expired",
-          variant: "destructive",
-        });
+        console.error("Invitation expired");
         navigate("/");
         return;
       }
@@ -71,11 +62,6 @@ const AcceptInvite = () => {
       setLoading(false);
     } catch (error: any) {
       console.error('Error loading invitation:', error);
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
       navigate("/");
     }
   };
@@ -132,19 +118,9 @@ const AcceptInvite = () => {
 
       await supabase.from('couples').insert(coupleData);
 
-      toast({
-        title: "Account created!",
-        description: `You're now connected with ${senderProfile.display_name}`,
-      });
-
       navigate("/dashboard");
     } catch (error: any) {
       console.error('Signup error:', error);
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
     } finally {
       setSigningUp(false);
     }

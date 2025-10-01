@@ -6,12 +6,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
 import { Heart, ArrowLeft } from "lucide-react";
 
 const Settings = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [profile, setProfile] = useState<any>(null);
@@ -74,17 +72,8 @@ const Settings = () => {
         .eq("id", profile.id);
 
       if (error) throw error;
-
-      toast({
-        title: "Settings saved",
-        description: "Your notification preferences have been updated",
-      });
     } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+      console.error("Error saving settings:", error);
     } finally {
       setSaving(false);
     }

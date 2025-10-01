@@ -242,11 +242,7 @@ const Dashboard = () => {
       .single();
 
     if (error) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+      console.error("Error saving entry:", error);
     } else {
       // Save custom dimension entries
       if (savedEntry && customDimensions.length > 0) {
@@ -259,13 +255,6 @@ const Dashboard = () => {
         await supabase
           .from("custom_dimension_entries")
           .insert(customEntries);
-      }
-
-      if (!silent) {
-        toast({
-          title: t("dashboard.toast.saved"),
-          description: t("dashboard.toast.saved.description"),
-        });
       }
       
       // Reload today's entry after saving
@@ -309,16 +298,7 @@ const Dashboard = () => {
       });
 
     if (error) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    } else {
-      toast({
-        title: "Poke sent! 👉",
-        description: `${partnerProfile.display_name} will be reminded to check in.`,
-      });
+      console.error("Error sending poke:", error);
     }
   };
 

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone, PhoneOff } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -18,7 +17,6 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [recognition, setRecognition] = useState<any>(null);
-  const { toast } = useToast();
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -38,11 +36,6 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
       recognitionInstance.onerror = (event: any) => {
         console.error('Speech recognition error:', event.error);
         setIsListening(false);
-        toast({
-          title: "Error",
-          description: t("voice.error"),
-          variant: "destructive",
-        });
       };
 
       recognitionInstance.onend = () => {
@@ -55,11 +48,6 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
 
   const handleTranscript = async (text: string) => {
     try {
-      toast({
-        title: t("voice.processing"),
-        description: `You said: "${text}"`,
-      });
-
       const { data, error } = await supabase.functions.invoke('parse-voice-input', {
         body: { text }
       });
@@ -68,28 +56,15 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
 
       if (data) {
         onParsedValues(data);
-        toast({
-          title: t("voice.saved"),
-          description: t("voice.saved.description"),
-        });
       }
     } catch (error: any) {
       console.error('Error parsing voice input:', error);
-      toast({
-        title: "Error",
-        description: error.message || "Failed to process voice input",
-        variant: "destructive",
-      });
     }
   };
 
   const toggleListening = () => {
     if (!recognition) {
-      toast({
-        title: "Not supported",
-        description: t("voice.not.supported"),
-        variant: "destructive",
-      });
+      console.log("Speech recognition not supported");
       return;
     }
 
@@ -100,10 +75,6 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
       setTranscript("");
       recognition.start();
       setIsListening(true);
-      toast({
-        title: t("voice.listening"),
-        description: t("voice.listening.description"),
-      });
     }
   };
 

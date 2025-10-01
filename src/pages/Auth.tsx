@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Heart } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -18,7 +17,6 @@ const Auth = () => {
   const [displayName, setDisplayName] = useState("");
   const [role, setRole] = useState<"husband" | "wife">("husband");
   const navigate = useNavigate();
-  const { toast } = useToast();
   const { t } = useLanguage();
 
   const handleAuth = async (e: React.FormEvent) => {
@@ -62,11 +60,7 @@ const Auth = () => {
         }
       }
     } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+      console.error("Auth error:", error);
     } finally {
       setLoading(false);
     }

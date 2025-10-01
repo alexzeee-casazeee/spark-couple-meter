@@ -3,7 +3,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
 import { Plus, X } from "lucide-react";
 
 interface CustomDimensionsManagerProps {
@@ -17,7 +16,6 @@ const CustomDimensionsManager = ({ coupleId, profileId, onDimensionsChange }: Cu
   const [newDimensionName, setNewDimensionName] = useState("");
   const [loading, setLoading] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const { toast } = useToast();
 
   useEffect(() => {
     if (coupleId) {
@@ -54,16 +52,8 @@ const CustomDimensionsManager = ({ coupleId, profileId, onDimensionsChange }: Cu
       });
 
     if (error) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+      console.error("Error adding dimension:", error);
     } else {
-      toast({
-        title: "Success",
-        description: "Custom dimension added!",
-      });
       setNewDimensionName("");
       loadDimensions();
       onDimensionsChange?.();
@@ -78,16 +68,8 @@ const CustomDimensionsManager = ({ coupleId, profileId, onDimensionsChange }: Cu
       .eq("id", dimensionId);
 
     if (error) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+      console.error("Error deleting dimension:", error);
     } else {
-      toast({
-        title: "Success",
-        description: "Custom dimension removed!",
-      });
       loadDimensions();
       onDimensionsChange?.();
     }
