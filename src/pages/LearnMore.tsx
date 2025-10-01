@@ -78,11 +78,11 @@ const LearnMore = () => {
       </section>
 
       {/* Problem Section */}
-      <section id="problem" className="py-6 px-1.5">
+      <section id="problem" className="py-6 px-2 md:px-1.5">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">The Problem: Busy lives, silent drift</h2>
           
-          <div className="space-y-4 text-lg text-muted-foreground mb-2 bg-white/70 backdrop-blur-sm p-2.5 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+          <div className="space-y-4 text-lg text-muted-foreground mb-2 bg-white/70 backdrop-blur-sm p-4 md:p-2.5 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
             <p>
               We all get busy. Work, kids, logistics, screens. Real conversations get pushed to later. Feelings, needs, and expectations stay unspoken. Small misunderstandings pile up. Disconnection creeps in quietly.
             </p>
@@ -94,7 +94,7 @@ const LearnMore = () => {
             </p>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-3xl p-2.5 space-y-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+          <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-3xl p-4 md:p-2.5 space-y-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
             <blockquote className="text-lg italic border-l-4 border-primary pl-4">
               "Negative communication is reliably linked to lower relationship satisfaction. Positive communication is linked to higher satisfaction."
             </blockquote>
