@@ -146,7 +146,7 @@ const Landing = () => {
               <span className="text-sm font-semibold text-primary">{t("landing.benefits.badge")}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">{t("landing.benefits.title")}</h2>
-            <p className="text-lg text-muted-foreground">{t("landing.benefits.subtitle")}</p>
+            <p className="text-lg text-black">{t("landing.benefits.subtitle")}</p>
           </div>
           
           <div className="space-y-5">
@@ -155,7 +155,7 @@ const Landing = () => {
                 <Shield className="w-7 h-7 text-primary" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-primary">{t("landing.benefit1.title")}</h3>
-              <p className="text-base text-muted-foreground">{t("landing.benefit1.description")}</p>
+              <p className="text-base text-black">{t("landing.benefit1.description")}</p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
@@ -163,7 +163,7 @@ const Landing = () => {
                 <MessageCircle className="w-7 h-7 text-secondary" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-secondary">{t("landing.benefit2.title")}</h3>
-              <p className="text-base text-muted-foreground">{t("landing.benefit2.description")}</p>
+              <p className="text-base text-black">{t("landing.benefit2.description")}</p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
@@ -171,7 +171,7 @@ const Landing = () => {
                 <TrendingUp className="w-7 h-7 text-accent" />
               </div>
               <h3 className="text-lg font-bold mb-2 text-accent">{t("landing.benefit3.title")}</h3>
-              <p className="text-base text-muted-foreground">{t("landing.benefit3.description")}</p>
+              <p className="text-base text-black">{t("landing.benefit3.description")}</p>
             </div>
           </div>
         </div>
