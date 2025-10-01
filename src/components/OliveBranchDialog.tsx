@@ -173,13 +173,14 @@ export function OliveBranchDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Extend an Olive Branch 🫒</DialogTitle>
-          <DialogDescription>
-            Send a heartfelt message to {recipientName}. Record your voice or type a message.
-          </DialogDescription>
-        </DialogHeader>
+      <DialogContent className="sm:max-w-md bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm p-[5px] shadow-2xl">
+        <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-900/70 rounded-lg p-6 shadow-lg">
+          <DialogHeader>
+            <DialogTitle>Extend an Olive Branch 🫒</DialogTitle>
+            <DialogDescription>
+              Send a heartfelt message to {recipientName}. Record your voice or type a message.
+            </DialogDescription>
+          </DialogHeader>
 
         <div className="space-y-4 py-4">
           <div className="flex justify-center gap-4">
@@ -233,6 +234,7 @@ export function OliveBranchDialog({
             <Send className="w-4 h-4" />
             {isSending ? "Sending..." : "Send Olive Branch"}
           </Button>
+        </div>
         </div>
       </DialogContent>
     </Dialog>
