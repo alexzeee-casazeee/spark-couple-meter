@@ -173,19 +173,19 @@ const LearnMore = () => {
 
           <div className="grid md:grid-cols-3 gap-1.5 mb-2">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-2.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <MessageSquare className="w-10 h-10 text-primary mb-4" />
-              <h3 className="font-semibold text-lg mb-2">Guided prompts</h3>
-              <p className="text-muted-foreground">Clear questions for wants, needs, expectations.</p>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-2.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <TrendingUp className="w-10 h-10 text-primary mb-4" />
-              <h3 className="font-semibold text-lg mb-2">Fast formats</h3>
-              <p className="text-muted-foreground">5-minute micro check-ins, deeper weekly sessions.</p>
+              <h3 className="font-semibold text-lg mb-2">Custom Dimensions</h3>
+              <p className="text-muted-foreground">Track what matters to you: Desire for Intimacy, Touch, Communication, and more.</p>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-2.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <Shield className="w-10 h-10 text-primary mb-4" />
-              <h3 className="font-semibold text-lg mb-2">Trends and insights</h3>
-              <p className="text-muted-foreground">See patterns, celebrate wins, course-correct.</p>
+              <MessageSquare className="w-10 h-10 text-primary mb-4" />
+              <h3 className="font-semibold text-lg mb-2">Daily Check-ins</h3>
+              <p className="text-muted-foreground">Each partner reports on their levels independently, creating honest visibility.</p>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-2.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+              <Heart className="w-10 h-10 text-primary mb-4" />
+              <h3 className="font-semibold text-lg mb-2">Olive Branch</h3>
+              <p className="text-muted-foreground">AI-assisted messages to reach out when words are hard to find.</p>
             </div>
           </div>
 
