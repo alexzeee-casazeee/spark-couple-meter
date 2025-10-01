@@ -73,8 +73,13 @@ const Landing = () => {
               </Button>
               <Button
                 size="lg"
-                variant="ghost"
-                className="text-base px-6 py-5 hidden sm:block"
+                variant="outline"
+                className="text-base px-6 py-5 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg hidden sm:block"
+                style={{ 
+                  backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
+                  backgroundOrigin: 'border-box',
+                  backgroundClip: 'padding-box, border-box'
+                }}
                 onClick={() => setAuthModalOpen(true)}
               >
                 {t("landing.cta.login")}
