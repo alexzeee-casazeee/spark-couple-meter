@@ -465,25 +465,22 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen pb-12" style={{ background: "var(--gradient-canva-bg)" }}>
       {/* Header - Compact */}
-      <header className="p-3 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
+      <header className="p-2 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
         <div className="container mx-auto flex justify-between items-center px-2">
-          <div className="flex items-center gap-2">
-            <Heart className="w-6 h-6 text-white" fill="white" />
-            <div>
-              <h1 className="text-lg font-bold text-white leading-tight">{t("dashboard.appName")}</h1>
-              
-            </div>
+          <div className="flex items-center gap-1.5">
+            <Heart className="w-5 h-5 text-white" fill="white" />
+            <h1 className="text-base font-bold text-white leading-tight">{t("dashboard.appName")}</h1>
           </div>
-          <div className="flex gap-2 ml-auto">
+          <div className="flex gap-1.5">
             <LanguageSwitcher />
-            <Button variant="outline" size="icon" onClick={() => navigate("/account")} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
-              <UserCircle className="w-4 h-4 text-white" />
+            <Button variant="outline" size="icon" onClick={() => navigate("/account")} className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7">
+              <UserCircle className="w-3.5 h-3.5 text-white" />
             </Button>
-            <Button variant="outline" size="icon" onClick={() => navigate("/settings")} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
-              <Settings className="w-4 h-4 text-white" />
+            <Button variant="outline" size="icon" onClick={() => navigate("/settings")} className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7">
+              <Settings className="w-3.5 h-3.5 text-white" />
             </Button>
-            <Button variant="outline" size="icon" onClick={handleLogout} className="bg-white/10 border-white/20 hover:bg-white/20 h-8 w-8">
-              <LogOut className="w-4 h-4 text-white" />
+            <Button variant="outline" size="icon" onClick={handleLogout} className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7">
+              <LogOut className="w-3.5 h-3.5 text-white" />
             </Button>
           </div>
         </div>
