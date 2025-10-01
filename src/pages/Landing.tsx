@@ -64,6 +64,48 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* How It Works Section */}
+      <section className="container mx-auto px-4 py-8">
+        <div className="max-w-3xl mx-auto bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-white/40" style={{ boxShadow: 'var(--shadow-float)' }}>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-3 text-primary">How It Works</h2>
+            <p className="text-base text-muted-foreground">Simple daily check-ins that strengthen your bond</p>
+          </div>
+          
+          <div className="space-y-4">
+            <div className="bg-white/80 p-5 rounded-2xl border border-primary/10">
+              <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
+                <Users className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-primary">Connect as Partners</h3>
+              <p className="text-sm text-muted-foreground">
+                Create your account and connect through a private invitation link.
+              </p>
+            </div>
+
+            <div className="bg-white/80 p-5 rounded-2xl border border-secondary/10">
+              <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-4">
+                <TrendingUp className="w-6 h-6 text-secondary" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-foreground">Daily Check-ins</h3>
+              <p className="text-sm text-muted-foreground">
+                Share your intimacy level, mood, sleep quality, and emotions with simple sliders or voice input.
+              </p>
+            </div>
+
+            <div className="bg-white/80 p-5 rounded-2xl border border-accent/10">
+              <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-4">
+                <LineChart className="w-6 h-6 text-accent" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-foreground">Track & Grow Together</h3>
+              <p className="text-sm text-muted-foreground">
+                View trends, celebrate wins, and understand each other better over time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="container mx-auto px-4 py-12">
         <div className="text-center mb-10">
