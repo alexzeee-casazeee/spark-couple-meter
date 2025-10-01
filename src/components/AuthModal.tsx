@@ -15,7 +15,7 @@ interface AuthModalProps {
 }
 
 export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -78,25 +78,16 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader className="space-y-4">
-          <div className="flex justify-center">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: 'var(--gradient-primary)' }}>
-              <Heart className="w-8 h-8 text-white" fill="white" />
-            </div>
+      <DialogContent className="sm:max-w-md p-6">
+        <div className="flex justify-center mb-6">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: 'var(--gradient-primary)' }}>
+            <Heart className="w-8 h-8 text-white" fill="white" />
           </div>
-          <DialogTitle className="text-3xl text-center">
-            {isLogin ? t("auth.welcome") : t("auth.create")}
-          </DialogTitle>
-          <DialogDescription className="text-center">
-            {isLogin ? t("auth.subtitle.login") : t("auth.subtitle.signup")}
-          </DialogDescription>
-        </DialogHeader>
-        
-        <form onSubmit={handleAuth} className="space-y-4">
+        </div>
+        <form onSubmit={handleAuth} className="space-y-3">
           {!isLogin && (
             <>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <Label htmlFor="displayName">{t("auth.displayName")}</Label>
                 <Input
                   id="displayName"
@@ -107,9 +98,9 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
                   required
                 />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <Label>{t("auth.role")}</Label>
-                <div className="flex gap-4">
+                <div className="flex gap-3">
                   <Button
                     type="button"
                     variant={role === "husband" ? "default" : "outline"}
@@ -130,7 +121,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
               </div>
             </>
           )}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <Label htmlFor="email">{t("auth.email")}</Label>
             <Input
               id="email"
@@ -141,7 +132,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
               required
             />
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <Label htmlFor="password">{t("auth.password")}</Label>
             <Input
               id="password"
@@ -153,12 +144,12 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
               minLength={6}
             />
           </div>
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" className="w-full mt-4" disabled={loading}>
             {loading ? t("auth.button.loading") : (isLogin ? t("auth.button.signin") : t("auth.button.signup"))}
           </Button>
         </form>
         
-        <div className="text-center">
+        <div className="text-center mt-4">
           <button
             type="button"
             onClick={() => setIsLogin(!isLogin)}
