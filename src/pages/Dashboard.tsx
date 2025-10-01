@@ -470,9 +470,12 @@ const Dashboard = () => {
               </p>
               <Button 
                 onClick={() => setInvitationDialogOpen(true)}
-                className="w-full gap-2"
+                className="w-full gap-2 text-base py-6 shadow-lg"
+                style={{ 
+                  background: 'var(--gradient-primary)',
+                }}
               >
-                <UserPlus className="h-4 w-4" />
+                <UserPlus className="h-5 w-5" />
                 Invite Your Partner
               </Button>
             </div>
