@@ -20,7 +20,6 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [role, setRole] = useState<"husband" | "wife">("husband");
   const navigate = useNavigate();
   const { t } = useLanguage();
 
@@ -50,7 +49,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
           options: {
             data: {
               display_name: displayName,
-              role: role,
+              role: "husband", // Default role for backend compatibility
             },
             emailRedirectTo: `${window.location.origin}/dashboard`,
           },
@@ -86,40 +85,18 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
         </div>
         <form onSubmit={handleAuth} className="space-y-3">
           {!isLogin && (
-            <>
-              <div className="space-y-1.5">
-                <Label htmlFor="displayName">{t("auth.displayName")}</Label>
-                <Input
-                  id="displayName"
-                  type="text"
-                  placeholder={t("auth.displayName.placeholder")}
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="space-y-1.5">
-                <Label>{t("auth.role")}</Label>
-                <div className="flex gap-3">
-                  <Button
-                    type="button"
-                    variant={role === "husband" ? "default" : "outline"}
-                    className="flex-1"
-                    onClick={() => setRole("husband")}
-                  >
-                    {t("auth.role.husband")}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant={role === "wife" ? "default" : "outline"}
-                    className="flex-1"
-                    onClick={() => setRole("wife")}
-                  >
-                    {t("auth.role.wife")}
-                  </Button>
-                </div>
-              </div>
-            </>
+            <div className="space-y-1.5">
+              <Label htmlFor="displayName">{t("auth.displayName")}</Label>
+              <Input
+                id="displayName"
+                type="text"
+                placeholder={t("auth.displayName.placeholder")}
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                required
+                className="border-2"
+              />
+            </div>
           )}
           <div className="space-y-1.5">
             <Label htmlFor="email">{t("auth.email")}</Label>
@@ -130,6 +107,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="border-2"
             />
           </div>
           <div className="space-y-1.5">
@@ -142,6 +120,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={6}
+              className="border-2"
             />
           </div>
           <Button type="submit" className="w-full mt-4" disabled={loading}>
