@@ -690,7 +690,7 @@ const Dashboard = () => {
             ) : (
               <>
                 <div className="space-y-1.5">
-                  <Label className="text-xs font-semibold">{t("dashboard.checkin.intimacy")}</Label>
+                  <Label className="text-sm font-semibold">{t("dashboard.checkin.intimacy")}</Label>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.low")}</span>
                     <Slider
@@ -709,7 +709,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label className="text-xs font-semibold">{t("dashboard.checkin.feeling")}</Label>
+                  <Label className="text-sm font-semibold">{t("dashboard.checkin.feeling")}</Label>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.bad")}</span>
                     <Slider
@@ -728,7 +728,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label className="text-xs font-semibold">{t("dashboard.checkin.communication")}</Label>
+                  <Label className="text-sm font-semibold">{t("dashboard.checkin.communication")}</Label>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.low")}</span>
                     <Slider
@@ -747,7 +747,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label className="text-xs font-semibold">{t("dashboard.checkin.sleep")}</Label>
+                  <Label className="text-sm font-semibold">{t("dashboard.checkin.sleep")}</Label>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.poor")}</span>
                     <Slider
@@ -766,7 +766,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <Label className="text-xs font-semibold">{t("dashboard.checkin.emotional")}</Label>
+                  <Label className="text-sm font-semibold">{t("dashboard.checkin.emotional")}</Label>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.low")}</span>
                     <Slider
@@ -787,7 +787,7 @@ const Dashboard = () => {
                 {/* Custom Dimensions */}
                 {customDimensions.map((dimension) => (
                   <div key={dimension.id} className="space-y-1.5">
-                    <Label className="text-xs font-semibold">{dimension.dimension_name}</Label>
+                    <Label className="text-sm font-semibold">{dimension.dimension_name}</Label>
                     <div className="flex items-center gap-2">
                       <span className="text-[10px] text-muted-foreground w-8">{t("dashboard.checkin.low")}</span>
                     <Slider
