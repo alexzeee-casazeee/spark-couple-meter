@@ -881,16 +881,6 @@ const Dashboard = () => {
             {t("dashboard.viewLog")}
           </Button>
         </div>
-        
-        {/* Manage Quotes Link - visible to authenticated users */}
-        <Button 
-          variant="outline" 
-          className="w-full h-8 text-xs" 
-          onClick={() => navigate("/quotes")}
-        >
-          <Quote className="w-3 h-3 mr-2" />
-          Manage Quotes
-        </Button>
       </div>
 
       {/* Olive Branch Dialog */}
