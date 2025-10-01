@@ -101,12 +101,12 @@ const AcceptInvite = () => {
     setSigningUp(true);
 
     try {
-      if (!senderProfile?.role || !invitation?.id) {
+      if (!invitation?.id || !invitation?.sender_id) {
         throw new Error("Invitation data not loaded. Please refresh the page.");
       }
 
-      // Determine role (opposite of sender)
-      const role = senderProfile.role === 'husband' ? 'wife' : 'husband';
+      // Assign a default role to the new user
+      const role: 'husband' | 'wife' = 'wife';
 
       // Sign up
       const { data, error } = await supabase.auth.signUp({
@@ -145,10 +145,8 @@ const AcceptInvite = () => {
         })
         .eq('id', invitation.id);
 
-      // Create couple record
-      const coupleData = role === 'husband' 
-        ? { husband_id: myProfile.id, wife_id: senderProfile.id }
-        : { husband_id: senderProfile.id, wife_id: myProfile.id };
+      // Create couple record (link with inviter)
+      const coupleData = { husband_id: invitation.sender_id, wife_id: myProfile.id };
 
       const { error: coupleError } = await supabase.from('couples').insert(coupleData);
       if (coupleError) throw coupleError;
