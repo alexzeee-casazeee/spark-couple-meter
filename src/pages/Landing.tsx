@@ -44,19 +44,22 @@ const Landing = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center pt-2">
-            <Button
-              size="lg"
-              className="text-base px-6 py-5 shadow-lg border-2 border-transparent bg-clip-padding relative"
-              style={{ 
-                background: 'var(--gradient-primary)',
-                backgroundImage: 'linear-gradient(135deg, hsl(280, 60%, 70%), hsl(190, 70%, 75%)), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
-                backgroundOrigin: 'border-box',
-                backgroundClip: 'padding-box, border-box'
-              }}
-              onClick={() => setAuthModalOpen(true)}
-            >
-              {t("landing.cta.primary")}
-            </Button>
+            <div className="flex flex-col items-center gap-2">
+              <Button
+                size="lg"
+                className="text-base px-6 py-5 shadow-lg border-2 border-transparent bg-clip-padding relative"
+                style={{ 
+                  background: 'var(--gradient-primary)',
+                  backgroundImage: 'linear-gradient(135deg, hsl(280, 60%, 70%), hsl(190, 70%, 75%)), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
+                  backgroundOrigin: 'border-box',
+                  backgroundClip: 'padding-box, border-box'
+                }}
+                onClick={() => setAuthModalOpen(true)}
+              >
+                {t("landing.cta.primary")}
+              </Button>
+              <p className="text-sm text-muted-foreground">Free for 30 Days. Then $2.99/mo</p>
+            </div>
             <Button
               size="lg"
               variant="outline"
