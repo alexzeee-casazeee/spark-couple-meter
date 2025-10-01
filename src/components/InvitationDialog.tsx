@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, Mail, Link2, Copy, Check } from "lucide-react";
+import { MessageCircle, Mail, Link2, Copy, Check, UserPlus } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -106,8 +106,8 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
           
           {!inviteLink ? (
             <Button onClick={generateInvitation} className="w-full gap-2">
-              <Link2 className="h-4 w-4" />
-              {t("dashboard.invite.button")}
+              <UserPlus className="h-4 w-4" />
+              Invite Your Partner
             </Button>
           ) : (
             <div className="space-y-2">
