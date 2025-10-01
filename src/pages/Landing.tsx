@@ -137,40 +137,28 @@ const Landing = () => {
           </div>
           
           <div className="space-y-5">
-            <div className="bg-white p-6 rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
-              <div className="flex gap-5 items-start">
-                <div className="w-14 h-14 bg-primary/15 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-7 h-7 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold mb-2 text-primary">{t("landing.benefit1.title")}</h3>
-                  <p className="text-base text-muted-foreground">{t("landing.benefit1.description")}</p>
-                </div>
+            <div className="bg-white p-[5px] rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+              <div className="w-14 h-14 bg-primary/15 rounded-2xl flex items-center justify-center float-left mr-3 mb-2">
+                <Shield className="w-7 h-7 text-primary" />
               </div>
+              <h3 className="text-lg font-bold mb-2 text-primary">{t("landing.benefit1.title")}</h3>
+              <p className="text-base text-muted-foreground">{t("landing.benefit1.description")}</p>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
-              <div className="flex gap-5 items-start">
-                <div className="w-14 h-14 bg-secondary/15 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-7 h-7 text-secondary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold mb-2 text-secondary">{t("landing.benefit2.title")}</h3>
-                  <p className="text-base text-muted-foreground">{t("landing.benefit2.description")}</p>
-                </div>
+            <div className="bg-white p-[5px] rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+              <div className="w-14 h-14 bg-secondary/15 rounded-2xl flex items-center justify-center float-left mr-3 mb-2">
+                <MessageCircle className="w-7 h-7 text-secondary" />
               </div>
+              <h3 className="text-lg font-bold mb-2 text-secondary">{t("landing.benefit2.title")}</h3>
+              <p className="text-base text-muted-foreground">{t("landing.benefit2.description")}</p>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
-              <div className="flex gap-5 items-start">
-                <div className="w-14 h-14 bg-accent/15 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="w-7 h-7 text-accent" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold mb-2 text-accent">{t("landing.benefit3.title")}</h3>
-                  <p className="text-base text-muted-foreground">{t("landing.benefit3.description")}</p>
-                </div>
+            <div className="bg-white p-[5px] rounded-2xl" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+              <div className="w-14 h-14 bg-accent/15 rounded-2xl flex items-center justify-center float-left mr-3 mb-2">
+                <TrendingUp className="w-7 h-7 text-accent" />
               </div>
+              <h3 className="text-lg font-bold mb-2 text-accent">{t("landing.benefit3.title")}</h3>
+              <p className="text-base text-muted-foreground">{t("landing.benefit3.description")}</p>
             </div>
           </div>
         </div>
