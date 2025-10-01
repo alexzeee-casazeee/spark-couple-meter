@@ -235,48 +235,28 @@ const LearnMore = () => {
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">Proof and Research</h2>
           
           <div className="space-y-4">
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5 flex gap-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex items-start gap-4">
-                <span className="text-5xl font-bold text-primary">1.</span>
-                <div className="w-px bg-border h-auto self-stretch"></div>
-              </div>
-              <p className="text-muted-foreground flex-1">
+            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+              <p className="text-muted-foreground">
                 Positive communication and lower negativity are linked with higher relationship quality over time.
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5 flex gap-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex items-start gap-4">
-                <span className="text-5xl font-bold text-primary">2.</span>
-                <div className="w-px bg-border h-auto self-stretch"></div>
-              </div>
-              <p className="text-muted-foreground flex-1">
+            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+              <p className="text-muted-foreground">
                 Within couples, more negative interactions go with lower satisfaction, more positive with higher satisfaction.
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5 flex gap-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex items-start gap-4">
-                <span className="text-5xl font-bold text-primary">3.</span>
-                <div className="w-px bg-border h-auto self-stretch"></div>
-              </div>
-              <p className="text-muted-foreground flex-1">
+            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+              <p className="text-muted-foreground">
                 Annual relationship checkups improve intimacy and relationship health in trials.
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5 flex gap-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex items-start gap-4">
-                <span className="text-5xl font-bold text-primary">4.</span>
-                <div className="w-px bg-border h-auto self-stretch"></div>
-              </div>
-              <p className="text-muted-foreground flex-1">
+            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+              <p className="text-muted-foreground">
                 Avoid the Four Horsemen: criticism, defensiveness, contempt, stonewalling.
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5 flex gap-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex items-start gap-4">
-                <span className="text-5xl font-bold text-primary">5.</span>
-                <div className="w-px bg-border h-auto self-stretch"></div>
-              </div>
-              <p className="text-muted-foreground flex-1">
+            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+              <p className="text-muted-foreground">
                 Financial conflict is common. Bring it into the open and plan together.
               </p>
             </div>
