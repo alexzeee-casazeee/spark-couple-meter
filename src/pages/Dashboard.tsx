@@ -190,19 +190,14 @@ const Dashboard = () => {
       
       if (entryData) {
         setTodayEntry(entryData);
-        setHorniness([entryData.horniness_level || 50]);
-        setGeneralFeeling([entryData.general_feeling || 50]);
-        setCommunicationDesire([entryData.communication_desire || 50]);
-        setSleepQuality([entryData.sleep_quality || 50]);
-        setEmotionalState([entryData.emotional_state || 50]);
-      } else {
-        // Reset to baseline if no entry today
-        setHorniness([50]);
-        setGeneralFeeling([50]);
-        setCommunicationDesire([50]);
-        setSleepQuality([50]);
-        setEmotionalState([50]);
       }
+      
+      // Always reset to baseline when opening dashboard
+      setHorniness([50]);
+      setGeneralFeeling([50]);
+      setCommunicationDesire([50]);
+      setSleepQuality([50]);
+      setEmotionalState([50]);
     }
     
     setLoading(false);
@@ -228,30 +223,12 @@ const Dashboard = () => {
         .eq("entry_date", today)
         .maybeSingle();
 
-      if (entryData) {
-        // Load custom dimension values for today's entry
-        const { data: customEntriesData } = await supabase
-          .from("custom_dimension_entries")
-          .select("dimension_id, value")
-          .eq("entry_id", entryData.id);
-
-        if (customEntriesData) {
-          const values: Record<string, number> = {};
-          customEntriesData.forEach((entry) => {
-            values[entry.dimension_id] = entry.value || 50;
-          });
-          setCustomValues(values);
-        }
-      }
-
-      // Initialize missing custom values to 50
+      // Always initialize all custom values to baseline (50)
       const initialValues: Record<string, number> = {};
       dimensionsData.forEach((dim) => {
-        if (!customValues[dim.id]) {
-          initialValues[dim.id] = 50;
-        }
+        initialValues[dim.id] = 50;
       });
-      setCustomValues((prev) => ({ ...prev, ...initialValues }));
+      setCustomValues(initialValues);
     }
   };
 
