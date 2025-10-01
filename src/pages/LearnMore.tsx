@@ -23,7 +23,7 @@ const LearnMore = () => {
     <div className="min-h-screen" style={{ background: 'var(--gradient-canva-bg)' }}>
       {/* Header */}
       <header className="border-b border-white/40 bg-white/60 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-1.5 py-2">
           <button
             onClick={() => navigate("/")}
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -35,7 +35,7 @@ const LearnMore = () => {
       </header>
 
       {/* Hero Section */}
-      <section id="hero" className="py-20 px-4">
+      <section id="hero" className="py-6 px-1.5">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/60">
             <Heart className="w-8 h-8 text-primary-foreground" fill="currentColor" />
@@ -78,11 +78,11 @@ const LearnMore = () => {
       </section>
 
       {/* Problem Section */}
-      <section id="problem" className="py-16 px-4">
+      <section id="problem" className="py-6 px-1.5">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">The Problem: Busy lives, silent drift</h2>
           
-          <div className="space-y-4 text-lg text-muted-foreground mb-8 bg-white/70 backdrop-blur-sm p-6 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+          <div className="space-y-4 text-lg text-muted-foreground mb-8 bg-white/70 backdrop-blur-sm p-1.5 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
             <p>
               We all get busy. Work, kids, logistics, screens. Real conversations get pushed to later. Feelings, needs, and expectations stay unspoken. Small misunderstandings pile up. Disconnection creeps in quietly.
             </p>
@@ -94,7 +94,7 @@ const LearnMore = () => {
             </p>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-3xl p-6 space-y-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+          <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-3xl p-1.5 space-y-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
             <blockquote className="text-lg italic border-l-4 border-primary pl-4">
               "Negative communication is reliably linked to lower relationship satisfaction. Positive communication is linked to higher satisfaction."
             </blockquote>
@@ -106,7 +106,7 @@ const LearnMore = () => {
       </section>
 
       {/* Why Check-ins Matter */}
-      <section id="checkins" className="py-16 px-4">
+      <section id="checkins" className="py-6 px-1.5">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">Why Regular Check-ins Matter</h2>
           
@@ -115,35 +115,35 @@ const LearnMore = () => {
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="flex gap-4 p-5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="flex gap-4 p-1.5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold mb-1">Prevent buildup, surface issues early</h3>
                 <p className="text-sm text-muted-foreground">Catch small problems before they become big ones</p>
               </div>
             </div>
-            <div className="flex gap-4 p-5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="flex gap-4 p-1.5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <Users className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold mb-1">Increase understanding and empathy</h3>
                 <p className="text-sm text-muted-foreground">See things from your partner's perspective</p>
               </div>
             </div>
-            <div className="flex gap-4 p-5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="flex gap-4 p-1.5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <Lightbulb className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold mb-1">Keep expectations clear as life changes</h3>
                 <p className="text-sm text-muted-foreground">Stay aligned through transitions</p>
               </div>
             </div>
-            <div className="flex gap-4 p-5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="flex gap-4 p-1.5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <MessageSquare className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold mb-1">Create a predictable, safe space to talk</h3>
                 <p className="text-sm text-muted-foreground">Know when and how to share</p>
               </div>
             </div>
-            <div className="flex gap-4 p-5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative md:col-span-2" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="flex gap-4 p-1.5 rounded-2xl bg-white/80 border-2 border-transparent bg-clip-padding relative md:col-span-2" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <Heart className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold mb-1">Strengthen trust and intimacy over time</h3>
@@ -152,7 +152,7 @@ const LearnMore = () => {
             </div>
           </div>
 
-          <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-6 text-center" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+          <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-1.5 text-center" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
             <p className="text-muted-foreground">
               Structured relationship "checkups" have RCT support for improving intimacy and relationship health.
             </p>
@@ -161,7 +161,7 @@ const LearnMore = () => {
       </section>
 
       {/* How Spark Helps */}
-      <section id="how-it-works" className="py-16 px-4">
+      <section id="how-it-works" className="py-6 px-1.5">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">How Spark Helps</h2>
           
@@ -170,17 +170,17 @@ const LearnMore = () => {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-1.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <MessageSquare className="w-10 h-10 text-primary mb-4" />
               <h3 className="font-semibold text-lg mb-2">Guided prompts</h3>
               <p className="text-muted-foreground">Clear questions for wants, needs, expectations.</p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-1.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <TrendingUp className="w-10 h-10 text-primary mb-4" />
               <h3 className="font-semibold text-lg mb-2">Fast formats</h3>
               <p className="text-muted-foreground">5-minute micro check-ins, deeper weekly sessions.</p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-1.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <Shield className="w-10 h-10 text-primary mb-4" />
               <h3 className="font-semibold text-lg mb-2">Trends and insights</h3>
               <p className="text-muted-foreground">See patterns, celebrate wins, course-correct.</p>
@@ -209,11 +209,11 @@ const LearnMore = () => {
       </section>
 
       {/* Framework Section */}
-      <section id="framework" className="py-16 px-4">
+      <section id="framework" className="py-6 px-1.5">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">What to Say, Even When You Feel Stuck</h2>
           
-          <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-3xl p-8 space-y-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+          <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-3xl p-1.5 space-y-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
             <ol className="space-y-4 list-decimal list-inside text-lg">
               <li>Start with one appreciation.</li>
               <li>Use "I feel, I need, I want."</li>
@@ -230,32 +230,32 @@ const LearnMore = () => {
       </section>
 
       {/* Proof Section */}
-      <section id="proof" className="py-16 px-4">
+      <section id="proof" className="py-6 px-1.5">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">Proof and Research</h2>
           
           <div className="space-y-4">
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-1.5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-muted-foreground">
                 Positive communication and lower negativity are linked with higher relationship quality over time.
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-1.5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-muted-foreground">
                 Within couples, more negative interactions go with lower satisfaction, more positive with higher satisfaction.
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-1.5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-muted-foreground">
                 Annual relationship checkups improve intimacy and relationship health in trials.
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-1.5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-muted-foreground">
                 Avoid the Four Horsemen: criticism, defensiveness, contempt, stonewalling.
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-2xl p-1.5" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-muted-foreground">
                 Financial conflict is common. Bring it into the open and plan together.
               </p>
@@ -265,22 +265,22 @@ const LearnMore = () => {
       </section>
 
       {/* Stories Section */}
-      <section id="stories" className="py-16 px-4">
+      <section id="stories" className="py-6 px-1.5">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">Real-life Snapshots</h2>
           
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-1.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-muted-foreground">
                 A couple used weekly check-ins to catch brewing resentment about household tasks. What started as vague frustration became a clear plan: rotate dishes, hire help for deep cleaning. Two months later, both reported feeling lighter and more appreciated.
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-1.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-muted-foreground">
                 After a job change, one partner felt disconnected but could not name why. A short Spark check-in surfaced the real issue: different expectations about evening routines. They agreed on three nights together, two nights solo. Connection restored without a big fight.
               </p>
             </div>
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-1.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-muted-foreground">
                 New parents struggled to talk about anything except logistics. Five-minute micro check-ins let them share appreciation and one small need each week. Over time, they rebuilt emotional intimacy without needing long date nights they could not schedule.
               </p>
@@ -290,11 +290,11 @@ const LearnMore = () => {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-16 px-4">
+      <section id="faq" className="py-6 px-1.5">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">FAQ</h2>
           
-          <div className="space-y-6 bg-white/70 backdrop-blur-sm rounded-3xl p-8 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+          <div className="space-y-6 bg-white/70 backdrop-blur-sm rounded-3xl p-1.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
             <div>
               <h3 className="font-semibold text-lg mb-2">"We do not have time."</h3>
               <p className="text-muted-foreground">
@@ -324,8 +324,8 @@ const LearnMore = () => {
       </section>
 
       {/* Final CTA */}
-      <section id="cta" className="py-20 px-4">
-        <div className="container mx-auto max-w-2xl text-center space-y-4 bg-white/70 backdrop-blur-sm p-8 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+      <section id="cta" className="py-6 px-1.5">
+        <div className="container mx-auto max-w-2xl text-center space-y-4 bg-white/70 backdrop-blur-sm p-1.5 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <h2 className="text-4xl font-bold mb-4 text-primary">Start your first check-in now.</h2>
           <p className="text-lg text-muted-foreground mb-8">
             Takes 2 minutes. Real progress.
@@ -345,7 +345,7 @@ const LearnMore = () => {
       </section>
 
       {/* Sources Section */}
-      <section id="sources" className="py-16 px-4 border-t border-white/40">
+      <section id="sources" className="py-6 px-1.5 border-t border-white/40">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-2xl font-bold mb-6 text-primary">Sources</h2>
           
@@ -425,7 +425,7 @@ const LearnMore = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8 px-4">
+      <footer className="border-t border-border py-6 px-1.5">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
           <p>© 2025 Spark Couple Meter. Built to help couples stay connected.</p>
         </div>
