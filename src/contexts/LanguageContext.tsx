@@ -137,6 +137,7 @@ const translations = {
 
     // Accept Invite page
     "acceptInvite.header": "You were invited to Spark Meter by {name}",
+    "acceptInvite.checkin.subtitle": "Share how you're feeling today",
     "acceptInvite.preview.title": "Preview: Your Daily Check-In",
     "acceptInvite.preview.subtitle": "This is what you'll see after signing up",
     "acceptInvite.form.title": "Create Your Account",
@@ -272,6 +273,7 @@ const translations = {
 
     // Accept Invite page
     "acceptInvite.header": "Вас пригласил(а) в Spark Meter {name}",
+    "acceptInvite.checkin.subtitle": "Поделитесь своими ощущениями сегодня",
     "acceptInvite.preview.title": "Предпросмотр: Ежедневная отметка",
     "acceptInvite.preview.subtitle": "Так будет выглядеть экран после регистрации",
     "acceptInvite.form.title": "Создайте аккаунт",
