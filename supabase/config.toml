@@ -2,3 +2,6 @@ project_id = "jjuqvqynftbfdjyawtzm"
 
 [functions.parse-voice-input]
 verify_jwt = true
+
+[functions.generate-logo]
+verify_jwt = false

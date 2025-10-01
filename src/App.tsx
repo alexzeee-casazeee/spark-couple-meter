@@ -14,6 +14,7 @@ import Log from "./pages/Log";
 import LearnMore from "./pages/LearnMore";
 import AcceptInvite from "./pages/AcceptInvite";
 import NotFound from "./pages/NotFound";
+import LogoPreview from "./pages/LogoPreview";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/trends" element={<Trends />} />
             <Route path="/log" element={<Log />} />
             <Route path="/learn-more" element={<LearnMore />} />
+            <Route path="/logo-preview" element={<LogoPreview />} />
             <Route path="/invite/:token" element={<AcceptInvite />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
