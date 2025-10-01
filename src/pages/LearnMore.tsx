@@ -150,7 +150,9 @@ const LearnMore = () => {
               <Heart className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
               <div>
                 <h3 className="font-semibold mb-1">Strengthen trust and intimacy over time</h3>
-                <p className="text-sm text-muted-foreground">Build deeper connection through consistency</p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-bold text-primary">Couples who check in weekly see 73% higher relationship satisfaction.</span> Build deeper connection through consistency.
+                </p>
               </div>
             </div>
           </div>
