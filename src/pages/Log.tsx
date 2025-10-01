@@ -152,7 +152,7 @@ const Log = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--gradient-splash)" }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "var(--gradient-canva-bg)" }}>
         <div className="animate-pulse text-primary">Loading...</div>
       </div>
     );
@@ -185,22 +185,22 @@ const Log = () => {
     });
 
   return (
-    <div className="min-h-screen pb-12" style={{ background: "var(--gradient-splash)" }}>
+    <div className="min-h-screen pb-12" style={{ background: "var(--gradient-canva-bg)" }}>
       {/* Header */}
-      <header className="bg-gradient-romantic p-3 shadow-glow">
+      <header className="p-2 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
         <div className="container mx-auto flex justify-between items-center px-2">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => navigate("/dashboard")}
-              className="text-white hover:bg-white/10"
+              className="text-white hover:bg-white/10 h-7 w-7"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="w-4 h-4" />
             </Button>
             <div>
-              <h1 className="text-lg font-bold text-white leading-tight">Entry Log</h1>
-              <p className="text-white/80 text-xs leading-tight">{profile?.display_name}</p>
+              <h1 className="text-base font-bold text-white leading-tight">Entry Log</h1>
+              <p className="text-white/80 text-[10px] leading-tight">{profile?.display_name}</p>
             </div>
           </div>
         </div>
@@ -209,7 +209,7 @@ const Log = () => {
       <div className="container mx-auto px-2 py-3 max-w-4xl space-y-2">
         {/* View Mode Toggle */}
         {partnerProfile && (
-          <Card className="shadow-soft">
+          <Card className="shadow-soft bg-card/95 backdrop-blur-md border-2 border-border">
             <CardContent className="pt-3 pb-3">
               <div className="flex gap-2">
                 <Button
@@ -233,7 +233,7 @@ const Log = () => {
 
         {/* Trend Chart */}
         {currentEntries.length > 0 && (
-          <Card className="shadow-soft">
+          <Card className="shadow-soft bg-card/95 backdrop-blur-md border-2 border-border">
             <CardHeader className="pb-2 pt-3">
               <CardTitle className="text-sm">30-Day Trend</CardTitle>
             </CardHeader>
@@ -301,14 +301,14 @@ const Log = () => {
         )}
 
         {currentEntries.length === 0 ? (
-          <Card className="shadow-soft">
+          <Card className="shadow-soft bg-card/95 backdrop-blur-md border-2 border-border">
             <CardContent className="pt-6 pb-6 text-center text-muted-foreground">
               <p>No entries yet. Start tracking your levels!</p>
             </CardContent>
           </Card>
         ) : (
           Object.entries(groupedEntries).map(([date, dayEntries]) => (
-            <Card key={date} className="shadow-soft">
+            <Card key={date} className="shadow-soft bg-card/95 backdrop-blur-md border-2 border-border">
               <CardHeader className="pb-2 pt-3">
                 <CardTitle className="flex items-center gap-2 text-sm">
                   <Heart className="w-3.5 h-3.5 text-primary" />
