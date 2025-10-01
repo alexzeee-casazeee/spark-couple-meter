@@ -281,7 +281,7 @@ const AcceptInvite = () => {
 
         {/* Signup Modal */}
         <Dialog open={signupModalOpen} onOpenChange={setSignupModalOpen}>
-          <DialogContent className="sm:max-w-md">
+          <DialogContent className="sm:max-w-md max-w-[90vw] mx-4">
             <DialogHeader>
               <DialogTitle className="text-foreground">{t("acceptInvite.form.title")}</DialogTitle>
               <DialogDescription className="text-foreground/70">
