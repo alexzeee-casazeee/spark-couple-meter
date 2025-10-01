@@ -16,8 +16,38 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [role, setRole] = useState<"husband" | "wife">("husband");
+  const [nameError, setNameError] = useState("");
   const navigate = useNavigate();
   const { t } = useLanguage();
+
+  const validateDisplayName = (name: string): boolean => {
+    // Only allow letters, spaces, hyphens, and apostrophes
+    const validNamePattern = /^[a-zA-Z\s'-]+$/;
+    
+    if (name.length === 0) {
+      setNameError("");
+      return true;
+    }
+    
+    if (!validNamePattern.test(name)) {
+      setNameError("Name can only contain letters, spaces, hyphens, and apostrophes");
+      return false;
+    }
+    
+    if (name.length > 50) {
+      setNameError("Name must be less than 50 characters");
+      return false;
+    }
+    
+    setNameError("");
+    return true;
+  };
+
+  const handleDisplayNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newName = e.target.value;
+    setDisplayName(newName);
+    validateDisplayName(newName);
+  };
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,6 +64,13 @@ const Auth = () => {
         
         navigate("/dashboard");
       } else {
+        // Validate display name before submission
+        if (!validateDisplayName(displayName) || displayName.trim().length === 0) {
+          setNameError("Please enter a valid name");
+          setLoading(false);
+          return;
+        }
+
         console.log('Starting signup with:', { email, displayName, role });
         
         const { data, error } = await supabase.auth.signUp({
@@ -102,9 +139,14 @@ const Auth = () => {
                       type="text"
                       placeholder={t("auth.displayName.placeholder")}
                       value={displayName}
-                      onChange={(e) => setDisplayName(e.target.value)}
+                      onChange={handleDisplayNameChange}
                       required
+                      maxLength={50}
+                      className={nameError ? "border-red-500" : ""}
                     />
+                    {nameError && (
+                      <p className="text-xs text-red-500 mt-1">{nameError}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label>{t("auth.role")}</Label>

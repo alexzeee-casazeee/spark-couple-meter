@@ -602,7 +602,9 @@ const Dashboard = () => {
                     onClick={() => setViewMode('partner')}
                     className="flex-1 h-10 text-sm"
                   >
-                    {t("dashboard.view.partnerLevels").replace('{name}', partnerProfile.display_name)}
+                    <span className="truncate">
+                      {t("dashboard.view.partnerLevels").replace('{name}', partnerProfile.display_name)}
+                    </span>
                   </Button>
                 </div>
               </div>
