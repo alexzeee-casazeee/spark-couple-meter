@@ -73,7 +73,7 @@ const Landing = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-4 px-6 pb-6">
-            <div className="bg-white/80 p-5 rounded-2xl border border-primary/10">
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
               <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
                 <Users className="w-6 h-6 text-primary" />
               </div>
@@ -83,7 +83,7 @@ const Landing = () => {
               </p>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border border-secondary/10">
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
               <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-4">
                 <TrendingUp className="w-6 h-6 text-secondary" />
               </div>
@@ -93,7 +93,7 @@ const Landing = () => {
               </p>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border border-accent/10">
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
               <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-4">
                 <LineChart className="w-6 h-6 text-accent" />
               </div>
