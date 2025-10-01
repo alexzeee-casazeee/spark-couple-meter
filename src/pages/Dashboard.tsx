@@ -486,15 +486,19 @@ const Dashboard = () => {
       <div className="container mx-auto px-1 py-2 max-w-4xl space-y-2">
         {/* Invitation Prompt */}
         {!couple && profile && (
-          <Card className="shadow-soft border-primary/20">
-            <CardContent className="p-4">
-              <div>
-                <h3 className="font-semibold text-xl mb-3 text-primary">
-                  {t("dashboard.invite.prompt.title")}
-                </h3>
-                <p className="text-base font-medium text-foreground mb-4 leading-relaxed">
-                  {t("dashboard.invite.prompt.description")}
-                </p>
+          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative" style={{ 
+            backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+            backgroundOrigin: 'border-box', 
+            backgroundClip: 'padding-box, border-box',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
+          }}>
+            <div>
+              <h3 className="font-semibold text-xl mb-3 text-primary">
+                {t("dashboard.invite.prompt.title")}
+              </h3>
+              <p className="text-base font-medium text-foreground mb-4 leading-relaxed">
+                {t("dashboard.invite.prompt.description")}
+              </p>
                 
                 <div className="flex flex-col gap-2">
                   <Button
@@ -551,11 +555,10 @@ const Dashboard = () => {
                   )}
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        )}
+            </div>
+          )}
 
-        {/* View Mode Toggle - Moved to top */}
+          {/* View Mode Toggle - Moved to top */}
         {couple && partnerProfile && (
           <Card className="shadow-soft">
             <CardContent className="pt-3 pb-3">
@@ -659,8 +662,13 @@ const Dashboard = () => {
         </Dialog>
 
         {/* Today's Check-In */}
-        <Card className="shadow-soft border-2 border-l-4 border-primary/30" style={{ background: "var(--gradient-subtle)" }}>
-          <CardHeader className="pb-2 pt-3">
+        <div className="bg-white/80 backdrop-blur-md rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ 
+          backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+          backgroundOrigin: 'border-box', 
+          backgroundClip: 'padding-box, border-box',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
+        }}>
+          <div className="pb-2 pt-3 px-4">
             {/* Olive Branch Messages */}
             {oliveBranchMessages.length > 0 && (
               <div className="mb-3 space-y-2">
@@ -693,15 +701,15 @@ const Dashboard = () => {
               </div>
             )}
             
-            <CardTitle className="flex items-center gap-2 text-sm">
+            <h3 className="flex items-center gap-2 text-sm font-semibold">
               <Heart className="w-3.5 h-3.5 text-primary" />
               {viewMode === 'self' ? t("dashboard.checkin.title") : t("dashboard.view.partnerLevels").replace('{name}', partnerProfile?.display_name || '')}
               <span className="ml-auto text-[10px] font-normal text-muted-foreground">
                 {format(new Date(), "MMM d, yyyy")}
               </span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2.5 pb-3">
+            </h3>
+          </div>
+          <div className="space-y-2.5 pb-3 px-4">
             {viewMode === 'partner' && !partnerEntry ? (
               <div className="text-center py-6 text-muted-foreground">
                 <p className="text-sm">{t("dashboard.partner.noCheckinYet").replace('{name}', partnerProfile?.display_name || '')}</p>
@@ -874,8 +882,8 @@ const Dashboard = () => {
                 )}
               </>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* Custom Dimensions Manager - Moved to bottom */}
         {couple && profile && (
