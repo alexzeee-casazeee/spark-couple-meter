@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Quote } from "lucide-react";
+import { Quote, ChevronDown, ChevronUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface QuoteData {
   id: string;
@@ -11,6 +12,7 @@ interface QuoteData {
 const QuoteOfTheDay = () => {
   const [quote, setQuote] = useState<QuoteData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   useEffect(() => {
     loadRandomQuote();
@@ -48,21 +50,50 @@ const QuoteOfTheDay = () => {
       backgroundClip: 'padding-box, border-box',
       boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
     }}>
-      <div className="flex gap-3">
-        <div className="flex-shrink-0">
-          <div className="w-10 h-10 bg-primary/15 rounded-full flex items-center justify-center">
-            <Quote className="w-5 h-5 text-primary" />
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <div className="flex gap-3 flex-1">
+          <div className="flex-shrink-0">
+            <div className="w-10 h-10 bg-primary/15 rounded-full flex items-center justify-center">
+              <Quote className="w-5 h-5 text-primary" />
+            </div>
+          </div>
+          <div className="flex-1">
+            <h3 className="text-sm font-semibold text-primary">Quote of the Day</h3>
           </div>
         </div>
-        <div className="flex-1">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="h-8 w-8 -mt-1"
+        >
+          {isExpanded ? (
+            <ChevronUp className="h-4 w-4 text-muted-foreground" />
+          ) : (
+            <ChevronDown className="h-4 w-4 text-muted-foreground" />
+          )}
+        </Button>
+      </div>
+      
+      {isExpanded && (
+        <div className="pl-13">
           <p className="text-base font-medium text-foreground leading-relaxed mb-2 italic">
             "{quote.message}"
           </p>
-          <p className="text-sm text-muted-foreground">
-            — {quote.source}
-          </p>
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-muted-foreground">
+              — {quote.source}
+            </p>
+            <Button
+              variant="link"
+              onClick={loadRandomQuote}
+              className="text-xs h-auto p-0 text-primary"
+            >
+              Another
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
