@@ -25,7 +25,7 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
   const [copied, setCopied] = useState(false);
   const [partnerName, setPartnerName] = useState("");
 
-  const generateInvitation = async () => {
+  const generateInvitation = async (): Promise<string | null> => {
     try {
       const token = crypto.randomUUID();
       const expiresAt = new Date();
@@ -43,8 +43,10 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
 
       const link = `${window.location.origin}/invite/${token}`;
       setInviteLink(link);
+      return link;
     } catch (error: any) {
       console.error("Error creating invitation:", error);
+      return null;
     }
   };
 
@@ -54,15 +56,21 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleInviteViaiMessage = () => {
-    const inviteUrl = inviteLink || window.location.origin + '/accept-invite';
+  const handleInviteViaiMessage = async () => {
+    let inviteUrl = inviteLink;
+    if (!inviteUrl) {
+      inviteUrl = (await generateInvitation()) || `${window.location.origin}`;
+    }
     const partnerText = partnerName ? ` ${partnerName}, ` : ' ';
     const message = `Hi${partnerText}I just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods and intimacy levels. I'd love for you to join me! Click here to get started: ${inviteUrl}`;
     window.location.href = `sms:&body=${encodeURIComponent(message)}`;
   };
 
-  const handleInviteViaEmail = () => {
-    const inviteUrl = inviteLink || window.location.origin + '/accept-invite';
+  const handleInviteViaEmail = async () => {
+    let inviteUrl = inviteLink;
+    if (!inviteUrl) {
+      inviteUrl = (await generateInvitation()) || `${window.location.origin}`;
+    }
     const subject = 'Join me on Spark Meter!';
     const greeting = partnerName ? `Hi ${partnerName}` : 'Hi';
     const body = `${greeting}!\n\nI just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods, intimacy levels, and emotional states.\n\nIt's a private space just for us to better understand each other and strengthen our relationship.\n\nI'd love for you to join me! Click here to get started:\n${inviteUrl}\n\nLooking forward to connecting with you!\n\nWith love`;
