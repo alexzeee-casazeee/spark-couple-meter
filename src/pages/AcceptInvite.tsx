@@ -98,6 +98,15 @@ const AcceptInvite = () => {
       return;
     }
 
+    if (!senderProfile || !invitation) {
+      toast({
+        title: "Error",
+        description: "Invalid invitation data. Please try again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setSigningUp(true);
 
     try {
