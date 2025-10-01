@@ -116,52 +116,6 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold mb-3 text-primary">{t("landing.features.title")}</h2>
-          <p className="text-base text-muted-foreground">{t("landing.features.subtitle")}</p>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl border border-white/40 hover:shadow-float-hover transition-all hover:scale-105" style={{ boxShadow: 'var(--shadow-float)' }}>
-            <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center mb-4">
-              <Users className="w-6 h-6 text-white" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2 text-primary">
-              {t("landing.feature1.title")}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {t("landing.feature1.description")}
-            </p>
-          </div>
-
-          <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl border border-white/40 hover:shadow-float-hover transition-all hover:scale-105" style={{ boxShadow: 'var(--shadow-float)' }}>
-            <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center mb-4">
-              <TrendingUp className="w-6 h-6 text-white" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2 text-secondary-foreground">
-              {t("landing.feature2.title")}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {t("landing.feature2.description")}
-            </p>
-          </div>
-
-          <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl border border-white/40 hover:shadow-float-hover transition-all hover:scale-105" style={{ boxShadow: 'var(--shadow-float)' }}>
-            <div className="w-12 h-12 rounded-2xl bg-accent flex items-center justify-center mb-4">
-              <Bell className="w-6 h-6 text-white" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2 text-accent-foreground">
-              {t("landing.feature3.title")}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {t("landing.feature3.description")}
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Benefits Section */}
       <section className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
