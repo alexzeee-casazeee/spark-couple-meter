@@ -31,7 +31,7 @@ const LearnMore = () => {
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Spark
+            Back to Spark Meter
           </button>
         </div>
       </header>
@@ -166,13 +166,13 @@ const LearnMore = () => {
         </div>
       </section>
 
-      {/* How Spark Helps */}
+      {/* How Spark Meter Helps */}
       <section id="how-it-works" className="py-6 px-[10px] md:px-4">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold mb-8 text-center text-primary">How Spark Helps</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center text-primary">How Spark Meter Helps</h2>
           
           <p className="text-lg text-muted-foreground mb-8 text-center">
-            Spark removes the friction.
+            Spark Meter removes the friction.
           </p>
 
           <div className="grid md:grid-cols-3 gap-1.5 mb-2">
@@ -283,7 +283,7 @@ const LearnMore = () => {
             </div>
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-muted-foreground">
-                After a job change, one partner felt disconnected but could not name why. A short Spark check-in surfaced the real issue: different expectations about evening routines. They agreed on three nights together, two nights solo. Connection restored without a big fight.
+                After a job change, one partner felt disconnected but could not name why. A short Spark Meter check-in surfaced the real issue: different expectations about evening routines. They agreed on three nights together, two nights solo. Connection restored without a big fight.
               </p>
             </div>
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
