@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { MessageCircle, Mail, Link2, Copy, Check, UserPlus } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -22,6 +23,7 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
   const { t } = useLanguage();
   const [inviteLink, setInviteLink] = useState("");
   const [copied, setCopied] = useState(false);
+  const [partnerName, setPartnerName] = useState("");
 
   const generateInvitation = async () => {
     try {
@@ -54,14 +56,16 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
 
   const handleInviteViaiMessage = () => {
     const inviteUrl = inviteLink || window.location.origin + '/accept-invite';
-    const message = `Hi! I just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods and intimacy levels. I'd love for you to join me! Click here to get started: ${inviteUrl}`;
+    const partnerText = partnerName ? ` ${partnerName}, ` : ' ';
+    const message = `Hi${partnerText}I just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods and intimacy levels. I'd love for you to join me! Click here to get started: ${inviteUrl}`;
     window.location.href = `sms:&body=${encodeURIComponent(message)}`;
   };
 
   const handleInviteViaEmail = () => {
     const inviteUrl = inviteLink || window.location.origin + '/accept-invite';
     const subject = 'Join me on Spark Meter!';
-    const body = `Hi!\n\nI just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods, intimacy levels, and emotional states.\n\nIt's a private space just for us to better understand each other and strengthen our relationship.\n\nI'd love for you to join me! Click here to get started:\n${inviteUrl}\n\nLooking forward to connecting with you!\n\nWith love`;
+    const greeting = partnerName ? `Hi ${partnerName}` : 'Hi';
+    const body = `${greeting}!\n\nI just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods, intimacy levels, and emotional states.\n\nIt's a private space just for us to better understand each other and strengthen our relationship.\n\nI'd love for you to join me! Click here to get started:\n${inviteUrl}\n\nLooking forward to connecting with you!\n\nWith love`;
     window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
@@ -78,6 +82,17 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
         </DialogHeader>
         
         <div className="flex flex-col gap-3 py-4">
+          <div className="space-y-2">
+            <Label htmlFor="partner-name">Partner's Name (Optional)</Label>
+            <Input
+              id="partner-name"
+              placeholder="Enter your partner's name"
+              value={partnerName}
+              onChange={(e) => setPartnerName(e.target.value)}
+              maxLength={50}
+            />
+          </div>
+          
           <Button
             onClick={handleInviteViaiMessage}
             className="w-full justify-start gap-2"
@@ -106,8 +121,8 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
           
           {!inviteLink ? (
             <Button onClick={generateInvitation} className="w-full gap-2">
-              <UserPlus className="h-4 w-4" />
-              Invite Your Partner
+              <Link2 className="h-4 w-4" />
+              Generate An Invite Link
             </Button>
           ) : (
             <div className="space-y-2">
