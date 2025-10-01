@@ -7,7 +7,6 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Landing from "./pages/Landing";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
-import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 import Trends from "./pages/Trends";
 import Log from "./pages/Log";
@@ -29,7 +28,6 @@ const App = () => (
             <Route path="/" element={<Landing />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/settings" element={<Settings />} />
             <Route path="/account" element={<Account />} />
             <Route path="/trends" element={<Trends />} />
             <Route path="/log" element={<Log />} />

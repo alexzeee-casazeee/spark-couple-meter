@@ -13,7 +13,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ArrowLeft, User, Lock, UserMinus } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ArrowLeft, User, Lock, UserMinus, Bell } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 const Account = () => {
@@ -29,6 +30,12 @@ const Account = () => {
   const [disconnectDialogOpen, setDisconnectDialogOpen] = useState(false);
   const [couple, setCouple] = useState<any>(null);
   const [partnerProfile, setPartnerProfile] = useState<any>(null);
+  
+  // Notification settings
+  const [frequency, setFrequency] = useState<string>("once");
+  const [time1, setTime1] = useState("20:00");
+  const [time2, setTime2] = useState("12:00");
+  const [time3, setTime3] = useState("08:00");
 
   useEffect(() => {
     loadProfile();
@@ -53,6 +60,10 @@ const Account = () => {
     if (profileData) {
       setProfile(profileData);
       setDisplayName(profileData.display_name || "");
+      setFrequency(profileData.notification_frequency || "once");
+      setTime1(profileData.notification_time || "20:00");
+      setTime2(profileData.notification_time_2 || "12:00");
+      setTime3(profileData.notification_time_3 || "08:00");
       
       // Check if user is in a couple
       const { data: coupleData } = await supabase
@@ -97,9 +108,59 @@ const Account = () => {
 
     if (error) {
       console.error("Error updating profile:", error);
+      toast({
+        title: "Error",
+        description: "Failed to update profile. Please try again.",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Profile Updated",
+        description: "Your profile has been updated successfully.",
+      });
     }
 
     setSaving(false);
+  };
+
+  const handleUpdateNotifications = async () => {
+    if (!profile) return;
+    setSaving(true);
+
+    try {
+      const updateData: any = {
+        notification_frequency: frequency,
+        notification_time: time1,
+      };
+
+      if (frequency === "twice" || frequency === "three_times") {
+        updateData.notification_time_2 = time2;
+      }
+      if (frequency === "three_times") {
+        updateData.notification_time_3 = time3;
+      }
+
+      const { error } = await supabase
+        .from("profiles")
+        .update(updateData)
+        .eq("id", profile.id);
+
+      if (error) throw error;
+
+      toast({
+        title: "Notifications Updated",
+        description: "Your notification preferences have been saved.",
+      });
+    } catch (error: any) {
+      console.error("Error saving settings:", error);
+      toast({
+        title: "Error",
+        description: "Failed to update notification settings.",
+        variant: "destructive",
+      });
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleChangePassword = async () => {
@@ -180,7 +241,7 @@ const Account = () => {
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
-          <h1 className="text-lg font-bold text-white">Account Settings</h1>
+          <h1 className="text-lg font-bold text-white">Account & Settings</h1>
         </div>
       </header>
 
@@ -323,6 +384,76 @@ const Account = () => {
             </CardContent>
           </Card>
         )}
+
+        {/* Notification Settings */}
+        <Card className="shadow-soft mt-4">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2 text-base">
+              <Bell className="w-4 h-4" />
+              Notification Preferences
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="space-y-1.5">
+              <Label className="text-sm">Notification Frequency</Label>
+              <Select value={frequency} onValueChange={setFrequency}>
+                <SelectTrigger className="h-9">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="once">Once daily</SelectItem>
+                  <SelectItem value="twice">Twice daily</SelectItem>
+                  <SelectItem value="three_times">Three times daily</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="time1" className="text-sm">
+                  {frequency === "once" ? "Notification Time" : "First Notification"}
+                </Label>
+                <Input
+                  id="time1"
+                  type="time"
+                  value={time1}
+                  onChange={(e) => setTime1(e.target.value)}
+                  className="h-9"
+                />
+              </div>
+
+              {(frequency === "twice" || frequency === "three_times") && (
+                <div className="space-y-1.5">
+                  <Label htmlFor="time2" className="text-sm">Second Notification</Label>
+                  <Input
+                    id="time2"
+                    type="time"
+                    value={time2}
+                    onChange={(e) => setTime2(e.target.value)}
+                    className="h-9"
+                  />
+                </div>
+              )}
+
+              {frequency === "three_times" && (
+                <div className="space-y-1.5">
+                  <Label htmlFor="time3" className="text-sm">Third Notification</Label>
+                  <Input
+                    id="time3"
+                    type="time"
+                    value={time3}
+                    onChange={(e) => setTime3(e.target.value)}
+                    className="h-9"
+                  />
+                </div>
+              )}
+            </div>
+
+            <Button onClick={handleUpdateNotifications} disabled={saving} className="w-full">
+              {saving ? "Saving..." : "Save Notification Settings"}
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

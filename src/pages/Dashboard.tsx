@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle, Bell, List, MessageCircle, Mail, X, Send, Copy, Check, Link2 } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Save, UserCircle, Bell, List, MessageCircle, Mail, Copy, Check, Link2 } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import CustomDimensionsManager from "@/components/CustomDimensionsManager";
@@ -475,9 +475,6 @@ const Dashboard = () => {
             <LanguageSwitcher />
             <Button variant="outline" size="icon" onClick={() => navigate("/account")} className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7">
               <UserCircle className="w-3.5 h-3.5 text-white" />
-            </Button>
-            <Button variant="outline" size="icon" onClick={() => navigate("/settings")} className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7">
-              <Settings className="w-3.5 h-3.5 text-white" />
             </Button>
             <Button variant="outline" size="icon" onClick={handleLogout} className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7">
               <LogOut className="w-3.5 h-3.5 text-white" />
