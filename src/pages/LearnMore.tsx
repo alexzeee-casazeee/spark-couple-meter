@@ -38,7 +38,7 @@ const LearnMore = () => {
 
       {/* Hero Section */}
       <section id="hero" className="py-6 px-[5px] md:px-4">
-        <div className="container mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/60">
             <Heart className="w-8 h-8 text-primary-foreground" fill="currentColor" />
           </div>
@@ -81,7 +81,7 @@ const LearnMore = () => {
 
       {/* Problem Section */}
       <section id="problem" className="py-6 px-[5px] md:px-4">
-        <div className="container mx-auto max-w-3xl">
+        <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">The Problem: Busy lives, silent drift</h2>
           
           <div className="space-y-4 text-lg text-muted-foreground mb-8 bg-white/70 backdrop-blur-sm p-5 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
@@ -109,7 +109,7 @@ const LearnMore = () => {
 
       {/* Why Check-ins Matter */}
       <section id="checkins" className="py-6 px-[5px] md:px-4">
-        <div className="container mx-auto max-w-4xl">
+        <div className="mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">Why Regular Check-ins Matter</h2>
           
           <p className="text-lg text-muted-foreground mb-8 text-center max-w-2xl mx-auto">
@@ -168,7 +168,7 @@ const LearnMore = () => {
 
       {/* How Spark Helps */}
       <section id="how-it-works" className="py-6 px-[5px] md:px-4">
-        <div className="container mx-auto max-w-4xl">
+        <div className="mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">How Spark Helps</h2>
           
           <p className="text-lg text-muted-foreground mb-8 text-center">
@@ -216,7 +216,7 @@ const LearnMore = () => {
 
       {/* Framework Section */}
       <section id="framework" className="py-6 px-[5px] md:px-4">
-        <div className="container mx-auto max-w-3xl">
+        <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">What to Say, Even When You Feel Stuck</h2>
           
           <div className="bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative rounded-3xl p-5 space-y-4" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
@@ -237,7 +237,7 @@ const LearnMore = () => {
 
       {/* Proof Section */}
       <section id="proof" className="py-6 px-[5px] md:px-4">
-        <div className="container mx-auto max-w-3xl">
+        <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">Proof and Research</h2>
           
           <div className="space-y-1.5">
@@ -272,7 +272,7 @@ const LearnMore = () => {
 
       {/* Stories Section */}
       <section id="stories" className="py-6 px-[5px] md:px-4">
-        <div className="container mx-auto max-w-4xl">
+        <div className="mx-auto max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">Real-life Snapshots</h2>
           
           <div className="grid md:grid-cols-3 gap-1.5">
@@ -297,7 +297,7 @@ const LearnMore = () => {
 
       {/* FAQ Section */}
       <section id="faq" className="py-6 px-[5px] md:px-4">
-        <div className="container mx-auto max-w-3xl">
+        <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">FAQ</h2>
           
           <div className="space-y-6 bg-white/70 backdrop-blur-sm rounded-3xl p-2.5 border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
@@ -331,7 +331,7 @@ const LearnMore = () => {
 
       {/* Final CTA */}
       <section id="cta" className="py-6 px-[5px] md:px-4">
-        <div className="container mx-auto max-w-2xl text-center space-y-4 bg-white/70 backdrop-blur-sm p-2.5 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+        <div className="mx-auto max-w-2xl text-center space-y-4 bg-white/70 backdrop-blur-sm p-2.5 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <h2 className="text-4xl font-bold mb-4 text-primary">Start your first check-in now.</h2>
           <p className="text-lg text-muted-foreground mb-8">
             Takes 2 minutes. Real progress.
