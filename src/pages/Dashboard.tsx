@@ -473,7 +473,7 @@ const Dashboard = () => {
                 className="w-full gap-2"
               >
                 <UserPlus className="h-4 w-4" />
-                {t("dashboard.invite.button")}
+                Invite Your Partner
               </Button>
             </div>
           </div>
