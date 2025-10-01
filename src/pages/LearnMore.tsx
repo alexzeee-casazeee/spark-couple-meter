@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, MessageSquare, TrendingUp, Shield, Heart, Users, Lightbulb } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { AuthModal } from "@/components/AuthModal";
 
 const LearnMore = () => {
   const navigate = useNavigate();
+  const [authModalOpen, setAuthModalOpen] = useState(false);
 
   useEffect(() => {
     // Smooth scroll to hash on load
@@ -49,7 +51,7 @@ const LearnMore = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              onClick={() => navigate("/auth")}
+              onClick={() => setAuthModalOpen(true)}
               className="text-lg px-8 border-2 border-transparent bg-clip-padding relative shadow-lg"
               style={{ 
                 background: 'var(--gradient-primary)',
@@ -196,7 +198,7 @@ const LearnMore = () => {
           <div className="text-center">
             <Button 
               size="lg" 
-              onClick={() => navigate("/auth")}
+              onClick={() => setAuthModalOpen(true)}
               className="shadow-lg"
               style={{ background: 'var(--gradient-primary)' }}
             >
@@ -432,6 +434,9 @@ const LearnMore = () => {
           <p>© 2025 Spark Couple Meter. Built to help couples stay connected.</p>
         </div>
       </footer>
+
+      {/* Auth Modal */}
+      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
     </div>
   );
 };
