@@ -46,8 +46,13 @@ const Landing = () => {
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center pt-2">
             <Button
               size="lg"
-              className="text-base px-6 py-5 shadow-lg"
-              style={{ background: 'var(--gradient-primary)' }}
+              className="text-base px-6 py-5 shadow-lg border-2 border-transparent bg-clip-padding relative"
+              style={{ 
+                background: 'var(--gradient-primary)',
+                backgroundImage: 'linear-gradient(135deg, hsl(280, 60%, 70%), hsl(190, 70%, 75%)), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
+                backgroundOrigin: 'border-box',
+                backgroundClip: 'padding-box, border-box'
+              }}
               onClick={() => setAuthModalOpen(true)}
             >
               {t("landing.cta.primary")}
@@ -55,7 +60,12 @@ const Landing = () => {
             <Button
               size="lg"
               variant="outline"
-              className="text-base px-6 py-5 bg-white/70 backdrop-blur-sm border-white/40 hover:bg-white/90"
+              className="text-base px-6 py-5 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg"
+              style={{ 
+                backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
+                backgroundOrigin: 'border-box',
+                backgroundClip: 'padding-box, border-box'
+              }}
               onClick={() => navigate("/learn-more")}
             >
               {t("landing.cta.secondary")}
