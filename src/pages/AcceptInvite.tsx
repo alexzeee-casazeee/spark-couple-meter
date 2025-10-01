@@ -13,6 +13,7 @@ const AcceptInvite = () => {
   const { token } = useParams();
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const { toast } = useToast();
   const [loading, setLoading] = useState(true);
   const [signingUp, setSigningUp] = useState(false);
   const [invitation, setInvitation] = useState<any>(null);
@@ -72,8 +73,11 @@ const AcceptInvite = () => {
     setSigningUp(true);
 
     try {
+      console.log('Starting signup process...');
+      
       // Determine role (opposite of sender)
       const role = senderProfile.role === 'husband' ? 'wife' : 'husband';
+      console.log('User role:', role);
 
       // Sign up
       const { data, error } = await supabase.auth.signUp({
@@ -88,23 +92,69 @@ const AcceptInvite = () => {
         }
       });
 
-      if (error) throw error;
-      if (!data.user) throw new Error("Failed to create account");
+      if (error) {
+        console.error('Signup error:', error);
+        toast({
+          title: "Signup Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        throw error;
+      }
+      
+      if (!data.user) {
+        const errorMsg = "Failed to create account";
+        console.error(errorMsg);
+        toast({
+          title: "Signup Failed",
+          description: errorMsg,
+          variant: "destructive",
+        });
+        throw new Error(errorMsg);
+      }
+
+      console.log('User created:', data.user.id);
+      
+      toast({
+        title: "Account Created!",
+        description: "Setting up your profile...",
+      });
 
       // Wait for profile to be created by trigger
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
       // Get the new user's profile
-      const { data: myProfile } = await supabase
+      const { data: myProfile, error: profileError } = await supabase
         .from('profiles')
         .select('*')
         .eq('user_id', data.user.id)
         .single();
 
-      if (!myProfile) throw new Error("Profile not found");
+      if (profileError) {
+        console.error('Profile fetch error:', profileError);
+        toast({
+          title: "Profile Error",
+          description: "Could not load your profile. Please try logging in.",
+          variant: "destructive",
+        });
+        throw profileError;
+      }
+
+      if (!myProfile) {
+        const errorMsg = "Profile not found";
+        console.error(errorMsg);
+        toast({
+          title: "Profile Error",
+          description: errorMsg,
+          variant: "destructive",
+        });
+        throw new Error(errorMsg);
+      }
+
+      console.log('Profile found:', myProfile.id);
 
       // Mark invitation as used
-      await supabase
+      const { error: inviteError } = await supabase
         .from('invitations')
         .update({
           used_at: new Date().toISOString(),
@@ -112,13 +162,36 @@ const AcceptInvite = () => {
         })
         .eq('id', invitation.id);
 
+      if (inviteError) {
+        console.error('Invitation update error:', inviteError);
+      }
+
       // Create couple record
       const coupleData = role === 'husband' 
         ? { husband_id: myProfile.id, wife_id: senderProfile.id }
         : { husband_id: senderProfile.id, wife_id: myProfile.id };
 
-      await supabase.from('couples').insert(coupleData);
+      const { error: coupleError } = await supabase.from('couples').insert(coupleData);
 
+      if (coupleError) {
+        console.error('Couple creation error:', coupleError);
+        toast({
+          title: "Connection Error",
+          description: "Could not connect with your partner. Please contact support.",
+          variant: "destructive",
+        });
+        throw coupleError;
+      }
+
+      console.log('Couple created successfully');
+      
+      toast({
+        title: "Success!",
+        description: "You're now connected. Redirecting to dashboard...",
+      });
+
+      // Small delay before navigation
+      await new Promise(resolve => setTimeout(resolve, 500));
       navigate("/dashboard");
     } catch (error: any) {
       console.error('Signup error:', error);
