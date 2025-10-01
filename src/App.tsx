@@ -11,6 +11,7 @@ import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 import Trends from "./pages/Trends";
 import Log from "./pages/Log";
+import LearnMore from "./pages/LearnMore";
 import AcceptInvite from "./pages/AcceptInvite";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/account" element={<Account />} />
             <Route path="/trends" element={<Trends />} />
             <Route path="/log" element={<Log />} />
+            <Route path="/learn-more" element={<LearnMore />} />
             <Route path="/invite/:token" element={<AcceptInvite />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
