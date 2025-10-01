@@ -442,6 +442,24 @@ const Dashboard = () => {
           </div>
           <div className="flex gap-1.5">
             <LanguageSwitcher />
+            {couple && partnerProfile && (
+              <Button 
+                variant="outline" 
+                size="icon" 
+                onClick={() => setOliveBranchOpen(true)} 
+                className="bg-white/10 border-white/20 hover:bg-white/20 h-7 w-7 relative"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-white" />
+                {unreadCount > 0 && (
+                  <Badge
+                    variant="destructive"
+                    className="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center p-0 text-[8px]"
+                  >
+                    {unreadCount}
+                  </Badge>
+                )}
+              </Button>
+            )}
             {couple && (
               <Button 
                 variant="outline" 
