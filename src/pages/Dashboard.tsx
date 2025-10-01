@@ -24,6 +24,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { OliveBranchDialog } from "@/components/OliveBranchDialog";
 import { Badge } from "@/components/ui/badge";
 import InvitationDialog from "@/components/InvitationDialog";
+import CombinedTrialOliveBranch from "@/components/CombinedTrialOliveBranch";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -495,6 +496,17 @@ const Dashboard = () => {
           </div>
         )}
 
+        {/* Combined Trial Status and Olive Branch */}
+        {couple && profile && partnerProfile && (
+          <CombinedTrialOliveBranch 
+            profile={profile}
+            couple={couple}
+            partnerProfile={partnerProfile}
+            onOpenOliveBranch={() => setOliveBranchOpen(true)}
+            unreadCount={unreadCount}
+          />
+        )}
+
         {/* Quote of the Day - Top Position */}
         {!quoteAtBottom && (
           <div className="animate-fade-in">
@@ -504,9 +516,6 @@ const Dashboard = () => {
             />
           </div>
         )}
-        
-        {/* Trial Status / Subscription */}
-        {profile && <TrialStatus profile={profile} />}
 
           {/* View Mode Toggle - Moved to top */}
         {couple && partnerProfile && (
@@ -791,39 +800,8 @@ const Dashboard = () => {
 
                 {viewMode === 'self' && (
                   <>
-                    <div className="flex justify-center gap-2.5 pt-1">
+                  <div className="flex justify-center gap-2.5 pt-1">
                       <VoiceInput onParsedValues={handleVoiceInput} />
-                      
-                      {/* Olive Branch Button */}
-                      {couple && partnerProfile && (
-                        <Button
-                          size="lg"
-                          onClick={() => setOliveBranchOpen(true)}
-                          className="rounded-full transition-all duration-200 hover:scale-105 h-12 w-12 relative"
-                          style={{ 
-                            background: "linear-gradient(135deg, hsl(120, 60%, 60%), hsl(160, 60%, 55%))",
-                            boxShadow: "var(--shadow-float)",
-                            border: "none"
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.boxShadow = "var(--shadow-float-hover)";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.boxShadow = "var(--shadow-float)";
-                          }}
-                        >
-                          <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-                          </svg>
-                          {unreadCount > 0 && (
-                            <Badge 
-                              className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-red-500 border-2 border-white"
-                            >
-                              {unreadCount}
-                            </Badge>
-                          )}
-                        </Button>
-                      )}
                       
                       <Button
                         size="lg"
