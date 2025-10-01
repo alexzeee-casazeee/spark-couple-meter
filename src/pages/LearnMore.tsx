@@ -448,7 +448,7 @@ const LearnMore = () => {
       {/* Footer */}
       <footer className="border-t border-border py-6 px-1.5">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
-          <p>© 2025 Spark Couple Meter. Built to help couples stay connected.</p>
+          <p>© 2025 Spark Meter. Built to help couples stay connected.</p>
         </div>
       </footer>
 
