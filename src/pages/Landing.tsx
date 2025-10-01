@@ -66,13 +66,13 @@ const Landing = () => {
 
       {/* How It Works Section */}
       <section className="container mx-auto px-4 py-8">
-        <div className="max-w-3xl mx-auto bg-white/70 backdrop-blur-sm p-8 rounded-3xl border border-white/40" style={{ boxShadow: 'var(--shadow-float)' }}>
-          <div className="text-center mb-8">
+        <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border border-white/40" style={{ boxShadow: 'var(--shadow-float)' }}>
+          <div className="text-center mb-6 px-6 pt-6">
             <h2 className="text-3xl font-bold mb-3 text-primary">How It Works</h2>
             <p className="text-base text-muted-foreground">Simple daily check-ins that strengthen your bond</p>
           </div>
           
-          <div className="space-y-4">
+          <div className="grid md:grid-cols-3 gap-4 px-6 pb-6">
             <div className="bg-white/80 p-5 rounded-2xl border border-primary/10">
               <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
                 <Users className="w-6 h-6 text-primary" />
