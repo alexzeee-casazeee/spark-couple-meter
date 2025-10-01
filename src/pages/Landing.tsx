@@ -43,8 +43,8 @@ const Landing = () => {
             {t("landing.hero.description")}
           </p>
           
-          <div className="flex flex-row gap-3 justify-center items-center pt-2">
-            <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col gap-2 justify-center items-center pt-2">
+            <div className="flex flex-row gap-3 justify-center items-center">
               <Button
                 size="lg"
                 className="text-base px-6 py-5 shadow-lg border-2 border-transparent bg-clip-padding relative"
@@ -58,21 +58,21 @@ const Landing = () => {
               >
                 {t("landing.cta.primary")}
               </Button>
-              <p className="text-sm text-muted-foreground">Free for 30 Days. Then $2.99/mo</p>
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-base px-6 py-5 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg"
+                style={{ 
+                  backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
+                  backgroundOrigin: 'border-box',
+                  backgroundClip: 'padding-box, border-box'
+                }}
+                onClick={() => navigate("/learn-more")}
+              >
+                {t("landing.cta.secondary")}
+              </Button>
             </div>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-base px-6 py-5 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg"
-              style={{ 
-                backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
-                backgroundOrigin: 'border-box',
-                backgroundClip: 'padding-box, border-box'
-              }}
-              onClick={() => navigate("/learn-more")}
-            >
-              {t("landing.cta.secondary")}
-            </Button>
+            <p className="text-sm text-muted-foreground">Free for 30 Days. Then $2.99/mo</p>
           </div>
         </div>
       </section>
