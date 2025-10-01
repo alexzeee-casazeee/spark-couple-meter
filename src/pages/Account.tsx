@@ -275,15 +275,30 @@ const Account = () => {
             </div>
 
             <div className="flex gap-2 pt-2">
-              <Button onClick={handleUpdateProfile} disabled={saving} className="flex-1">
-                Save Profile
+              <Button 
+                onClick={handleUpdateProfile} 
+                disabled={saving} 
+                className="flex-1 rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
+                style={{
+                  background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                  border: "none"
+                }}
+              >
+                <span className="text-white font-semibold">Save Profile</span>
               </Button>
               
               <Dialog open={passwordDialogOpen} onOpenChange={setPasswordDialogOpen}>
                 <DialogTrigger asChild>
-                  <Button variant="outline" className="flex-1">
-                    <Lock className="w-4 h-4 mr-2" />
-                    Change Password
+                  <Button 
+                    variant="outline" 
+                    className="flex-1 rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
+                    style={{
+                      background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                      border: "none"
+                    }}
+                  >
+                    <Lock className="w-4 h-4 mr-2 text-white" />
+                    <span className="text-white font-semibold">Change Password</span>
                   </Button>
                 </DialogTrigger>
                 <DialogContent>
@@ -317,9 +332,15 @@ const Account = () => {
                     <Button
                       onClick={handleChangePassword}
                       disabled={saving || !newPassword || !confirmPassword}
-                      className="w-full"
+                      className="w-full rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
+                      style={{
+                        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                        border: "none"
+                      }}
                     >
-                      {saving ? "Updating..." : "Update Password"}
+                      <span className="text-white font-semibold">
+                        {saving ? "Updating..." : "Update Password"}
+                      </span>
                     </Button>
                   </div>
                 </DialogContent>
@@ -349,9 +370,16 @@ const Account = () => {
 
               <Dialog open={disconnectDialogOpen} onOpenChange={setDisconnectDialogOpen}>
                 <DialogTrigger asChild>
-                  <Button variant="destructive" className="w-full">
-                    <UserMinus className="w-4 h-4 mr-2" />
-                    Disconnect Partner
+                  <Button 
+                    variant="destructive" 
+                    className="w-full rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
+                    style={{
+                      background: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+                      border: "none"
+                    }}
+                  >
+                    <UserMinus className="w-4 h-4 mr-2 text-white" />
+                    <span className="text-white font-semibold">Disconnect Partner</span>
                   </Button>
                 </DialogTrigger>
                 <DialogContent>
@@ -366,17 +394,27 @@ const Account = () => {
                     <Button
                       variant="outline"
                       onClick={() => setDisconnectDialogOpen(false)}
-                      className="flex-1"
+                      className="flex-1 rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
+                      style={{
+                        background: "linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%)",
+                        border: "none"
+                      }}
                     >
-                      Cancel
+                      <span className="text-gray-700 font-semibold">Cancel</span>
                     </Button>
                     <Button
                       variant="destructive"
                       onClick={handleDisconnectPartner}
                       disabled={saving}
-                      className="flex-1"
+                      className="flex-1 rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
+                      style={{
+                        background: "linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)",
+                        border: "none"
+                      }}
                     >
-                      {saving ? "Disconnecting..." : "Disconnect"}
+                      <span className="text-white font-semibold">
+                        {saving ? "Disconnecting..." : "Disconnect"}
+                      </span>
                     </Button>
                   </div>
                 </DialogContent>
@@ -449,8 +487,18 @@ const Account = () => {
               )}
             </div>
 
-            <Button onClick={handleUpdateNotifications} disabled={saving} className="w-full">
-              {saving ? "Saving..." : "Save Notification Settings"}
+            <Button 
+              onClick={handleUpdateNotifications} 
+              disabled={saving} 
+              className="w-full rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
+              style={{
+                background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+                border: "none"
+              }}
+            >
+              <span className="text-white font-semibold">
+                {saving ? "Saving..." : "Save Notification Settings"}
+              </span>
             </Button>
           </CardContent>
         </Card>
