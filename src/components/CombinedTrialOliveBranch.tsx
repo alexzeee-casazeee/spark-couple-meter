@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { CreditCard, Crown, Heart } from "lucide-react";
+import { CreditCard, Crown, Leaf } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -155,12 +155,14 @@ const CombinedTrialOliveBranch = ({
               onClick={onOpenOliveBranch}
               variant="outline"
               size="sm"
-              className="relative h-8 sm:h-9 gap-1 sm:gap-2 px-2 sm:px-3"
+              className="relative h-12 w-12 sm:h-14 sm:w-14 p-0 rounded-full hover:scale-105 transition-transform"
+              style={{
+                filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))"
+              }}
             >
-              <Heart className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="text-xs sm:text-sm">{t('oliveBranch')}</span>
+              <Leaf className="w-6 h-6 sm:w-7 sm:h-7 text-green-600" />
               {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold shadow-lg">
                   {unreadCount}
                 </span>
               )}
