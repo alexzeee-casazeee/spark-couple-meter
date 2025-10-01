@@ -102,6 +102,10 @@ const translations = {
     "dashboard.toast.invite.share": "Share this link with your partner",
     "dashboard.toast.copied": "Copied!",
     "dashboard.toast.copied.description": "Invitation link copied to clipboard",
+    "dashboard.invite.prompt.title": "🎯 Invite Your Partner Now!",
+    "dashboard.invite.prompt.description": "Getting your partner to join is crucial for Spark Meter to work. Choose the easiest way to invite them:",
+    "dashboard.invite.viaiMessage": "Invite via iMessage",
+    "dashboard.invite.viaEmail": "Invite via Email",
     
     // Voice input
     "voice.listening": "Listening...",
@@ -223,6 +227,10 @@ const translations = {
     "dashboard.toast.invite.share": "Поделитесь этой ссылкой с партнером",
     "dashboard.toast.copied": "Скопировано!",
     "dashboard.toast.copied.description": "Ссылка-приглашение скопирована в буфер обмена",
+    "dashboard.invite.prompt.title": "🎯 Пригласите партнера сейчас!",
+    "dashboard.invite.prompt.description": "Присоединение вашего партнера критически важно для работы Spark Meter. Выберите самый простой способ пригласить его:",
+    "dashboard.invite.viaiMessage": "Пригласить через iMessage",
+    "dashboard.invite.viaEmail": "Пригласить через Email",
     
     // Voice input
     "voice.listening": "Слушаю...",

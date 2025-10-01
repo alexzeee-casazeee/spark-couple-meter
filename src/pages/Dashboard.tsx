@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle, Bell, List, MessageCircle, Mail } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Settings, Save, UserCircle, Bell, List, MessageCircle, Mail, X, Send } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import InvitationManager from "@/components/InvitationManager";
@@ -57,6 +57,11 @@ const Dashboard = () => {
   
   // Auto-save timer
   const saveTimerRef = useRef<NodeJS.Timeout | null>(null);
+  
+  // Invitation prompt dismissed state
+  const [invitePromptDismissed, setInvitePromptDismissed] = useState(() => {
+    return localStorage.getItem('invitePromptDismissed') === 'true';
+  });
 
   // Ensure partner custom dimension values load after both partner entry and dimensions are ready
   useEffect(() => {
@@ -406,6 +411,24 @@ const Dashboard = () => {
     }
   };
 
+  const handleDismissInvitePrompt = () => {
+    setInvitePromptDismissed(true);
+    localStorage.setItem('invitePromptDismissed', 'true');
+  };
+
+  const handleInviteViaiMessage = () => {
+    const inviteUrl = window.location.origin + '/accept-invite';
+    const message = `Hi! I just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods and intimacy levels. I'd love for you to join me! Click here to get started: ${inviteUrl}`;
+    window.location.href = `sms:&body=${encodeURIComponent(message)}`;
+  };
+
+  const handleInviteViaEmail = () => {
+    const inviteUrl = window.location.origin + '/accept-invite';
+    const subject = 'Join me on Spark Meter!';
+    const body = `Hi!\n\nI just signed up for Spark Meter, an app that helps couples stay connected by tracking our daily moods, intimacy levels, and emotional states.\n\nIt's a private space just for us to better understand each other and strengthen our relationship.\n\nI'd love for you to join me! Click here to get started:\n${inviteUrl}\n\nLooking forward to connecting with you!\n\nWith love`;
+    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -442,6 +465,50 @@ const Dashboard = () => {
       </header>
 
       <div className="container mx-auto px-1 py-2 max-w-4xl space-y-2">
+        {/* Invitation Prompt */}
+        {!couple && profile && !invitePromptDismissed && (
+          <Card className="shadow-soft border-primary/20">
+            <CardContent className="p-4 relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute top-2 right-2 h-6 w-6"
+                onClick={handleDismissInvitePrompt}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+              
+              <div className="pr-8">
+                <h3 className="font-semibold text-lg mb-2 text-primary">
+                  {t("dashboard.invite.prompt.title")}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {t("dashboard.invite.prompt.description")}
+                </p>
+                
+                <div className="flex flex-col gap-2">
+                  <Button
+                    onClick={handleInviteViaiMessage}
+                    className="w-full justify-start gap-2"
+                    variant="outline"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    {t("dashboard.invite.viaiMessage")}
+                  </Button>
+                  <Button
+                    onClick={handleInviteViaEmail}
+                    className="w-full justify-start gap-2"
+                    variant="outline"
+                  >
+                    <Mail className="h-4 w-4" />
+                    {t("dashboard.invite.viaEmail")}
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+        
         {/* Connection Status */}
         {!couple && profile && (
           <InvitationManager 
