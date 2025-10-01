@@ -98,18 +98,13 @@ const AcceptInvite = () => {
       return;
     }
 
-    if (!senderProfile || !invitation) {
-      toast({
-        title: "Error",
-        description: "Invalid invitation data. Please try again.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setSigningUp(true);
 
     try {
+      if (!senderProfile?.role || !invitation?.id) {
+        throw new Error("Invitation data not loaded. Please refresh the page.");
+      }
+
       // Determine role (opposite of sender)
       const role = senderProfile.role === 'husband' ? 'wife' : 'husband';
 
