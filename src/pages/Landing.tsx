@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { AuthModal } from "@/components/AuthModal";
 import { Heart, Users, LineChart, Sparkles, MessageCircle, TrendingUp, Shield, Bell } from "lucide-react";
 
 const Landing = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const [authModalOpen, setAuthModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--gradient-canva-bg)' }}>
@@ -45,7 +48,7 @@ const Landing = () => {
               size="lg"
               className="text-lg px-8 py-6 shadow-lg"
               style={{ background: 'var(--gradient-primary)' }}
-              onClick={() => navigate("/auth")}
+              onClick={() => setAuthModalOpen(true)}
             >
               {t("landing.cta.primary")}
             </Button>
@@ -53,6 +56,7 @@ const Landing = () => {
               size="lg"
               variant="outline"
               className="text-lg px-8 py-6 bg-white/70 backdrop-blur-sm border-white/40 hover:bg-white/90"
+              onClick={() => navigate("/learn-more")}
             >
               {t("landing.cta.secondary")}
             </Button>
@@ -167,7 +171,7 @@ const Landing = () => {
             size="lg"
             className="text-lg px-8 py-6 shadow-lg"
             style={{ background: 'var(--gradient-primary)' }}
-            onClick={() => navigate("/auth")}
+            onClick={() => setAuthModalOpen(true)}
           >
             {t("landing.final.cta")}
           </Button>
@@ -178,6 +182,9 @@ const Landing = () => {
       <footer className="container mx-auto px-4 py-8 text-center text-muted-foreground border-t border-border/50">
         <p>{t("landing.footer")}</p>
       </footer>
+
+      {/* Auth Modal */}
+      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
     </div>
   );
 };
