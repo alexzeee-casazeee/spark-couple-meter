@@ -14,6 +14,7 @@ import LearnMore from "./pages/LearnMore";
 import AcceptInvite from "./pages/AcceptInvite";
 import NotFound from "./pages/NotFound";
 import LogoPreview from "./pages/LogoPreview";
+import QuotesManager from "./pages/QuotesManager";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/quotes" element={<QuotesManager />} />
             <Route path="/trends" element={<Trends />} />
             <Route path="/log" element={<Log />} />
             <Route path="/learn-more" element={<LearnMore />} />

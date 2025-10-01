@@ -341,6 +341,27 @@ export type Database = {
         }
         Relationships: []
       }
+      quotes: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          source: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          source: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          source?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

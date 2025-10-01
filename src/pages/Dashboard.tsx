@@ -12,11 +12,12 @@ import {
 } from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { Heart, LogOut, TrendingUp, Save, UserCircle, Bell, List, MessageCircle, Mail, Copy, Check, Link2 } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Save, UserCircle, Bell, List, MessageCircle, Mail, Copy, Check, Link2, Quote } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import CustomDimensionsManager from "@/components/CustomDimensionsManager";
 import { Input } from "@/components/ui/input";
+import QuoteOfTheDay from "@/components/QuoteOfTheDay";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { OliveBranchDialog } from "@/components/OliveBranchDialog";
@@ -558,6 +559,9 @@ const Dashboard = () => {
             </div>
           )}
 
+        {/* Quote of the Day */}
+        <QuoteOfTheDay />
+
           {/* View Mode Toggle - Moved to top */}
         {couple && partnerProfile && (
           <Card className="shadow-soft">
@@ -905,6 +909,16 @@ const Dashboard = () => {
             {t("dashboard.viewLog")}
           </Button>
         </div>
+        
+        {/* Manage Quotes Link - visible to authenticated users */}
+        <Button 
+          variant="outline" 
+          className="w-full h-8 text-xs" 
+          onClick={() => navigate("/quotes")}
+        >
+          <Quote className="w-3 h-3 mr-2" />
+          Manage Quotes
+        </Button>
       </div>
 
       {/* Olive Branch Dialog */}
