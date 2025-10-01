@@ -13,7 +13,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ArrowLeft, User, Lock } from "lucide-react";
+import { ArrowLeft, User, Lock, UserMinus } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -25,6 +26,9 @@ const Account = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordDialogOpen, setPasswordDialogOpen] = useState(false);
+  const [disconnectDialogOpen, setDisconnectDialogOpen] = useState(false);
+  const [couple, setCouple] = useState<any>(null);
+  const [partnerProfile, setPartnerProfile] = useState<any>(null);
 
   useEffect(() => {
     loadProfile();
@@ -49,6 +53,33 @@ const Account = () => {
     if (profileData) {
       setProfile(profileData);
       setDisplayName(profileData.display_name || "");
+      
+      // Check if user is in a couple
+      const { data: coupleData } = await supabase
+        .from("couples")
+        .select("*")
+        .or(`husband_id.eq.${profileData.id},wife_id.eq.${profileData.id}`)
+        .eq("is_active", true)
+        .maybeSingle();
+      
+      if (coupleData) {
+        setCouple(coupleData);
+        
+        // Get partner profile
+        const partnerId = coupleData.husband_id === profileData.id 
+          ? coupleData.wife_id 
+          : coupleData.husband_id;
+        
+        const { data: partnerData } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", partnerId)
+          .maybeSingle();
+        
+        if (partnerData) {
+          setPartnerProfile(partnerData);
+        }
+      }
     }
 
     setLoading(false);
@@ -99,6 +130,36 @@ const Account = () => {
     setSaving(false);
   };
 
+  const handleDisconnectPartner = async () => {
+    if (!couple) return;
+
+    setSaving(true);
+
+    const { error } = await supabase
+      .from("couples")
+      .update({ is_active: false })
+      .eq("id", couple.id);
+
+    if (error) {
+      console.error("Error disconnecting partner:", error);
+      toast({
+        title: "Error",
+        description: "Failed to disconnect partner. Please try again.",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Partner Disconnected",
+        description: "You have been disconnected from your partner.",
+      });
+      setDisconnectDialogOpen(false);
+      setCouple(null);
+      setPartnerProfile(null);
+    }
+
+    setSaving(false);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -133,21 +194,15 @@ const Account = () => {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="space-y-1.5">
-                <Label htmlFor="displayName" className="text-sm">Display Name</Label>
-                <Input
-                  id="displayName"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  placeholder="Your display name"
-                  className="h-9"
-                />
-              </div>
-              <div className="space-y-1.5">
-                <Label className="text-sm">Role</Label>
-                <Input value={profile?.role || ""} disabled className="capitalize h-9" />
-              </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="displayName" className="text-sm">Display Name</Label>
+              <Input
+                id="displayName"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                placeholder="Your display name"
+                className="h-9"
+              />
             </div>
             
             <div className="space-y-1.5">
@@ -211,6 +266,63 @@ const Account = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Partner Management */}
+        {couple && partnerProfile && (
+          <Card className="shadow-soft mt-4">
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center gap-2 text-base">
+                <UserMinus className="w-4 h-4" />
+                Partner Connection
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="space-y-1.5">
+                <Label className="text-sm">Connected Partner</Label>
+                <Input 
+                  value={partnerProfile.display_name} 
+                  disabled 
+                  className="h-9" 
+                />
+              </div>
+
+              <Dialog open={disconnectDialogOpen} onOpenChange={setDisconnectDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="destructive" className="w-full">
+                    <UserMinus className="w-4 h-4 mr-2" />
+                    Disconnect Partner
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Disconnect Partner</DialogTitle>
+                    <DialogDescription>
+                      Are you sure you want to disconnect from {partnerProfile.display_name}? 
+                      This will end your couple connection and you won't be able to see each other's entries anymore.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="flex gap-2 pt-4">
+                    <Button
+                      variant="outline"
+                      onClick={() => setDisconnectDialogOpen(false)}
+                      className="flex-1"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      onClick={handleDisconnectPartner}
+                      disabled={saving}
+                      className="flex-1"
+                    >
+                      {saving ? "Disconnecting..." : "Disconnect"}
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );
