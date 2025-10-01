@@ -517,48 +517,6 @@ const Dashboard = () => {
           </div>
         )}
 
-          {/* View Mode Toggle - Moved to top */}
-        {couple && partnerProfile && (
-          <Card className="shadow-soft">
-            <CardContent className="pt-3 pb-3">
-              <div className="flex gap-2">
-                <Button
-                  variant={viewMode === 'self' ? 'default' : 'outline'}
-                  onClick={() => setViewMode('self')}
-                  className="flex-1 h-8 text-xs"
-                >
-                  {t("dashboard.view.myLevels")}
-                </Button>
-                <Button
-                  variant={viewMode === 'partner' ? 'default' : 'outline'}
-                  onClick={() => setViewMode('partner')}
-                  className="flex-1 h-8 text-xs"
-                >
-                  {t("dashboard.view.partnerLevels").replace('{name}', partnerProfile.display_name)}
-                </Button>
-              </div>
-              
-              {/* Remind button when partner hasn't checked in */}
-              {!partnerEntry && viewMode === 'partner' && (
-                <div className="mt-2 text-center">
-                  <p className="text-xs text-muted-foreground mb-1.5">
-                    {t("dashboard.partner.noCheckin").replace('{name}', partnerProfile.display_name)}
-                  </p>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setRemindDialogOpen(true)}
-                    className="gap-2 h-7 text-xs"
-                  >
-                    <Bell className="w-3 h-3" />
-                    {t("dashboard.partner.remind").replace('{name}', partnerProfile.display_name)}
-                  </Button>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        )}
-
         {/* Remind Dialog */}
         <Dialog open={remindDialogOpen} onOpenChange={setRemindDialogOpen}>
           <DialogContent className="sm:max-w-md">
@@ -628,6 +586,28 @@ const Dashboard = () => {
           boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
         }}>
           <div className="pb-2 pt-3 px-4">
+            {/* View Mode Toggle */}
+            {couple && partnerProfile && (
+              <div className="mb-3">
+                <div className="flex gap-2">
+                  <Button
+                    variant={viewMode === 'self' ? 'default' : 'outline'}
+                    onClick={() => setViewMode('self')}
+                    className="flex-1 h-10 text-sm"
+                  >
+                    {t("dashboard.view.myLevels")}
+                  </Button>
+                  <Button
+                    variant={viewMode === 'partner' ? 'default' : 'outline'}
+                    onClick={() => setViewMode('partner')}
+                    className="flex-1 h-10 text-sm"
+                  >
+                    {t("dashboard.view.partnerLevels").replace('{name}', partnerProfile.display_name)}
+                  </Button>
+                </div>
+              </div>
+            )}
+
             {/* Olive Branch Messages */}
             {oliveBranchMessages.length > 0 && (
               <div className="mb-3 space-y-2">
