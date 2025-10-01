@@ -136,7 +136,7 @@ const CombinedTrialOliveBranch = ({
   };
 
   return (
-    <div className="bg-card/80 backdrop-blur-md rounded-2xl p-4 border-2 border-border shadow-lg">
+    <div className="bg-card/95 backdrop-blur-md rounded-2xl p-4 border-2 border-border shadow-md">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         {/* Trial Status - Left Side */}
         <div className="flex-1">

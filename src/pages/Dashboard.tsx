@@ -469,11 +469,11 @@ const Dashboard = () => {
       <div className="container mx-auto px-1 py-2 max-w-4xl space-y-2">
         {/* Invitation Prompt - Only show if no partner */}
         {!couple && profile && (
-          <div className="bg-white/80 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative" style={{ 
-            backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+          <div className="bg-white/95 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative" style={{ 
+            backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 85%), hsl(280, 60%, 85%))', 
             backgroundOrigin: 'border-box', 
             backgroundClip: 'padding-box, border-box',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.08)'
           }}>
             <div>
               <h3 className="font-semibold text-xl mb-3 text-primary">
@@ -579,11 +579,11 @@ const Dashboard = () => {
         </Dialog>
 
         {/* Today's Check-In */}
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ 
-          backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+        <div className="bg-white/95 backdrop-blur-md rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ 
+          backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 85%), hsl(280, 60%, 85%))', 
           backgroundOrigin: 'border-box', 
           backgroundClip: 'padding-box, border-box',
-          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.08)'
         }}>
           <div className="pb-2 pt-3 px-4">
             {/* View Mode Toggle */}
