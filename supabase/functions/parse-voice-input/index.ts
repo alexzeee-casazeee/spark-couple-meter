@@ -50,38 +50,31 @@ serve(async (req) => {
         tools: [
           {
             type: "function",
-            name: "set_daily_metrics",
-            description: "Set the daily emotional and intimacy metrics",
-            parameters: {
-              type: "object",
-              properties: {
-                horniness_level: { 
-                  type: "number",
-                  description: "Intimacy/desire level from 0-100",
-                  minimum: 0,
-                  maximum: 100
+            function: {
+              name: "set_daily_metrics",
+              description: "Set the daily emotional and intimacy metrics",
+              parameters: {
+                type: "object",
+                properties: {
+                  horniness_level: { 
+                    type: "number",
+                    description: "Intimacy/desire level from 0-100"
+                  },
+                  general_feeling: { 
+                    type: "number",
+                    description: "Overall mood/feeling from 0-100"
+                  },
+                  sleep_quality: { 
+                    type: "number",
+                    description: "Quality of sleep from 0-100"
+                  },
+                  emotional_state: { 
+                    type: "number",
+                    description: "Emotional wellbeing from 0-100"
+                  }
                 },
-                general_feeling: { 
-                  type: "number",
-                  description: "Overall mood/feeling from 0-100",
-                  minimum: 0,
-                  maximum: 100
-                },
-                sleep_quality: { 
-                  type: "number",
-                  description: "Quality of sleep from 0-100",
-                  minimum: 0,
-                  maximum: 100
-                },
-                emotional_state: { 
-                  type: "number",
-                  description: "Emotional wellbeing from 0-100",
-                  minimum: 0,
-                  maximum: 100
-                }
-              },
-              required: ["horniness_level", "general_feeling", "sleep_quality", "emotional_state"],
-              additionalProperties: false
+                required: ["horniness_level", "general_feeling", "sleep_quality", "emotional_state"]
+              }
             }
           }
         ],

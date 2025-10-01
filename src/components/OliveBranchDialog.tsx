@@ -102,7 +102,7 @@ export function OliveBranchDialog({
           throw new Error("Failed to convert audio");
         }
 
-        const { data, error } = await supabase.functions.invoke('parse-voice-input', {
+        const { data, error } = await supabase.functions.invoke('transcribe-audio', {
           body: { audio: base64Audio }
         });
 
@@ -187,16 +187,19 @@ export function OliveBranchDialog({
               <Button
                 onClick={startRecording}
                 disabled={isTranscribing || isSending}
-                className="gap-2"
-                variant="outline"
+                className="gap-2 border-0 shadow-lg transition-all duration-300 hover:scale-105"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFA07A 100%)",
+                  boxShadow: "0 6px 20px rgba(255, 138, 83, 0.3)"
+                }}
               >
-                <Mic className="w-5 h-5" />
-                Record Voice Message
+                <Mic className="w-5 h-5 text-white" />
+                <span className="text-white">Record Voice Message</span>
               </Button>
             ) : (
               <Button
                 onClick={stopRecording}
-                className="gap-2 bg-red-500 hover:bg-red-600"
+                className="gap-2 bg-red-500 hover:bg-red-600 animate-pulse scale-110 shadow-lg"
               >
                 <MicOff className="w-5 h-5" />
                 Stop Recording

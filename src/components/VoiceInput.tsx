@@ -5,15 +5,16 @@ import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface VoiceInputProps {
-  onParsedValues: (values: {
+  onParsedValues?: (values: {
     horniness_level: number;
     general_feeling: number;
     sleep_quality: number;
     emotional_state: number;
   }) => void;
+  onTranscript?: (text: string) => void;
 }
 
-const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
+const VoiceInput = ({ onParsedValues, onTranscript }: VoiceInputProps) => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [recognition, setRecognition] = useState<any>(null);
@@ -30,7 +31,16 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
       recognitionInstance.onresult = (event: any) => {
         const text = event.results[0][0].transcript;
         setTranscript(text);
-        handleTranscript(text);
+        
+        // If onTranscript callback exists, call it immediately
+        if (onTranscript) {
+          onTranscript(text);
+        }
+        
+        // If onParsedValues callback exists, parse the text for metrics
+        if (onParsedValues) {
+          handleTranscript(text);
+        }
       };
 
       recognitionInstance.onerror = (event: any) => {
@@ -54,7 +64,7 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
 
       if (error) throw error;
 
-      if (data) {
+      if (data && onParsedValues) {
         onParsedValues(data);
       }
     } catch (error: any) {
@@ -82,19 +92,14 @@ const VoiceInput = ({ onParsedValues }: VoiceInputProps) => {
     <Button
       size="lg"
       onClick={toggleListening}
-      className={`rounded-full transition-all duration-200 ${isListening ? 'animate-pulse' : 'hover:scale-105'} h-12 w-12`}
+      className={`rounded-full transition-all duration-300 ${isListening ? 'animate-pulse scale-110' : 'hover:scale-105'} h-12 w-12 border-0 shadow-lg`}
       style={{ 
-        background: isListening ? "var(--gradient-romantic)" : "var(--gradient-orange)",
-        boxShadow: "var(--shadow-float)",
-        border: "none"
-      }}
-      onMouseEnter={(e) => {
-        if (!isListening) {
-          e.currentTarget.style.boxShadow = "var(--shadow-float-hover)";
-        }
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.boxShadow = "var(--shadow-float)";
+        background: isListening 
+          ? "linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%)"
+          : "linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFA07A 100%)",
+        boxShadow: isListening 
+          ? "0 8px 24px rgba(255, 107, 107, 0.4)"
+          : "0 6px 20px rgba(255, 138, 83, 0.3)"
       }}
     >
       {isListening ? <PhoneOff className="w-6 h-6 text-white" /> : <Phone className="w-6 h-6 text-white" />}
