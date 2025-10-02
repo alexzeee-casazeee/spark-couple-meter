@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { CreditCard, Crown, Leaf } from "lucide-react";
+import { CreditCard, Crown } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -9,16 +9,12 @@ interface CombinedTrialOliveBranchProps {
   profile: any;
   couple: any;
   partnerProfile: any;
-  onOpenOliveBranch: () => void;
-  unreadCount: number;
 }
 
 const CombinedTrialOliveBranch = ({ 
   profile, 
   couple, 
-  partnerProfile, 
-  onOpenOliveBranch,
-  unreadCount 
+  partnerProfile
 }: CombinedTrialOliveBranchProps) => {
   const [daysRemaining, setDaysRemaining] = useState<number>(0);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -137,38 +133,11 @@ const CombinedTrialOliveBranch = ({
 
   return (
     <div className="bg-card/95 backdrop-blur-md rounded-2xl p-3 sm:p-4 border-2 border-border shadow-md">
-      <div className="flex flex-row items-center justify-between gap-2 sm:gap-4">
-        {/* Trial Status - Left Side */}
-        <div className="flex-1 min-w-0">
+      <div className="flex flex-row items-center justify-center">
+        {/* Trial Status */}
+        <div className="flex-1">
           {renderTrialStatus()}
         </div>
-
-        {/* Vertical Separator */}
-        {couple && partnerProfile && (
-          <div className="h-12 sm:h-16 w-px bg-border flex-shrink-0" />
-        )}
-
-        {/* Olive Branch - Right Side */}
-        {couple && partnerProfile && (
-          <div className="flex items-center flex-shrink-0">
-            <Button
-              onClick={onOpenOliveBranch}
-              variant="outline"
-              size="sm"
-              className="relative h-12 w-12 sm:h-14 sm:w-14 p-0 rounded-full hover:scale-105 transition-transform"
-              style={{
-                filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))"
-              }}
-            >
-              <Leaf className="w-6 h-6 sm:w-7 sm:h-7 text-green-600" />
-              {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold shadow-lg">
-                  {unreadCount}
-                </span>
-              )}
-            </Button>
-          </div>
-        )}
       </div>
     </div>
   );

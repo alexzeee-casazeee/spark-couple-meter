@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import { Heart, LogOut, TrendingUp, Save, UserCircle, Bell, List, MessageCircle, Mail, UserPlus, Quote, Flame, Smile, MessageSquare, Moon, Sparkles } from "lucide-react";
+import { Heart, LogOut, TrendingUp, Save, UserCircle, Bell, List, MessageCircle, Mail, UserPlus, Quote, Flame, Smile, MessageSquare, Moon, Sparkles, Leaf } from "lucide-react";
 import { format } from "date-fns";
 import VoiceInput from "@/components/VoiceInput";
 import CustomDimensionsManager from "@/components/CustomDimensionsManager";
@@ -635,14 +635,12 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
           </div>
         )}
 
-        {/* Combined Trial Status and Olive Branch */}
+        {/* Combined Trial Status */}
         {!demoMode && couple && profile && partnerProfile && (
           <CombinedTrialOliveBranch 
             profile={profile}
             couple={couple}
             partnerProfile={partnerProfile}
-            onOpenOliveBranch={() => setOliveBranchOpen(true)}
-            unreadCount={unreadCount}
           />
         )}
 
@@ -1072,6 +1070,24 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
                     >
                       {t("dashboard.checkin.save")}
                     </Button>
+                    {!demoMode && couple && partnerProfile && (
+                      <Button
+                        onClick={() => setOliveBranchOpen(true)}
+                        variant="outline"
+                        size="icon"
+                        className="relative h-10 w-10 rounded-full hover:scale-105 transition-transform flex-shrink-0"
+                        style={{
+                          filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15))"
+                        }}
+                      >
+                        <Leaf className="w-5 h-5 text-green-600" />
+                        {unreadCount > 0 && (
+                          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold shadow-lg">
+                            {unreadCount}
+                          </span>
+                        )}
+                      </Button>
+                    )}
                   </div>
                   <p className="text-[9px] text-center text-muted-foreground pt-1">
                     {t("dashboard.checkin.voice.hint")}
