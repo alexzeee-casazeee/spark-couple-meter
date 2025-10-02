@@ -35,24 +35,24 @@ const New = () => {
         <div className="max-w-4xl mx-auto space-y-2 animate-fade-in">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/60 backdrop-blur-sm rounded-full border border-white/40">
             <Heart className="w-3 h-3 text-primary" />
-            <span className="text-xs font-medium text-primary">For Couples Who Want More</span>
+            <span className="text-xs font-medium text-primary">{t("new.hero.badge")}</span>
           </div>
 
           <h1 className="text-2xl md:text-5xl font-bold leading-tight text-foreground">
-            Your Desire Doesn't Have to Be a
-            <span className="text-primary"> Mystery</span>
+            {t("new.hero.title.leading")} {" "}
+            <span className="text-primary">{t("new.hero.title.highlight")}</span>
           </h1>
           
           <p className="text-sm md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            An app for couples that maps, tracks, and communicates shifting needs—without pressure or resentment.
+            {t("new.hero.description")}
           </p>
           
           <p className="text-xs md:text-base text-muted-foreground max-w-2xl mx-auto italic">
-            Because intimacy isn't static. Neither are we.
+            {t("new.hero.tagline")}
           </p>
 
           <p className="text-sm md:text-lg text-foreground max-w-2xl mx-auto font-medium pt-2">
-            Understand her fluctuations. Share your wants. Bridge the gap between craving and connection—every single day.
+            {t("new.hero.paragraph")}
           </p>
           
           <div className="max-w-2xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative mt-4" style={{
@@ -75,7 +75,7 @@ const New = () => {
                 }}
                 onClick={() => navigate("/learn-more")}
               >
-                See How It Works
+                {t("new.cta.howItWorks")}
               </Button>
               <Button
                 size="sm"
@@ -88,7 +88,7 @@ const New = () => {
                 }}
                 onClick={() => setShowLoginForm(!showLoginForm)}
               >
-                {showLoginForm ? "Sign Up" : "Login"}
+                {showLoginForm ? t("auth.button.signup") : t("auth.button.signin")}
               </Button>
             </div>
           </div>
@@ -99,7 +99,7 @@ const New = () => {
       <section className="container mx-auto px-[5px] md:px-4 py-8">
         <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-6 px-[5px] md:px-6 pt-[5px] md:pt-6">
-            <h2 className="text-3xl font-bold mb-3 text-primary">Why This Matters</h2>
+            <h2 className="text-3xl font-bold mb-3 text-primary">{t("new.why.title")}</h2>
           </div>
           
           <div className="space-y-5 px-[5px] md:px-6 pb-[5px] md:pb-6">
@@ -108,10 +108,10 @@ const New = () => {
                 <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Activity className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="text-base font-semibold text-primary">Desire shifts. That's normal.</h3>
+                <h3 className="text-base font-semibold text-primary">{t("new.why.card1.title")}</h3>
               </div>
               <p className="text-sm text-muted-foreground">
-                For many women, hormone levels rise and fall daily (or over cycles), and this can subtly or strongly change how much intimacy feels good, safe, or wanted. Meanwhile, many men experience more hormonal stability (though not universally). This mismatch is a hidden friction point couples rarely discuss.
+                {t("new.why.card1.desc")}
               </p>
             </div>
 
@@ -120,10 +120,10 @@ const New = () => {
                 <div className="w-10 h-10 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Target className="w-5 h-5 text-secondary" />
                 </div>
-                <h3 className="text-base font-semibold text-foreground">Expectations vs Reality</h3>
+                <h3 className="text-base font-semibold text-foreground">{t("new.why.card2.title")}</h3>
               </div>
               <p className="text-sm text-muted-foreground">
-                When one partner expects "always hot," and the other is sometimes in low-desire mode, the result can be hurt feelings, shame, or confusion. With an aligned understanding, those moments aren't rejection—they're signals.
+                {t("new.why.card2.desc")}
               </p>
             </div>
 
@@ -132,10 +132,10 @@ const New = () => {
                 <div className="w-10 h-10 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <MessageCircle className="w-5 h-5 text-accent" />
                 </div>
-                <h3 className="text-base font-semibold text-foreground">Communication is your superpower</h3>
+                <h3 className="text-base font-semibold text-foreground">{t("new.why.card3.title")}</h3>
               </div>
               <p className="text-sm text-muted-foreground">
-                The hardest fights in relationships often come from misalignment—expectations, timing, interpretation. This app gives you a shared language to talk about your needs before frustration kicks in.
+                {t("new.why.card3.desc")}
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@ const New = () => {
             />
           </div>
           <p className="text-xs text-muted-foreground text-center mt-3">
-            Interactive demo - try adjusting the sliders!
+            {t("new.demo.caption")}
           </p>
         </div>
       </section>
@@ -167,8 +167,8 @@ const New = () => {
       <section className="container mx-auto px-[5px] md:px-4 py-8">
         <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-6 px-[5px] md:px-6 pt-[5px] md:pt-6">
-            <h2 className="text-3xl font-bold mb-3 text-primary">How It Works</h2>
-            <p className="text-base text-muted-foreground">Features framed in intimacy language</p>
+            <h2 className="text-3xl font-bold mb-3 text-primary">{t("landing.features.title")}</h2>
+            <p className="text-base text-muted-foreground">{t("new.how.subtitle")}</p>
           </div>
           
           <div className="space-y-4 px-[5px] md:px-6 pb-[5px] md:pb-6">
