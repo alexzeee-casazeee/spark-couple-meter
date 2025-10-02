@@ -19,6 +19,7 @@ import CustomDimensionsManager from "@/components/CustomDimensionsManager";
 import { Input } from "@/components/ui/input";
 import QuoteOfTheDay from "@/components/QuoteOfTheDay";
 import TrialStatus from "@/components/TrialStatus";
+import { toast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { OliveBranchDialog } from "@/components/OliveBranchDialog";
 import { Badge } from "@/components/ui/badge";
@@ -401,6 +402,56 @@ const Dashboard = () => {
       console.error("Error sending poke:", error);
     }
   };
+
+  const handleRemindPartner = async (method: 'email' | 'imessage' | 'notification') => {
+    if (!couple || !profile || !partnerProfile) return;
+
+    if (method === 'email') {
+      try {
+        const { data, error } = await supabase.functions.invoke('send-reminder-email', {
+          body: {
+            partnerUserId: partnerProfile.user_id,
+            senderName: profile.display_name,
+            partnerName: partnerProfile.display_name,
+          },
+        });
+
+        if (error) throw error;
+
+        toast({
+          title: t("dashboard.remind.success.title"),
+          description: t("dashboard.remind.success.description").replace('{name}', partnerProfile.display_name),
+        });
+      } catch (error) {
+        console.error("Error sending reminder:", error);
+        toast({
+          title: "Error",
+          description: "Failed to send reminder. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } else if (method === 'imessage') {
+      // For iMessage, we'll open the SMS/iMessage app
+      const message = encodeURIComponent(
+        `Hey ${partnerProfile.display_name}! Just checking in - would love to see how you're doing today on Spark Meter 💕`
+      );
+      window.location.href = `sms:&body=${message}`;
+      
+      toast({
+        title: t("dashboard.remind.success.title"),
+        description: t("dashboard.remind.success.description").replace('{name}', partnerProfile.display_name),
+      });
+    } else if (method === 'notification') {
+      // Send a poke as a notification
+      await handlePokePartner();
+      toast({
+        title: t("dashboard.remind.success.title"),
+        description: t("dashboard.remind.success.description").replace('{name}', partnerProfile.display_name),
+      });
+    }
+
+    setRemindDialogOpen(false);
+  };
   
   const handleQuotePositionChange = (isAtBottom: boolean) => {
     setQuoteAtBottom(isAtBottom);
@@ -508,36 +559,33 @@ const Dashboard = () => {
             </DialogHeader>
             <div className="flex flex-col gap-3 py-4">
               <Button
-                variant="outline"
-                className="w-full justify-start gap-3 h-12"
-                onClick={() => {
-                  // iMessage functionality will be added later
-                  setRemindDialogOpen(false);
+                className="w-full justify-start gap-3 h-12 font-semibold"
+                style={{
+                  background: "linear-gradient(135deg, rgba(100, 150, 255, 0.8) 0%, rgba(150, 200, 255, 0.8) 100%)",
                 }}
+                onClick={() => handleRemindPartner('imessage')}
               >
-                <MessageCircle className="w-5 h-5 text-blue-500" />
+                <MessageCircle className="w-5 h-5" />
                 <span>{t("dashboard.remind.imessage")}</span>
               </Button>
               <Button
-                variant="outline"
-                className="w-full justify-start gap-3 h-12"
-                onClick={() => {
-                  // Email functionality will be added later
-                  setRemindDialogOpen(false);
+                className="w-full justify-start gap-3 h-12 font-semibold"
+                style={{
+                  background: "linear-gradient(135deg, rgba(100, 200, 150, 0.8) 0%, rgba(150, 255, 200, 0.8) 100%)",
                 }}
+                onClick={() => handleRemindPartner('email')}
               >
-                <Mail className="w-5 h-5 text-green-500" />
+                <Mail className="w-5 h-5" />
                 <span>{t("dashboard.remind.email")}</span>
               </Button>
               <Button
-                variant="outline"
-                className="w-full justify-start gap-3 h-12"
-                onClick={() => {
-                  // Notification functionality will be added later
-                  setRemindDialogOpen(false);
+                className="w-full justify-start gap-3 h-12 font-semibold"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255, 150, 100, 0.8) 0%, rgba(255, 200, 150, 0.8) 100%)",
                 }}
+                onClick={() => handleRemindPartner('notification')}
               >
-                <Bell className="w-5 h-5 text-orange-500" />
+                <Bell className="w-5 h-5" />
                 <span>{t("dashboard.remind.notification")}</span>
               </Button>
             </div>
@@ -579,6 +627,20 @@ const Dashboard = () => {
                 </span>
               </Button>
             </div>
+            
+            {/* Remind Partner Button - Only show in partner view when they haven't checked in */}
+            {viewMode === 'partner' && !partnerEntry && (
+              <Button
+                onClick={() => setRemindDialogOpen(true)}
+                className="w-full mt-2 h-10 text-sm font-semibold"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255, 180, 200, 0.8) 0%, rgba(255, 220, 180, 0.8) 100%)",
+                }}
+              >
+                <Bell className="w-4 h-4 mr-2" />
+                Remind {partnerProfile.display_name}
+              </Button>
+            )}
           </div>
         )}
 
