@@ -18,10 +18,12 @@ interface Profile {
 interface Couple {
   couple_id: string;
   created_at: string;
-  husband_name: string;
-  wife_name: string;
-  husband_user_id: string;
-  wife_user_id: string;
+  partner1_name: string;
+  partner2_name: string;
+  partner1_user_id: string;
+  partner2_user_id: string;
+  partner1_created_at: string;
+  partner2_created_at: string;
 }
 
 const Accounts = () => {
@@ -65,25 +67,33 @@ const Accounts = () => {
       // Get couple details
       const couplesWithNames = await Promise.all(
         (allCouples || []).map(async (couple) => {
-          const { data: husband } = await supabase
+          const { data: person1 } = await supabase
             .from('profiles')
-            .select('display_name, user_id')
+            .select('display_name, user_id, created_at')
             .eq('id', couple.husband_id)
             .single();
 
-          const { data: wife } = await supabase
+          const { data: person2 } = await supabase
             .from('profiles')
-            .select('display_name, user_id')
+            .select('display_name, user_id, created_at')
             .eq('id', couple.wife_id)
             .single();
+
+          // Determine who signed up first (Partner 1) and who was invited (Partner 2)
+          const person1Time = person1?.created_at ? new Date(person1.created_at).getTime() : 0;
+          const person2Time = person2?.created_at ? new Date(person2.created_at).getTime() : 0;
+          
+          const isPartner1First = person1Time <= person2Time;
 
           return {
             couple_id: couple.id,
             created_at: couple.created_at,
-            husband_name: husband?.display_name || 'Unknown',
-            wife_name: wife?.display_name || 'Unknown',
-            husband_user_id: husband?.user_id || '',
-            wife_user_id: wife?.user_id || ''
+            partner1_name: isPartner1First ? (person1?.display_name || 'Unknown') : (person2?.display_name || 'Unknown'),
+            partner2_name: isPartner1First ? (person2?.display_name || 'Unknown') : (person1?.display_name || 'Unknown'),
+            partner1_user_id: isPartner1First ? (person1?.user_id || '') : (person2?.user_id || ''),
+            partner2_user_id: isPartner1First ? (person2?.user_id || '') : (person1?.user_id || ''),
+            partner1_created_at: isPartner1First ? (person1?.created_at || '') : (person2?.created_at || ''),
+            partner2_created_at: isPartner1First ? (person2?.created_at || '') : (person1?.created_at || '')
           };
         })
       );
@@ -167,8 +177,8 @@ const Accounts = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Husband</TableHead>
-                    <TableHead>Wife</TableHead>
+                    <TableHead>Partner 1 (Signed Up)</TableHead>
+                    <TableHead>Partner 2 (Invited)</TableHead>
                     <TableHead>Paired Date</TableHead>
                     <TableHead>Couple ID</TableHead>
                   </TableRow>
@@ -176,8 +186,8 @@ const Accounts = () => {
                 <TableBody>
                   {couples.map((couple) => (
                     <TableRow key={couple.couple_id}>
-                      <TableCell className="font-medium">{couple.husband_name}</TableCell>
-                      <TableCell className="font-medium">{couple.wife_name}</TableCell>
+                      <TableCell className="font-medium">{couple.partner1_name}</TableCell>
+                      <TableCell className="font-medium">{couple.partner2_name}</TableCell>
                       <TableCell>{format(new Date(couple.created_at), 'MMM d, yyyy HH:mm')}</TableCell>
                       <TableCell className="text-xs text-muted-foreground">{couple.couple_id.slice(0, 8)}...</TableCell>
                     </TableRow>
@@ -216,8 +226,8 @@ const Accounts = () => {
                     <TableRow key={profile.id}>
                       <TableCell className="font-medium">{profile.display_name}</TableCell>
                       <TableCell>
-                        <Badge variant={profile.role === 'husband' ? 'default' : 'secondary'}>
-                          {profile.role}
+                        <Badge variant="default">
+                          Partner
                         </Badge>
                       </TableCell>
                       <TableCell>{format(new Date(profile.created_at), 'MMM d, yyyy HH:mm')}</TableCell>
@@ -257,8 +267,8 @@ const Accounts = () => {
                   <TableRow key={profile.id}>
                     <TableCell className="font-medium">{profile.display_name}</TableCell>
                     <TableCell>
-                      <Badge variant={profile.role === 'husband' ? 'default' : 'secondary'}>
-                        {profile.role}
+                      <Badge variant="default">
+                        Partner
                       </Badge>
                     </TableCell>
                     <TableCell>
