@@ -39,6 +39,8 @@ const translations = {
     "landing.final.subtitle": "Join couples who've discovered the power of transparent communication",
     "landing.final.cta": "Create Your Account",
     "landing.pricing": "Free for 30 Days. Then $2.99/mo",
+    "landing.joinForm.title": "Start Your Free Trial Today",
+    "landing.joinForm.subtitle": "No credit card required. Join in seconds.",
     "landing.footer": "© 2025 Spark Meter. Built with love for loving couples.",
     
     // Auth page
@@ -64,6 +66,10 @@ const translations = {
     "auth.toast.redirect": "Redirecting to your dashboard...",
     "auth.toast.created": "Account created!",
     "auth.toast.welcome.new": "Welcome to Spark Meter. Setting up your profile...",
+    "auth.fillAllFields": "Please fill in all fields",
+    "auth.success": "Account created successfully!",
+    "auth.error": "An error occurred. Please try again.",
+    "auth.signingUp": "Creating account...",
     
     // Dashboard
     "dashboard.loading": "Loading...",
@@ -178,6 +184,8 @@ const translations = {
     "landing.final.subtitle": "Присоединяйтесь к парам, которые открыли силу прозрачного общения",
     "landing.final.cta": "Создать аккаунт",
     "landing.pricing": "Бесплатно 30 дней. Затем $2.99/мес",
+    "landing.joinForm.title": "Начните бесплатный пробный период сегодня",
+    "landing.joinForm.subtitle": "Кредитная карта не требуется. Присоединяйтесь за секунды.",
     "landing.footer": "© 2025 Spark Meter. Создано с любовью для любящих пар.",
     
     // Auth page
@@ -203,6 +211,10 @@ const translations = {
     "auth.toast.redirect": "Перенаправление на панель управления...",
     "auth.toast.created": "Аккаунт создан!",
     "auth.toast.welcome.new": "Добро пожаловать в Spark Meter. Настраиваем ваш профиль...",
+    "auth.fillAllFields": "Пожалуйста, заполните все поля",
+    "auth.success": "Аккаунт успешно создан!",
+    "auth.error": "Произошла ошибка. Пожалуйста, попробуйте снова.",
+    "auth.signingUp": "Создание аккаунта...",
     
     // Dashboard
     "dashboard.loading": "Загрузка...",
@@ -317,6 +329,8 @@ const translations = {
     "landing.final.subtitle": "Únete a parejas que han descubierto el poder de la comunicación transparente",
     "landing.final.cta": "Crea Tu Cuenta",
     "landing.pricing": "Gratis por 30 días. Luego $2.99/mes",
+    "landing.joinForm.title": "Comienza Tu Prueba Gratuita Hoy",
+    "landing.joinForm.subtitle": "No se requiere tarjeta de crédito. Únete en segundos.",
     "landing.footer": "© 2025 Spark Meter. Construido con amor para parejas amorosas.",
     
     // Auth page
@@ -342,6 +356,10 @@ const translations = {
     "auth.toast.redirect": "Redirigiendo a tu panel...",
     "auth.toast.created": "¡Cuenta creada!",
     "auth.toast.welcome.new": "Bienvenido a Spark Meter. Configurando tu perfil...",
+    "auth.fillAllFields": "Por favor, complete todos los campos",
+    "auth.success": "¡Cuenta creada exitosamente!",
+    "auth.error": "Ocurrió un error. Por favor, intenta de nuevo.",
+    "auth.signingUp": "Creando cuenta...",
     
     // Dashboard
     "dashboard.loading": "Cargando...",

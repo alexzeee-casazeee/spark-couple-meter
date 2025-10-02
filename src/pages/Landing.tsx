@@ -44,7 +44,7 @@ const Landing = () => {
             {t("landing.hero.description")}
           </p>
           
-          <div className="max-w-2xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-8 border-2 border-transparent bg-clip-padding relative" style={{ 
+          <div className="max-w-2xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-6 border-2 border-transparent bg-clip-padding relative" style={{ 
             backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
             backgroundOrigin: 'border-box', 
             backgroundClip: 'padding-box, border-box',
@@ -52,11 +52,11 @@ const Landing = () => {
           }}>
             <JoinForm />
             
-            <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center items-center w-full">
+            <div className="mt-4 flex flex-col sm:flex-row gap-2 justify-center items-center w-full">
               <Button
-                size="lg"
+                size="default"
                 variant="outline"
-                className="text-base px-6 py-3 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
+                className="text-sm px-4 py-2 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
                 style={{ 
                   backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
                   backgroundOrigin: 'border-box',
@@ -67,9 +67,9 @@ const Landing = () => {
                 {t("landing.cta.secondary")}
               </Button>
               <Button
-                size="lg"
+                size="default"
                 variant="outline"
-                className="text-base px-6 py-3 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
+                className="text-sm px-4 py-2 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
                 style={{ 
                   backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
                   backgroundOrigin: 'border-box',
@@ -177,18 +177,18 @@ const Landing = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-primary">
             {t("landing.final.title")}
           </h2>
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-6">
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-4">
             {t("landing.final.subtitle")}
           </p>
           
-          <div className="pt-4">
+          <div className="pt-2">
             <JoinForm />
             
-            <div className="mt-6">
+            <div className="mt-4">
               <Button
-                size="lg"
+                size="default"
                 variant="outline"
-                className="text-base px-6 py-3 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg"
+                className="text-sm px-4 py-2 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg"
                 style={{ 
                   backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
                   backgroundOrigin: 'border-box',
