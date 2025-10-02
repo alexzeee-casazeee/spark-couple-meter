@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { AuthModal } from "@/components/AuthModal";
 import { JoinForm } from "@/components/JoinForm";
+import { LoginForm } from "@/components/LoginForm";
 import { Heart, Users, LineChart, Sparkles, MessageCircle, TrendingUp, Shield } from "lucide-react";
 
 const Landing = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--gradient-canva-bg)' }}>
@@ -50,7 +50,7 @@ const Landing = () => {
             backgroundClip: 'padding-box, border-box',
             boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
           }}>
-            <JoinForm />
+            {showLoginForm ? <LoginForm /> : <JoinForm />}
             
             <div className="mt-4 flex flex-col sm:flex-row gap-2 justify-center items-center w-full">
               <Button
@@ -75,9 +75,9 @@ const Landing = () => {
                   backgroundOrigin: 'border-box',
                   backgroundClip: 'padding-box, border-box'
                 }}
-                onClick={() => setAuthModalOpen(true)}
+                onClick={() => setShowLoginForm(!showLoginForm)}
               >
-                {t("landing.cta.login")}
+                {showLoginForm ? t("auth.switch.signup") : t("landing.cta.login")}
               </Button>
             </div>
           </div>
@@ -182,13 +182,13 @@ const Landing = () => {
           </p>
           
           <div className="pt-2">
-            <JoinForm />
+            {showLoginForm ? <LoginForm /> : <JoinForm />}
             
-            <div className="mt-4">
+            <div className="mt-4 flex flex-col sm:flex-row gap-2 justify-center items-center">
               <Button
                 size="default"
                 variant="outline"
-                className="text-sm px-4 py-2 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg"
+                className="text-sm px-4 py-2 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
                 style={{ 
                   backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
                   backgroundOrigin: 'border-box',
@@ -197,6 +197,19 @@ const Landing = () => {
                 onClick={() => navigate("/learn-more")}
               >
                 {t("landing.cta.secondary")}
+              </Button>
+              <Button
+                size="default"
+                variant="outline"
+                className="text-sm px-4 py-2 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
+                style={{ 
+                  backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
+                  backgroundOrigin: 'border-box',
+                  backgroundClip: 'padding-box, border-box'
+                }}
+                onClick={() => setShowLoginForm(!showLoginForm)}
+              >
+                {showLoginForm ? t("auth.switch.signup") : t("landing.cta.login")}
               </Button>
             </div>
           </div>
@@ -207,9 +220,6 @@ const Landing = () => {
       <footer className="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground border-t border-border/50">
         <p>{t("landing.footer")}</p>
       </footer>
-
-      {/* Auth Modal */}
-      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
     </div>
   );
 };
