@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { AuthModal } from "@/components/AuthModal";
-import { Heart, Users, LineChart, Sparkles, MessageCircle, TrendingUp, Shield, Bell } from "lucide-react";
+import { JoinForm } from "@/components/JoinForm";
+import { Heart, Users, LineChart, Sparkles, MessageCircle, TrendingUp, Shield } from "lucide-react";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -39,29 +40,23 @@ const Landing = () => {
             <span className="text-primary"> {t("landing.hero.title.highlight")}</span>
           </h1>
           
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
             {t("landing.hero.description")}
           </p>
           
-          <div className="flex flex-col gap-2 justify-center items-center pt-2">
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center w-full sm:w-auto">
-              <Button
-                size="lg"
-                className="text-base px-6 py-5 shadow-lg border-2 border-transparent bg-clip-padding relative w-full sm:w-auto"
-                style={{ 
-                  background: 'var(--gradient-primary)',
-                  backgroundImage: 'linear-gradient(135deg, hsl(280, 60%, 70%), hsl(190, 70%, 75%)), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
-                  backgroundOrigin: 'border-box',
-                  backgroundClip: 'padding-box, border-box'
-                }}
-                onClick={() => setAuthModalOpen(true)}
-              >
-                {t("landing.cta.primary")}
-              </Button>
+          <div className="max-w-2xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-8 border-2 border-transparent bg-clip-padding relative" style={{ 
+            backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+            backgroundOrigin: 'border-box', 
+            backgroundClip: 'padding-box, border-box',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
+          }}>
+            <JoinForm />
+            
+            <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center items-center w-full">
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base px-6 py-5 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
+                className="text-base px-6 py-3 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
                 style={{ 
                   backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
                   backgroundOrigin: 'border-box',
@@ -74,7 +69,7 @@ const Landing = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base px-6 py-5 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
+                className="text-base px-6 py-3 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
                 style={{ 
                   backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
                   backgroundOrigin: 'border-box',
@@ -85,7 +80,6 @@ const Landing = () => {
                 {t("landing.cta.login")}
               </Button>
             </div>
-            <p className="text-sm text-muted-foreground">{t("landing.pricing")}</p>
           </div>
         </div>
       </section>
@@ -183,23 +177,18 @@ const Landing = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-primary">
             {t("landing.final.title")}
           </h2>
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-6">
             {t("landing.final.subtitle")}
           </p>
-          <div className="flex flex-col gap-2 items-center pt-2">
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center w-full sm:w-auto">
-              <Button
-                size="lg"
-                className="text-base px-6 py-5 shadow-lg w-full sm:w-auto"
-                style={{ background: 'var(--gradient-primary)' }}
-                onClick={() => setAuthModalOpen(true)}
-              >
-                {t("landing.final.cta")}
-              </Button>
+          
+          <div className="pt-4">
+            <JoinForm />
+            
+            <div className="mt-6">
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base px-6 py-5 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
+                className="text-base px-6 py-3 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg"
                 style={{ 
                   backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
                   backgroundOrigin: 'border-box',
@@ -210,7 +199,6 @@ const Landing = () => {
                 {t("landing.cta.secondary")}
               </Button>
             </div>
-            <p className="text-sm text-muted-foreground">{t("landing.pricing")}</p>
           </div>
         </div>
       </section>
