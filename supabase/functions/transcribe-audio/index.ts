@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import "https://deno.land/x/xhr@0.1.0/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -12,10 +13,10 @@ serve(async (req) => {
 
   try {
     const { audio } = await req.json();
-    const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
+    const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
 
-    if (!LOVABLE_API_KEY) {
-      throw new Error('LOVABLE_API_KEY is not configured');
+    if (!OPENAI_API_KEY) {
+      throw new Error('OPENAI_API_KEY is not configured');
     }
 
     if (!audio) {
@@ -31,13 +32,12 @@ serve(async (req) => {
     const formData = new FormData();
     const blob = new Blob([binaryAudio], { type: 'audio/webm' });
     formData.append('file', blob, 'audio.webm');
-    formData.append('model', 'google/gemini-2.5-flash');
-    formData.append('response_format', 'text');
+    formData.append('model', 'whisper-1');
 
-    const response = await fetch('https://ai.gateway.lovable.dev/v1/audio/transcriptions', {
+    const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${LOVABLE_API_KEY}`,
+        'Authorization': `Bearer ${OPENAI_API_KEY}`,
       },
       body: formData,
     });
@@ -48,11 +48,11 @@ serve(async (req) => {
       throw new Error(`Transcription error: ${response.status}`);
     }
 
-    const transcribedText = await response.text();
-    console.log('Transcription complete:', transcribedText);
+    const result = await response.json();
+    console.log('Transcription complete:', result.text);
 
     return new Response(
-      JSON.stringify({ text: transcribedText }),
+      JSON.stringify({ text: result.text }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
