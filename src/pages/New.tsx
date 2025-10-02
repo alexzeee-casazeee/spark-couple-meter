@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { JoinForm } from "@/components/JoinForm";
@@ -12,6 +13,7 @@ const New = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showDemoModal, setShowDemoModal] = useState(false);
 
   return (
     <div className="min-h-screen bg-canva-gradient">
@@ -142,10 +144,7 @@ const New = () => {
 
       {/* Dashboard Preview Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
-        <div className="max-w-md mx-auto relative group cursor-pointer" onClick={() => {
-          setShowLoginForm(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}>
+        <div className="max-w-md mx-auto relative group cursor-pointer" onClick={() => setShowDemoModal(true)}>
           <img 
             src={dashboardPreview} 
             alt="Dashboard Preview showing desire tracking sliders" 
@@ -160,6 +159,36 @@ const New = () => {
           </div>
         </div>
       </section>
+
+      {/* Demo Modal */}
+      <Dialog open={showDemoModal} onOpenChange={setShowDemoModal}>
+        <DialogContent className="max-w-2xl bg-white/95 backdrop-blur-md border-2 border-transparent bg-clip-padding relative" style={{
+          backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
+          backgroundOrigin: 'border-box', 
+          backgroundClip: 'padding-box, border-box',
+        }}>
+          <div className="space-y-4">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-primary mb-2">Start Your Free Trial</h2>
+              <p className="text-sm text-muted-foreground">Join thousands of couples improving their connection</p>
+            </div>
+            
+            {showLoginForm ? <LoginForm /> : <JoinForm />}
+            
+            <div className="flex justify-center gap-2 text-sm">
+              <span className="text-muted-foreground">
+                {showLoginForm ? "Don't have an account?" : "Already have an account?"}
+              </span>
+              <button
+                onClick={() => setShowLoginForm(!showLoginForm)}
+                className="text-primary font-semibold hover:underline"
+              >
+                {showLoginForm ? "Sign Up" : "Login"}
+              </button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* How It Works Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
