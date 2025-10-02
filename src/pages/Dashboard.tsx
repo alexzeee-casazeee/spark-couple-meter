@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import sparkMeterLogo from "@/assets/spark-meter-logo.png";
 import {
   Dialog,
   DialogContent,
@@ -468,8 +469,8 @@ const Dashboard = () => {
       {/* Header - Compact */}
       <header className="p-2 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
         <div className="container mx-auto flex justify-between items-center px-2">
-          <div className="flex items-center gap-1.5">
-            <Heart className="w-5 h-5 text-white" fill="white" />
+          <div className="flex items-center gap-2">
+            <img src={sparkMeterLogo} alt="Spark Meter" className="w-6 h-6 object-contain drop-shadow-md" />
             <h1 className="text-base font-bold text-white leading-tight">{t("dashboard.appName")}</h1>
           </div>
           <div className="flex gap-1.5">
