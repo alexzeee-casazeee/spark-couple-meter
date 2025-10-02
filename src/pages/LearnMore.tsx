@@ -202,7 +202,10 @@ const LearnMore = () => {
           <div className="flex justify-center mb-8">
             <div className="max-w-md w-full">
               <div className="rounded-2xl shadow-2xl border-2 border-white/40 overflow-hidden bg-canva-gradient">
-                <Dashboard />
+                <Dashboard 
+                  demoMode={true} 
+                  onDemoInteraction={() => setAuthModalOpen(true)}
+                />
               </div>
               <p className="text-xs text-muted-foreground text-center mt-3">
                 Interactive demo - try adjusting the sliders!

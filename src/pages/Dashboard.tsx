@@ -27,7 +27,12 @@ import { Badge } from "@/components/ui/badge";
 import InvitationDialog from "@/components/InvitationDialog";
 import CombinedTrialOliveBranch from "@/components/CombinedTrialOliveBranch";
 
-const Dashboard = () => {
+interface DashboardProps {
+  demoMode?: boolean;
+  onDemoInteraction?: () => void;
+}
+
+const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {}) => {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const [loading, setLoading] = useState(true);
@@ -99,8 +104,13 @@ const Dashboard = () => {
   }, [partnerEntry, customDimensions]);
 
   useEffect(() => {
+    if (demoMode) {
+      // In demo mode, skip auth and set loading to false
+      setLoading(false);
+      return;
+    }
     checkAuth();
-  }, []);
+  }, [demoMode]);
 
   // Re-check subscription when window gains focus (e.g., after returning from Stripe)
   useEffect(() => {
@@ -251,6 +261,10 @@ const Dashboard = () => {
   };
 
   const handleSaveEntry = async (silent = false) => {
+    if (demoMode && onDemoInteraction) {
+      onDemoInteraction();
+      return;
+    }
     if (!profile) return;
 
     const today = format(new Date(), "yyyy-MM-dd");
@@ -419,6 +433,10 @@ const Dashboard = () => {
     emotional_state: number;
     custom_dimensions?: Record<string, number>;
   }) => {
+    if (demoMode && onDemoInteraction) {
+      onDemoInteraction();
+      return;
+    }
     setHorniness([values.horniness_level]);
     setGeneralFeeling([values.general_feeling]);
     setCommunicationDesire([values.communication_desire || 50]);
@@ -435,12 +453,27 @@ const Dashboard = () => {
   };
 
   const handleSaveAndReset = async () => {
+    if (demoMode && onDemoInteraction) {
+      onDemoInteraction();
+      return;
+    }
     // Check if trial is expired and user is not subscribed
     if (isTrialExpired && !isSubscribed) {
       setUpgradeDialogOpen(true);
       return;
     }
     await handleSaveEntry(false); // Save with toast notification
+  };
+
+  // Wrapper for slider changes in demo mode
+  const handleSliderChange = (setter: (value: number[]) => void) => {
+    return (value: number[]) => {
+      if (demoMode && onDemoInteraction) {
+        onDemoInteraction();
+        return;
+      }
+      setter(value);
+    };
   };
   
   const handleUpgrade = async () => {
@@ -843,7 +876,7 @@ const Dashboard = () => {
                 </div>
                 <Slider
                   value={viewMode === 'self' ? horniness : [partnerEntry?.horniness_level || 50]}
-                  onValueChange={viewMode === 'self' ? setHorniness : undefined}
+                  onValueChange={viewMode === 'self' ? handleSliderChange(setHorniness) : undefined}
                   max={100}
                   step={1}
                   className="w-full"
@@ -872,7 +905,7 @@ const Dashboard = () => {
                 </div>
                 <Slider
                   value={viewMode === 'self' ? generalFeeling : [partnerEntry?.general_feeling || 50]}
-                  onValueChange={viewMode === 'self' ? setGeneralFeeling : undefined}
+                  onValueChange={viewMode === 'self' ? handleSliderChange(setGeneralFeeling) : undefined}
                   max={100}
                   step={1}
                   className="w-full"
@@ -901,7 +934,7 @@ const Dashboard = () => {
                 </div>
                 <Slider
                   value={viewMode === 'self' ? communicationDesire : [partnerEntry?.communication_desire || 50]}
-                  onValueChange={viewMode === 'self' ? setCommunicationDesire : undefined}
+                  onValueChange={viewMode === 'self' ? handleSliderChange(setCommunicationDesire) : undefined}
                   max={100}
                   step={1}
                   className="w-full"
@@ -930,7 +963,7 @@ const Dashboard = () => {
                 </div>
                 <Slider
                   value={viewMode === 'self' ? sleepQuality : [partnerEntry?.sleep_quality || 50]}
-                  onValueChange={viewMode === 'self' ? setSleepQuality : undefined}
+                  onValueChange={viewMode === 'self' ? handleSliderChange(setSleepQuality) : undefined}
                   max={100}
                   step={1}
                   className="w-full"
@@ -959,7 +992,7 @@ const Dashboard = () => {
                 </div>
                 <Slider
                   value={viewMode === 'self' ? emotionalState : [partnerEntry?.emotional_state || 50]}
-                  onValueChange={viewMode === 'self' ? setEmotionalState : undefined}
+                  onValueChange={viewMode === 'self' ? handleSliderChange(setEmotionalState) : undefined}
                   max={100}
                   step={1}
                   className="w-full"
@@ -1002,7 +1035,13 @@ const Dashboard = () => {
                         ? [customValues[dimension.id] || 50] 
                         : [partnerCustomValues[dimension.id] || 50]}
                       onValueChange={viewMode === 'self' 
-                        ? (value) => setCustomValues(prev => ({ ...prev, [dimension.id]: value[0] }))
+                        ? (value) => {
+                            if (demoMode && onDemoInteraction) {
+                              onDemoInteraction();
+                              return;
+                            }
+                            setCustomValues(prev => ({ ...prev, [dimension.id]: value[0] }));
+                          }
                         : undefined}
                       max={100}
                       step={1}
