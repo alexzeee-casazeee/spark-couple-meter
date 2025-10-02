@@ -6,6 +6,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { JoinForm } from "@/components/JoinForm";
 import { LoginForm } from "@/components/LoginForm";
 import { Heart, Users, LineChart, Sparkles, MessageCircle, TrendingUp, Calendar, Activity, Target } from "lucide-react";
+import dashboardPreview from "@/assets/dashboard-preview-2.png";
 
 const New = () => {
   const navigate = useNavigate();
@@ -99,7 +100,8 @@ const New = () => {
             <h2 className="text-3xl font-bold mb-3 text-primary">Why This Matters</h2>
           </div>
           
-          <div className="space-y-5 px-[5px] md:px-6 pb-[5px] md:pb-6">
+          <div className="grid md:grid-cols-2 gap-6 px-[5px] md:px-6 pb-[5px] md:pb-6 items-center">
+            <div className="space-y-5 order-2 md:order-1">
             <div className="bg-white/80 p-4 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -134,6 +136,15 @@ const New = () => {
               <p className="text-sm text-muted-foreground">
                 The hardest fights in relationships often come from misalignment—expectations, timing, interpretation. This app gives you a shared language to talk about your needs before frustration kicks in.
               </p>
+            </div>
+            </div>
+            
+            <div className="order-1 md:order-2">
+              <img 
+                src={dashboardPreview} 
+                alt="Dashboard Preview showing desire tracking sliders" 
+                className="w-full max-w-md mx-auto rounded-2xl shadow-lg"
+              />
             </div>
           </div>
         </div>
