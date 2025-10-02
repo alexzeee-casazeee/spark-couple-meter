@@ -7,7 +7,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { JoinForm } from "@/components/JoinForm";
 import { LoginForm } from "@/components/LoginForm";
 import { Heart, Users, LineChart, Sparkles, MessageCircle, TrendingUp, Calendar, Activity, Target } from "lucide-react";
-import dashboardPreview from "@/assets/dashboard-preview-2.png";
+import Dashboard from "./Dashboard";
 
 const New = () => {
   const navigate = useNavigate();
@@ -144,25 +144,16 @@ const New = () => {
 
       {/* Dashboard Preview Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
-        <div 
-          className="max-w-md mx-auto relative group cursor-pointer" 
-          onClick={() => {
-            console.log('Dashboard clicked');
-            setShowDemoModal(true);
-          }}
-        >
-          <img 
-            src={dashboardPreview} 
-            alt="Dashboard Preview showing desire tracking sliders" 
-            className="w-full rounded-2xl shadow-2xl border-2 border-white/40 transition-transform group-hover:scale-[1.02]"
-          />
-          {/* Clickable overlay on Save Check-in button */}
-          <div className="absolute bottom-[13%] left-[15%] right-[15%] h-[8%] rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors border-2 border-transparent group-hover:border-primary/30 pointer-events-none" />
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/5 rounded-2xl pointer-events-none">
-            <div className="bg-white/95 px-6 py-3 rounded-full shadow-lg border-2 border-primary">
-              <span className="text-primary font-semibold">Click to Try It Free!</span>
-            </div>
+        <div className="max-w-md mx-auto w-full">
+          <div className="rounded-2xl shadow-2xl border-2 border-white/40 overflow-hidden bg-canva-gradient">
+            <Dashboard 
+              demoMode={true} 
+              onDemoInteraction={() => setShowDemoModal(true)}
+            />
           </div>
+          <p className="text-xs text-muted-foreground text-center mt-3">
+            Interactive demo - try adjusting the sliders!
+          </p>
         </div>
       </section>
 
