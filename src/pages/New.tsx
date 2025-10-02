@@ -100,31 +100,37 @@ const New = () => {
           </div>
           
           <div className="space-y-5 px-[5px] md:px-6 pb-[5px] md:pb-6">
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
-                <Activity className="w-6 h-6 text-primary" />
+            <div className="bg-white/80 p-4 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Activity className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-base font-semibold text-primary">Desire shifts. That's normal.</h3>
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-primary">Desire shifts. That's normal.</h3>
               <p className="text-sm text-muted-foreground">
                 For many women, hormone levels rise and fall daily (or over cycles), and this can subtly or strongly change how much intimacy feels good, safe, or wanted. Meanwhile, many men experience more hormonal stability (though not universally). This mismatch is a hidden friction point couples rarely discuss.
               </p>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-4">
-                <Target className="w-6 h-6 text-secondary" />
+            <div className="bg-white/80 p-4 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Target className="w-5 h-5 text-secondary" />
+                </div>
+                <h3 className="text-base font-semibold text-foreground">Expectations vs Reality</h3>
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground">Expectations vs Reality</h3>
               <p className="text-sm text-muted-foreground">
                 When one partner expects "always hot," and the other is sometimes in low-desire mode, the result can be hurt feelings, shame, or confusion. With an aligned understanding, those moments aren't rejection—they're signals.
               </p>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-4">
-                <MessageCircle className="w-6 h-6 text-accent" />
+            <div className="bg-white/80 p-4 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-5 h-5 text-accent" />
+                </div>
+                <h3 className="text-base font-semibold text-foreground">Communication is your superpower</h3>
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-foreground">Communication is your superpower</h3>
               <p className="text-sm text-muted-foreground">
                 The hardest fights in relationships often come from misalignment—expectations, timing, interpretation. This app gives you a shared language to talk about your needs before frustration kicks in.
               </p>
