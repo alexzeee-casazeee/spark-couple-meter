@@ -142,12 +142,22 @@ const New = () => {
 
       {/* Dashboard Preview Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
-        <div className="max-w-md mx-auto">
+        <div className="max-w-md mx-auto relative group cursor-pointer" onClick={() => {
+          setShowLoginForm(false);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}>
           <img 
             src={dashboardPreview} 
             alt="Dashboard Preview showing desire tracking sliders" 
-            className="w-full rounded-2xl shadow-2xl border-2 border-white/40"
+            className="w-full rounded-2xl shadow-2xl border-2 border-white/40 transition-transform group-hover:scale-[1.02]"
           />
+          {/* Clickable overlay on Save Check-in button */}
+          <div className="absolute bottom-[13%] left-[15%] right-[15%] h-[8%] rounded-full bg-primary/0 group-hover:bg-primary/10 transition-colors border-2 border-transparent group-hover:border-primary/30" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/5 rounded-2xl">
+            <div className="bg-white/95 px-6 py-3 rounded-full shadow-lg border-2 border-primary">
+              <span className="text-primary font-semibold">Click to Try It Free!</span>
+            </div>
+          </div>
         </div>
       </section>
 
