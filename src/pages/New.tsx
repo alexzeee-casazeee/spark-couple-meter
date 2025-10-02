@@ -178,8 +178,8 @@ const New = () => {
                   <Calendar className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold mb-2 text-primary">Daily Mood & Desire Tracker</h3>
-                  <p className="text-base text-black">Each partner logs their interest (high, neutral, low), emotional state, stress, etc.</p>
+                  <h3 className="text-lg font-bold mb-2 text-primary">{t("new.how.card1.title")}</h3>
+                  <p className="text-base text-black">{t("new.how.card1.desc")}</p>
                 </div>
               </div>
             </div>
@@ -190,8 +190,8 @@ const New = () => {
                   <LineChart className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold mb-2 text-secondary">Overlay & Compare</h3>
-                  <p className="text-base text-black">See "her days vs your days" — where they match, where they don't.</p>
+                  <h3 className="text-lg font-bold mb-2 text-secondary">{t("new.how.card2.title")}</h3>
+                  <p className="text-base text-black">{t("new.how.card2.desc")}</p>
                 </div>
               </div>
             </div>
@@ -202,8 +202,8 @@ const New = () => {
                   <MessageCircle className="w-6 h-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold mb-2 text-accent">Communication Prompts & Tools</h3>
-                  <p className="text-base text-black">Gentle prompts to start the conversation ("Hey, today I feel…", "I notice you're quiet, want to talk?").</p>
+                  <h3 className="text-lg font-bold mb-2 text-accent">{t("new.how.card3.title")}</h3>
+                  <p className="text-base text-black">{t("new.how.card3.desc")}</p>
                 </div>
               </div>
             </div>
@@ -214,8 +214,8 @@ const New = () => {
                   <Target className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold mb-2 text-primary">Expectation Mapping</h3>
-                  <p className="text-base text-black">Set windows, signals, "no pressure" zones—so the partner doesn't feel ghosted or rejected.</p>
+                  <h3 className="text-lg font-bold mb-2 text-primary">{t("new.how.card4.title")}</h3>
+                  <p className="text-base text-black">{t("new.how.card4.desc")}</p>
                 </div>
               </div>
             </div>
@@ -226,8 +226,8 @@ const New = () => {
                   <TrendingUp className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold mb-2 text-secondary">Insights & Patterns</h3>
-                  <p className="text-base text-black">Over weeks you'll see trends ("I'm rarely in the mood before period", "He's more reserved on work-heavy days")—which helps you plan or adjust.</p>
+                  <h3 className="text-lg font-bold mb-2 text-secondary">{t("new.how.card5.title")}</h3>
+                  <p className="text-base text-black">{t("new.how.card5.desc")}</p>
                 </div>
               </div>
             </div>
@@ -246,9 +246,9 @@ const New = () => {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/20 mb-4">
               <Heart className="w-4 h-4 text-primary fill-primary" />
-              <span className="text-sm font-semibold text-primary">Transform Your Connection</span>
+              <span className="text-sm font-semibold text-primary">{t("new.benefits.badge")}</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">What You'll Get</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">{t("new.benefits.title")}</h2>
           </div>
           
           <div className="space-y-3">
@@ -256,35 +256,35 @@ const New = () => {
               <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                 <span className="text-primary text-sm">✓</span>
               </div>
-              <p className="text-base text-black">More empathy and understanding — less guilt, less fear of disappointing</p>
+              <p className="text-base text-black">{t("new.benefits.item1")}</p>
             </div>
 
             <div className="flex items-start gap-3">
               <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                 <span className="text-primary text-sm">✓</span>
               </div>
-              <p className="text-base text-black">Fewer "Why are you shutting me out?" fights</p>
+              <p className="text-base text-black">{t("new.benefits.item2")}</p>
             </div>
 
             <div className="flex items-start gap-3">
               <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                 <span className="text-primary text-sm">✓</span>
               </div>
-              <p className="text-base text-black">Higher alignment around when intimacy is welcome</p>
+              <p className="text-base text-black">{t("new.benefits.item3")}</p>
             </div>
 
             <div className="flex items-start gap-3">
               <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                 <span className="text-primary text-sm">✓</span>
               </div>
-              <p className="text-base text-black">Clearer conversations about desire, rest, boundaries</p>
+              <p className="text-base text-black">{t("new.benefits.item4")}</p>
             </div>
 
             <div className="flex items-start gap-3">
               <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                 <span className="text-primary text-sm">✓</span>
               </div>
-              <p className="text-base text-black">A resilient intimacy habit, rooted in trust, not guilt</p>
+              <p className="text-base text-black">{t("new.benefits.item5")}</p>
             </div>
           </div>
         </div>
@@ -294,29 +294,29 @@ const New = () => {
       <section className="container mx-auto px-[5px] md:px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-3 text-primary">What Couples Are Saying</h2>
+            <h2 className="text-3xl font-bold mb-3 text-primary">{t("new.testimonials.title")}</h2>
           </div>
           
           <div className="grid md:grid-cols-3 gap-4">
             <div className="bg-white/80 p-6 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-sm text-muted-foreground italic mb-3">
-                "I used to assume 'no' meant 'not into me'. Now it feels like she's just tired. We talk before we tangle."
+                {t("new.testimonials.quote1")}
               </p>
-              <p className="text-sm font-semibold text-primary">— Mark & Julia</p>
+              <p className="text-sm font-semibold text-primary">{t("new.testimonials.author1")}</p>
             </div>
 
             <div className="bg-white/80 p-6 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-sm text-muted-foreground italic mb-3">
-                "Some days I don't feel sexy; other days I do. He gets that now."
+                {t("new.testimonials.quote2")}
               </p>
-              <p className="text-sm font-semibold text-secondary">— Mia</p>
+              <p className="text-sm font-semibold text-secondary">{t("new.testimonials.author2")}</p>
             </div>
 
             <div className="bg-white/80 p-6 rounded-2xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-sm text-muted-foreground italic mb-3">
-                "When we sync our wants and rest days, sex becomes less performance, more connection."
+                {t("new.testimonials.quote3")}
               </p>
-              <p className="text-sm font-semibold text-accent">— Carlos & Elena</p>
+              <p className="text-sm font-semibold text-accent">{t("new.testimonials.author3")}</p>
             </div>
           </div>
         </div>
@@ -326,28 +326,28 @@ const New = () => {
       <section className="container mx-auto px-[5px] md:px-4 py-8">
         <div className="max-w-4xl mx-auto bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-3xl border border-white/40" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-3 text-primary">Common Questions</h2>
+            <h2 className="text-3xl font-bold mb-3 text-primary">{t("new.faq.title")}</h2>
           </div>
           
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-bold mb-2 text-primary">But isn't this too clinical?</h3>
+              <h3 className="text-lg font-bold mb-2 text-primary">{t("new.faq.q1")}</h3>
               <p className="text-base text-muted-foreground">
-                Not at all. The interface is warm, personal, not a hormone lab report. You control what you share.
+                {t("new.faq.a1")}
               </p>
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-2 text-primary">If she logs low desire, will I feel rejected?</h3>
+              <h3 className="text-lg font-bold mb-2 text-primary">{t("new.faq.q2")}</h3>
               <p className="text-base text-muted-foreground">
-                The point is to shift away from "you rejecting me" toward "we're just out of sync today." The communication tools help cushion that difference.
+                {t("new.faq.a2")}
               </p>
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-2 text-primary">Do we have to log every day?</h3>
+              <h3 className="text-lg font-bold mb-2 text-primary">{t("new.faq.q3")}</h3>
               <p className="text-base text-muted-foreground">
-                No. Consistency helps, but even partial use changes how you talk and understand each other.
+                {t("new.faq.a3")}
               </p>
             </div>
           </div>
@@ -358,10 +358,10 @@ const New = () => {
       <section className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto text-center space-y-4 bg-white/70 backdrop-blur-sm p-8 rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <h2 className="text-3xl md:text-4xl font-bold text-primary">
-            Ready to bridge invisible gaps?
+            {t("new.final.title")}
           </h2>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-4">
-            Try the app for 30 days free. See your patterns, start the conversations, transform your connection.
+            {t("new.final.description")}
           </p>
           
           <div className="pt-2">
@@ -379,7 +379,7 @@ const New = () => {
                 }}
                 onClick={() => navigate("/learn-more")}
               >
-                See How It Works
+                {t("new.cta.howItWorks")}
               </Button>
               <Button
                 size="default"
@@ -392,7 +392,7 @@ const New = () => {
                 }}
                 onClick={() => setShowLoginForm(!showLoginForm)}
               >
-                {showLoginForm ? "Sign Up" : "Login"}
+                {showLoginForm ? t("auth.button.signup") : t("auth.button.signin")}
               </Button>
             </div>
           </div>
@@ -401,7 +401,7 @@ const New = () => {
 
       {/* Footer */}
       <footer className="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground border-t border-border/50">
-        <p>© 2025 Spark Meter. Built with empathy for couples.</p>
+        <p>{t("new.footer")}</p>
       </footer>
     </div>
   );
