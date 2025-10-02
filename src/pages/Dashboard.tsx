@@ -871,21 +871,21 @@ const Dashboard = () => {
 
               {viewMode === 'self' && (
                 <>
-                  <Button
-                    size="lg"
-                    onClick={handleSaveAndReset}
-                    className="w-full h-12 text-base font-semibold mt-4"
-                    style={{ 
-                      background: "linear-gradient(135deg, rgba(180, 150, 255, 0.8) 0%, rgba(150, 200, 255, 0.8) 100%)",
-                      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)"
-                    }}
-                  >
-                    {t("dashboard.checkin.save")}
-                  </Button>
-                  <div className="flex justify-center pt-2">
+                  <div className="flex items-center gap-2 mt-4">
                     <VoiceInput onParsedValues={handleVoiceInput} />
+                    <Button
+                      size="lg"
+                      onClick={handleSaveAndReset}
+                      className="flex-1 h-12 text-base font-semibold"
+                      style={{ 
+                        background: "linear-gradient(135deg, rgba(180, 150, 255, 0.8) 0%, rgba(150, 200, 255, 0.8) 100%)",
+                        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)"
+                      }}
+                    >
+                      {t("dashboard.checkin.save")}
+                    </Button>
                   </div>
-                  <p className="text-[9px] text-center text-muted-foreground">
+                  <p className="text-[9px] text-center text-muted-foreground pt-2">
                     {t("dashboard.checkin.voice.hint")}
                   </p>
                 </>
