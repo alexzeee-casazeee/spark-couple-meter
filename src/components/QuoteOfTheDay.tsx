@@ -49,21 +49,21 @@ const QuoteOfTheDay = ({ isAtBottom, onPositionChange }: QuoteOfTheDayProps) => 
   }
 
   return (
-    <div className="bg-white/80 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative animate-fade-in" style={{ 
+    <div className="bg-white/80 backdrop-blur-md rounded-2xl p-3 border-2 border-transparent bg-clip-padding relative animate-fade-in" style={{ 
       backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
       backgroundOrigin: 'border-box', 
       backgroundClip: 'padding-box, border-box',
-      boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)'
+      boxShadow: '0 15px 40px rgba(0, 0, 0, 0.12)'
     }}>
-      <div className="flex items-start justify-between gap-3 mb-3">
-        <div className="flex gap-3 flex-1">
+      <div className="flex items-start justify-between gap-2 mb-2">
+        <div className="flex gap-2 flex-1 items-center">
           <div className="flex-shrink-0">
-            <div className="w-10 h-10 bg-primary/15 rounded-full flex items-center justify-center">
-              <Quote className="w-5 h-5 text-primary" />
+            <div className="w-7 h-7 bg-primary/15 rounded-full flex items-center justify-center">
+              <Quote className="w-4 h-4 text-primary" />
             </div>
           </div>
           <div className="flex-1">
-            <h3 className="text-sm font-semibold text-primary">Quote of the Day</h3>
+            <h3 className="text-xs font-semibold text-primary">Quote of the Day</h3>
           </div>
         </div>
         <div className="flex gap-1">
@@ -72,10 +72,10 @@ const QuoteOfTheDay = ({ isAtBottom, onPositionChange }: QuoteOfTheDayProps) => 
               variant="ghost"
               size="icon"
               onClick={() => onPositionChange(false)}
-              className="h-8 w-8 -mt-1"
+              className="h-6 w-6"
               title="Move to top"
             >
-              <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              <ChevronUp className="h-3 w-3 text-muted-foreground" />
             </Button>
           )}
           <Button
@@ -90,27 +90,27 @@ const QuoteOfTheDay = ({ isAtBottom, onPositionChange }: QuoteOfTheDayProps) => 
                 setIsExpanded(!isExpanded);
               }
             }}
-            className="h-8 w-8 -mt-1"
+            className="h-6 w-6"
             title={!isAtBottom ? "Move to bottom" : (isExpanded ? "Collapse" : "Expand")}
           >
             {!isAtBottom ? (
-              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              <ChevronDown className="h-3 w-3 text-muted-foreground" />
             ) : isExpanded ? (
-              <ChevronUp className="h-4 w-4 text-muted-foreground" />
+              <ChevronUp className="h-3 w-3 text-muted-foreground" />
             ) : (
-              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              <ChevronDown className="h-3 w-3 text-muted-foreground" />
             )}
           </Button>
         </div>
       </div>
       
       {isExpanded && (
-        <div className="pl-13">
-          <p className="text-base font-medium text-foreground leading-relaxed mb-2 italic">
+        <div className="pl-9">
+          <p className="text-sm font-medium text-foreground leading-relaxed mb-1.5 italic">
             "{quote.message}"
           </p>
           <div className="flex items-center justify-between">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               — {quote.source}
             </p>
             <Button

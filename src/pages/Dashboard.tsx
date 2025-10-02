@@ -814,7 +814,7 @@ const Dashboard = () => {
           ) : (
             <>
               {/* Desire for Intimacy */}
-              <div className="p-2 rounded-2xl relative overflow-hidden" style={{
+              <div className="p-3 rounded-2xl relative overflow-hidden" style={{
                 background: 'linear-gradient(135deg, rgba(200, 150, 255, 0.3) 0%, rgba(150, 200, 255, 0.3) 100%)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
@@ -843,7 +843,7 @@ const Dashboard = () => {
               </div>
 
               {/* Desire for Touch */}
-              <div className="p-2 rounded-2xl relative overflow-hidden" style={{
+              <div className="p-3 rounded-2xl relative overflow-hidden" style={{
                 background: 'linear-gradient(135deg, rgba(255, 200, 150, 0.3) 0%, rgba(255, 150, 200, 0.3) 100%)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
@@ -872,7 +872,7 @@ const Dashboard = () => {
               </div>
 
               {/* Communication Desire */}
-              <div className="p-2 rounded-2xl relative overflow-hidden" style={{
+              <div className="p-3 rounded-2xl relative overflow-hidden" style={{
                 background: 'linear-gradient(135deg, rgba(150, 255, 200, 0.3) 0%, rgba(150, 200, 255, 0.3) 100%)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
@@ -901,7 +901,7 @@ const Dashboard = () => {
               </div>
 
               {/* Sleep Quality */}
-              <div className="p-2 rounded-2xl relative overflow-hidden" style={{
+              <div className="p-3 rounded-2xl relative overflow-hidden" style={{
                 background: 'linear-gradient(135deg, rgba(180, 200, 255, 0.3) 0%, rgba(200, 180, 255, 0.3) 100%)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
@@ -930,7 +930,7 @@ const Dashboard = () => {
               </div>
 
               {/* Emotional State */}
-              <div className="p-2 rounded-2xl relative overflow-hidden" style={{
+              <div className="p-3 rounded-2xl relative overflow-hidden" style={{
                 background: 'linear-gradient(135deg, rgba(150, 255, 255, 0.3) 0%, rgba(200, 200, 255, 0.3) 100%)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
@@ -968,7 +968,7 @@ const Dashboard = () => {
                 const gradient = gradients[index % gradients.length];
                 
                 return (
-                  <div key={dimension.id} className="p-2 rounded-2xl relative overflow-hidden" style={{
+                  <div key={dimension.id} className="p-3 rounded-2xl relative overflow-hidden" style={{
                     background: gradient,
                     backdropFilter: 'blur(10px)',
                     border: '1px solid rgba(255, 255, 255, 0.3)'
