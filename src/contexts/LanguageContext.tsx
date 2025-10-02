@@ -199,6 +199,24 @@ const translations = {
     "common.imessage": "iMessage",
     "common.email": "Email",
     "common.link": "Link",
+
+    // New homepage
+    "new.hero.badge": "For Couples Who Want More",
+    "new.hero.title.leading": "Your Desire Doesn't Have to Be a",
+    "new.hero.title.highlight": "Mystery",
+    "new.hero.description": "An app for couples that maps, tracks, and communicates shifting needs—without pressure or resentment.",
+    "new.hero.tagline": "Because intimacy isn't static. Neither are we.",
+    "new.hero.paragraph": "Understand her fluctuations. Share your wants. Bridge the gap between craving and connection—every single day.",
+    "new.cta.howItWorks": "See How It Works",
+    "new.why.title": "Why This Matters",
+    "new.why.card1.title": "Desire shifts. That's normal.",
+    "new.why.card1.desc": "For many women, hormone levels rise and fall daily (or over cycles), and this can subtly or strongly change how much intimacy feels good, safe, or wanted. Meanwhile, many men experience more hormonal stability (though not universally). This mismatch is a hidden friction point couples rarely discuss.",
+    "new.why.card2.title": "Expectations vs Reality",
+    "new.why.card2.desc": "When one partner expects \"always hot,\" and the other is sometimes in low-desire mode, the result can be hurt feelings, shame, or confusion. With an aligned understanding, those moments aren't rejection—they're signals.",
+    "new.why.card3.title": "Communication is your superpower",
+    "new.why.card3.desc": "The hardest fights in relationships often come from misalignment—expectations, timing, interpretation. This app gives you a shared language to talk about your needs before frustration kicks in.",
+    "new.demo.caption": "Interactive demo - try adjusting the sliders!",
+    "new.how.subtitle": "Features framed in intimacy language",
   },
   ru: {
     // Landing page
@@ -390,6 +408,24 @@ const translations = {
     "common.imessage": "iMessage",
     "common.email": "Email",
     "common.link": "Ссылка",
+
+    // New homepage
+    "new.hero.badge": "Для пар, которые хотят большего",
+    "new.hero.title.leading": "Ваше желание не должно быть",
+    "new.hero.title.highlight": "Тайной",
+    "new.hero.description": "Приложение для пар, которое отслеживает, фиксирует и передает меняющиеся потребности — без давления и обид.",
+    "new.hero.tagline": "Потому что близость не статична. И мы тоже.",
+    "new.hero.paragraph": "Понимайте её колебания. Делитесь своими желаниями. Преодолевайте разрыв между влечением и связью — каждый день.",
+    "new.cta.howItWorks": "Как это работает",
+    "new.why.title": "Почему это важно",
+    "new.why.card1.title": "Желание меняется. Это нормально.",
+    "new.why.card1.desc": "У многих женщин уровень гормонов поднимается и опускается ежедневно (или циклически), и это может тонко или сильно влиять на то, насколько близость ощущается хорошей, безопасной или желанной. Между тем, многие мужчины испытывают большую гормональную стабильность (хотя и не всегда). Это несоответствие — скрытая точка трения, о которой пары редко говорят.",
+    "new.why.card2.title": "Ожидания против реальности",
+    "new.why.card2.desc": "Когда один партнер ожидает \"всегда горячо\", а другой иногда находится в режиме низкого желания, результатом могут быть обиды, стыд или замешательство. С согласованным пониманием эти моменты — не отказ, а сигналы.",
+    "new.why.card3.title": "Общение — ваша суперсила",
+    "new.why.card3.desc": "Самые сложные конфликты в отношениях часто возникают из несоответствия — ожиданий, времени, интерпретации. Это приложение дает вам общий язык для разговора о ваших потребностях до того, как придет разочарование.",
+    "new.demo.caption": "Интерактивная демонстрация - попробуйте переместить слайдеры!",
+    "new.how.subtitle": "Функции в языке близости",
   },
   es: {
     // Landing page
@@ -581,6 +617,24 @@ const translations = {
     "common.imessage": "iMessage",
     "common.email": "Email",
     "common.link": "Enlace",
+
+    // New homepage
+    "new.hero.badge": "Para Parejas Que Quieren Más",
+    "new.hero.title.leading": "Tu Deseo No Tiene Que Ser un",
+    "new.hero.title.highlight": "Misterio",
+    "new.hero.description": "Una app para parejas que mapea, rastrea y comunica las necesidades cambiantes, sin presión ni resentimiento.",
+    "new.hero.tagline": "Porque la intimidad no es estática. Nosotros tampoco.",
+    "new.hero.paragraph": "Comprende sus fluctuaciones. Comparte tus deseos. Cierra la brecha entre el anhelo y la conexión, cada día.",
+    "new.cta.howItWorks": "Ver Cómo Funciona",
+    "new.why.title": "Por Qué Esto Importa",
+    "new.why.card1.title": "El deseo cambia. Eso es normal.",
+    "new.why.card1.desc": "Para muchas mujeres, los niveles hormonales suben y bajan diariamente (o en ciclos), y esto puede cambiar sutil o fuertemente cuánto se siente bien, segura o deseada la intimidad. Mientras tanto, muchos hombres experimentan más estabilidad hormonal (aunque no universalmente). Este desajuste es un punto de fricción oculto que las parejas rara vez discuten.",
+    "new.why.card2.title": "Expectativas vs Realidad",
+    "new.why.card2.desc": "Cuando un compañero espera \"siempre caliente\", y el otro a veces está en modo de bajo deseo, el resultado puede ser sentimientos heridos, vergüenza o confusión. Con una comprensión alineada, esos momentos no son rechazo, son señales.",
+    "new.why.card3.title": "La comunicación es tu superpoder",
+    "new.why.card3.desc": "Las peleas más difíciles en las relaciones a menudo provienen del desalineamiento: expectativas, tiempo, interpretación. Esta aplicación te da un lenguaje compartido para hablar sobre tus necesidades antes de que llegue la frustración.",
+    "new.demo.caption": "¡Demo interactivo - intenta ajustar los deslizadores!",
+    "new.how.subtitle": "Funciones enmarcadas en lenguaje de intimidad",
   },
 };
 
