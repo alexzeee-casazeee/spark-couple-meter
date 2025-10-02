@@ -157,6 +157,48 @@ const translations = {
     "acceptInvite.form.subtitle": "You'll be automatically connected with {name}",
     "acceptInvite.button": "Create Account & Connect",
     "acceptInvite.loading": "Creating Account...",
+
+    // Olive Branch
+    "oliveBranch.title": "Extend an Olive Branch",
+    "oliveBranch.description": "Send a heartfelt message to {name}. Record your voice or type a message.",
+    "oliveBranch.record": "Record Voice Message",
+    "oliveBranch.stopRecording": "Stop Recording",
+    "oliveBranch.yourMessage": "Your Message",
+    "oliveBranch.placeholder": "Type or record a message for {name}...",
+    "oliveBranch.send": "Send Olive Branch",
+    "oliveBranch.sending": "Sending...",
+    "oliveBranch.transcribing": "Transcribing your message...",
+    "oliveBranch.toast.sent": "Message sent!",
+    "oliveBranch.toast.sentDesc": "Your Olive Branch has been extended to {name}",
+    "oliveBranch.toast.empty": "Empty message",
+    "oliveBranch.toast.emptyDesc": "Please record or type a message first",
+    "oliveBranch.toast.error": "Error",
+    "oliveBranch.toast.errorDesc": "Failed to send message. Please try again.",
+    "oliveBranch.toast.recordStart": "Recording started",
+    "oliveBranch.toast.recordStartDesc": "Speak your message for your partner",
+    "oliveBranch.toast.recordError": "Failed to start recording. Please check microphone permissions.",
+    "oliveBranch.toast.transcribeComplete": "Transcription complete",
+    "oliveBranch.toast.transcribeCompleteDesc": "You can edit the message before sending",
+    "oliveBranch.toast.transcribeError": "Failed to transcribe audio. Please try typing instead.",
+
+    // Trial Status
+    "trial.premium": "Premium",
+    "trial.unlimited": "Unlimited",
+    "trial.expired": "Trial Expired",
+    "trial.freeTrial": "Free Trial",
+    "trial.upgrade": "Upgrade $2.99/mo",
+    "trial.loading": "Loading...",
+    "trial.day": "day",
+    "trial.days": "days",
+    "trial.left": "left",
+
+    // Quote of the Day
+    "quote.title": "Quote of the Day",
+
+    // Common
+    "common.imessage": "iMessage",
+    "common.email": "Email",
+    "common.link": "Link",
   },
   ru: {
     // Landing page
@@ -304,8 +346,50 @@ const translations = {
     "acceptInvite.preview.subtitle": "Так будет выглядеть экран после регистрации",
     "acceptInvite.form.title": "Создайте аккаунт",
     "acceptInvite.form.subtitle": "Вы автоматически подключитесь с {name}",
-    "acceptInvite.button": "Crear cuenta y conectarse",
-    "acceptInvite.loading": "Creando cuenta...",
+    "acceptInvite.button": "Создать аккаунт и подключиться",
+    "acceptInvite.loading": "Создание аккаунта...",
+
+    // Olive Branch
+    "oliveBranch.title": "Протянуть оливковую ветвь",
+    "oliveBranch.description": "Отправьте искреннее сообщение {name}. Запишите голос или напишите.",
+    "oliveBranch.record": "Записать голосовое сообщение",
+    "oliveBranch.stopRecording": "Остановить запись",
+    "oliveBranch.yourMessage": "Ваше сообщение",
+    "oliveBranch.placeholder": "Напишите или запишите сообщение для {name}...",
+    "oliveBranch.send": "Отправить оливковую ветвь",
+    "oliveBranch.sending": "Отправка...",
+    "oliveBranch.transcribing": "Расшифровка вашего сообщения...",
+    "oliveBranch.toast.sent": "Сообщение отправлено!",
+    "oliveBranch.toast.sentDesc": "Ваша оливковая ветвь протянута к {name}",
+    "oliveBranch.toast.empty": "Пустое сообщение",
+    "oliveBranch.toast.emptyDesc": "Пожалуйста, сначала запишите или напишите сообщение",
+    "oliveBranch.toast.error": "Ошибка",
+    "oliveBranch.toast.errorDesc": "Не удалось отправить сообщение. Попробуйте еще раз.",
+    "oliveBranch.toast.recordStart": "Запись начата",
+    "oliveBranch.toast.recordStartDesc": "Говорите ваше сообщение для партнера",
+    "oliveBranch.toast.recordError": "Не удалось начать запись. Проверьте разрешения микрофона.",
+    "oliveBranch.toast.transcribeComplete": "Расшифровка завершена",
+    "oliveBranch.toast.transcribeCompleteDesc": "Вы можете отредактировать сообщение перед отправкой",
+    "oliveBranch.toast.transcribeError": "Не удалось расшифровать аудио. Попробуйте напечатать.",
+
+    // Trial Status
+    "trial.premium": "Премиум",
+    "trial.unlimited": "Неограниченно",
+    "trial.expired": "Пробный период истек",
+    "trial.freeTrial": "Бесплатная пробная версия",
+    "trial.upgrade": "Обновить $2.99/мес",
+    "trial.loading": "Загрузка...",
+    "trial.day": "день",
+    "trial.days": "дней",
+    "trial.left": "осталось",
+
+    // Quote of the Day
+    "quote.title": "Цитата дня",
+
+    // Common
+    "common.imessage": "iMessage",
+    "common.email": "Email",
+    "common.link": "Ссылка",
   },
   es: {
     // Landing page
@@ -455,6 +539,48 @@ const translations = {
     "acceptInvite.form.subtitle": "Te conectarás automáticamente con {name}",
     "acceptInvite.button": "Crear Cuenta y Conectar",
     "acceptInvite.loading": "Creando Cuenta...",
+
+    // Olive Branch
+    "oliveBranch.title": "Extender una Rama de Olivo",
+    "oliveBranch.description": "Envía un mensaje sincero a {name}. Graba tu voz o escribe un mensaje.",
+    "oliveBranch.record": "Grabar Mensaje de Voz",
+    "oliveBranch.stopRecording": "Detener Grabación",
+    "oliveBranch.yourMessage": "Tu Mensaje",
+    "oliveBranch.placeholder": "Escribe o graba un mensaje para {name}...",
+    "oliveBranch.send": "Enviar Rama de Olivo",
+    "oliveBranch.sending": "Enviando...",
+    "oliveBranch.transcribing": "Transcribiendo tu mensaje...",
+    "oliveBranch.toast.sent": "¡Mensaje enviado!",
+    "oliveBranch.toast.sentDesc": "Tu Rama de Olivo ha sido extendida a {name}",
+    "oliveBranch.toast.empty": "Mensaje vacío",
+    "oliveBranch.toast.emptyDesc": "Por favor graba o escribe un mensaje primero",
+    "oliveBranch.toast.error": "Error",
+    "oliveBranch.toast.errorDesc": "No se pudo enviar el mensaje. Inténtalo de nuevo.",
+    "oliveBranch.toast.recordStart": "Grabación iniciada",
+    "oliveBranch.toast.recordStartDesc": "Habla tu mensaje para tu pareja",
+    "oliveBranch.toast.recordError": "No se pudo iniciar la grabación. Verifica los permisos del micrófono.",
+    "oliveBranch.toast.transcribeComplete": "Transcripción completa",
+    "oliveBranch.toast.transcribeCompleteDesc": "Puedes editar el mensaje antes de enviarlo",
+    "oliveBranch.toast.transcribeError": "No se pudo transcribir el audio. Intenta escribir en su lugar.",
+
+    // Trial Status
+    "trial.premium": "Premium",
+    "trial.unlimited": "Ilimitado",
+    "trial.expired": "Prueba Expirada",
+    "trial.freeTrial": "Prueba Gratuita",
+    "trial.upgrade": "Actualizar $2.99/mes",
+    "trial.loading": "Cargando...",
+    "trial.day": "día",
+    "trial.days": "días",
+    "trial.left": "restante",
+
+    // Quote of the Day
+    "quote.title": "Cita del Día",
+
+    // Common
+    "common.imessage": "iMessage",
+    "common.email": "Email",
+    "common.link": "Enlace",
   },
 };
 

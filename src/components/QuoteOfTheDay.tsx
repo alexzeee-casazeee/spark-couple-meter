@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Quote, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface QuoteData {
   id: string;
@@ -15,6 +16,7 @@ interface QuoteOfTheDayProps {
 }
 
 const QuoteOfTheDay = ({ isAtBottom, onPositionChange }: QuoteOfTheDayProps) => {
+  const { t } = useLanguage();
   const [quote, setQuote] = useState<QuoteData | null>(null);
   const [loading, setLoading] = useState(true);
   const [isExpanded, setIsExpanded] = useState(true);
@@ -63,7 +65,7 @@ const QuoteOfTheDay = ({ isAtBottom, onPositionChange }: QuoteOfTheDayProps) => 
             </div>
           </div>
           <div className="flex-1">
-            <h3 className="text-xs font-semibold text-primary">Quote of the Day</h3>
+            <h3 className="text-xs font-semibold text-primary">{t("quote.title")}</h3>
           </div>
         </div>
         <div className="flex gap-1">

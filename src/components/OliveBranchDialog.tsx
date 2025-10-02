@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mic, MicOff, Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface OliveBranchDialogProps {
   open: boolean;
@@ -32,6 +33,7 @@ export function OliveBranchDialog({
   recipientName,
 }: OliveBranchDialogProps) {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [message, setMessage] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [isTranscribing, setIsTranscribing] = useState(false);
@@ -67,14 +69,14 @@ export function OliveBranchDialog({
       setIsRecording(true);
       
       toast({
-        title: "Recording started",
-        description: "Speak your message for your partner",
+        title: t("oliveBranch.toast.recordStart"),
+        description: t("oliveBranch.toast.recordStartDesc"),
       });
     } catch (error) {
       console.error("Error starting recording:", error);
       toast({
-        title: "Error",
-        description: "Failed to start recording. Please check microphone permissions.",
+        title: t("oliveBranch.toast.error"),
+        description: t("oliveBranch.toast.recordError"),
         variant: "destructive",
       });
     }
@@ -111,16 +113,16 @@ export function OliveBranchDialog({
         if (data?.text) {
           setMessage(data.text);
           toast({
-            title: "Transcription complete",
-            description: "You can edit the message before sending",
+            title: t("oliveBranch.toast.transcribeComplete"),
+            description: t("oliveBranch.toast.transcribeCompleteDesc"),
           });
         }
       };
     } catch (error) {
       console.error("Error transcribing audio:", error);
       toast({
-        title: "Error",
-        description: "Failed to transcribe audio. Please try typing instead.",
+        title: t("oliveBranch.toast.error"),
+        description: t("oliveBranch.toast.transcribeError"),
         variant: "destructive",
       });
     } finally {
@@ -131,8 +133,8 @@ export function OliveBranchDialog({
   const handleSend = async () => {
     if (!message.trim()) {
       toast({
-        title: "Empty message",
-        description: "Please record or type a message first",
+        title: t("oliveBranch.toast.empty"),
+        description: t("oliveBranch.toast.emptyDesc"),
         variant: "destructive",
       });
       return;
@@ -153,8 +155,8 @@ export function OliveBranchDialog({
       if (error) throw error;
 
       toast({
-        title: "Message sent!",
-        description: `Your Olive Branch has been extended to ${recipientName}`,
+        title: t("oliveBranch.toast.sent"),
+        description: t("oliveBranch.toast.sentDesc").replace("{name}", recipientName),
       });
 
       setMessage("");
@@ -162,8 +164,8 @@ export function OliveBranchDialog({
     } catch (error) {
       console.error("Error sending message:", error);
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
+        title: t("oliveBranch.toast.error"),
+        description: t("oliveBranch.toast.errorDesc"),
         variant: "destructive",
       });
     } finally {
@@ -176,9 +178,9 @@ export function OliveBranchDialog({
       <DialogContent className="sm:max-w-md bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm p-[5px] shadow-2xl top-4 translate-y-0">
         <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-900/70 rounded-lg p-6 shadow-lg">
           <DialogHeader>
-            <DialogTitle>Extend an Olive Branch</DialogTitle>
+            <DialogTitle>{t("oliveBranch.title")}</DialogTitle>
             <DialogDescription>
-              Send a heartfelt message to {recipientName}. Record your voice or type a message.
+              {t("oliveBranch.description").replace("{name}", recipientName)}
             </DialogDescription>
           </DialogHeader>
 
@@ -195,7 +197,7 @@ export function OliveBranchDialog({
                 }}
               >
                 <Mic className="w-5 h-5 text-white" />
-                <span className="text-white">Record Voice Message</span>
+                <span className="text-white">{t("oliveBranch.record")}</span>
               </Button>
             ) : (
               <Button
@@ -203,21 +205,21 @@ export function OliveBranchDialog({
                 className="gap-2 bg-red-500 hover:bg-red-600 animate-pulse scale-110 shadow-lg"
               >
                 <MicOff className="w-5 h-5" />
-                Stop Recording
+                {t("oliveBranch.stopRecording")}
               </Button>
             )}
           </div>
 
           {isTranscribing && (
             <div className="text-center text-sm text-muted-foreground">
-              Transcribing your message...
+              {t("oliveBranch.transcribing")}
             </div>
           )}
 
           <div className="space-y-2">
-            <label className="text-sm font-medium">Your Message</label>
+            <label className="text-sm font-medium">{t("oliveBranch.yourMessage")}</label>
             <Textarea
-              placeholder={`Type or record a message for ${recipientName}...`}
+              placeholder={t("oliveBranch.placeholder").replace("{name}", recipientName)}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               disabled={isTranscribing || isRecording || isSending}
@@ -232,7 +234,7 @@ export function OliveBranchDialog({
             className="w-full gap-2"
           >
             <Send className="w-4 h-4" />
-            {isSending ? "Sending..." : "Send Olive Branch"}
+            {isSending ? t("oliveBranch.sending") : t("oliveBranch.send")}
           </Button>
         </div>
         </div>

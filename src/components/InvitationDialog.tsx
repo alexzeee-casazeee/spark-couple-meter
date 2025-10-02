@@ -108,7 +108,7 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
               style={{ background: 'var(--gradient-primary)' }}
             >
               <MessageCircle className="h-5 w-5" />
-              <span className="text-xs">iMessage</span>
+              <span className="text-xs">{t("common.imessage")}</span>
             </Button>
             <Button
               onClick={handleInviteViaEmail}
@@ -116,7 +116,7 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
               style={{ background: 'var(--gradient-primary)' }}
             >
               <Mail className="h-5 w-5" />
-              <span className="text-xs">Email</span>
+              <span className="text-xs">{t("common.email")}</span>
             </Button>
             <Button 
               onClick={generateInvitation} 
@@ -124,7 +124,7 @@ const InvitationDialog = ({ open, onOpenChange, profileId }: InvitationDialogPro
               style={{ background: 'var(--gradient-primary)' }}
             >
               <Link2 className="h-5 w-5" />
-              <span className="text-xs">Link</span>
+              <span className="text-xs">{t("common.link")}</span>
             </Button>
           </div>
           

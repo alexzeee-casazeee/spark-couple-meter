@@ -80,8 +80,8 @@ const CombinedTrialOliveBranch = ({
             <Crown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-600" />
           </div>
           <div className="min-w-0">
-            <p className="text-xs sm:text-sm font-semibold text-green-700 truncate">Premium</p>
-            <p className="text-[10px] sm:text-xs text-green-600">Unlimited</p>
+            <p className="text-xs sm:text-sm font-semibold text-green-700 truncate">{t("trial.premium")}</p>
+            <p className="text-[10px] sm:text-xs text-green-600">{t("trial.unlimited")}</p>
           </div>
         </div>
       );
@@ -90,7 +90,7 @@ const CombinedTrialOliveBranch = ({
     if (daysRemaining === 0) {
       return (
         <div className="flex flex-col gap-1.5 sm:gap-2">
-          <p className="text-xs sm:text-sm font-semibold text-red-700">Trial Expired</p>
+          <p className="text-xs sm:text-sm font-semibold text-red-700">{t("trial.expired")}</p>
           <Button 
             onClick={handleUpgrade} 
             disabled={loading}
@@ -98,7 +98,7 @@ const CombinedTrialOliveBranch = ({
             className="h-6 sm:h-7 text-[10px] sm:text-xs w-full"
           >
             <CreditCard className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-            {loading ? "Loading..." : "Upgrade $2.99/mo"}
+            {loading ? t("trial.loading") : t("trial.upgrade")}
           </Button>
         </div>
       );
@@ -111,9 +111,9 @@ const CombinedTrialOliveBranch = ({
             <span className="text-xs font-bold text-primary">{daysRemaining}</span>
           </div>
           <div className="min-w-0">
-            <p className="text-xs sm:text-sm font-semibold text-foreground truncate">Free Trial</p>
+            <p className="text-xs sm:text-sm font-semibold text-foreground truncate">{t("trial.freeTrial")}</p>
             <p className="text-[10px] sm:text-xs text-muted-foreground whitespace-nowrap">
-              {daysRemaining} {daysRemaining === 1 ? 'day' : 'days'} left
+              {daysRemaining} {daysRemaining === 1 ? t("trial.day") : t("trial.days")} {t("trial.left")}
             </p>
           </div>
         </div>
@@ -125,7 +125,7 @@ const CombinedTrialOliveBranch = ({
           className="h-6 sm:h-7 text-[10px] sm:text-xs w-full"
         >
           <CreditCard className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-          {loading ? "Loading..." : "Upgrade $2.99/mo"}
+          {loading ? t("trial.loading") : t("trial.upgrade")}
         </Button>
       </div>
     );
