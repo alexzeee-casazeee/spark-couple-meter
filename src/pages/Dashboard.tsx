@@ -66,6 +66,11 @@ const Dashboard = () => {
   // Invitation dialog state
   const [invitationDialogOpen, setInvitationDialogOpen] = useState(false);
   
+  // Trial and subscription state
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isTrialExpired, setIsTrialExpired] = useState(false);
+  const [upgradeDialogOpen, setUpgradeDialogOpen] = useState(false);
+  
   // Quote position state
   const [quoteAtBottom, setQuoteAtBottom] = useState(() => {
     const saved = localStorage.getItem('quoteAtBottom');
@@ -96,6 +101,18 @@ const Dashboard = () => {
   useEffect(() => {
     checkAuth();
   }, []);
+
+  // Re-check subscription when window gains focus (e.g., after returning from Stripe)
+  useEffect(() => {
+    const handleFocus = () => {
+      if (profile) {
+        checkSubscriptionStatus();
+      }
+    };
+    
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
+  }, [profile]);
 
   const checkAuth = async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -324,7 +341,32 @@ const Dashboard = () => {
     }
   };
 
-  // Mark Olive Branch message as read
+  // Check subscription and trial status
+  const checkSubscriptionStatus = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('check-subscription');
+      
+      if (error) {
+        console.error('Error checking subscription:', error);
+        return;
+      }
+      
+      setIsSubscribed(data?.subscribed || false);
+      
+      // Check if trial is expired
+      if (profile?.trial_start_date) {
+        const trialStart = new Date(profile.trial_start_date);
+        const today = new Date();
+        const diffTime = today.getTime() - trialStart.getTime();
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const isExpired = diffDays >= 30;
+        setIsTrialExpired(isExpired);
+      }
+    } catch (error) {
+      console.error('Error checking subscription:', error);
+    }
+  };
+
   const markMessageAsRead = async (messageId: string) => {
     await supabase
       .from("olive_branch_messages")
@@ -384,7 +426,31 @@ const Dashboard = () => {
   };
 
   const handleSaveAndReset = async () => {
+    // Check if trial is expired and user is not subscribed
+    if (isTrialExpired && !isSubscribed) {
+      setUpgradeDialogOpen(true);
+      return;
+    }
     await handleSaveEntry(false); // Save with toast notification
+  };
+  
+  const handleUpgrade = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('create-checkout');
+      
+      if (error) throw error;
+      
+      if (data?.url) {
+        window.open(data.url, '_blank');
+      }
+    } catch (error: any) {
+      console.error('Error creating checkout:', error);
+      toast({
+        title: "Error",
+        description: "Failed to start checkout. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handlePokePartner = async () => {
@@ -561,6 +627,40 @@ const Dashboard = () => {
           </DialogContent>
         </Dialog>
 
+        {/* Upgrade Dialog */}
+        <Dialog open={upgradeDialogOpen} onOpenChange={setUpgradeDialogOpen}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="text-center text-2xl">Your Free Trial Has Ended</DialogTitle>
+              <DialogDescription className="text-center pt-4">
+                Upgrade to continue tracking your relationship and accessing all features.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="py-6 space-y-4">
+              <div className="bg-primary/5 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">Spark Meter Premium</p>
+                <p className="text-2xl font-bold text-primary">$2.99/month</p>
+                <ul className="text-sm text-muted-foreground space-y-1 mt-3">
+                  <li>✓ Unlimited daily check-ins</li>
+                  <li>✓ Track trends and patterns</li>
+                  <li>✓ Partner visibility</li>
+                  <li>✓ Custom dimensions</li>
+                </ul>
+              </div>
+              <Button
+                onClick={handleUpgrade}
+                className="w-full h-12 text-base"
+                style={{ background: 'var(--gradient-primary)' }}
+              >
+                Upgrade Now
+              </Button>
+              <p className="text-xs text-center text-muted-foreground">
+                Cancel anytime. No long-term commitment.
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
+
         {/* View Mode Toggle */}
         {couple && partnerProfile && (
           <div className="mb-2">
@@ -638,6 +738,40 @@ const Dashboard = () => {
             )}
           </div>
         )}
+
+        {/* Upgrade Dialog */}
+        <Dialog open={upgradeDialogOpen} onOpenChange={setUpgradeDialogOpen}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="text-center text-2xl">Your Free Trial Has Ended</DialogTitle>
+              <DialogDescription className="text-center pt-4">
+                Upgrade to continue tracking your relationship and accessing all features.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="py-6 space-y-4">
+              <div className="bg-primary/5 rounded-lg p-4 space-y-2">
+                <p className="text-sm font-semibold text-foreground">Spark Meter Premium</p>
+                <p className="text-2xl font-bold text-primary">$2.99/month</p>
+                <ul className="text-sm text-muted-foreground space-y-1 mt-3">
+                  <li>✓ Unlimited daily check-ins</li>
+                  <li>✓ Track trends and patterns</li>
+                  <li>✓ Partner visibility</li>
+                  <li>✓ Custom dimensions</li>
+                </ul>
+              </div>
+              <Button
+                onClick={handleUpgrade}
+                className="w-full h-12 text-base"
+                style={{ background: 'var(--gradient-primary)' }}
+              >
+                Upgrade Now
+              </Button>
+              <p className="text-xs text-center text-muted-foreground">
+                Cancel anytime. No long-term commitment.
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Olive Branch Messages */}
         {oliveBranchMessages.length > 0 && (
