@@ -3,9 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Heart } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { ArrowLeft, Heart, Trash2 } from "lucide-react";
 import { format } from "date-fns";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { toast } from "@/hooks/use-toast";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 interface LogEntry {
@@ -29,6 +40,8 @@ const Log = () => {
   const [partnerEntries, setPartnerEntries] = useState<LogEntry[]>([]);
   const [customDimensions, setCustomDimensions] = useState<any[]>([]);
   const [viewMode, setViewMode] = useState<'self' | 'partner'>('self');
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [entryToDelete, setEntryToDelete] = useState<string | null>(null);
 
   useEffect(() => {
     loadData();
@@ -148,6 +161,49 @@ const Log = () => {
         };
       })
     );
+  };
+
+  const handleDeleteEntry = async () => {
+    if (!entryToDelete) return;
+
+    try {
+      // First delete associated custom dimension entries
+      await supabase
+        .from("custom_dimension_entries")
+        .delete()
+        .eq("entry_id", entryToDelete);
+
+      // Then delete the daily entry
+      const { error } = await supabase
+        .from("daily_entries")
+        .delete()
+        .eq("id", entryToDelete);
+
+      if (error) throw error;
+
+      toast({
+        title: "Entry deleted",
+        description: "Your entry has been successfully deleted.",
+      });
+
+      // Reload data
+      await loadData();
+    } catch (error) {
+      console.error("Error deleting entry:", error);
+      toast({
+        title: "Error",
+        description: "Failed to delete entry. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setDeleteDialogOpen(false);
+      setEntryToDelete(null);
+    }
+  };
+
+  const confirmDeleteEntry = (entryId: string) => {
+    setEntryToDelete(entryId);
+    setDeleteDialogOpen(true);
   };
 
   if (loading) {
@@ -317,9 +373,21 @@ const Log = () => {
               </CardHeader>
               <CardContent className="space-y-2 pb-3">
                 {dayEntries.map((entry) => (
-                  <div key={entry.id} className="border-l-2 border-primary/30 pl-3 pb-2 last:pb-0">
-                    <div className="text-[10px] text-muted-foreground mb-1.5">
-                      {format(new Date(entry.created_at), "h:mm a")}
+                  <div key={entry.id} className="border-l-2 border-primary/30 pl-3 pb-2 last:pb-0 relative">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <div className="text-[10px] text-muted-foreground">
+                        {format(new Date(entry.created_at), "h:mm a")}
+                      </div>
+                      {viewMode === 'self' && (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => confirmDeleteEntry(entry.id)}
+                          className="h-6 w-6 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                        >
+                          <Trash2 className="h-3 w-3" />
+                        </Button>
+                      )}
                     </div>
                     <div className="grid grid-cols-2 gap-1.5 text-xs">
                       <div className="bg-muted/50 rounded p-1.5">
@@ -352,6 +420,24 @@ const Log = () => {
           ))
         )}
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete this entry from your log.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteEntry} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
