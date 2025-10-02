@@ -37,8 +37,7 @@ const Dashboard = () => {
   const [partnerEntry, setPartnerEntry] = useState<any>(null);
   const [viewMode, setViewMode] = useState<'self' | 'partner'>('self');
   
-  // Remind dialog state
-  const [remindDialogOpen, setRemindDialogOpen] = useState(false);
+  // Remind dialog state - removed, using inline card instead
   
   // Celebration dialog state
   const [celebrationOpen, setCelebrationOpen] = useState(false);
@@ -449,8 +448,6 @@ const Dashboard = () => {
         description: t("dashboard.remind.success.description").replace('{name}', partnerProfile.display_name),
       });
     }
-
-    setRemindDialogOpen(false);
   };
   
   const handleQuotePositionChange = (isAtBottom: boolean) => {
@@ -548,49 +545,6 @@ const Dashboard = () => {
           </div>
         )}
 
-        {/* Remind Dialog */}
-        <Dialog open={remindDialogOpen} onOpenChange={setRemindDialogOpen}>
-          <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle>{t("dashboard.remind.title").replace('{name}', partnerProfile?.display_name || '')}</DialogTitle>
-              <DialogDescription>
-                {t("dashboard.remind.description")}
-              </DialogDescription>
-            </DialogHeader>
-            <div className="flex flex-col gap-3 py-4">
-              <Button
-                className="w-full justify-start gap-3 h-12 font-semibold"
-                style={{
-                  background: "linear-gradient(135deg, rgba(100, 150, 255, 0.8) 0%, rgba(150, 200, 255, 0.8) 100%)",
-                }}
-                onClick={() => handleRemindPartner('imessage')}
-              >
-                <MessageCircle className="w-5 h-5" />
-                <span>{t("dashboard.remind.imessage")}</span>
-              </Button>
-              <Button
-                className="w-full justify-start gap-3 h-12 font-semibold"
-                style={{
-                  background: "linear-gradient(135deg, rgba(100, 200, 150, 0.8) 0%, rgba(150, 255, 200, 0.8) 100%)",
-                }}
-                onClick={() => handleRemindPartner('email')}
-              >
-                <Mail className="w-5 h-5" />
-                <span>{t("dashboard.remind.email")}</span>
-              </Button>
-              <Button
-                className="w-full justify-start gap-3 h-12 font-semibold"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255, 150, 100, 0.8) 0%, rgba(255, 200, 150, 0.8) 100%)",
-                }}
-                onClick={() => handleRemindPartner('notification')}
-              >
-                <Bell className="w-5 h-5" />
-                <span>{t("dashboard.remind.notification")}</span>
-              </Button>
-            </div>
-          </DialogContent>
-        </Dialog>
 
         {/* Celebration Modal */}
         <Dialog open={celebrationOpen} onOpenChange={setCelebrationOpen}>
@@ -628,18 +582,58 @@ const Dashboard = () => {
               </Button>
             </div>
             
-            {/* Remind Partner Button - Only show in partner view when they haven't checked in */}
+            {/* Prominent Reminder Card - Only show in partner view when they haven't checked in */}
             {viewMode === 'partner' && !partnerEntry && (
-              <Button
-                onClick={() => setRemindDialogOpen(true)}
-                className="w-full mt-2 h-10 text-sm font-semibold"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255, 180, 200, 0.8) 0%, rgba(255, 220, 180, 0.8) 100%)",
-                }}
-              >
-                <Bell className="w-4 h-4 mr-2" />
-                Remind {partnerProfile.display_name}
-              </Button>
+              <Card className="mt-4 border-0 shadow-lg overflow-hidden" style={{
+                background: "linear-gradient(135deg, rgba(255, 180, 200, 0.15) 0%, rgba(255, 220, 180, 0.15) 100%)",
+              }}>
+                <CardContent className="p-6 space-y-4">
+                  {/* Status Message */}
+                  <div className="text-center space-y-2">
+                    <Bell className="w-12 h-12 mx-auto text-primary opacity-80" />
+                    <h3 className="text-lg font-bold text-foreground">
+                      {partnerProfile.display_name} hasn't checked in today yet
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Send them a gentle reminder to check in
+                    </p>
+                  </div>
+
+                  {/* Direct Action Buttons */}
+                  <div className="space-y-2">
+                    <Button
+                      className="w-full justify-start gap-3 h-14 font-semibold text-base shadow-md"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(100, 200, 150, 0.9) 0%, rgba(150, 255, 200, 0.9) 100%)",
+                      }}
+                      onClick={() => handleRemindPartner('email')}
+                    >
+                      <Mail className="w-5 h-5" />
+                      <span>Send Email Reminder</span>
+                    </Button>
+                    <Button
+                      className="w-full justify-start gap-3 h-14 font-semibold text-base shadow-md"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(100, 150, 255, 0.9) 0%, rgba(150, 200, 255, 0.9) 100%)",
+                      }}
+                      onClick={() => handleRemindPartner('imessage')}
+                    >
+                      <MessageCircle className="w-5 h-5" />
+                      <span>Send Text/iMessage</span>
+                    </Button>
+                    
+                    {/* Less prominent notification option */}
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-center gap-2 h-10 text-sm text-muted-foreground hover:text-foreground"
+                      onClick={() => handleRemindPartner('notification')}
+                    >
+                      <Bell className="w-4 h-4" />
+                      <span>Or send a gentle in-app notification</span>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             )}
           </div>
         )}
