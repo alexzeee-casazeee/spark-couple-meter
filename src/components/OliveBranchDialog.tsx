@@ -173,7 +173,7 @@ export function OliveBranchDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm p-[5px] shadow-2xl">
+      <DialogContent className="sm:max-w-md bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm p-[5px] shadow-2xl top-4 translate-y-0">
         <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-900/70 rounded-lg p-6 shadow-lg">
           <DialogHeader>
             <DialogTitle>Extend an Olive Branch</DialogTitle>
