@@ -573,8 +573,9 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
   }
 
   return (
-    <div className="min-h-screen pb-12 bg-white">
+    <div className={demoMode ? "pb-4 bg-white" : "min-h-screen pb-12 bg-white"}>
       {/* Header - Compact */}
+      {!demoMode && (
       <header className="p-2 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
         <div className="container mx-auto flex justify-between items-center px-2">
           <div className="flex items-center gap-2">
@@ -602,10 +603,11 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
           </div>
         </div>
       </header>
+      )}
 
       <div className="container mx-auto px-1 py-1 max-w-4xl space-y-1">
         {/* Invitation Prompt - Only show if no partner */}
-        {!couple && profile && (
+        {!demoMode && !couple && profile && (
           <div className="bg-white/95 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative" style={{ 
             backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 85%), hsl(280, 60%, 85%))', 
             backgroundOrigin: 'border-box', 
@@ -634,7 +636,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
         )}
 
         {/* Combined Trial Status and Olive Branch */}
-        {couple && profile && partnerProfile && (
+        {!demoMode && couple && profile && partnerProfile && (
           <CombinedTrialOliveBranch 
             profile={profile}
             couple={couple}
@@ -645,7 +647,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
         )}
 
         {/* Quote of the Day - Top Position */}
-        {!quoteAtBottom && (
+        {!demoMode && !quoteAtBottom && (
           <div className="animate-fade-in">
             <QuoteOfTheDay 
               isAtBottom={false}
@@ -1081,7 +1083,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
         </div>
         
         {/* Quote of the Day - Bottom Position */}
-        {quoteAtBottom && (
+        {!demoMode && quoteAtBottom && (
           <div className="animate-slide-in-right">
             <QuoteOfTheDay 
               isAtBottom={true}
@@ -1091,7 +1093,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
         )}
 
         {/* Custom Dimensions Manager - Moved to bottom */}
-        {couple && profile && (
+        {!demoMode && couple && profile && (
           <CustomDimensionsManager
             coupleId={couple.id}
             profileId={profile.id}
@@ -1100,6 +1102,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
         )}
 
         {/* View Trends and Log */}
+        {!demoMode && (
         <div className="grid grid-cols-2 gap-2">
           <Button variant="outline" className="h-8 text-xs" onClick={() => navigate("/trends")}>
             <TrendingUp className="w-3 h-3 mr-2" />
@@ -1110,6 +1113,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
             {t("dashboard.viewLog")}
           </Button>
         </div>
+        )}
       </div>
 
       {/* Olive Branch Dialog */}
