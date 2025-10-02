@@ -146,3 +146,11 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .bg-canva-gradient {
+    background: var(--gradient-canva-bg);
+    background-attachment: fixed;
+    background-size: 100% 100vh;
+  }
+}

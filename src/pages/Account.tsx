@@ -231,7 +231,7 @@ const Account = () => {
   }
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: "var(--gradient-canva-bg)" }}>
+    <div className="min-h-screen pb-20 bg-canva-gradient">
       <header className="p-2 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
         <div className="container mx-auto flex items-center gap-3 px-2">
           <Button

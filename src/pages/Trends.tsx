@@ -66,7 +66,7 @@ const Trends = () => {
   }));
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: "var(--gradient-canva-bg)" }}>
+    <div className="min-h-screen pb-20 bg-canva-gradient">
       {/* Header */}
       <header className="p-3 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
         <div className="container mx-auto flex items-center gap-3">

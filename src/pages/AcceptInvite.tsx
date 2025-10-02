@@ -191,7 +191,7 @@ const AcceptInvite = () => {
   const partnerRole = senderProfile?.role === 'husband' ? 'Husband' : 'Wife';
 
   return (
-    <div className="min-h-screen px-4 py-8" style={{ background: 'var(--gradient-canva-bg)' }}>
+    <div className="min-h-screen px-4 py-8 bg-canva-gradient">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Welcome Message */}
         <Card className="bg-white/80 backdrop-blur-md rounded-3xl border-2 border-transparent bg-clip-padding relative" style={{ 

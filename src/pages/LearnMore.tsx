@@ -23,7 +23,7 @@ const LearnMore = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--gradient-canva-bg)' }}>
+    <div className="min-h-screen bg-canva-gradient">
       {/* Header */}
       <header className="border-b border-white/40 bg-white/60 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
         <div className="container mx-auto px-1.5 py-2">

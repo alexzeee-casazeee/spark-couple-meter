@@ -118,7 +118,7 @@ const Accounts = () => {
   }
 
   return (
-    <div className="min-h-screen p-8" style={{ background: "var(--gradient-canva-bg)" }}>
+    <div className="min-h-screen p-8 bg-canva-gradient">
       <div className="max-w-7xl mx-auto space-y-6">
         <div className="flex items-center gap-3 mb-6">
           <Users className="w-8 h-8 text-primary" />

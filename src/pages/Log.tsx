@@ -185,7 +185,7 @@ const Log = () => {
     });
 
   return (
-    <div className="min-h-screen pb-12" style={{ background: "var(--gradient-canva-bg)" }}>
+    <div className="min-h-screen pb-12 bg-canva-gradient">
       {/* Header */}
       <header className="p-2 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
         <div className="container mx-auto flex justify-between items-center px-2">

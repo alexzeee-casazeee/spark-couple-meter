@@ -13,7 +13,7 @@ const Landing = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--gradient-canva-bg)' }}>
+    <div className="min-h-screen bg-canva-gradient">
       {/* Header */}
       <header className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center gap-2">
