@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { JoinForm } from "@/components/JoinForm";
 import { LoginForm } from "@/components/LoginForm";
 import { Heart, Users, LineChart, Sparkles, MessageCircle, TrendingUp, Calendar, Activity, Target } from "lucide-react";
 import Dashboard from "./Dashboard";
+import { AuthModal } from "@/components/AuthModal";
 
 const New = () => {
   const navigate = useNavigate();
@@ -145,10 +145,13 @@ const New = () => {
       {/* Dashboard Preview Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
         <div className="max-w-md mx-auto w-full">
-          <div className="rounded-2xl shadow-2xl border-2 border-white/40 overflow-hidden bg-canva-gradient">
+          <div 
+            className="rounded-2xl shadow-2xl border-2 border-white/40 overflow-hidden bg-canva-gradient"
+            onClick={() => setTimeout(() => setShowDemoModal(true), 0)}
+          >
             <Dashboard 
               demoMode={true} 
-              onDemoInteraction={() => setShowDemoModal(true)}
+              onDemoInteraction={() => setTimeout(() => setShowDemoModal(true), 0)}
             />
           </div>
           <p className="text-xs text-muted-foreground text-center mt-3">
@@ -158,34 +161,7 @@ const New = () => {
       </section>
 
       {/* Demo Modal */}
-      <Dialog open={showDemoModal} onOpenChange={setShowDemoModal}>
-        <DialogContent className="max-w-2xl bg-white/95 backdrop-blur-md border-2 border-transparent bg-clip-padding relative" style={{
-          backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
-          backgroundOrigin: 'border-box', 
-          backgroundClip: 'padding-box, border-box',
-        }}>
-          <div className="space-y-4">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-primary mb-2">Start Your Free Trial</h2>
-              <p className="text-sm text-muted-foreground">Join thousands of couples improving their connection</p>
-            </div>
-            
-            {showLoginForm ? <LoginForm /> : <JoinForm />}
-            
-            <div className="flex justify-center gap-2 text-sm">
-              <span className="text-muted-foreground">
-                {showLoginForm ? "Don't have an account?" : "Already have an account?"}
-              </span>
-              <button
-                onClick={() => setShowLoginForm(!showLoginForm)}
-                className="text-primary font-semibold hover:underline"
-              >
-                {showLoginForm ? "Sign Up" : "Login"}
-              </button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <AuthModal open={showDemoModal} onOpenChange={setShowDemoModal} />
 
       {/* How It Works Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
