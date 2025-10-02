@@ -416,7 +416,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen pb-12" style={{ background: "var(--gradient-canva-bg)" }}>
+    <div className="min-h-screen pb-12 bg-white">
       {/* Header - Compact */}
       <header className="p-2 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
         <div className="container mx-auto flex justify-between items-center px-2">
