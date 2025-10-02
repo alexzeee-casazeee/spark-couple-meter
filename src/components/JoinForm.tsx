@@ -52,49 +52,49 @@ export const JoinForm = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="text-center mb-4">
-        <h3 className="text-xl font-bold text-primary mb-1">
+      <div className="text-center mb-2">
+        <h3 className="text-base md:text-xl font-bold text-primary mb-0.5">
           {t("landing.joinForm.title")}
         </h3>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-xs md:text-sm text-muted-foreground">
           {t("landing.joinForm.subtitle")}
         </p>
       </div>
       
-      <form onSubmit={handleJoin} className="space-y-3">
-        <div className="space-y-2">
+      <form onSubmit={handleJoin} className="space-y-2">
+        <div className="space-y-1.5">
           <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <User className="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
             <Input
               type="text"
               placeholder={t("auth.displayName")}
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
-              className="pl-9 h-10 bg-white border-2"
+              className="pl-8 h-9 text-sm bg-white border-2"
               required
             />
           </div>
           
           <div className="relative">
-            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Mail className="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
             <Input
               type="email"
               placeholder={t("auth.email")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="pl-9 h-10 bg-white border-2"
+              className="pl-8 h-9 text-sm bg-white border-2"
               required
             />
           </div>
           
           <div className="relative">
-            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Lock className="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
             <Input
               type="password"
               placeholder={t("auth.password")}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="pl-9 h-10 bg-white border-2"
+              className="pl-8 h-9 text-sm bg-white border-2"
               required
             />
           </div>
@@ -102,15 +102,15 @@ export const JoinForm = () => {
 
         <Button
           type="submit"
-          size="lg"
-          className="w-full text-base h-11 shadow-lg"
+          size="default"
+          className="w-full text-sm h-9 shadow-lg"
           style={{ background: 'var(--gradient-primary)' }}
           disabled={loading}
         >
           {loading ? t("auth.signingUp") : t("landing.cta.primary")}
         </Button>
         
-        <p className="text-xs text-center text-muted-foreground pt-1">
+        <p className="text-[10px] text-center text-muted-foreground pt-0.5">
           {t("landing.pricing")}
         </p>
       </form>
