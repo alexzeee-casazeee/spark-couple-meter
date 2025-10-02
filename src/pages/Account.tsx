@@ -14,8 +14,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowLeft, User, Lock, UserMinus, Bell } from "lucide-react";
+import { ArrowLeft, User, Lock, UserMinus, Bell, Globe } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -245,263 +246,281 @@ const Account = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-2 py-4 max-w-2xl">
-        {/* Profile Information - Compact */}
-        <Card className="shadow-soft bg-card/95 backdrop-blur-md border-2 border-border">
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-base">
-              <User className="w-4 h-4" />
-              Profile Information
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="space-y-1.5">
-              <Label htmlFor="displayName" className="text-sm">Display Name</Label>
-              <Input
-                id="displayName"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                placeholder="Your display name"
-                className="h-9"
-              />
+      <div className="container mx-auto px-2 py-4 max-w-2xl space-y-3">
+        {/* Language Selection */}
+        <div className="p-4 rounded-2xl" style={{
+          background: 'linear-gradient(135deg, rgba(200, 150, 255, 0.3) 0%, rgba(150, 200, 255, 0.3) 100%)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.3)'
+        }}>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+                background: 'linear-gradient(135deg, rgba(200, 150, 255, 0.5), rgba(150, 200, 255, 0.5))'
+              }}>
+                <Globe className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <Label className="text-sm font-semibold text-foreground">Language</Label>
+                <p className="text-xs text-muted-foreground">Select your preferred language</p>
+              </div>
             </div>
-            
-            <div className="space-y-1.5">
-              <Label className="text-sm">Email Address</Label>
-              <Input value={email} disabled className="h-9" />
-              <p className="text-xs text-muted-foreground">
-                Contact support to change your email address
-              </p>
-            </div>
+            <LanguageSwitcher />
+          </div>
+        </div>
 
-            <div className="flex gap-2 pt-2">
-              <Button 
-                onClick={handleUpdateProfile} 
-                disabled={saving} 
-                className="flex-1 rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
-                style={{
-                  background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                  border: "none"
-                }}
-              >
-                <span className="text-white font-semibold">Save Profile</span>
-              </Button>
-              
-              <Dialog open={passwordDialogOpen} onOpenChange={setPasswordDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button 
-                    variant="outline" 
-                    className="flex-1 rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
+        {/* Profile Information */}
+        <div className="p-4 rounded-2xl space-y-3" style={{
+          background: 'linear-gradient(135deg, rgba(255, 200, 150, 0.3) 0%, rgba(255, 150, 200, 0.3) 100%)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.3)'
+        }}>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+              background: 'linear-gradient(135deg, rgba(255, 200, 150, 0.5), rgba(255, 150, 200, 0.5))'
+            }}>
+              <User className="w-5 h-5 text-white" />
+            </div>
+            <Label className="text-sm font-semibold text-foreground">Profile Information</Label>
+          </div>
+
+          <div className="space-y-1.5">
+            <Label htmlFor="displayName" className="text-xs text-muted-foreground">Display Name</Label>
+            <Input
+              id="displayName"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              placeholder="Your display name"
+              className="h-10 bg-white/80"
+            />
+          </div>
+          
+          <div className="space-y-1.5">
+            <Label className="text-xs text-muted-foreground">Email Address</Label>
+            <Input value={email} disabled className="h-10 bg-white/60" />
+            <p className="text-[10px] text-muted-foreground">
+              Contact support to change your email address
+            </p>
+          </div>
+
+          <div className="flex gap-2 pt-2">
+            <Button 
+              onClick={handleUpdateProfile} 
+              disabled={saving} 
+              className="flex-1 h-11 font-semibold"
+              style={{
+                background: "linear-gradient(135deg, rgba(180, 150, 255, 0.8) 0%, rgba(150, 200, 255, 0.8) 100%)",
+              }}
+            >
+              Save Profile
+            </Button>
+            
+            <Dialog open={passwordDialogOpen} onOpenChange={setPasswordDialogOpen}>
+              <DialogTrigger asChild>
+                <Button 
+                  className="flex-1 h-11 font-semibold gap-2"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(255, 180, 200, 0.8) 0%, rgba(255, 220, 180, 0.8) 100%)",
+                  }}
+                >
+                  <Lock className="w-4 h-4" />
+                  Change Password
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Change Password</DialogTitle>
+                  <DialogDescription>
+                    Enter your new password below. Make sure it&apos;s at least 6 characters long.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 pt-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="newPassword">New Password</Label>
+                    <Input
+                      id="newPassword"
+                      type="password"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      placeholder="Enter new password"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="confirmPassword">Confirm Password</Label>
+                    <Input
+                      id="confirmPassword"
+                      type="password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Confirm new password"
+                    />
+                  </div>
+                  <Button
+                    onClick={handleChangePassword}
+                    disabled={saving || !newPassword || !confirmPassword}
+                    className="w-full h-11 font-semibold"
                     style={{
-                      background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-                      border: "none"
+                      background: "linear-gradient(135deg, rgba(180, 150, 255, 0.8) 0%, rgba(150, 200, 255, 0.8) 100%)",
                     }}
                   >
-                    <Lock className="w-4 h-4 mr-2 text-white" />
-                    <span className="text-white font-semibold">Change Password</span>
+                    {saving ? "Updating..." : "Update Password"}
                   </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Change Password</DialogTitle>
-                    <DialogDescription>
-                      Enter your new password below. Make sure it&apos;s at least 6 characters long.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="space-y-4 pt-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="newPassword">New Password</Label>
-                      <Input
-                        id="newPassword"
-                        type="password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        placeholder="Enter new password"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="confirmPassword">Confirm Password</Label>
-                      <Input
-                        id="confirmPassword"
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder="Confirm new password"
-                      />
-                    </div>
-                    <Button
-                      onClick={handleChangePassword}
-                      disabled={saving || !newPassword || !confirmPassword}
-                      className="w-full rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
-                      style={{
-                        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                        border: "none"
-                      }}
-                    >
-                      <span className="text-white font-semibold">
-                        {saving ? "Updating..." : "Update Password"}
-                      </span>
-                    </Button>
-                  </div>
-                </DialogContent>
-              </Dialog>
-            </div>
-          </CardContent>
-        </Card>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+        </div>
 
         {/* Partner Management */}
         {couple && partnerProfile && (
-          <Card className="shadow-soft mt-4 bg-card/95 backdrop-blur-md border-2 border-border">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-2 text-base">
-                <UserMinus className="w-4 h-4" />
-                Partner Connection
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="space-y-1.5">
-                <Label className="text-sm">Connected Partner</Label>
-                <Input 
-                  value={partnerProfile.display_name} 
-                  disabled 
-                  className="h-9" 
-                />
+          <div className="p-4 rounded-2xl space-y-3" style={{
+            background: 'linear-gradient(135deg, rgba(150, 255, 200, 0.3) 0%, rgba(150, 200, 255, 0.3) 100%)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255, 255, 255, 0.3)'
+          }}>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+                background: 'linear-gradient(135deg, rgba(150, 255, 200, 0.5), rgba(150, 200, 255, 0.5))'
+              }}>
+                <UserMinus className="w-5 h-5 text-white" />
               </div>
+              <Label className="text-sm font-semibold text-foreground">Partner Connection</Label>
+            </div>
 
-              <Dialog open={disconnectDialogOpen} onOpenChange={setDisconnectDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button 
-                    variant="destructive" 
-                    className="w-full rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
+            <div className="space-y-1.5">
+              <Label className="text-xs text-muted-foreground">Connected Partner</Label>
+              <Input 
+                value={partnerProfile.display_name} 
+                disabled 
+                className="h-10 bg-white/60" 
+              />
+            </div>
+
+            <Dialog open={disconnectDialogOpen} onOpenChange={setDisconnectDialogOpen}>
+              <DialogTrigger asChild>
+                <Button 
+                  className="w-full h-11 font-semibold gap-2"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(255, 100, 100, 0.8) 0%, rgba(255, 150, 100, 0.8) 100%)",
+                  }}
+                >
+                  <UserMinus className="w-4 h-4" />
+                  Disconnect Partner
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Disconnect Partner</DialogTitle>
+                  <DialogDescription>
+                    Are you sure you want to disconnect from {partnerProfile.display_name}? 
+                    This will end your couple connection and you won't be able to see each other's entries anymore.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex gap-2 pt-4">
+                  <Button
+                    variant="outline"
+                    onClick={() => setDisconnectDialogOpen(false)}
+                    className="flex-1 h-11 font-semibold"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={handleDisconnectPartner}
+                    disabled={saving}
+                    className="flex-1 h-11 font-semibold"
                     style={{
-                      background: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-                      border: "none"
+                      background: "linear-gradient(135deg, rgba(255, 100, 100, 0.8) 0%, rgba(255, 50, 50, 0.8) 100%)",
                     }}
                   >
-                    <UserMinus className="w-4 h-4 mr-2 text-white" />
-                    <span className="text-white font-semibold">Disconnect Partner</span>
+                    {saving ? "Disconnecting..." : "Disconnect"}
                   </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Disconnect Partner</DialogTitle>
-                    <DialogDescription>
-                      Are you sure you want to disconnect from {partnerProfile.display_name}? 
-                      This will end your couple connection and you won't be able to see each other's entries anymore.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="flex gap-2 pt-4">
-                    <Button
-                      variant="outline"
-                      onClick={() => setDisconnectDialogOpen(false)}
-                      className="flex-1 rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
-                      style={{
-                        background: "linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%)",
-                        border: "none"
-                      }}
-                    >
-                      <span className="text-gray-700 font-semibold">Cancel</span>
-                    </Button>
-                    <Button
-                      variant="destructive"
-                      onClick={handleDisconnectPartner}
-                      disabled={saving}
-                      className="flex-1 rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
-                      style={{
-                        background: "linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)",
-                        border: "none"
-                      }}
-                    >
-                      <span className="text-white font-semibold">
-                        {saving ? "Disconnecting..." : "Disconnect"}
-                      </span>
-                    </Button>
-                  </div>
-                </DialogContent>
-              </Dialog>
-            </CardContent>
-          </Card>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
         )}
 
         {/* Notification Settings */}
-        <Card className="shadow-soft mt-4 bg-card/95 backdrop-blur-md border-2 border-border">
-          <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-base">
-              <Bell className="w-4 h-4" />
-              Notification Preferences
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
+        <div className="p-4 rounded-2xl space-y-3" style={{
+          background: 'linear-gradient(135deg, rgba(180, 200, 255, 0.3) 0%, rgba(200, 180, 255, 0.3) 100%)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.3)'
+        }}>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+              background: 'linear-gradient(135deg, rgba(180, 200, 255, 0.5), rgba(200, 180, 255, 0.5))'
+            }}>
+              <Bell className="w-5 h-5 text-white" />
+            </div>
+            <Label className="text-sm font-semibold text-foreground">Notification Preferences</Label>
+          </div>
+
+          <div className="space-y-1.5">
+            <Label className="text-xs text-muted-foreground">Notification Frequency</Label>
+            <Select value={frequency} onValueChange={setFrequency}>
+              <SelectTrigger className="h-10 bg-white/80">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="once">Once daily</SelectItem>
+                <SelectItem value="twice">Twice daily</SelectItem>
+                <SelectItem value="three_times">Three times daily</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-3">
             <div className="space-y-1.5">
-              <Label className="text-sm">Notification Frequency</Label>
-              <Select value={frequency} onValueChange={setFrequency}>
-                <SelectTrigger className="h-9">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="once">Once daily</SelectItem>
-                  <SelectItem value="twice">Twice daily</SelectItem>
-                  <SelectItem value="three_times">Three times daily</SelectItem>
-                </SelectContent>
-              </Select>
+              <Label htmlFor="time1" className="text-xs text-muted-foreground">
+                {frequency === "once" ? "Notification Time" : "First Notification"}
+              </Label>
+              <Input
+                id="time1"
+                type="time"
+                value={time1}
+                onChange={(e) => setTime1(e.target.value)}
+                className="h-10 bg-white/80"
+              />
             </div>
 
-            <div className="space-y-3">
+            {(frequency === "twice" || frequency === "three_times") && (
               <div className="space-y-1.5">
-                <Label htmlFor="time1" className="text-sm">
-                  {frequency === "once" ? "Notification Time" : "First Notification"}
-                </Label>
+                <Label htmlFor="time2" className="text-xs text-muted-foreground">Second Notification</Label>
                 <Input
-                  id="time1"
+                  id="time2"
                   type="time"
-                  value={time1}
-                  onChange={(e) => setTime1(e.target.value)}
-                  className="h-9"
+                  value={time2}
+                  onChange={(e) => setTime2(e.target.value)}
+                  className="h-10 bg-white/80"
                 />
               </div>
+            )}
 
-              {(frequency === "twice" || frequency === "three_times") && (
-                <div className="space-y-1.5">
-                  <Label htmlFor="time2" className="text-sm">Second Notification</Label>
-                  <Input
-                    id="time2"
-                    type="time"
-                    value={time2}
-                    onChange={(e) => setTime2(e.target.value)}
-                    className="h-9"
-                  />
-                </div>
-              )}
+            {frequency === "three_times" && (
+              <div className="space-y-1.5">
+                <Label htmlFor="time3" className="text-xs text-muted-foreground">Third Notification</Label>
+                <Input
+                  id="time3"
+                  type="time"
+                  value={time3}
+                  onChange={(e) => setTime3(e.target.value)}
+                  className="h-10 bg-white/80"
+                />
+              </div>
+            )}
+          </div>
 
-              {frequency === "three_times" && (
-                <div className="space-y-1.5">
-                  <Label htmlFor="time3" className="text-sm">Third Notification</Label>
-                  <Input
-                    id="time3"
-                    type="time"
-                    value={time3}
-                    onChange={(e) => setTime3(e.target.value)}
-                    className="h-9"
-                  />
-                </div>
-              )}
-            </div>
-
-            <Button 
-              onClick={handleUpdateNotifications} 
-              disabled={saving} 
-              className="w-full rounded-2xl h-12 shadow-lg transition-all hover:scale-105"
-              style={{
-                background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-                border: "none"
-              }}
-            >
-              <span className="text-white font-semibold">
-                {saving ? "Saving..." : "Save Notification Settings"}
-              </span>
-            </Button>
-          </CardContent>
-        </Card>
+          <Button 
+            onClick={handleUpdateNotifications} 
+            disabled={saving} 
+            className="w-full h-11 font-semibold"
+            style={{
+              background: "linear-gradient(135deg, rgba(150, 255, 255, 0.8) 0%, rgba(200, 200, 255, 0.8) 100%)",
+            }}
+          >
+            {saving ? "Saving..." : "Save Notification Settings"}
+          </Button>
+        </div>
       </div>
     </div>
   );

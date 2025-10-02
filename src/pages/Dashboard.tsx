@@ -19,7 +19,6 @@ import CustomDimensionsManager from "@/components/CustomDimensionsManager";
 import { Input } from "@/components/ui/input";
 import QuoteOfTheDay from "@/components/QuoteOfTheDay";
 import TrialStatus from "@/components/TrialStatus";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { OliveBranchDialog } from "@/components/OliveBranchDialog";
 import { Badge } from "@/components/ui/badge";
@@ -426,7 +425,6 @@ const Dashboard = () => {
             <h1 className="text-base font-bold text-white leading-tight">{t("dashboard.appName")}</h1>
           </div>
           <div className="flex gap-1.5">
-            <LanguageSwitcher />
             {couple && (
               <Button 
                 variant="outline" 
