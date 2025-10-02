@@ -414,15 +414,24 @@ const Dashboard = () => {
   const handleVoiceInput = (values: {
     horniness_level: number;
     general_feeling: number;
-    communication_desire: number;
+    communication_desire?: number;
     sleep_quality: number;
     emotional_state: number;
+    custom_dimensions?: Record<string, number>;
   }) => {
     setHorniness([values.horniness_level]);
     setGeneralFeeling([values.general_feeling]);
-    setCommunicationDesire([values.communication_desire]);
+    setCommunicationDesire([values.communication_desire || 50]);
     setSleepQuality([values.sleep_quality]);
     setEmotionalState([values.emotional_state]);
+    
+    // Update custom dimension values
+    if (values.custom_dimensions) {
+      setCustomValues(prev => ({
+        ...prev,
+        ...values.custom_dimensions
+      }));
+    }
   };
 
   const handleSaveAndReset = async () => {
@@ -1007,7 +1016,10 @@ const Dashboard = () => {
               {viewMode === 'self' && (
                 <>
                   <div className="flex items-center gap-2 mt-2">
-                    <VoiceInput onParsedValues={handleVoiceInput} />
+                    <VoiceInput 
+                      onParsedValues={handleVoiceInput} 
+                      customDimensions={customDimensions}
+                    />
                     <Button
                       size="lg"
                       onClick={handleSaveAndReset}

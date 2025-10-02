@@ -10,11 +10,13 @@ interface VoiceInputProps {
     general_feeling: number;
     sleep_quality: number;
     emotional_state: number;
+    custom_dimensions?: Record<string, number>;
   }) => void;
   onTranscript?: (text: string) => void;
+  customDimensions?: Array<{ id: string; dimension_name: string }>;
 }
 
-const VoiceInput = ({ onParsedValues, onTranscript }: VoiceInputProps) => {
+const VoiceInput = ({ onParsedValues, onTranscript, customDimensions = [] }: VoiceInputProps) => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [recognition, setRecognition] = useState<any>(null);
@@ -59,13 +61,30 @@ const VoiceInput = ({ onParsedValues, onTranscript }: VoiceInputProps) => {
   const handleTranscript = async (text: string) => {
     try {
       const { data, error } = await supabase.functions.invoke('parse-voice-input', {
-        body: { text }
+        body: { 
+          text,
+          customDimensions: customDimensions.map(d => d.dimension_name)
+        }
       });
 
       if (error) throw error;
 
       if (data && onParsedValues) {
-        onParsedValues(data);
+        // Map custom dimension names back to IDs
+        const customDimensionValues: Record<string, number> = {};
+        if (data.custom_dimensions) {
+          Object.entries(data.custom_dimensions).forEach(([name, value]) => {
+            const dimension = customDimensions.find(d => d.dimension_name.toLowerCase() === name.toLowerCase());
+            if (dimension) {
+              customDimensionValues[dimension.id] = value as number;
+            }
+          });
+        }
+        
+        onParsedValues({
+          ...data,
+          custom_dimensions: customDimensionValues
+        });
       }
     } catch (error: any) {
       console.error('Error parsing voice input:', error);

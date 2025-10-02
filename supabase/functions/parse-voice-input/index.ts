@@ -11,14 +11,69 @@ serve(async (req) => {
   }
 
   try {
-    const { text } = await req.json();
+    const { text, customDimensions = [] } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
 
     if (!LOVABLE_API_KEY) {
       throw new Error('LOVABLE_API_KEY is not configured');
     }
 
-    console.log('Parsing voice input:', text);
+    console.log('Parsing voice input:', text, 'Custom dimensions:', customDimensions);
+
+    // Build system prompt with custom dimensions
+    let systemPrompt = `You are a parser that extracts emotional metrics from natural language. 
+Extract values from 0-100 for: horniness_level, general_feeling, sleep_quality, emotional_state.`;
+
+    if (customDimensions.length > 0) {
+      systemPrompt += `\n\nAlso extract values (0-100) for these custom dimensions: ${customDimensions.join(', ')}.
+Pay close attention to mentions of these specific dimensions in the user's message and adjust their values accordingly.
+For example:
+- "I have more energy" or "feeling energetic" -> increase Energy value significantly (70-90)
+- "low energy" or "tired" -> decrease Energy value (10-30)
+- "stressed out" -> increase Stress value (70-90)
+- "relaxed" or "calm" -> decrease Stress value (10-30)`;
+    }
+
+    systemPrompt += `\n\nExamples:
+"I'm feeling really great today, slept amazing, feeling very connected and emotionally high" -> {"horniness_level": 80, "general_feeling": 90, "sleep_quality": 95, "emotional_state": 85}
+"Not great, barely slept, feeling low and not in the mood" -> {"horniness_level": 20, "general_feeling": 30, "sleep_quality": 25, "emotional_state": 30}
+"I'm horny as hell today" -> {"horniness_level": 95, "general_feeling": 70, "sleep_quality": 70, "emotional_state": 70}
+
+If a value is not mentioned, estimate based on context or use 50 as default.`;
+
+    // Build tool parameters with custom dimensions
+    const toolParameters: any = {
+      type: "object",
+      properties: {
+        horniness_level: { 
+          type: "number",
+          description: "Intimacy/desire level from 0-100"
+        },
+        general_feeling: { 
+          type: "number",
+          description: "Overall mood/feeling from 0-100"
+        },
+        sleep_quality: { 
+          type: "number",
+          description: "Quality of sleep from 0-100"
+        },
+        emotional_state: { 
+          type: "number",
+          description: "Emotional wellbeing from 0-100"
+        }
+      },
+      required: ["horniness_level", "general_feeling", "sleep_quality", "emotional_state"]
+    };
+
+    // Add custom dimensions to tool parameters
+    if (customDimensions.length > 0) {
+      customDimensions.forEach((dim: string) => {
+        toolParameters.properties[dim] = {
+          type: "number",
+          description: `${dim} level from 0-100`
+        };
+      });
+    }
 
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
@@ -31,16 +86,7 @@ serve(async (req) => {
         messages: [
           {
             role: 'system',
-            content: `You are a parser that extracts emotional metrics from natural language. 
-            Extract values from 0-100 for: horniness_level, general_feeling, sleep_quality, emotional_state.
-            Return ONLY valid JSON in this exact format: {"horniness_level": 0-100, "general_feeling": 0-100, "sleep_quality": 0-100, "emotional_state": 0-100}
-            
-            Examples:
-            "I'm feeling really great today, slept amazing, feeling very connected and emotionally high" -> {"horniness_level": 80, "general_feeling": 90, "sleep_quality": 95, "emotional_state": 85}
-            "Not great, barely slept, feeling low and not in the mood" -> {"horniness_level": 20, "general_feeling": 30, "sleep_quality": 25, "emotional_state": 30}
-            "I'm horny as hell today" -> {"horniness_level": 95, "general_feeling": 70, "sleep_quality": 70, "emotional_state": 70}
-            
-            If a value is not mentioned, estimate based on context or use 50 as default.`
+            content: systemPrompt
           },
           {
             role: 'user',
@@ -53,28 +99,7 @@ serve(async (req) => {
             function: {
               name: "set_daily_metrics",
               description: "Set the daily emotional and intimacy metrics",
-              parameters: {
-                type: "object",
-                properties: {
-                  horniness_level: { 
-                    type: "number",
-                    description: "Intimacy/desire level from 0-100"
-                  },
-                  general_feeling: { 
-                    type: "number",
-                    description: "Overall mood/feeling from 0-100"
-                  },
-                  sleep_quality: { 
-                    type: "number",
-                    description: "Quality of sleep from 0-100"
-                  },
-                  emotional_state: { 
-                    type: "number",
-                    description: "Emotional wellbeing from 0-100"
-                  }
-                },
-                required: ["horniness_level", "general_feeling", "sleep_quality", "emotional_state"]
-              }
+              parameters: toolParameters
             }
           }
         ],
@@ -96,7 +121,29 @@ serve(async (req) => {
     if (toolCall?.function?.arguments) {
       const parsedData = JSON.parse(toolCall.function.arguments);
       
-      return new Response(JSON.stringify(parsedData), {
+      // Separate standard metrics from custom dimensions
+      const standardMetrics = {
+        horniness_level: parsedData.horniness_level,
+        general_feeling: parsedData.general_feeling,
+        sleep_quality: parsedData.sleep_quality,
+        emotional_state: parsedData.emotional_state
+      };
+      
+      const customDimensionValues: Record<string, number> = {};
+      customDimensions.forEach((dim: string) => {
+        if (parsedData[dim] !== undefined) {
+          customDimensionValues[dim] = parsedData[dim];
+        }
+      });
+      
+      const response = {
+        ...standardMetrics,
+        custom_dimensions: customDimensionValues
+      };
+      
+      console.log('Parsed response:', JSON.stringify(response));
+      
+      return new Response(JSON.stringify(response), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
