@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, MessageSquare, TrendingUp, Shield, Heart, Users, Lightbulb } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AuthModal } from "@/components/AuthModal";
-import dashboardPreview from "@/assets/dashboard-preview.png";
+import Dashboard from "./Dashboard";
 
 const LearnMore = () => {
   const navigate = useNavigate();
@@ -200,14 +200,12 @@ const LearnMore = () => {
 
           {/* Dashboard Preview */}
           <div className="flex justify-center mb-8">
-            <div className="max-w-sm">
-              <img 
-                src={dashboardPreview} 
-                alt="Spark Meter Dashboard Preview" 
-                className="rounded-2xl shadow-2xl border-2 border-white/40"
-              />
+            <div className="max-w-md w-full">
+              <div className="rounded-2xl shadow-2xl border-2 border-white/40 overflow-hidden bg-canva-gradient">
+                <Dashboard />
+              </div>
               <p className="text-xs text-muted-foreground text-center mt-3">
-                Simple daily check-ins keep you connected
+                Interactive demo - try adjusting the sliders!
               </p>
             </div>
           </div>
