@@ -561,7 +561,7 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <div className="container mx-auto px-1 py-2 max-w-4xl space-y-2">
+      <div className="container mx-auto px-1 py-1 max-w-4xl space-y-1">
         {/* Invitation Prompt - Only show if no partner */}
         {!couple && profile && (
           <div className="bg-white/95 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative" style={{ 
@@ -806,28 +806,28 @@ const Dashboard = () => {
         )}
 
         {/* Today's Check-In - Individual Gradient Cards */}
-        <div className="space-y-2">
+        <div className="space-y-1">
           {viewMode === 'partner' && !partnerEntry ? (
-            <div className="text-center py-6 text-muted-foreground bg-white/90 rounded-2xl">
+            <div className="text-center py-4 text-muted-foreground bg-white/90 rounded-2xl">
               <p className="text-sm">{t("dashboard.partner.noCheckinYet").replace('{name}', partnerProfile?.display_name || '')}</p>
             </div>
           ) : (
             <>
               {/* Desire for Intimacy */}
-              <div className="p-4 rounded-2xl relative overflow-hidden" style={{
+              <div className="p-2 rounded-2xl relative overflow-hidden" style={{
                 background: 'linear-gradient(135deg, rgba(200, 150, 255, 0.3) 0%, rgba(150, 200, 255, 0.3) 100%)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
                     background: 'linear-gradient(135deg, rgba(200, 150, 255, 0.5), rgba(150, 200, 255, 0.5))'
                   }}>
-                    <Flame className="w-5 h-5 text-white" />
+                    <Flame className="w-4 h-4 text-white" />
                   </div>
                   <div className="flex-1">
-                    <Label className="text-sm font-semibold text-foreground">{t("dashboard.checkin.intimacy")}</Label>
-                    <p className="text-xs text-muted-foreground">
+                    <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.intimacy")}</Label>
+                    <p className="text-[10px] text-muted-foreground">
                       {viewMode === 'self' ? `${horniness[0]}%` : `${partnerEntry?.horniness_level || 50}%`}
                     </p>
                   </div>
@@ -843,20 +843,20 @@ const Dashboard = () => {
               </div>
 
               {/* Desire for Touch */}
-              <div className="p-4 rounded-2xl relative overflow-hidden" style={{
+              <div className="p-2 rounded-2xl relative overflow-hidden" style={{
                 background: 'linear-gradient(135deg, rgba(255, 200, 150, 0.3) 0%, rgba(255, 150, 200, 0.3) 100%)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
                     background: 'linear-gradient(135deg, rgba(255, 200, 150, 0.5), rgba(255, 150, 200, 0.5))'
                   }}>
-                    <Heart className="w-5 h-5 text-white" fill="white" />
+                    <Heart className="w-4 h-4 text-white" fill="white" />
                   </div>
                   <div className="flex-1">
-                    <Label className="text-sm font-semibold text-foreground">{t("dashboard.checkin.feeling")}</Label>
-                    <p className="text-xs text-muted-foreground">
+                    <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.feeling")}</Label>
+                    <p className="text-[10px] text-muted-foreground">
                       {viewMode === 'self' ? `${generalFeeling[0]}%` : `${partnerEntry?.general_feeling || 50}%`}
                     </p>
                   </div>
@@ -872,20 +872,20 @@ const Dashboard = () => {
               </div>
 
               {/* Communication Desire */}
-              <div className="p-4 rounded-2xl relative overflow-hidden" style={{
+              <div className="p-2 rounded-2xl relative overflow-hidden" style={{
                 background: 'linear-gradient(135deg, rgba(150, 255, 200, 0.3) 0%, rgba(150, 200, 255, 0.3) 100%)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
                     background: 'linear-gradient(135deg, rgba(150, 255, 200, 0.5), rgba(150, 200, 255, 0.5))'
                   }}>
-                    <MessageSquare className="w-5 h-5 text-white" />
+                    <MessageSquare className="w-4 h-4 text-white" />
                   </div>
                   <div className="flex-1">
-                    <Label className="text-sm font-semibold text-foreground">{t("dashboard.checkin.communication")}</Label>
-                    <p className="text-xs text-muted-foreground">
+                    <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.communication")}</Label>
+                    <p className="text-[10px] text-muted-foreground">
                       {viewMode === 'self' ? `${communicationDesire[0]}%` : `${partnerEntry?.communication_desire || 50}%`}
                     </p>
                   </div>
@@ -901,20 +901,20 @@ const Dashboard = () => {
               </div>
 
               {/* Sleep Quality */}
-              <div className="p-4 rounded-2xl relative overflow-hidden" style={{
+              <div className="p-2 rounded-2xl relative overflow-hidden" style={{
                 background: 'linear-gradient(135deg, rgba(180, 200, 255, 0.3) 0%, rgba(200, 180, 255, 0.3) 100%)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
                     background: 'linear-gradient(135deg, rgba(180, 200, 255, 0.5), rgba(200, 180, 255, 0.5))'
                   }}>
-                    <Moon className="w-5 h-5 text-white" />
+                    <Moon className="w-4 h-4 text-white" />
                   </div>
                   <div className="flex-1">
-                    <Label className="text-sm font-semibold text-foreground">{t("dashboard.checkin.sleep")}</Label>
-                    <p className="text-xs text-muted-foreground">
+                    <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.sleep")}</Label>
+                    <p className="text-[10px] text-muted-foreground">
                       {viewMode === 'self' ? `${sleepQuality[0]}%` : `${partnerEntry?.sleep_quality || 50}%`}
                     </p>
                   </div>
@@ -930,20 +930,20 @@ const Dashboard = () => {
               </div>
 
               {/* Emotional State */}
-              <div className="p-4 rounded-2xl relative overflow-hidden" style={{
+              <div className="p-2 rounded-2xl relative overflow-hidden" style={{
                 background: 'linear-gradient(135deg, rgba(150, 255, 255, 0.3) 0%, rgba(200, 200, 255, 0.3) 100%)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
                     background: 'linear-gradient(135deg, rgba(150, 255, 255, 0.5), rgba(200, 200, 255, 0.5))'
                   }}>
-                    <Sparkles className="w-5 h-5 text-white" />
+                    <Sparkles className="w-4 h-4 text-white" />
                   </div>
                   <div className="flex-1">
-                    <Label className="text-sm font-semibold text-foreground">{t("dashboard.checkin.emotional")}</Label>
-                    <p className="text-xs text-muted-foreground">
+                    <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.emotional")}</Label>
+                    <p className="text-[10px] text-muted-foreground">
                       {viewMode === 'self' ? `${emotionalState[0]}%` : `${partnerEntry?.emotional_state || 50}%`}
                     </p>
                   </div>
@@ -968,20 +968,20 @@ const Dashboard = () => {
                 const gradient = gradients[index % gradients.length];
                 
                 return (
-                  <div key={dimension.id} className="p-4 rounded-2xl relative overflow-hidden" style={{
+                  <div key={dimension.id} className="p-2 rounded-2xl relative overflow-hidden" style={{
                     background: gradient,
                     backdropFilter: 'blur(10px)',
                     border: '1px solid rgba(255, 255, 255, 0.3)'
                   }}>
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
                         background: gradient.replace('0.3', '0.5')
                       }}>
-                        <Smile className="w-5 h-5 text-white" />
+                        <Smile className="w-4 h-4 text-white" />
                       </div>
                       <div className="flex-1">
-                        <Label className="text-sm font-semibold text-foreground">{dimension.dimension_name}</Label>
-                        <p className="text-xs text-muted-foreground">
+                        <Label className="text-xs font-semibold text-foreground">{dimension.dimension_name}</Label>
+                        <p className="text-[10px] text-muted-foreground">
                           {viewMode === 'self' 
                             ? `${customValues[dimension.id] || 50}%`
                             : `${partnerCustomValues[dimension.id] || 50}%`}
@@ -1006,12 +1006,12 @@ const Dashboard = () => {
 
               {viewMode === 'self' && (
                 <>
-                  <div className="flex items-center gap-2 mt-4">
+                  <div className="flex items-center gap-2 mt-2">
                     <VoiceInput onParsedValues={handleVoiceInput} />
                     <Button
                       size="lg"
                       onClick={handleSaveAndReset}
-                      className="flex-1 h-12 text-base font-semibold"
+                      className="flex-1 h-10 text-sm font-semibold"
                       style={{ 
                         background: "linear-gradient(135deg, rgba(180, 150, 255, 0.8) 0%, rgba(150, 200, 255, 0.8) 100%)",
                         boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)"
@@ -1020,7 +1020,7 @@ const Dashboard = () => {
                       {t("dashboard.checkin.save")}
                     </Button>
                   </div>
-                  <p className="text-[9px] text-center text-muted-foreground pt-2">
+                  <p className="text-[9px] text-center text-muted-foreground pt-1">
                     {t("dashboard.checkin.voice.hint")}
                   </p>
                 </>
