@@ -821,10 +821,10 @@ const Dashboard = () => {
               }}>
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
                       background: 'linear-gradient(135deg, rgba(200, 150, 255, 0.5), rgba(150, 200, 255, 0.5))'
                     }}>
-                      <Flame className="w-4 h-4 text-white" />
+                      <Flame className="w-3 h-3 text-white" />
                     </div>
                     <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.intimacy")}</Label>
                   </div>
@@ -850,10 +850,10 @@ const Dashboard = () => {
               }}>
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
                       background: 'linear-gradient(135deg, rgba(255, 200, 150, 0.5), rgba(255, 150, 200, 0.5))'
                     }}>
-                      <Heart className="w-4 h-4 text-white" fill="white" />
+                      <Heart className="w-3 h-3 text-white" fill="white" />
                     </div>
                     <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.feeling")}</Label>
                   </div>
@@ -879,10 +879,10 @@ const Dashboard = () => {
               }}>
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
                       background: 'linear-gradient(135deg, rgba(150, 255, 200, 0.5), rgba(150, 200, 255, 0.5))'
                     }}>
-                      <MessageSquare className="w-4 h-4 text-white" />
+                      <MessageSquare className="w-3 h-3 text-white" />
                     </div>
                     <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.communication")}</Label>
                   </div>
@@ -908,10 +908,10 @@ const Dashboard = () => {
               }}>
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
                       background: 'linear-gradient(135deg, rgba(180, 200, 255, 0.5), rgba(200, 180, 255, 0.5))'
                     }}>
-                      <Moon className="w-4 h-4 text-white" />
+                      <Moon className="w-3 h-3 text-white" />
                     </div>
                     <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.sleep")}</Label>
                   </div>
@@ -937,10 +937,10 @@ const Dashboard = () => {
               }}>
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
                       background: 'linear-gradient(135deg, rgba(150, 255, 255, 0.5), rgba(200, 200, 255, 0.5))'
                     }}>
-                      <Sparkles className="w-4 h-4 text-white" />
+                      <Sparkles className="w-3 h-3 text-white" />
                     </div>
                     <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.emotional")}</Label>
                   </div>
@@ -975,10 +975,10 @@ const Dashboard = () => {
                   }}>
                     <div className="flex items-start justify-between gap-2 mb-1">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
                           background: gradient.replace('0.3', '0.5')
                         }}>
-                          <Smile className="w-4 h-4 text-white" />
+                          <Smile className="w-3 h-3 text-white" />
                         </div>
                         <Label className="text-xs font-semibold text-foreground">{dimension.dimension_name}</Label>
                       </div>
