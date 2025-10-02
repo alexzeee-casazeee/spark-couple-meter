@@ -145,13 +145,13 @@ const New = () => {
       {/* Dashboard Preview Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
         <div className="max-w-md mx-auto w-full">
-          <div 
-            className="rounded-2xl shadow-2xl border-2 border-white/40 overflow-hidden bg-canva-gradient"
-            onClick={() => setTimeout(() => setShowDemoModal(true), 0)}
-          >
+          <div className="rounded-2xl shadow-2xl border-2 border-white/40 overflow-hidden bg-canva-gradient">
             <Dashboard 
               demoMode={true} 
-              onDemoInteraction={() => setTimeout(() => setShowDemoModal(true), 0)}
+              onDemoInteraction={() => {
+                console.log('Demo interaction triggered');
+                setShowDemoModal(true);
+              }}
             />
           </div>
           <p className="text-xs text-muted-foreground text-center mt-3">
