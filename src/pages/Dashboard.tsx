@@ -819,18 +819,18 @@ const Dashboard = () => {
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}>
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
-                    background: 'linear-gradient(135deg, rgba(200, 150, 255, 0.5), rgba(150, 200, 255, 0.5))'
-                  }}>
-                    <Flame className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1">
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                      background: 'linear-gradient(135deg, rgba(200, 150, 255, 0.5), rgba(150, 200, 255, 0.5))'
+                    }}>
+                      <Flame className="w-4 h-4 text-white" />
+                    </div>
                     <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.intimacy")}</Label>
-                    <p className="text-[10px] text-muted-foreground">
-                      {viewMode === 'self' ? `${horniness[0]}%` : `${partnerEntry?.horniness_level || 50}%`}
-                    </p>
                   </div>
+                  <p className="text-[10px] text-muted-foreground font-semibold">
+                    {viewMode === 'self' ? `${horniness[0]}%` : `${partnerEntry?.horniness_level || 50}%`}
+                  </p>
                 </div>
                 <Slider
                   value={viewMode === 'self' ? horniness : [partnerEntry?.horniness_level || 50]}
@@ -848,18 +848,18 @@ const Dashboard = () => {
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}>
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
-                    background: 'linear-gradient(135deg, rgba(255, 200, 150, 0.5), rgba(255, 150, 200, 0.5))'
-                  }}>
-                    <Heart className="w-4 h-4 text-white" fill="white" />
-                  </div>
-                  <div className="flex-1">
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                      background: 'linear-gradient(135deg, rgba(255, 200, 150, 0.5), rgba(255, 150, 200, 0.5))'
+                    }}>
+                      <Heart className="w-4 h-4 text-white" fill="white" />
+                    </div>
                     <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.feeling")}</Label>
-                    <p className="text-[10px] text-muted-foreground">
-                      {viewMode === 'self' ? `${generalFeeling[0]}%` : `${partnerEntry?.general_feeling || 50}%`}
-                    </p>
                   </div>
+                  <p className="text-[10px] text-muted-foreground font-semibold">
+                    {viewMode === 'self' ? `${generalFeeling[0]}%` : `${partnerEntry?.general_feeling || 50}%`}
+                  </p>
                 </div>
                 <Slider
                   value={viewMode === 'self' ? generalFeeling : [partnerEntry?.general_feeling || 50]}
@@ -877,18 +877,18 @@ const Dashboard = () => {
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}>
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
-                    background: 'linear-gradient(135deg, rgba(150, 255, 200, 0.5), rgba(150, 200, 255, 0.5))'
-                  }}>
-                    <MessageSquare className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1">
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                      background: 'linear-gradient(135deg, rgba(150, 255, 200, 0.5), rgba(150, 200, 255, 0.5))'
+                    }}>
+                      <MessageSquare className="w-4 h-4 text-white" />
+                    </div>
                     <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.communication")}</Label>
-                    <p className="text-[10px] text-muted-foreground">
-                      {viewMode === 'self' ? `${communicationDesire[0]}%` : `${partnerEntry?.communication_desire || 50}%`}
-                    </p>
                   </div>
+                  <p className="text-[10px] text-muted-foreground font-semibold">
+                    {viewMode === 'self' ? `${communicationDesire[0]}%` : `${partnerEntry?.communication_desire || 50}%`}
+                  </p>
                 </div>
                 <Slider
                   value={viewMode === 'self' ? communicationDesire : [partnerEntry?.communication_desire || 50]}
@@ -906,18 +906,18 @@ const Dashboard = () => {
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}>
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
-                    background: 'linear-gradient(135deg, rgba(180, 200, 255, 0.5), rgba(200, 180, 255, 0.5))'
-                  }}>
-                    <Moon className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1">
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                      background: 'linear-gradient(135deg, rgba(180, 200, 255, 0.5), rgba(200, 180, 255, 0.5))'
+                    }}>
+                      <Moon className="w-4 h-4 text-white" />
+                    </div>
                     <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.sleep")}</Label>
-                    <p className="text-[10px] text-muted-foreground">
-                      {viewMode === 'self' ? `${sleepQuality[0]}%` : `${partnerEntry?.sleep_quality || 50}%`}
-                    </p>
                   </div>
+                  <p className="text-[10px] text-muted-foreground font-semibold">
+                    {viewMode === 'self' ? `${sleepQuality[0]}%` : `${partnerEntry?.sleep_quality || 50}%`}
+                  </p>
                 </div>
                 <Slider
                   value={viewMode === 'self' ? sleepQuality : [partnerEntry?.sleep_quality || 50]}
@@ -935,18 +935,18 @@ const Dashboard = () => {
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}>
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
-                    background: 'linear-gradient(135deg, rgba(150, 255, 255, 0.5), rgba(200, 200, 255, 0.5))'
-                  }}>
-                    <Sparkles className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1">
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                      background: 'linear-gradient(135deg, rgba(150, 255, 255, 0.5), rgba(200, 200, 255, 0.5))'
+                    }}>
+                      <Sparkles className="w-4 h-4 text-white" />
+                    </div>
                     <Label className="text-xs font-semibold text-foreground">{t("dashboard.checkin.emotional")}</Label>
-                    <p className="text-[10px] text-muted-foreground">
-                      {viewMode === 'self' ? `${emotionalState[0]}%` : `${partnerEntry?.emotional_state || 50}%`}
-                    </p>
                   </div>
+                  <p className="text-[10px] text-muted-foreground font-semibold">
+                    {viewMode === 'self' ? `${emotionalState[0]}%` : `${partnerEntry?.emotional_state || 50}%`}
+                  </p>
                 </div>
                 <Slider
                   value={viewMode === 'self' ? emotionalState : [partnerEntry?.emotional_state || 50]}
@@ -973,20 +973,20 @@ const Dashboard = () => {
                     backdropFilter: 'blur(10px)',
                     border: '1px solid rgba(255, 255, 255, 0.3)'
                   }}>
-                    <div className="flex items-center gap-2 mb-1">
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
-                        background: gradient.replace('0.3', '0.5')
-                      }}>
-                        <Smile className="w-4 h-4 text-white" />
-                      </div>
-                      <div className="flex-1">
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
+                          background: gradient.replace('0.3', '0.5')
+                        }}>
+                          <Smile className="w-4 h-4 text-white" />
+                        </div>
                         <Label className="text-xs font-semibold text-foreground">{dimension.dimension_name}</Label>
-                        <p className="text-[10px] text-muted-foreground">
-                          {viewMode === 'self' 
-                            ? `${customValues[dimension.id] || 50}%`
-                            : `${partnerCustomValues[dimension.id] || 50}%`}
-                        </p>
                       </div>
+                      <p className="text-[10px] text-muted-foreground font-semibold">
+                        {viewMode === 'self' 
+                          ? `${customValues[dimension.id] || 50}%`
+                          : `${partnerCustomValues[dimension.id] || 50}%`}
+                      </p>
                     </div>
                     <Slider
                       value={viewMode === 'self' 
