@@ -27,11 +27,11 @@ All colors MUST be HSL.
     --primary-soft: 250 55% 50%;
     
     /* Mint - Only for Accents & Highlights */
-    --accent: 162 85% 45%;
+    --accent: 162 85% 35%;
     --accent-foreground: 0 0% 98%;
-    --accent-glow: 162 90% 55%;
-    --accent-soft: 162 60% 35%;
-    --mint: 162 85% 45%;
+    --accent-glow: 162 90% 45%;
+    --accent-soft: 162 60% 28%;
+    --mint: 162 85% 35%;
     
     /* Teal accent for card borders and highlights */
     --teal: 174 60% 85%;

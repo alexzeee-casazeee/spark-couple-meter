@@ -302,7 +302,7 @@ const New = () => {
               <p className="text-sm font-semibold text-primary">{t("new.testimonials.author2")}</p>
             </div>
 
-            <div className="bg-white/80 p-6 rounded-2xl border-2 border-accent border-b-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(162, 85%, 45%), hsl(162, 70%, 55%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/80 p-6 rounded-2xl border-2 border-accent border-b-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(162, 85%, 35%), hsl(162, 70%, 40%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-sm text-muted-foreground italic mb-3">
                 {t("new.testimonials.quote3")}
               </p>
