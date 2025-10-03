@@ -212,11 +212,11 @@ const New = () => {
 
             <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-secondary/15 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="w-6 h-6 text-secondary" />
+                <div className="w-12 h-12 bg-primary/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <TrendingUp className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold mb-2 text-secondary">{t("new.how.card5.title")}</h3>
+                  <h3 className="text-lg font-bold mb-2 text-primary">{t("new.how.card5.title")}</h3>
                   <p className="text-base text-black">{t("new.how.card5.desc")}</p>
                 </div>
               </div>
