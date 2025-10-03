@@ -8,6 +8,7 @@ import { LoginForm } from "@/components/LoginForm";
 import { Heart, Users, LineChart, Sparkles, MessageCircle, TrendingUp, Calendar, Activity, Target } from "lucide-react";
 import Dashboard from "./Dashboard";
 import { AuthModal } from "@/components/AuthModal";
+import logoIcon from "@/assets/logo-icon.png";
 
 const New = () => {
   const navigate = useNavigate();
@@ -20,8 +21,8 @@ const New = () => {
       {/* Header */}
       <header className="container mx-auto px-3 py-1.5 flex justify-between items-center">
         <div className="flex items-center gap-1.5">
-          <div className="w-7 h-7 rounded-xl" style={{ background: 'var(--gradient-primary)' }}>
-            <Sparkles className="w-4 h-4 text-white m-1.5" />
+          <div className="w-7 h-7 rounded-xl overflow-hidden flex items-center justify-center" style={{ background: 'var(--gradient-primary)' }}>
+            <img src={logoIcon} alt="Spark Meter" className="w-5 h-5 object-contain" />
           </div>
           <span className="text-lg font-bold text-primary">
             Spark Meter
