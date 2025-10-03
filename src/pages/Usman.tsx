@@ -21,9 +21,7 @@ const New = () => {
       {/* Header */}
       <header className="container mx-auto px-3 py-1.5 flex justify-between items-center">
         <div className="flex items-center gap-1.5">
-          <div className="w-7 h-7 rounded-xl overflow-hidden flex items-center justify-center" style={{ background: 'var(--gradient-primary)' }}>
-            <img src={logoIcon} alt="Spark Meter" className="w-5 h-5 object-contain" />
-          </div>
+          <img src={logoIcon} alt="Spark Meter" className="w-7 h-7 object-contain" />
           <span className="text-lg font-bold text-primary">
             Spark Meter
           </span>
