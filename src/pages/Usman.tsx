@@ -134,7 +134,7 @@ const New = () => {
 
       {/* Dashboard Preview Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
-        <div className="max-w-4xl mx-auto p-[6px] w-full">
+        <div className="max-w-3xl mx-auto p-[6px] w-full">
           <div className="rounded-2xl shadow-2xl border-2 border-primary border-b-8 overflow-hidden bg-canva-gradient">
             <Dashboard 
               demoMode={true} 
