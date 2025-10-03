@@ -19,7 +19,7 @@ const New = () => {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="container mx-auto px-3 py-1.5 flex justify-between items-center">
+      <header className="container mx-auto px-3 py-[5px] flex justify-between items-center">
         <div className="flex items-center gap-1.5">
           <img src={logoIcon} alt="Spark Meter" className="w-7 h-7 object-contain" />
           <span className="text-lg font-bold text-primary">
