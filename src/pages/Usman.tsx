@@ -162,7 +162,7 @@ const New = () => {
           </div>
           
           <div className="space-y-4 px-[5px] md:px-6 pb-[5px] md:pb-6">
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-b-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-primary/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Calendar className="w-6 h-6 text-primary" />
@@ -174,7 +174,7 @@ const New = () => {
               </div>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-b-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-secondary/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <LineChart className="w-6 h-6 text-secondary" />
@@ -186,7 +186,7 @@ const New = () => {
               </div>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-b-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-accent/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <MessageCircle className="w-6 h-6 text-accent" />
@@ -198,7 +198,7 @@ const New = () => {
               </div>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-b-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-primary/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Target className="w-6 h-6 text-primary" />
@@ -210,7 +210,7 @@ const New = () => {
               </div>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-b-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-secondary/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <TrendingUp className="w-6 h-6 text-secondary" />
