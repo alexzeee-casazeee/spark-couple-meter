@@ -86,7 +86,7 @@ const New = () => {
       </section>
 
       {/* Why This Matters Section */}
-      <section className="container mx-auto px-3 md:px-4 py-8">
+      <section className="container mx-auto px-3 md:px-4 py-4 md:py-8">
         <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border-2 border-primary border-b-8" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-6 px-[5px] md:px-6 pt-[5px] md:pt-6">
             <h2 className="text-3xl font-bold mb-3 text-primary">{t("new.why.title")}</h2>
@@ -133,7 +133,7 @@ const New = () => {
       </section>
 
       {/* Dashboard Preview Section */}
-      <section className="container mx-auto px-3 md:px-4 py-8">
+      <section className="container mx-auto px-3 md:px-4 py-4 md:py-8">
         <div className="max-w-3xl mx-auto w-full">
           <div className="rounded-2xl shadow-2xl border-2 border-primary border-b-8 overflow-hidden bg-canva-gradient">
             <Dashboard 
@@ -154,7 +154,7 @@ const New = () => {
       <AuthModal open={showDemoModal} onOpenChange={setShowDemoModal} />
 
       {/* How It Works Section */}
-      <section className="container mx-auto px-3 md:px-4 py-8">
+      <section className="container mx-auto px-3 md:px-4 py-4 md:py-8">
         <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border-2 border-primary border-b-8" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-6 px-[5px] md:px-6 pt-[5px] md:pt-6">
             <h2 className="text-3xl font-bold mb-3 text-primary">{t("landing.features.title")}</h2>
@@ -226,7 +226,7 @@ const New = () => {
       </section>
 
       {/* What You'll Get Section */}
-      <section className="container mx-auto px-3 md:px-4 py-12">
+      <section className="container mx-auto px-3 md:px-4 py-4 md:py-12">
         <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 border-2 border-primary border-b-8 bg-clip-padding relative" style={{ 
           backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
           backgroundOrigin: 'border-box', 
@@ -281,7 +281,7 @@ const New = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="container mx-auto px-3 md:px-4 py-8">
+      <section className="container mx-auto px-3 md:px-4 py-4 md:py-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-3 text-primary">{t("new.testimonials.title")}</h2>
@@ -313,7 +313,7 @@ const New = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="container mx-auto px-3 md:px-4 py-8">
+      <section className="container mx-auto px-3 md:px-4 py-4 md:py-8">
         <div className="max-w-4xl mx-auto bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-3xl border-2 border-primary border-b-8" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-3 text-primary">{t("new.faq.title")}</h2>
@@ -345,7 +345,7 @@ const New = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="container mx-auto px-3 md:px-4 py-12">
+      <section className="container mx-auto px-3 md:px-4 py-4 md:py-12">
         <div className="max-w-4xl mx-auto text-center space-y-4 bg-white/70 backdrop-blur-sm p-8 rounded-3xl border-2 border-transparent border-b-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 65%), hsl(280, 60%, 65%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <h2 className="text-3xl md:text-4xl font-bold text-primary">
             {t("new.final.title")}
