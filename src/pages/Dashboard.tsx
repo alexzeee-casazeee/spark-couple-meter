@@ -848,7 +848,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
         )}
 
         {/* Today's Check-In - Individual Gradient Cards */}
-        <div className="space-y-1">
+        <div className="space-y-2">
           {viewMode === 'partner' && !partnerEntry ? (
             <div className="text-center py-4 text-muted-foreground bg-white/90 rounded-2xl">
               <p className="text-sm">{t("dashboard.partner.noCheckinYet").replace('{name}', partnerProfile?.display_name || '')}</p>
