@@ -452,7 +452,7 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     background-image: url('/gradiant-bg.jpg');
-    background-size: cover;
+    background-size: 100%;
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: fixed;
