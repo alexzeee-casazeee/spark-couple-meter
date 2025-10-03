@@ -66,26 +66,14 @@ const New = () => {
             <div className="mt-3 flex flex-col sm:flex-row gap-1.5 justify-center items-center w-full">
               <Button
                 size="sm"
-                variant="outline"
-                className="text-xs px-3 py-1.5 h-8 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
-                style={{ 
-                  backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
-                  backgroundOrigin: 'border-box',
-                  backgroundClip: 'padding-box, border-box'
-                }}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
                 onClick={() => navigate("/learn-more")}
               >
                 {t("new.cta.howItWorks")}
               </Button>
               <Button
                 size="sm"
-                variant="outline"
-                className="text-xs px-3 py-1.5 h-8 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
-                style={{ 
-                  backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
-                  backgroundOrigin: 'border-box',
-                  backgroundClip: 'padding-box, border-box'
-                }}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
                 onClick={() => setShowLoginForm(!showLoginForm)}
               >
                 {showLoginForm ? t("auth.button.signup") : t("auth.button.signin")}
@@ -370,26 +358,14 @@ const New = () => {
             <div className="mt-4 flex flex-col sm:flex-row gap-2 justify-center items-center">
               <Button
                 size="default"
-                variant="outline"
-                className="text-sm px-4 py-2 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
-                style={{ 
-                  backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
-                  backgroundOrigin: 'border-box',
-                  backgroundClip: 'padding-box, border-box'
-                }}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
                 onClick={() => navigate("/learn-more")}
               >
                 {t("new.cta.howItWorks")}
               </Button>
               <Button
                 size="default"
-                variant="outline"
-                className="text-sm px-4 py-2 bg-white/70 backdrop-blur-sm border-2 border-transparent bg-clip-padding relative shadow-lg w-full sm:w-auto"
-                style={{ 
-                  backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))',
-                  backgroundOrigin: 'border-box',
-                  backgroundClip: 'padding-box, border-box'
-                }}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
                 onClick={() => setShowLoginForm(!showLoginForm)}
               >
                 {showLoginForm ? t("auth.button.signup") : t("auth.button.signin")}
