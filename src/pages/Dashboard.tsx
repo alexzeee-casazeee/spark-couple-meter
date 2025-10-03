@@ -605,7 +605,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
       </header>
       )}
 
-      <div className="container mx-auto px-1 py-1 max-w-4xl space-y-1">
+      <div className="container mx-auto px-3 py-2 max-w-4xl space-y-1">
         {/* Invitation Prompt - Only show if no partner */}
         {!demoMode && !couple && profile && (
           <div className="bg-white/95 backdrop-blur-md rounded-3xl p-4 border-2 border-transparent bg-clip-padding relative" style={{ 
