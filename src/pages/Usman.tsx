@@ -186,7 +186,7 @@ const New = () => {
               </div>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-accent border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-accent/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <MessageCircle className="w-6 h-6 text-accent" />
