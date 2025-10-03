@@ -55,7 +55,7 @@ const New = () => {
             {t("new.hero.paragraph")}
           </p>
           
-          <div className="max-w-2xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-4 border-2 border-primary/60 border-b-4 bg-clip-padding relative mt-4" style={{
+          <div className="max-w-2xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-4 border-2 border-primary/60 border-b-8 bg-clip-padding relative mt-4" style={{
             backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
             backgroundOrigin: 'border-box', 
             backgroundClip: 'padding-box, border-box',
@@ -87,13 +87,13 @@ const New = () => {
 
       {/* Why This Matters Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
-        <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border-2 border-primary/60 border-b-4" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+        <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border-2 border-primary/60 border-b-8" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-6 px-[5px] md:px-6 pt-[5px] md:pt-6">
             <h2 className="text-3xl font-bold mb-3 text-primary">{t("new.why.title")}</h2>
           </div>
           
           <div className="space-y-5 px-[5px] md:px-6 pb-[5px] md:pb-6">
-            <div className="bg-white/80 p-4 rounded-2xl border-2 border-primary/60 border-b-4 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/80 p-4 rounded-2xl border-2 border-primary/60 border-b-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Activity className="w-5 h-5 text-primary" />
@@ -105,7 +105,7 @@ const New = () => {
               </p>
             </div>
 
-            <div className="bg-white/80 p-4 rounded-2xl border-2 border-primary/60 border-b-4 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/80 p-4 rounded-2xl border-2 border-primary/60 border-b-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-10 h-10 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Target className="w-5 h-5 text-secondary" />
@@ -117,7 +117,7 @@ const New = () => {
               </p>
             </div>
 
-            <div className="bg-white/80 p-4 rounded-2xl border-2 border-primary/60 border-b-4 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/80 p-4 rounded-2xl border-2 border-primary/60 border-b-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-10 h-10 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
                   <MessageCircle className="w-5 h-5 text-accent" />
@@ -135,7 +135,7 @@ const New = () => {
       {/* Dashboard Preview Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
         <div className="max-w-md mx-auto w-full">
-          <div className="rounded-2xl shadow-2xl border-2 border-primary/60 border-b-4 overflow-hidden bg-canva-gradient">
+          <div className="rounded-2xl shadow-2xl border-2 border-primary/60 border-b-8 overflow-hidden bg-canva-gradient">
             <Dashboard 
               demoMode={true} 
               onDemoInteraction={() => {
@@ -155,14 +155,14 @@ const New = () => {
 
       {/* How It Works Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
-        <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border-2 border-primary/60 border-b-4" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+        <div className="max-w-6xl mx-auto bg-white/70 backdrop-blur-sm p-[6px] rounded-3xl border-2 border-primary/60 border-b-8" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-6 px-[5px] md:px-6 pt-[5px] md:pt-6">
             <h2 className="text-3xl font-bold mb-3 text-primary">{t("landing.features.title")}</h2>
             <p className="text-base text-muted-foreground">{t("new.how.subtitle")}</p>
           </div>
           
           <div className="space-y-4 px-[5px] md:px-6 pb-[5px] md:pb-6">
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary/60 border-b-4" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary/60 border-b-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-primary/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Calendar className="w-6 h-6 text-primary" />
@@ -174,7 +174,7 @@ const New = () => {
               </div>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary/60 border-b-4" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary/60 border-b-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-secondary/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <LineChart className="w-6 h-6 text-secondary" />
@@ -186,7 +186,7 @@ const New = () => {
               </div>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary/60 border-b-4" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary/60 border-b-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-accent/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <MessageCircle className="w-6 h-6 text-accent" />
@@ -198,7 +198,7 @@ const New = () => {
               </div>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary/60 border-b-4" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary/60 border-b-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-primary/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <Target className="w-6 h-6 text-primary" />
@@ -210,7 +210,7 @@ const New = () => {
               </div>
             </div>
 
-            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary/60 border-b-4" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary/60 border-b-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-secondary/15 rounded-xl flex items-center justify-center flex-shrink-0">
                   <TrendingUp className="w-6 h-6 text-secondary" />
@@ -227,7 +227,7 @@ const New = () => {
 
       {/* What You'll Get Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-12">
-        <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 border-2 border-primary/60 border-b-4 bg-clip-padding relative" style={{ 
+        <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 border-2 border-primary/60 border-b-8 bg-clip-padding relative" style={{ 
           backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', 
           backgroundOrigin: 'border-box', 
           backgroundClip: 'padding-box, border-box',
@@ -288,21 +288,21 @@ const New = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-white/80 p-6 rounded-2xl border-2 border-primary/60 border-b-4 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/80 p-6 rounded-2xl border-2 border-primary/60 border-b-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-sm text-muted-foreground italic mb-3">
                 {t("new.testimonials.quote1")}
               </p>
               <p className="text-sm font-semibold text-primary">{t("new.testimonials.author1")}</p>
             </div>
 
-            <div className="bg-white/80 p-6 rounded-2xl border-2 border-primary/60 border-b-4 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/80 p-6 rounded-2xl border-2 border-primary/60 border-b-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-sm text-muted-foreground italic mb-3">
                 {t("new.testimonials.quote2")}
               </p>
               <p className="text-sm font-semibold text-secondary">{t("new.testimonials.author2")}</p>
             </div>
 
-            <div className="bg-white/80 p-6 rounded-2xl border-2 border-primary/60 border-b-4 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+            <div className="bg-white/80 p-6 rounded-2xl border-2 border-primary/60 border-b-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
               <p className="text-sm text-muted-foreground italic mb-3">
                 {t("new.testimonials.quote3")}
               </p>
@@ -314,7 +314,7 @@ const New = () => {
 
       {/* FAQ Section */}
       <section className="container mx-auto px-[5px] md:px-4 py-8">
-        <div className="max-w-4xl mx-auto bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-3xl border-2 border-primary/60 border-b-4" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
+        <div className="max-w-4xl mx-auto bg-white/70 backdrop-blur-sm p-6 md:p-8 rounded-3xl border-2 border-primary/60 border-b-8" style={{ boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-3 text-primary">{t("new.faq.title")}</h2>
           </div>
