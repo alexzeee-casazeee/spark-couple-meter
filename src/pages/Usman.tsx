@@ -22,7 +22,7 @@ const New = () => {
       <header className="container mx-auto px-3 py-[10px] flex justify-between items-center">
         <div className="flex items-center gap-1.5">
           <img src={logoIcon} alt="Spark Meter" className="w-7 h-7 object-contain" />
-          <span className="text-lg font-bold text-primary">
+          <span className="text-lg font-bold text-black">
             Spark Meter
           </span>
         </div>
