@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Landing from "./pages/Landing";
 import New from "./pages/New";
+import Usman from "./pages/Usman";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Account from "./pages/Account";
@@ -29,6 +30,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<New />} />
+            <Route path="/usman" element={<Usman />} />
             <Route path="/old" element={<Landing />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={<Dashboard />} />
