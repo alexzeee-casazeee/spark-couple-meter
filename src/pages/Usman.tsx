@@ -379,7 +379,7 @@ const New = () => {
       </section>
 
       {/* Footer */}
-      <footer className="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground border-t border-border/50">
+      <footer className="container mx-auto px-4 py-6 text-center text-sm text-white" style={{ background: 'var(--gradient-primary)' }}>
         <p>{t("new.footer")}</p>
       </footer>
     </div>
