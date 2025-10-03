@@ -573,7 +573,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
   }
 
   return (
-    <div className={demoMode ? "pb-4 dark" : "min-h-screen pb-12 bg-white"} style={demoMode ? { background: 'linear-gradient(135deg, hsl(220 15% 16%) 0%, hsl(230 18% 19%) 50%, hsl(220 15% 16%) 100%)' } : {}}>
+    <div className={demoMode ? "pb-4 bg-white" : "min-h-screen pb-12 bg-white"}>
       {/* Header - Compact */}
       {!demoMode && (
       <header className="p-2 shadow-glow" style={{ background: "var(--gradient-primary)" }}>
