@@ -92,7 +92,7 @@ const New = () => {
             <h2 className="text-3xl font-bold mb-3 text-primary">{t("new.why.title")}</h2>
           </div>
           
-          <div className="space-y-5 px-[5px] md:px-6 pb-[5px] md:pb-6">
+          <div className="space-y-4 px-[5px] md:px-6 pb-[5px] md:pb-6">
             <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-primary/15 rounded-xl flex items-center justify-center flex-shrink-0">
