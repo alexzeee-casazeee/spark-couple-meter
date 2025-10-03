@@ -103,7 +103,7 @@ export const JoinForm = () => {
         <Button
           type="submit"
           size="default"
-          className="w-full text-sm h-9 shadow-lg"
+          className="w-full text-sm h-9 shadow-lg hover:scale-[1.02] hover:shadow-xl transition-all duration-200"
           style={{ background: 'var(--gradient-primary)' }}
           disabled={loading}
         >
