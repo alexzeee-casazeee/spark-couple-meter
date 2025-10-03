@@ -66,14 +66,16 @@ const New = () => {
             <div className="mt-3 flex flex-col sm:flex-row gap-1.5 justify-center items-center w-full">
               <Button
                 size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
+                variant="outline"
+                className="border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
                 onClick={() => navigate("/learn-more")}
               >
                 {t("new.cta.howItWorks")}
               </Button>
               <Button
                 size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
+                variant="outline"
+                className="border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
                 onClick={() => setShowLoginForm(!showLoginForm)}
               >
                 {showLoginForm ? t("auth.button.signup") : t("auth.button.signin")}
@@ -358,14 +360,16 @@ const New = () => {
             <div className="mt-4 flex flex-col sm:flex-row gap-2 justify-center items-center">
               <Button
                 size="default"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
+                variant="outline"
+                className="border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
                 onClick={() => navigate("/learn-more")}
               >
                 {t("new.cta.howItWorks")}
               </Button>
               <Button
                 size="default"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
+                variant="outline"
+                className="border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground h-10 px-4 py-2 flex items-center gap-2 w-full sm:w-auto"
                 onClick={() => setShowLoginForm(!showLoginForm)}
               >
                 {showLoginForm ? t("auth.button.signup") : t("auth.button.signin")}
