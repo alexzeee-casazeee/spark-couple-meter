@@ -93,40 +93,40 @@ const New = () => {
           </div>
           
           <div className="space-y-5 px-[5px] md:px-6 pb-[5px] md:pb-6">
-            <div className="bg-white/80 p-4 rounded-2xl border-2 border-primary border-l-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Activity className="w-5 h-5 text-primary" />
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Activity className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-base font-semibold text-primary">{t("new.why.card1.title")}</h3>
+                <div>
+                  <h3 className="text-lg font-bold mb-2 text-primary">{t("new.why.card1.title")}</h3>
+                  <p className="text-base text-black">{t("new.why.card1.desc")}</p>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground">
-                {t("new.why.card1.desc")}
-              </p>
             </div>
 
-            <div className="bg-white/80 p-4 rounded-2xl border-2 border-primary border-l-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-secondary/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Target className="w-5 h-5 text-secondary" />
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-primary border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Target className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-base font-semibold text-foreground">{t("new.why.card2.title")}</h3>
+                <div>
+                  <h3 className="text-lg font-bold mb-2 text-primary">{t("new.why.card2.title")}</h3>
+                  <p className="text-base text-black">{t("new.why.card2.desc")}</p>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground">
-                {t("new.why.card2.desc")}
-              </p>
             </div>
 
-            <div className="bg-white/80 p-4 rounded-2xl border-2 border-primary border-l-8 bg-clip-padding relative" style={{ backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, hsl(180, 70%, 75%), hsl(280, 60%, 75%))', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)' }}>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-accent/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-5 h-5 text-accent" />
+            <div className="bg-white/80 p-5 rounded-2xl border-2 border-accent border-l-8" style={{ boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)' }}>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-accent/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-6 h-6 text-accent" />
                 </div>
-                <h3 className="text-base font-semibold text-foreground">{t("new.why.card3.title")}</h3>
+                <div>
+                  <h3 className="text-lg font-bold mb-2 text-accent">{t("new.why.card3.title")}</h3>
+                  <p className="text-base text-black">{t("new.why.card3.desc")}</p>
+                </div>
               </div>
-              <p className="text-sm text-muted-foreground">
-                {t("new.why.card3.desc")}
-              </p>
             </div>
           </div>
         </div>
