@@ -16,7 +16,7 @@ const New = () => {
   const [showDemoModal, setShowDemoModal] = useState(false);
 
   return (
-    <div className="min-h-screen bg-canva-gradient">
+    <div className="min-h-screen">
       {/* Header */}
       <header className="container mx-auto px-3 py-1.5 flex justify-between items-center">
         <div className="flex items-center gap-1.5">
