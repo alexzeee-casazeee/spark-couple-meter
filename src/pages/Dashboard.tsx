@@ -864,7 +864,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
-                      background: 'linear-gradient(135deg, rgba(200, 150, 255, 1), rgba(150, 200, 255, 1))'
+                      background: 'linear-gradient(135deg, rgba(120, 80, 180, 1), rgba(80, 120, 180, 1))'
                     }}>
                       <Flame className="w-3 h-3 text-white" />
                     </div>
@@ -893,7 +893,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
-                      background: 'linear-gradient(135deg, rgba(255, 200, 150, 1), rgba(255, 150, 200, 1))'
+                      background: 'linear-gradient(135deg, rgba(200, 120, 80, 1), rgba(200, 80, 120, 1))'
                     }}>
                       <Heart className="w-3 h-3 text-white" fill="white" />
                     </div>
@@ -922,7 +922,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
-                      background: 'linear-gradient(135deg, rgba(150, 255, 200, 1), rgba(150, 200, 255, 1))'
+                      background: 'linear-gradient(135deg, rgba(80, 180, 140, 1), rgba(80, 140, 180, 1))'
                     }}>
                       <MessageSquare className="w-3 h-3 text-white" />
                     </div>
@@ -951,7 +951,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
-                      background: 'linear-gradient(135deg, rgba(180, 200, 255, 1), rgba(200, 180, 255, 1))'
+                      background: 'linear-gradient(135deg, rgba(100, 120, 200, 1), rgba(120, 100, 180, 1))'
                     }}>
                       <Moon className="w-3 h-3 text-white" />
                     </div>
@@ -980,7 +980,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
-                      background: 'linear-gradient(135deg, rgba(150, 255, 255, 1), rgba(200, 200, 255, 1))'
+                      background: 'linear-gradient(135deg, rgba(80, 180, 180, 1), rgba(120, 120, 200, 1))'
                     }}>
                       <Sparkles className="w-3 h-3 text-white" />
                     </div>
@@ -1003,9 +1003,9 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
               {/* Custom Dimensions */}
               {customDimensions.map((dimension, index) => {
                 const gradients = [
-                  'linear-gradient(135deg, rgba(255, 180, 200, 0.5) 0%, rgba(255, 220, 180, 0.5) 100%)',
-                  'linear-gradient(135deg, rgba(200, 255, 180, 0.5) 0%, rgba(180, 255, 220, 0.5) 100%)',
-                  'linear-gradient(135deg, rgba(255, 200, 255, 0.5) 0%, rgba(200, 220, 255, 0.5) 100%)',
+                  'linear-gradient(135deg, rgba(200, 100, 140, 1) 0%, rgba(200, 150, 100, 1) 100%)',
+                  'linear-gradient(135deg, rgba(120, 180, 100, 1) 0%, rgba(100, 180, 150, 1) 100%)',
+                  'linear-gradient(135deg, rgba(180, 120, 180, 1) 0%, rgba(140, 150, 200, 1) 100%)',
                 ];
                 const gradient = gradients[index % gradients.length];
                 
@@ -1018,7 +1018,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
                     <div className="flex items-start justify-between gap-2 mb-1">
                       <div className="flex items-center gap-2">
                         <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{
-                          background: gradient.replace('0.5', '1')
+                          background: gradient
                         }}>
                           <Smile className="w-3 h-3 text-white" />
                         </div>
