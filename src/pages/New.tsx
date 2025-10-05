@@ -11,12 +11,12 @@ import { AuthModal } from "@/components/AuthModal";
 
 const New = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showDemoModal, setShowDemoModal] = useState(false);
 
   return (
-    <div className="min-h-screen bg-canva-gradient">
+    <div className={`min-h-screen bg-canva-gradient ${language === 'ru' ? 'pink-russian' : ''}`}>
       {/* Header */}
       <header className="container mx-auto px-3 py-1.5 flex justify-between items-center">
         <div className="flex items-center gap-1.5">

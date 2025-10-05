@@ -442,6 +442,83 @@ All colors MUST be HSL.
     --sidebar-border: 215 14% 85%;
     --sidebar-ring: 137 72% 25%;
   }
+
+  .pink-russian {
+    /* Russian Pink Theme - Romantic Pink Hues */
+    --background: 340 100% 98%;
+    --foreground: 340 70% 15%;
+    
+    /* Card System - Soft Pink Cards */
+    --card: 340 100% 96%;
+    --card-foreground: 340 70% 20%;
+    --card-header: 340 70% 15%;
+    --card-border: 340 60% 85%;
+    
+    /* Primary Pink Palette */
+    --primary: 330 75% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 330 70% 65%;
+    --primary-glow: 330 80% 75%;
+    --primary-deep: 330 80% 45%;
+    --primary-soft: 330 70% 60%;
+    
+    /* Rose-Pink Accents */
+    --accent: 350 85% 60%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 350 90% 70%;
+    --accent-soft: 350 80% 55%;
+    --mint: 350 85% 60%;
+    
+    /* Teal with pink undertones */
+    --teal: 340 50% 80%;
+    --teal-foreground: 340 70% 20%;
+    --teal-light: 340 40% 85%;
+    --teal-soft: 340 35% 75%;
+    
+    /* Semantic Colors with Pink Tint */
+    --success: 340 65% 50%;
+    --success-foreground: 0 0% 100%;
+    --warning: 25 90% 60%;
+    --warning-foreground: 340 70% 15%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Interface Elements - Pink Tints */
+    --secondary: 340 80% 92%;
+    --secondary-foreground: 340 70% 20%;
+    --muted: 340 60% 90%;
+    --muted-foreground: 340 30% 45%;
+    --border: 340 60% 85%;
+    --input: 340 60% 85%;
+    --ring: 330 75% 55%;
+    --popover: 340 100% 96%;
+    --popover-foreground: 340 70% 20%;
+    
+    /* Pink-Focused Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(330 75% 55%) 0%, hsl(330 70% 65%) 50%, hsl(340 80% 70%) 100%);
+    --gradient-indigo-deep: linear-gradient(135deg, hsl(330 80% 45%) 0%, hsl(330 75% 55%) 100%);
+    --gradient-indigo-soft: linear-gradient(135deg, hsl(330 70% 60%) 0%, hsl(340 70% 65%) 100%);
+    --gradient-indigo-header: linear-gradient(135deg, hsl(330 75% 52%) 0%, hsl(330 70% 58%) 50%, hsl(340 75% 62%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(340 100% 96%) 0%, hsl(340 90% 94%) 50%, hsl(340 100% 97%) 100%);
+    --gradient-background: linear-gradient(135deg, hsl(340 100% 98%) 0%, hsl(340 90% 96%) 50%, hsl(340 100% 99%) 100%);
+    --gradient-status-bar: linear-gradient(135deg, hsl(340 100% 96%) 0%, hsl(340 90% 93%) 100%);
+    
+    /* Pink Shadows & Effects */
+    --shadow-soft: 0 4px 20px -2px hsl(330 75% 55% / 0.15);
+    --shadow-premium: 0 8px 30px -4px hsl(330 75% 55% / 0.2);
+    --shadow-glow: 0 0 40px hsl(330 80% 75% / 0.3);
+    --shadow-indigo: 0 8px 25px -8px hsl(330 75% 55% / 0.3);
+    --shadow-floating: 0 10px 40px -10px hsl(330 75% 55% / 0.25);
+    
+    --sidebar-background: 340 100% 96%;
+    --sidebar-foreground: 340 70% 20%;
+    --sidebar-primary: 330 75% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 340 80% 92%;
+    --sidebar-accent-foreground: 340 70% 20%;
+    --sidebar-border: 340 60% 85%;
+    --sidebar-ring: 330 75% 55%;
+  }
 }
 
 @layer base {
