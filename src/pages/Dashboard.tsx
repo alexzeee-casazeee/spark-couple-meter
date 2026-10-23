@@ -66,7 +66,7 @@ const Dashboard = ({ demoMode = false, onDemoInteraction }: DashboardProps = {})
   const [partnerCustomValues, setPartnerCustomValues] = useState<Record<string, number>>({});
   
   // Auto-save timer
-  const saveTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // Invitation dialog state
   const [invitationDialogOpen, setInvitationDialogOpen] = useState(false);
